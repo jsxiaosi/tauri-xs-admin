@@ -19,8 +19,9 @@ export default (configEnv: ConfigEnv): UserConfig => {
 
   return {
     // 设为 false 可以避免 Vite 清屏而错过在终端中打印某些关键信息。命令行模式下请通过 --clearScreen false 设置。
-    clearScreen: true,
+    clearScreen: false,
     logLevel: 'info',
+    envPrefix: ['VITE_', 'TAURI_'],
     // 解析配置
     resolve: createViteResolve(mode, __dirname),
     // 插件配置

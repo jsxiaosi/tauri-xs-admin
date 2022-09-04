@@ -25,13 +25,15 @@
     "commit": "git-cz",
     "prepare": "husky install",
     "push": "scp -r dist/* root@服务器公网IP:/服务器资源存放地址",
-    "build:push": "npm run build && npm run push"
+    "build:push": "npm run build && npm run push",
+    "tauri": "tauri"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
     "@logicflow/core": "^1.1.25",
     "@logicflow/extension": "^1.1.25",
     "@vueuse/core": "^9.1.0",
+    "@tauri-apps/api": "^1.0.2",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
     "echarts": "^5.3.3",
@@ -71,6 +73,7 @@
     "@types/qs": "^6.9.7",
     "@types/sortablejs": "^1.13.0",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@tauri-apps/cli": "^1.0.5",
     "@typescript-eslint/parser": "^5.33.1",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
