@@ -1,6 +1,9 @@
-node_modules
-.DS_Store
-dist
-package-lock.json
-bin
 *.local
+
+.DS_Store
+package-lock.json
+
+bin
+dist
+dist_electron
+node_modules

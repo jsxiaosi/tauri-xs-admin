@@ -1,10 +1,11 @@
-/dist/*
 .local
 .output.js
 .npmrc
-/node_modules/**
 
 **/*.svg
 **/*.sh
 
-/public/*
+dist
+public
+node_modules
+dist_electron
