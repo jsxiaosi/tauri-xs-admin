@@ -1,9 +1,9 @@
-<div align="center"> <a href="https://github.com/jsxiaosi/vue-xs-admin"><h1>Vue3</h1></a>
+<div align="center"> <a href="https://github.com/jsxiaosi/tauri-xs-admin"><h1>tauri-xs-admin</h1></a>
 </div>
 
 ## 简介
 
-基于`vue3`,`vite2`,`element-push`等主流技术开发的后台框架模板  
+基于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)开发的 tauri 后台框架模板  
 预览地址：https://www.supercutexiaosi.top/  
 账号：admin  
 密码：admin123
@@ -15,6 +15,7 @@
 - **国际化**：内置完善的国际化方案
 - **常用组件**：内置完善的常用组件封装
 - **Pwa**：内置 pwa
+- **Tauri**：Tauri 编译桌面应用
 
 ## 准备
 
@@ -28,19 +29,31 @@
 
 ## 安装使用
 
+首先您必需要安装 Rust 及其他系统依赖。 [安装 Rust](https://tauri.app/zh/v1/guides/getting-started/prerequisites)
+
 - 获取项目代码（https or ssh）
 
 ```bash
-git clone https://github.com/jsxiaosi/vue-xs-admin.git
+git clone https://github.com/jsxiaosi/tauri-xs-admin.git
 
-git clone git@github.com:jsxiaosi/vue-xs-admin.git
+git clone git@github.com:jsxiaosi/tauri-xs-admin.git
 ```
 
 - 安装依赖
 
 ```bash
 cd vite-vue3-Template
+```
 
+推荐使用`pnpm`
+
+```bash
+pnpm i
+```
+
+或者`npm`
+
+```bash
 npm install
 
 # 建议不要直接使用 cnpm 安装以来，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
@@ -52,18 +65,18 @@ npm install --registry=https://registry.npm.taobao.org
 - 运行
 
 ```bash
-npm run dev
+npm run tauri dev
 ```
 
-- 打包
+- 打包应用
 
 ```bash
-npm run build
+npm run tauri build
 ```
 
 ## 项目地址
 
-- [vite-vue3-template](https://github.com/jsxiaosi/vue-xs-admin)
+- [tauri-xs-admin](https://github.com/jsxiaosi/tauri-xs-admin)
 
 ## 如何贡献
 
@@ -132,6 +145,7 @@ npm run build
 │   ├── styles                    #公共样式
 │   ├── utils                     #公共方法
 │   └── views                     #存放vue页面目录
+├── src-tauri                     #tauri配置
 ├── LICENSE
 ├── README.md
 ├── .editorconfig                 #规范编译器编码样式文件
