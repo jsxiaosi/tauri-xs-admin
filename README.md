@@ -29,9 +29,11 @@
 
 ## 安装使用
 
+### 1. 准备
+
 首先您必需要安装 Rust 及其他系统依赖。 [安装 Rust](https://tauri.app/zh/v1/guides/getting-started/prerequisites)
 
-- 获取项目代码（https or ssh）
+### 2. 获取项目代码（https or ssh）
 
 ```bash
 git clone https://github.com/jsxiaosi/tauri-xs-admin.git
@@ -39,7 +41,7 @@ git clone https://github.com/jsxiaosi/tauri-xs-admin.git
 git clone git@github.com:jsxiaosi/tauri-xs-admin.git
 ```
 
-- 安装依赖
+### 3. 安装依赖
 
 ```bash
 cd vite-vue3-Template
@@ -62,13 +64,13 @@ npm install --registry=https://registry.npm.taobao.org
 
 ```
 
-- 运行
+### 4. 运行
 
 ```bash
 npm run tauri dev
 ```
 
-- 打包应用
+### 5. 打包应用
 
 ```bash
 npm run tauri build
