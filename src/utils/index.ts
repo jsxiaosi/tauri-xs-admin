@@ -1,4 +1,4 @@
-import { App } from 'vue';
+import type { App, Plugin } from 'vue';
 import 'virtual:svg-icons-register';
 // import { setWindowAppConfig } from '@/store/modules/app';
 
@@ -15,9 +15,9 @@ export const configMainGlobalProperties = (app: App<Element>): void => {
 };
 
 export const withInstall = <T>(component: T, alias?: string) => {
-  const comp = component as any;
+  const comp = component as Recordable;
   comp.install = (app: App) => {
-    app.component(comp.name || comp.displayName, component);
+    app.component(comp.name || comp.displayName, comp);
     if (alias) {
       app.config.globalProperties[alias] = component;
     }

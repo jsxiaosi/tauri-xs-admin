@@ -1,223 +1,149 @@
-<template>
-  <div>
-    <el-row :gutter="30" class="enter-y">
-      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-        <el-card class="box-card">
-          <template #header>
-            <div class="card-header">
-              <span>描述列表</span>
-            </div>
-          </template>
-          <WeDetails></WeDetails>
-        </el-card>
-      </el-col>
-
-      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-        <el-card class="box-card">
-          <template #header>
-            <div class="card-header">
-              <span>滚动信息</span>
-            </div>
-          </template>
-          <div class="infinite">
-            <ul class="top">
-              <li>更新日期</li>
-              <li>项目名称</li>
-              <li>下载数量</li>
-            </ul>
-            <SeamlessScroll ref="scroll" :data="listData" :class-option="classOption" class="warp">
-              <ul class="item">
-                <li v-for="(item, index) in listData" :key="index">
-                  <span v-text="item.date"></span>
-                  <span v-text="item.name"></span>
-                  <span v-text="item.star"></span>
-                </li>
-              </ul>
-            </SeamlessScroll>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="30" class="enter-y">
-      <el-col>
-        <el-card class="box-card">
-          <VisitAnalysis />
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <!-- <div ref="chartRef" class="line"> </div> -->
-  </div>
-</template>
-
 <script setup lang="ts">
-  import SeamlessScroll from '@/components/SeamlessScroll/index.vue';
-  import WeDetails from './components/WeDetails.vue';
   import VisitAnalysis from './components/AnalysisChart.vue';
-  import { ref, Ref, onMounted, reactive } from 'vue';
-
-  import { useECharts } from '@/hooks/web/useECharts';
+  import PieChart from './components/PieChart.vue';
+  import Activity from './components/Activity.vue';
+  import Comment from './components/Comment.vue';
+  import SvgIcon from '@/components/SvgIcon/index.vue';
 
   defineOptions({
     name: 'RtWelcome',
   });
 
-  const chartRef = ref<HTMLDivElement | null>(null);
-  const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+  const speedList = [
+    {
+      title: '待办事项',
+      online: 24,
+      total: 70,
+    },
+    {
+      title: '待办任务',
+      online: 39,
+      total: 100,
+    },
+    {
+      title: '目标计划',
+      online: 5,
+      total: 10,
+    },
+    {
+      title: '评论回复',
+      online: 10,
+      total: 40,
+    },
+  ];
 
-  let classOption = reactive({
-    direction: 'top',
-  });
-
-  let listData = ref([
-    {
-      date: '2022-01-01',
-      name: 'vite+vue3 Template',
-      star: '1000',
-    },
-    {
-      date: '2022-01-02',
-      name: 'vite+vue3 Template',
-      star: '1100',
-    },
-    {
-      date: '2022-01-03',
-      name: 'vite+vue3 Template',
-      star: '1200',
-    },
-    {
-      date: '2022-01-04',
-      name: 'vite+vue3 Template',
-      star: '1300',
-    },
-    {
-      date: '2022-01-05',
-      name: 'vite+vue3 Template',
-      star: '1400',
-    },
-    {
-      date: '2022-01-06',
-      name: 'vite+vue3 Template',
-      star: '1500',
-    },
-    {
-      date: '2022-01-07',
-      name: 'vite+vue3 Template',
-      star: '1600',
-    },
-    {
-      date: '2022-01-08',
-      name: 'vite+vue3 Template',
-      star: '1700',
-    },
-    {
-      date: '2022-01-09',
-      name: 'vite+vue3 Template',
-      star: '1800',
-    },
-    {
-      date: '2022-01-10',
-      name: 'vite+vue3 Template',
-      star: '1900',
-    },
-  ]);
-
-  onMounted(() => {
-    setOptions({
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      },
-      yAxis: {
-        type: 'value',
-      },
-      series: [
-        {
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line',
-          areaStyle: {},
-        },
-      ],
-    });
-  });
-  // console.log(chartRef);
+  const value = (online: number, total: number) => {
+    return Math.round((online / total) * 100);
+  };
 </script>
 
+<template>
+  <div>
+    <el-row :gutter="20" class="enter-y">
+      <el-col
+        v-for="(item, index) in speedList"
+        :key="index"
+        :xs="24"
+        :sm="24"
+        :md="6"
+        :lg="6"
+        :xl="6"
+      >
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header cursor">
+              <span>{{ item.title }}</span>
+              <SvgIcon name="iEL-arrow-right"></SvgIcon>
+            </div>
+          </template>
+          <div class="card-content">
+            <div class="numerical-value">
+              <span class="number">{{ item.online }}/{{ item.total }}</span>
+              <span>Online/Total</span>
+            </div>
+            <el-progress
+              :text-inside="true"
+              :stroke-width="26"
+              :percentage="value(item.online, item.total)"
+            />
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20" class="enter-y">
+      <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header cursor">
+              <span>任务数据</span>
+            </div>
+          </template>
+          <VisitAnalysis />
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header cursor">
+              <span>任务数据</span>
+            </div>
+          </template>
+          <PieChart />
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20" class="enter-y">
+      <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header cursor">
+              <span>评论列表</span>
+            </div>
+          </template>
+          <Comment />
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header cursor">
+              <span>滚动信息</span>
+            </div>
+          </template>
+          <Activity></Activity>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
 <style lang="scss" scoped>
-  .el-col {
-    margin-bottom: 30px;
-  }
   .box-card {
-    // width: 480px;
+    margin-bottom: 20px;
+    :deep(.el-card__header) {
+      padding-bottom: 0;
+      border: none;
+    }
     .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      // color: var(--text-color-primary);
     }
-
-    .infinite {
-      border: 1px solid var(--border-color-light);
-      .top {
-        // width: 95%;
-        height: 40px;
-        line-height: 40px;
+    .card-content {
+      :deep(.el-progress-bar__outer) {
+        height: 17px !important;
+      }
+      .numerical-value {
         display: flex;
-        margin: 0 auto;
-        font-size: 14px;
-        // color: #909399;
-        font-weight: 400;
-        background: var(--sub-main-bg-content);
-        border-bottom: 1px solid var(--border-color-light);
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 10px;
 
-        li {
-          width: 34%;
-          text-align: center;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-      }
-
-      .warp {
-        width: 95%;
-        height: 202px;
-        margin: 0 auto;
-        overflow: hidden;
-
-        ul {
-          margin: 0;
-          li {
-            height: 30px;
-            line-height: 30px;
-            display: flex;
-            font-size: 15px;
-          }
-        }
-
-        span {
-          width: 34%;
-          text-align: center;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+        .number {
+          color: var(--text-color-primary);
+          font-size: var(--font-size-extra-large);
+          font-weight: 600;
         }
       }
     }
-
-    .text {
-      font-size: 14px;
-    }
-
-    .item {
-      margin-bottom: 18px;
-    }
-  }
-
-  .line {
-    width: 100%;
-    height: 100%;
   }
 </style>

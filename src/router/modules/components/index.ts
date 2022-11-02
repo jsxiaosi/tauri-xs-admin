@@ -1,4 +1,4 @@
-import { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '#/route';
 import { t } from '@/hooks/web/useI18n';
 
 const component: AppRouteRecordRaw[] = [

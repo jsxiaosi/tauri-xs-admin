@@ -1,37 +1,11 @@
-<template>
-  <el-menu
-    ref="menu"
-    :default-active="activeMenyu"
-    class="horizontal-header-menu"
-    mode="horizontal"
-    @select="(indexPath) => selectMenu(indexPath)"
-  >
-    <app-link
-      v-for="menusRoute in usePermissionStoreHook().wholeMenus"
-      :key="menusRoute.path"
-      :to="resolvePath(menusRoute)"
-    >
-      <el-menu-item :index="resolvePath(menusRoute)">
-        <item
-          class-name="menu-item-svg"
-          :icon="menusRoute.meta && menusRoute.meta.icon"
-          :title="menusRoute.meta?.title"
-        />
-      </el-menu-item>
-    </app-link>
-  </el-menu>
-</template>
 <script setup lang="ts">
+  import { computed } from 'vue';
+  import { useRoute } from 'vue-router';
   import Item from './Item.vue';
   import AppLink from './Link.vue';
   import { usePermissionStoreHook } from '@/store/modules/permission';
-  import { computed } from 'vue';
-  import { useRoute } from 'vue-router';
-  import { useNavSideBar } from '../../hooks/useNavSideBar';
-  import { AppRouteRecordRaw } from '#/route';
+  import type { AppRouteRecordRaw } from '#/route';
   import { getParentPaths, findRouteByPath } from '@/router/utils';
-
-  const { selectMenu } = useNavSideBar();
 
   const route = useRoute();
 
@@ -55,3 +29,26 @@
     return path;
   });
 </script>
+
+<template>
+  <el-menu
+    ref="menu"
+    :default-active="activeMenyu"
+    class="horizontal-header-menu"
+    mode="horizontal"
+  >
+    <AppLink
+      v-for="menusRoute in usePermissionStoreHook().wholeMenus"
+      :key="menusRoute.path"
+      :to="resolvePath(menusRoute)"
+    >
+      <el-menu-item :index="resolvePath(menusRoute)">
+        <Item
+          class-name="menu-item-svg"
+          :icon="menusRoute.meta && menusRoute.meta.icon"
+          :title="menusRoute.meta?.title"
+        />
+      </el-menu-item>
+    </AppLink>
+  </el-menu>
+</template>

@@ -2,11 +2,14 @@
   "title":"xiaosiAdmin",
   "collapseMenu": false,
   "sidebarMode": "vertical",
-  "themeMode": "day",
+  "themeMode": "dark",
   "locale": "zh-ch",
+  "primaryColor": "#409eff",
+  "greyMode": false,
+  "colorWeaknessMode":false,
+  "hideTabs": false,
+  "labelPersistent": true,
   "StorageConfig":{
-    "type": "localStorage",
-    "prefix": "xiaosiAdmin", 
     "expire": 0, 
     "isEncrypt": false
   }

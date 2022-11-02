@@ -1,4 +1,4 @@
-import { ServerOptions } from 'vite';
+import type { ServerOptions } from 'vite';
 
 export function createViteServer(): ServerOptions {
   const viteServer: ServerOptions = {

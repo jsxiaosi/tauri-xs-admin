@@ -1,9 +1,3 @@
-<template>
-  <div class="page-container">
-    <el-button type="primary" @click="handleIntro">引导页</el-button>
-  </div>
-</template>
-
 <script lang="ts" setup>
   import useIntro from '@/hooks/web/useIntro';
   const handleIntro = () => {
@@ -12,5 +6,11 @@
     });
   };
 </script>
+
+<template>
+  <div class="page-container">
+    <el-button type="primary" @click="handleIntro">引导页</el-button>
+  </div>
+</template>
 
 <style scoped lang="scss"></style>

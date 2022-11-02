@@ -1,4 +1,4 @@
-import { BuildOptions } from 'vite';
+import type { BuildOptions } from 'vite';
 
 export function createViteBuild(): BuildOptions {
   const viteBuild = {
@@ -16,10 +16,10 @@ export function createViteBuild(): BuildOptions {
     // 构建后是否生成 source map 文件。
     // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能。
     brotliSize: false,
+    // minify: 'terser',
     // terserOptions: {
     //   compress: {
-    //     keep_infinity: true,
-    //     // Used to delete console in production environment
+    //     // 打包清除console
     //     drop_console: true,
     //   },
     // },

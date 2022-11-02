@@ -1,3 +1,12 @@
+<script setup lang="ts">
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
+  const toHome = () => {
+    router.push('/');
+  };
+</script>
+
 <template>
   <div class="wscn-http404-container">
     <div class="wscn-http404">
@@ -11,7 +20,9 @@
         <div class="bullshit__oops">OOPS!</div>
         <div class="bullshit__info"
           >All rights reserved
-          <a style="color: #20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
+          <a style="color: var(--main-color)" href="https://wallstreetcn.com" target="_blank"
+            >wallstreetcn</a
+          >
         </div>
         <div class="bullshit__headline">The webmaster said that you can not enter this page...</div>
         <div class="bullshit__info"
@@ -24,25 +35,20 @@
   </div>
 </template>
 
-<script setup lang="ts">
-  import { useRouter } from 'vue-router';
-
-  const router = useRouter();
-  const toHome = () => {
-    router.push('/');
-  };
-</script>
-
 <style lang="scss" scoped>
   .wscn-http404-container {
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 40%;
-    left: 50%;
+    // transform: translate(-50%, -50%);
+    // position: absolute;
+    // top: 40%;
+    // left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
   .wscn-http404 {
     position: relative;
-    width: 1200px;
     padding: 0 50px;
     overflow: hidden;
     .pic-404 {
@@ -163,10 +169,10 @@
       padding: 30px 0;
       overflow: hidden;
       &__oops {
-        font-size: 32px;
+        font-size: 38px;
         font-weight: bold;
         line-height: 40px;
-        color: #1482f0;
+        color: var(--main-color);
         opacity: 0;
         margin-bottom: 20px;
         animation-name: slideUp;
@@ -174,7 +180,7 @@
         animation-fill-mode: forwards;
       }
       &__headline {
-        font-size: 20px;
+        font-size: var(--font-size-extra-large);
         line-height: 24px;
         color: grey;
         font-weight: bold;
@@ -186,7 +192,7 @@
         animation-fill-mode: forwards;
       }
       &__info {
-        font-size: 13px;
+        font-size: var(--font-size-small);
         line-height: 21px;
         color: grey;
         opacity: 0;
@@ -201,12 +207,12 @@
         float: left;
         width: 120px;
         height: 36px;
-        background: #1482f0;
+        background: var(--main-color);
         border-radius: 100px;
         text-align: center;
         color: #ffffff;
         opacity: 0;
-        font-size: 14px;
+        font-size: var(--font-size-base);
         // line-height: 36px;
         cursor: pointer;
         animation-name: slideUp;

@@ -5,7 +5,7 @@
     border: 1px solid var(--text-color-primary);
     text-shadow: none;
     &:hover {
-      color: var(--mian-color);
+      color: var(--main-color);
     }
   }
 }
@@ -15,7 +15,7 @@
   background-color: #{--main-bg-color};
   border: 1px solid var(--text-color-primary);
   .introjs-skipbutton {
-    font-size: 14px;
+    font-size: var(--font-size-base);
   }
 }
 

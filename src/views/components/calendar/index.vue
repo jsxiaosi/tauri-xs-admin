@@ -1,11 +1,3 @@
-<template>
-  <div class="page-container">
-    <el-calendar v-model="value">
-      <template #dateCell="defDate"> <DateItem v-bind="defDate" /></template>
-    </el-calendar>
-  </div>
-</template>
-
 <script lang="tsx" setup>
   import { ref } from 'vue';
   import calendar from '@/utils/date/calendar/index.js';
@@ -34,6 +26,14 @@
 
   DateItem.inheritAttrs = false;
 </script>
+
+<template>
+  <div class="page-container">
+    <el-calendar v-model="value">
+      <template #dateCell="defDate"> <DateItem v-bind="defDate" /></template>
+    </el-calendar>
+  </div>
+</template>
 
 <style scoped lang="scss">
   .page-container {

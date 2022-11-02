@@ -49,7 +49,7 @@ export const arrayEqual = (arr1: Array<any>, arr2: Array<any>) => {
  */
 export function copyObj() {
   if (!Array.isArray) {
-    // @ts-expect-error
+    // @ts-expect-error: 无参数
     Array.isArray = function (arg) {
       return Object.prototype.toString.call(arg) === '[object Array]';
     };
@@ -105,7 +105,7 @@ export function copyObj() {
           // 深复制，所以递归调用copyObject函数
           // 返回值为target对象，即clone对象
           // copy是一个源对象
-          // @ts-expect-error
+          // @ts-expect-error: 无参数
           target[name] = copyObj(deep, clone, copy);
         } else if (copy !== undefined) {
           // 浅复制，直接复制到target对象上

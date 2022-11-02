@@ -1,6 +1,7 @@
 <script lang="tsx">
+  import type { PropType } from 'vue';
+  import { defineComponent } from 'vue';
   import { getSlot } from '@/utils/slotsHelper';
-  import { defineComponent, PropType } from 'vue';
 
   export default defineComponent({
     name: 'CtTableItem',

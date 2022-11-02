@@ -1,3 +1,10 @@
+<script setup lang="ts">
+  import AppMain from './components/AppMain/index.vue';
+  import AppTabs from './components/AppTabs/index.vue';
+  import NavBart from './components/Navbart/index.vue';
+  import SideNavigationBar from './components/SideNavigationBar/index.vue';
+</script>
+
 <template>
   <div class="app-wrapper">
     <!-- 侧边导航栏 -->
@@ -13,12 +20,5 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-  import AppMain from './components/AppMain/index.vue';
-  import AppTabs from './components/AppTabs/index.vue';
-  import NavBart from './components/Navbart/index.vue';
-  import SideNavigationBar from './components/SideNavigationBar/index.vue';
-</script>
 
 <style lang="scss" scoped></style>

@@ -1,4 +1,4 @@
-import { MockMethod, Recordable } from 'vite-plugin-mock';
+import type { MockMethod, Recordable } from 'vite-plugin-mock';
 
 const power = [
   {
@@ -61,6 +61,20 @@ const power = [
     ],
   },
   {
+    path: '/system',
+    name: 'RtSystem',
+    children: [
+      {
+        path: 'power',
+        name: 'RtPower',
+      },
+      {
+        path: 'guide',
+        name: 'RtGuide',
+      },
+    ],
+  },
+  {
     path: '/editor',
     name: 'RtEditor',
     children: [
@@ -81,6 +95,17 @@ const power = [
   {
     path: '/details_page',
     name: 'RtDetailsPage',
+  },
+  {
+    path: '/error',
+    redirect: '/error/404',
+    name: 'error',
+    children: [
+      {
+        path: '404',
+        name: '404',
+      },
+    ],
   },
 ];
 
@@ -138,20 +163,6 @@ const adminRoute = [
       {
         path: 'menu2',
         name: 'RtMenu2',
-      },
-    ],
-  },
-  {
-    path: '/system',
-    name: 'RtSystem',
-    children: [
-      {
-        path: 'power',
-        name: 'RtPower',
-      },
-      {
-        path: 'guide',
-        name: 'RtGuide',
       },
     ],
   },

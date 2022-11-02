@@ -1,5 +1,5 @@
 import type { RouteRecordRaw, RouteMeta } from 'vue-router';
-import { defineComponent } from 'vue';
+import type { defineComponent } from 'vue';
 
 export type Component<T = any> =
   | ReturnType<typeof defineComponent>
@@ -16,7 +16,6 @@ export interface Menu extends RouteMeta {
   position?: number; //排序位置
 }
 
-// @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   path: string;
   name?: string; // 命名路由

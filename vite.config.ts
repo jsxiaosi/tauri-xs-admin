@@ -1,19 +1,22 @@
-// https://vitejs.dev/config/
+/// <reference types="vitest" />
 
 import { UserConfig, ConfigEnv } from 'vite';
 
 import { createVitePlugins } from './build/vite/plugin';
 import { createViteResolve } from './build/vite/resolve';
 import { createViteBuild } from './build/vite/build';
+import { createViteEsbuild } from './build/vite/esbuild';
 import { createViteServer } from './build/vite/server';
 import { createViteOptimizeDeps } from './build/vite/optimizeDeps';
 import { createViteCSS } from './build/vite/css';
+import { createVitestTest } from './build/vite/viteTestConfig';
 
+// https://vitejs.dev/config/
 export default (configEnv: ConfigEnv): UserConfig => {
   const { mode, command } = configEnv;
   // const root = process.cwd();
 
-  // const _env = loadEnv(mode, root);
+  // const env = loadEnv(mode, root);
 
   const isBuild = command === 'build';
 
@@ -22,6 +25,10 @@ export default (configEnv: ConfigEnv): UserConfig => {
     clearScreen: false,
     logLevel: 'info',
     envPrefix: ['VITE_', 'TAURI_'],
+    // esbuild
+    esbuild: createViteEsbuild(isBuild),
+    // vitest配置
+    test: createVitestTest(),
     // 解析配置
     resolve: createViteResolve(mode, __dirname),
     // 插件配置

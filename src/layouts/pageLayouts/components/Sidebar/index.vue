@@ -1,38 +1,13 @@
-<template>
-  <el-scrollbar wrap-class="scrollbar-wrapper">
-    <el-menu
-      :default-active="activeMenyu"
-      :unique-opened="true"
-      :collapse="appConfigMode.sidebarMode === 'horizontal' ? false : appConfigMode.collapseMenu"
-      :mode="mode"
-      @select="(indexPath) => selectMenu(indexPath)"
-    >
-      <sidebar-item
-        v-for="menuRoute in menuData"
-        :key="menuRoute.path"
-        :item="menuRoute"
-        :is-nest="false"
-        :base-path="menuRoute.path"
-      />
-    </el-menu>
-  </el-scrollbar>
-</template>
-
 <script setup lang="ts">
-  import { computed, PropType, ref, toRef, watch } from 'vue';
+  import type { PropType } from 'vue';
+  import { computed, ref, toRef, watch } from 'vue';
   import { useRoute } from 'vue-router';
   import SidebarItem from './SidebarItem.vue';
   import { usePermissionStoreHook } from '@/store/modules/permission';
-  import { AppRouteRecordRaw } from '#/route';
+  import type { AppRouteRecordRaw } from '#/route';
   import { getParentPaths, findRouteByPath } from '@/router/utils';
-  import { useNavSideBar } from '../../hooks/useNavSideBar';
   import { useAppStoreHook } from '@/store/modules/app';
 
-  const { selectMenu } = useNavSideBar();
-
-  const route = useRoute();
-  const appStore = useAppStoreHook();
-  const appConfigMode = toRef(appStore, 'appConfigMode');
   defineProps({
     mode: {
       type: String as PropType<'vertical' | 'horizontal'>,
@@ -40,6 +15,9 @@
     },
   });
 
+  const route = useRoute();
+  const appStore = useAppStoreHook();
+  const appConfigMode = toRef(appStore, 'appConfigMode');
   let subMenuData = ref<AppRouteRecordRaw[]>(usePermissionStoreHook().wholeMenus);
 
   const menuData = computed<AppRouteRecordRaw[]>(() => {
@@ -77,8 +55,25 @@
     }
     return path;
   });
-
-  // const isCollapse = ref(false)
 </script>
+
+<template>
+  <el-scrollbar wrap-class="scrollbar-wrapper">
+    <el-menu
+      :default-active="activeMenyu"
+      :unique-opened="true"
+      :collapse="appConfigMode.sidebarMode === 'horizontal' ? false : appConfigMode.collapseMenu"
+      :mode="mode"
+    >
+      <SidebarItem
+        v-for="menuRoute in menuData"
+        :key="menuRoute.path"
+        :item="menuRoute"
+        :is-nest="false"
+        :base-path="menuRoute.path"
+      />
+    </el-menu>
+  </el-scrollbar>
+</template>
 
 <style lang="scss" scoped></style>

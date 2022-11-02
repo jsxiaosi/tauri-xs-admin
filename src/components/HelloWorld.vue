@@ -1,3 +1,16 @@
+<script setup lang="ts">
+  import { reactive } from 'vue';
+
+  defineProps({
+    msg: {
+      type: String,
+      default: '',
+    },
+  });
+
+  const state = reactive({ count: 0 });
+</script>
+
 <template>
   <h1>{{ msg }}</h1>
 
@@ -13,19 +26,6 @@
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
 </template>
-
-<script setup lang="ts">
-  import { reactive } from 'vue';
-
-  defineProps({
-    msg: {
-      type: String,
-      default: '',
-    },
-  });
-
-  const state = reactive({ count: 0 });
-</script>
 
 <style lang="scss" scoped>
   a {

@@ -1,15 +1,13 @@
-<template>
-  <div class="page-container">
-    <div ref="chartRef" class="chartRef"></div>
-  </div>
-</template>
 <script lang="ts"></script>
+
 <script lang="ts" setup>
-  import { onMounted, ref, Ref } from 'vue';
-  import { createEChartsOption, useECharts } from '@/hooks/web/useECharts';
-  import { mapData } from './data';
+  import type { Ref } from 'vue';
+  import { onMounted, ref } from 'vue';
   import { registerMap } from 'echarts';
   import { useIntervalFn } from '@vueuse/core';
+  import { mapData } from './data';
+  import type { createEChartsOption } from '@/hooks/web/useECharts';
+  import { useECharts } from '@/hooks/web/useECharts';
 
   const chartRef = ref<HTMLDivElement | null>(null);
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
@@ -111,6 +109,12 @@
     setOptions(currentOption, false);
   }
 </script>
+
+<template>
+  <div class="page-container">
+    <div ref="chartRef" class="chartRef"></div>
+  </div>
+</template>
 
 <style scoped lang="scss">
   .chartRef {

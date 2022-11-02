@@ -1,5 +1,58 @@
+<script setup lang="ts">
+  import { ref, computed, watch, onBeforeMount } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
+  import { storeToRefs } from 'pinia';
+  import { useTabsView } from './hooks/useTabsView';
+  import { useTabsChange } from './hooks/useTabsChange';
+  import { translateI18n } from '@/hooks/web/useI18n';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
+  import type { MultiTabsType } from '@/store/types';
+  import SvgIcon from '@/components/SvgIcon/index.vue';
+  import { useAppStoreHook } from '@/store/modules/app';
+
+  const { appConfigMode } = storeToRefs(useAppStoreHook());
+
+  const route = useRoute();
+  const router = useRouter();
+
+  const multiTabs = computed<MultiTabsType[]>(() => usePermissionStoreHook().multiTabs);
+
+  const { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange } =
+    useTabsView(multiTabs);
+
+  const { setTabPaneKey, selectMenu, onFresh, removeTab } = useTabsChange(multiTabs);
+
+  const editableTabsValue = ref(setTabPaneKey(route));
+
+  watch(
+    () => [route.path, route.query],
+    async () => {
+      await selectMenu(route.path);
+      contextmenu(route);
+      setTimeout(() => (editableTabsValue.value = setTabPaneKey(route)));
+    },
+  );
+
+  onBeforeMount(() => {
+    selectMenu(route.path);
+    contextmenu(route);
+  });
+
+  const tabRemoveChange = (e: string) => {
+    const item = multiTabs.value.find((i) => setTabPaneKey(i) === e);
+    if (item) removeTab(item);
+  };
+
+  const changeTab = (e: MultiTabsType) => {
+    router.push({
+      path: e.path,
+      query: e.query,
+    });
+  };
+</script>
+
 <template>
-  <div class="main-container-tabs">
+  <div v-if="!appConfigMode.hideTabs" class="main-container-tabs">
     <el-tabs
       v-model="editableTabsValue"
       type="card"
@@ -12,7 +65,7 @@
           <div
             class="tabs-view-item"
             @click="changeTab(item)"
-            @contextmenu.prevent="contextmenu(item.path, $event)"
+            @contextmenu.prevent="contextmenu(item, $event)"
           ></div>
           <span>{{ translateI18n(item.meta.title) }}</span>
         </template>
@@ -36,11 +89,11 @@
     <div class="right-button">
       <ul>
         <li class="cursor" @click="onFresh()">
-          <svg-icon class="rotate" name="iEL-refresh"></svg-icon>
+          <SvgIcon class="rotate" name="iEL-refresh"></SvgIcon>
         </li>
         <li>
           <el-dropdown trigger="click" placement="bottom-end">
-            <svg-icon class="action-item" name="iEL-arrow-down"></svg-icon>
+            <SvgIcon class="action-item" name="iEL-arrow-down"></SvgIcon>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item
@@ -60,65 +113,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-  import { translateI18n } from '@/hooks/web/useI18n';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
-  import type { MultiTabsType } from '@/store/types';
-  import { ref, computed, watch, onBeforeMount } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
-  import SvgIcon from '@/components/SvgIcon/index.vue';
-  import { useTabsView } from './hooks/useTabsView';
-  import { useTabsChange } from './hooks/useTabsChange';
-  import { emitter } from '@/utils/mitt';
-  import { useNavSideBar } from '../../hooks/useNavSideBar';
-
-  const route = useRoute();
-  const router = useRouter();
-
-  const multiTabs = computed<MultiTabsType[]>(() => usePermissionStoreHook().multiTabs);
-
-  const { setTabPaneKey, addRouteTabs, onFresh, removeTab } = useTabsChange(multiTabs);
-
-  const { selectMenu } = useNavSideBar();
-
-  const { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange } =
-    useTabsView(multiTabs);
-
-  const editableTabsValue = ref(setTabPaneKey(route));
-
-  watch(
-    () => route.path,
-    () => {
-      editableTabsValue.value = setTabPaneKey(route);
-    },
-  );
-
-  onBeforeMount(() => {
-    emitter.on('siteBarChange', ({ routeRaw }) => {
-      addRouteTabs(routeRaw as unknown as MultiTabsType);
-      contextmenu(routeRaw.path);
-    });
-
-    selectMenu(route.path);
-    contextmenu(route.path);
-  });
-
-  const tabRemoveChange = (e: string) => {
-    removeTab(e);
-    setTimeout(() => {
-      contextmenu(route.path);
-    });
-  };
-
-  const changeTab = (e: MultiTabsType) => {
-    router.push({
-      path: e.path,
-      query: e.query,
-    });
-    contextmenu(e.path);
-  };
-</script>
 
 <style lang="scss" scoped>
   .main-container-tabs {
@@ -188,7 +182,7 @@
       box-shadow: 0px 0px 12px rgb(28 29 30 / 8%);
       .right-view-item {
         padding: 5px 10px;
-        font-size: 14px;
+        font-size: var(--font-size-base);
         display: flex;
         align-items: center;
         border-radius: 5px;
@@ -196,7 +190,7 @@
           margin-right: 5px;
         }
         &:hover {
-          background-color: var(--sub-color-2);
+          background-color: var(--sub-color-8);
         }
       }
     }
@@ -209,7 +203,7 @@
           height: 100%;
           text-align: center;
           line-height: $tabsPageHeight;
-          font-size: 16px;
+          font-size: var(--font-size-medium);
           border: 1px solid var(--border-color-light);
           .action-item {
             height: $tabsPageHeight;

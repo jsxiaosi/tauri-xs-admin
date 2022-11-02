@@ -1,3 +1,40 @@
+<script lang="ts" setup>
+  import { ref } from 'vue';
+  import useSortable from '@/hooks/web/useSortable';
+
+  defineOptions({
+    name: 'RtDrag',
+  });
+
+  const list = ref<Array<string>>([]);
+  for (let i = 0; i < 7; i++) {
+    list.value.push(`第${i + 1}个`);
+  }
+
+  const gridList = ref<Array<string>>([]);
+  for (let i = 0; i < 9; i++) {
+    gridList.value.push(`第${i + 1}个`);
+  }
+
+  const sortableEl = ref<HTMLElement | null>(null);
+  useSortable(sortableEl, {
+    handle: '.handle',
+    // chosenClass: '.sortable-chosen',
+    onEnd(e) {
+      console.log(e);
+    },
+  });
+
+  const gridSortableEl = ref<HTMLElement | null>(null);
+  useSortable(gridSortableEl, {
+    handle: '.list-item',
+    // chosenClass: '.sortable-chosen',
+    onEnd(e) {
+      console.log(e);
+    },
+  });
+</script>
+
 <template>
   <div>
     <el-row :gutter="30" class="enter-y">
@@ -37,43 +74,6 @@
     </el-row>
   </div>
 </template>
-
-<script lang="ts" setup>
-  import useSortable from '@/hooks/web/useSortable';
-  import { ref } from 'vue';
-
-  defineOptions({
-    name: 'RtDrag',
-  });
-
-  const list = ref<Array<string>>([]);
-  for (let i = 0; i < 7; i++) {
-    list.value.push(`第${i + 1}个`);
-  }
-
-  const gridList = ref<Array<string>>([]);
-  for (let i = 0; i < 9; i++) {
-    gridList.value.push(`第${i + 1}个`);
-  }
-
-  const sortableEl = ref<HTMLElement | null>(null);
-  useSortable(sortableEl, {
-    handle: '.handle',
-    // chosenClass: '.sortable-chosen',
-    onEnd(e) {
-      console.log(e);
-    },
-  });
-
-  const gridSortableEl = ref<HTMLElement | null>(null);
-  useSortable(gridSortableEl, {
-    handle: '.list-item',
-    // chosenClass: '.sortable-chosen',
-    onEnd(e) {
-      console.log(e);
-    },
-  });
-</script>
 
 <style scoped lang="scss">
   .card-content {

@@ -1,15 +1,16 @@
-import { MultiTabsType } from '@/store/types';
-import { computed, CSSProperties, reactive, Ref, ref, watch } from 'vue';
+import type { CSSProperties, Ref } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import { useTabsChange } from './useTabsChange';
+import type { MultiTabsType } from '@/store/types';
 
-type RightClickTags = {
+interface RightClickTags {
   text: string;
   disabled: boolean;
   code: string;
-};
+}
 
 export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
-  const { onFresh, removeTab, closeTabsRoute } = useTabsChange(multiTabs);
+  const { onFresh, removeTab, closeTabsRoute, setTabPaneKey } = useTabsChange(multiTabs);
   const rightClickTags = reactive<RightClickTags[]>([
     {
       text: '刷新',
@@ -51,9 +52,11 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
     });
   };
 
-  const showMenu = (item: string) => {
+  const showMenu = (item: MultiTabsType) => {
     disabledMenu([0, 1, 2, 3, 4], false);
-    const multFindIndex = multiTabs.value.findIndex((i) => i.path === item);
+    const multFindIndex = multiTabs.value.findIndex(
+      (i) => setTabPaneKey(i) === setTabPaneKey(item),
+    );
     const multlength = multiTabs.value.length;
     if (multFindIndex === 0 && multlength > 1) {
       disabledMenu([3], true);
@@ -64,11 +67,11 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
     }
   };
 
-  const contextmenu = (path: string, e?: MouseEvent) => {
-    const item = multiTabs.value.find((i) => i.path === path);
+  const contextmenu = (route: MultiTabsType, e?: MouseEvent) => {
+    const item = multiTabs.value.find((i) => setTabPaneKey(i) === setTabPaneKey(route));
     if (!item) return;
     closeMenu();
-    showMenu(item.path);
+    showMenu(item);
     activityItem.value = item;
     if (e) {
       setTimeout(() => {
@@ -106,25 +109,25 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
         break;
       }
       case 'close': {
-        removeTab(activityItem.value.path);
+        removeTab(activityItem.value);
         break;
       }
       case 'closeOther': {
-        closeTabsRoute(activityItem.value.path, 'other');
+        closeTabsRoute(activityItem.value, 'other');
         break;
       }
       case 'closeLeftOther': {
-        closeTabsRoute(activityItem.value.path, 'left');
+        closeTabsRoute(activityItem.value, 'left');
         break;
       }
       case 'closeRightOther': {
-        closeTabsRoute(activityItem.value.path, 'right');
+        closeTabsRoute(activityItem.value, 'right');
         break;
       }
       default:
         break;
     }
-    showMenu(activityItem.value.path);
+    showMenu(activityItem.value);
   };
 
   return { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange };

@@ -1,42 +1,8 @@
-<template>
-  <div :ref="'wrap' + classOption['key']">
-    <div v-if="navigation" :style="leftSwitch" :class="leftSwitchClass" @click="leftSwitchClick">
-      <slot name="left-switch"></slot>
-    </div>
-    <div v-if="navigation" :style="rightSwitch" :class="rightSwitchClass" @click="rightSwitchClick">
-      <slot name="right-switch"></slot>
-    </div>
-    <div
-      :ref="'realBox' + classOption['key']"
-      :style="pos"
-      @mouseenter="enter"
-      @mouseleave="leave"
-      @touchstart="touchStart"
-      @touchmove="touchMove"
-      @touchend="touchEnd"
-      @mousewheel="wheel"
-    >
-      <div :ref="'slotList' + classOption['key']" :style="float">
-        <slot></slot>
-      </div>
-      <div :style="float" v-html="copyHtml"></div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-  import { computed, ref, unref, nextTick, Ref } from 'vue';
-  import type { CSSProperties } from 'vue';
+  import { computed, ref, unref, nextTick } from 'vue';
+  import type { CSSProperties, Ref } from 'vue';
   import { tryOnMounted, tryOnUnmounted, templateRef, useDebounceFn } from '@vueuse/core';
   import * as utilsMethods from './utils';
-  const { animationFrame, copyObj } = utilsMethods;
-
-  defineOptions({
-    name: 'SeamlessScroll',
-  });
-
-  animationFrame();
-
   const props = defineProps({
     data: {
       type: Array,
@@ -51,6 +17,14 @@
   const emit = defineEmits<{
     (e: 'scrollEnd'): void;
   }>();
+
+  const { animationFrame, copyObj } = utilsMethods;
+
+  defineOptions({
+    name: 'SeamlessScroll',
+  });
+
+  animationFrame();
 
   let xPos = ref<number>(0);
   let yPos = ref<number>(0);
@@ -124,7 +98,7 @@
   });
 
   let options = computed(() => {
-    // @ts-ignore
+    // @ts-expect-error: 存在多余参数
     return copyObj({}, unref(defaultOption), classOption);
   });
 
@@ -487,3 +461,29 @@
     reset,
   });
 </script>
+
+<template>
+  <div :ref="'wrap' + classOption['key']">
+    <div v-if="navigation" :style="leftSwitch" :class="leftSwitchClass" @click="leftSwitchClick">
+      <slot name="left-switch"></slot>
+    </div>
+    <div v-if="navigation" :style="rightSwitch" :class="rightSwitchClass" @click="rightSwitchClick">
+      <slot name="right-switch"></slot>
+    </div>
+    <div
+      :ref="'realBox' + classOption['key']"
+      :style="pos"
+      @mouseenter="enter"
+      @mouseleave="leave"
+      @touchstart="touchStart"
+      @touchmove="touchMove"
+      @touchend="touchEnd"
+      @mousewheel="wheel"
+    >
+      <div :ref="'slotList' + classOption['key']" :style="float">
+        <slot></slot>
+      </div>
+      <div :style="float" v-html="copyHtml"></div>
+    </div>
+  </div>
+</template>

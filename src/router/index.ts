@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { App } from 'vue';
+import type { RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
+import type { App } from 'vue';
 import { configRouteList } from './modules';
 import { handleAliveRoute, initAsyncRoute } from './utils';
 import { usePermissionStoreHook } from '@/store/modules/permission';
@@ -8,13 +9,14 @@ import { getConfig } from '@/config';
 import { translateI18n } from '@/hooks/web/useI18n';
 import { isUrl } from '@/utils/is';
 import { getStorage, removeStorage } from '@/utils/storage';
-import { UseInfoType } from '@/server/useInfo';
+import type { UseInfoType } from '@/server/useInfo';
 
 const { whiteRouteModulesList, routeModulesList } = configRouteList();
 
 // 在导航栏上的路由
 export const sidebarRouteList = routeModulesList;
 
+console.log(JSON.parse(JSON.stringify(whiteRouteModulesList)));
 export const router = createRouter({
   history: createWebHistory(''),
   routes: whiteRouteModulesList as unknown as RouteRecordRaw[],

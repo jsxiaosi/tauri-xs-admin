@@ -1,6 +1,8 @@
-import Sortable, { Options } from 'sortablejs';
+import type { Options } from 'sortablejs';
+import Sortable from 'sortablejs';
 import { tryOnMounted } from '@vueuse/core';
-import { Ref, unref } from 'vue';
+import type { Ref } from 'vue';
+import { unref } from 'vue';
 
 function useSortable(el: Ref<HTMLElement | null>, options?: Options) {
   tryOnMounted(() => {

@@ -1,8 +1,9 @@
 import { readdir, stat } from 'fs';
-import type { Plugin, ResolvedConfig } from 'vite';
 import { join } from 'path';
+import type { Plugin, ResolvedConfig } from 'vite';
 import { green } from 'kolorist';
-import dayjs, { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
 

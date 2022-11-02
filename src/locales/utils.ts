@@ -1,4 +1,6 @@
-export type Messages = { [key: string]: string };
+export interface Messages {
+  [key: string]: string;
+}
 
 export const defaultFilePath = (config: Recordable) => {
   const messages: Messages = {};

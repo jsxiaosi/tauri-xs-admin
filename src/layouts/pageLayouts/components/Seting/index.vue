@@ -1,33 +1,10 @@
-<template>
-  <el-drawer v-model="drawer" title="设置" @close="emit('update:modelValue', false)">
-    <div class="drawer-content">
-      <div class="layout_seting">
-        <div class="sidebar_seting">
-          <el-tooltip
-            v-for="item in sidebarSeting"
-            :key="item.value"
-            :content="item.label"
-            placement="bottom"
-          >
-            <div
-              class="sidebar_mode"
-              :class="{ 'sidebar_mode-select': appConfigMode.sidebarMode === item.value }"
-              @click="handerShowElmenu(item.value)"
-            >
-              <div></div>
-              <div></div>
-            </div>
-          </el-tooltip>
-        </div>
-      </div>
-    </div>
-  </el-drawer>
-</template>
-
 <script setup lang="ts">
   import { watch, ref, toRef } from 'vue';
+  import ThemeSettings from './ThemeSettings/index.vue';
+  import pageSettings from './pageSettings/index.vue';
   import { useAppStoreHook } from '@/store/modules/app';
-  import { SidebarMode } from '@/store/types';
+  import type { SidebarMode } from '@/store/types';
+  import { clearStorage } from '@/utils/storage';
 
   const props = defineProps({
     modelValue: {
@@ -69,13 +46,69 @@
   const handerShowElmenu = (vale: SidebarMode) => {
     appStore.setAppConfigMode({ sidebarMode: vale });
   };
+
+  const handerClearStorage = () => {
+    clearStorage();
+    window.location.reload();
+  };
 </script>
 
+<template>
+  <div class="setting">
+    <el-drawer
+      v-model="drawer"
+      custom-class="setting-drawer"
+      :title="$t('layout.setup')"
+      :size="320"
+      @close="emit('update:modelValue', false)"
+    >
+      <div class="drawer-content">
+        <el-divider content-position="center">{{ $t('layout.layoutSettings') }}</el-divider>
+        <div class="layout_seting">
+          <div class="sidebar_seting">
+            <el-tooltip
+              v-for="item in sidebarSeting"
+              :key="item.value"
+              :content="item.label"
+              placement="bottom"
+            >
+              <div
+                class="sidebar_mode cursor"
+                :class="{ 'sidebar_mode-select': appConfigMode.sidebarMode === item.value }"
+                @click="handerShowElmenu(item.value)"
+              >
+                <div></div>
+                <div></div>
+              </div>
+            </el-tooltip>
+          </div>
+        </div>
+        <el-divider content-position="center">{{ $t('layout.themeSettings') }}</el-divider>
+        <div>
+          <ThemeSettings></ThemeSettings>
+        </div>
+        <el-divider content-position="center">{{ $t('layout.pageSettings') }}</el-divider>
+        <div>
+          <pageSettings></pageSettings>
+        </div>
+        <el-button class="clear_storage" type="danger" @click="handerClearStorage">{{
+          $t('layout.clearStorage')
+        }}</el-button>
+      </div>
+    </el-drawer>
+  </div>
+</template>
+
 <style lang="scss" scoped>
+  .setting :deep(.el-drawer__header) {
+    margin-bottom: 0;
+  }
+
   .drawer-content {
     width: 100%;
     height: 100%;
-
+    overflow-y: auto;
+    position: relative;
     .layout_seting {
       .sidebar_seting {
         display: flex;
@@ -83,23 +116,24 @@
         justify-content: space-around;
 
         .sidebar_mode-select {
-          border: 2px solid #409eff;
+          border: 2px solid var(--main-color);
         }
 
         .sidebar_mode {
           position: relative;
-          width: 115px;
-          height: 80px;
+          width: 80px;
+          height: 60px;
           background: #f0f2f5;
           border-radius: 5px;
           box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
+          overflow: hidden;
 
           &:nth-child(1) {
             div {
               &:nth-child(1) {
                 width: 30%;
                 height: 100%;
-                background: #409eff;
+                background: var(--main-color);
               }
 
               &:nth-child(2) {
@@ -119,7 +153,7 @@
               &:nth-child(1) {
                 width: 100%;
                 height: 30%;
-                background: #409eff;
+                background: var(--main-color);
                 box-shadow: 0 0 1px #888;
               }
             }
@@ -139,13 +173,22 @@
                 right: 0;
                 width: 100%;
                 height: 30%;
-                background: #409eff;
+                background: var(--main-color);
                 box-shadow: 0 0 1px #888;
               }
             }
           }
         }
       }
+    }
+
+    :deep(.el-divider__text) {
+      text-align: center;
+    }
+
+    .clear_storage {
+      margin-top: 24px;
+      width: 100%;
     }
   }
 </style>

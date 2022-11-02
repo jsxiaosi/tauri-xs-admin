@@ -1,4 +1,4 @@
-import { DepOptimizationOptions } from 'vite';
+import type { DepOptimizationOptions } from 'vite';
 
 export function createViteOptimizeDeps(): DepOptimizationOptions {
   const viteOptimizeDeps: DepOptimizationOptions = {

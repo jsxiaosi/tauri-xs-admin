@@ -1,4 +1,4 @@
-import { AppConfig } from '@/store/types';
+import type { AppConfig } from '@/store/types';
 import { deffHttp } from '@/utils/axios';
 
 enum Api {

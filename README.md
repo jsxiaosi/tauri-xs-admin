@@ -1,6 +1,8 @@
 <div align="center"> <a href="https://github.com/jsxiaosi/tauri-xs-admin"><h1>tauri-xs-admin</h1></a>
 </div>
 
+**中文** | [English](./README.EN.md)
+
 ## 简介
 
 基于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)开发的 tauri 后台框架模板  
@@ -8,24 +10,31 @@
 账号：admin  
 密码：admin123
 
+## electron 版
+
+- [electron-xs-admin](https://github.com/jsxiaosi/electron-xs-admin)
+
+## tauri 版
+
+- [tauri-xs-admin](https://github.com/jsxiaosi/tauri-xs-admin)
+
 ## 特性
 
-- **最新技术栈**：使用 Vue3/vite2 等前端前沿技术开发
+- **最新技术栈**：使用 Vue3/Vite3 等前端前沿技术开发
 - **主题**：可配置的主题
 - **国际化**：内置完善的国际化方案
 - **常用组件**：内置完善的常用组件封装
-- **Pwa**：内置 pwa
 - **Tauri**：Tauri 编译桌面应用
+- **PWA**：内置 PWA
 
 ## 准备
 
-- [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
-- [Vite](https://cn.vitejs.dev/) - 熟悉 vite 特性
+- [Node](http://nodejs.org/) 和 [Git](https://git-scm.com/) -项目开发环境
+- [Vite](https://cn.vitejs.dev/) - 熟悉 Vite 特性
 - [Vue3](https://v3.cn.vuejs.org/) - 熟悉 Vue 基础语法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
-- [Vue-Router-Next](https://next.router.vuejs.org/zh/) - 熟悉 vue-router 基本使用
-- [VueX v4.x](https://next.vuex.vuejs.org/zh/) - 熟悉 vue-router 基本使用
-- [element-push](https://element-plus.gitee.io/#/zh-CN/) - ui 基本使用
+- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 Es6 基本语法
+- [Vue-Router-Next](https://next.router.vuejs.org/zh/) - 熟悉 Vue-Router 基本使用
+- [Element-Plus](https://element-plus.gitee.io/#/zh-CN/) - Ui 基本使用
 
 ## 安装使用
 
@@ -33,12 +42,18 @@
 
 首先您必需要安装 Rust 及其他系统依赖。 [安装 Rust](https://tauri.app/zh/v1/guides/getting-started/prerequisites)
 
-### 2. 获取项目代码（https or ssh）
+### 2. 获取项目代码（Https or SSH）
 
 ```bash
 git clone https://github.com/jsxiaosi/tauri-xs-admin.git
 
 git clone git@github.com:jsxiaosi/tauri-xs-admin.git
+```
+
+或者通过[`xs-cli`](https://github.com/jsxiaosi/xs-cli)快速创建
+
+```bash
+npx @jsxiaosi/xs-cli create [project-name]
 ```
 
 ### 3. 安装依赖
@@ -53,7 +68,7 @@ cd vite-vue3-Template
 pnpm i
 ```
 
-或者`npm`
+`npm`安装
 
 ```bash
 npm install
@@ -94,14 +109,19 @@ npm run tauri build
 
 - 参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范
 
-  - `feature` 增加新功能
-  - `fixbug` 修复问题/BUG
-  - `style` 不影响程序逻辑的代码修改(修改空白字符，格式缩进，补全缺失的分号等，没有改变代码逻辑)
-  - `perf` 优化/性能提升
-  - `refactor` 重构
-  - `revert` 撤销修改
-  - `docs` 文档/注释
-  - `chore` 依赖更新/脚手架配置修改等
+  - `feat` 新增功能
+  - `fix` 修复缺陷
+  - `docs` 文档变更
+  - `style` 代码格式
+  - `refactor` 代码重构
+  - `perf` 性能优化
+  - `test` 添加疏漏测试或已有测试改动
+  - `build` 构建流程、外部依赖变更 (如升级 npm 包、修改打包配置等)
+  - `ci` 修改 CI 配置、脚本
+  - `revert` 回滚 commit
+  - `chore` 对构建过程或辅助工具和库的更改 (不影响源文件)
+  - `wip` 正在开发中
+  - `types` 类型定义文件修改
 
 ## 浏览器支持
 
@@ -115,19 +135,19 @@ npm run tauri build
 
 ## 项目中使用的相关仓库
 
-### vite 相关：
+### vite 相关
 
-- [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression/) - 资源压缩支持 gzip or brotli
+- [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression/) - 资源压缩支持 Gzip or brotli
 - [vite-plugin-style-import](https://github.com/anncwb/vite-plugin-style-import/) - 动态引入组件库样式
-- [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons/) - svg 雪碧图
+- [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons/) - SVG 雪碧图
 - [vite-plugin-theme-preprocessor](https://github.com/GitOfZGT/vite-plugin-theme-preprocessor/) - 动态改变主题样式
-- [vite-plugin-pwa](https://vite-plugin-pwa.netlify.app/) - pwa
+- [vite-plugin-pwa](https://vite-plugin-pwa.netlify.app/) - PWA
 
 ### 规范相关
 
-- [esLint](https://eslint.org/) - js 语法检测
-- [styleLint](https://stylelint.io/) - 样式语法检测
-- [commitLint](https://commitlint.js.org/#/) - git commit 提交规范检测
+- [EsLint](https://eslint.org/) - js 语法检测
+- [StyleLint](https://stylelint.io/) - 样式语法检测
+- [CommitLint](https://commitlint.js.org/#/) - git commit 提交规范检测
 
 ## 项目目录结构
 
@@ -168,9 +188,14 @@ npm run tauri build
 └── vite.config.js                #vite配置文件
 ```
 
+## 感谢以下作者项目提供帮助
+
+- [vue-vben-admin](https://github.com/anncwb/vue-vben-admin)
+- [vue-pure-admin](https://github.com/xiaoxian521/vue-pure-admin)
+
 ## 维护者
 
-[@SuperCuteXiaoSi](https://github.com/jsxiaosi)
+[@jsxiaosi](https://github.com/jsxiaosi)
 
 ## License
 

@@ -5,19 +5,19 @@ $navBarHeight: 57px;
 $tabsPageHeight: 38px; //面包屑高度 38px
 
 $menuBg: var(--main-bg-color); // 侧边栏背景颜色
-$menuHover: var(--sub-main-bg-content); // 焦点背景色
-$menuHoverText: var(--mian-color); //焦点文字颜色
+$menuHover: var(--sub-color-9); // 焦点背景色
+$menuHoverText: var(--main-color); //焦点文字颜色
 $menuText: var(--text-color-primary); //文字颜色
-$menuActiveText: var(--mian-color); //选中的文字颜色
+$menuActiveText: var(--main-color); //选中的文字颜色
 
 $menuItemBg: var(--main-bg-color); //二级背景颜色
 $menuItemBorderLeft: var(--main-bg-color); //二级未选中的背景颜色
 $menuItemText: var(--text-color-primary); //二级文字颜色
-$menuItemHover: var(--sub-main-bg-content); //二级焦点背景颜色
-$menuItemHoverText: var(--mian-color); //二级焦点文字颜色
-$menuItemActiveText: var(--mian-color); //二级选中的背景颜色
-$menuItemActiveBg: var(--sub-color-2); //二级选中背景颜色
-$menuItemActiveBorderLeft: var(--mian-color); //二级左描边背景颜色
+$menuItemHover: var(--sub-color-9); //二级焦点背景颜色
+$menuItemHoverText: var(--main-color); //二级焦点文字颜色
+$menuItemActiveText: var(--main-color); //二级选中的背景颜色
+$menuItemActiveBg: var(--sub-color-8); //二级选中背景颜色
+$menuItemActiveBorderLeft: var(--main-color); //二级左描边背景颜色
 
 $app-main-bg-color: var(--sub-main-bg-content); //app-mian背景颜色
 $navBarColor: var(--main-bg-color); //顶部导航栏背景颜色

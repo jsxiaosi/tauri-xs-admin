@@ -1,20 +1,5 @@
-<template>
-  <div class="page-container">
-    日期：
-    <el-date-picker
-      v-model="value"
-      type="date"
-      placeholder="Pick a day"
-      :teleported="false"
-      :disabled-date="disabledDate"
-    >
-      <template #default="picker"> <DateItem v-bind="picker" /></template>
-    </el-date-picker>
-  </div>
-</template>
-
 <script lang="tsx" setup>
-  import { DateCell } from 'element-plus/lib/components/date-picker/src/date-picker.type';
+  import type { DateCell } from 'element-plus/lib/components/date-picker/src/date-picker.type';
   import { onMounted, ref } from 'vue';
   import calendar from '@/utils/date/calendar/index.js';
 
@@ -53,6 +38,21 @@
 
   DateItem.inheritAttrs = false;
 </script>
+
+<template>
+  <div class="page-container">
+    日期：
+    <el-date-picker
+      v-model="value"
+      type="date"
+      placeholder="Pick a day"
+      :teleported="false"
+      :disabled-date="disabledDate"
+    >
+      <template #default="picker"> <DateItem v-bind="picker" /></template>
+    </el-date-picker>
+  </div>
+</template>
 
 <style scoped lang="scss">
   .page-container {

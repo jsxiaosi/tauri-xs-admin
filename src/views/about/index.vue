@@ -1,3 +1,24 @@
+<script lang="ts" setup>
+  import { reactive } from 'vue';
+  import packagepath from '../../../package.json';
+  const pageDate = reactive({ info: {}, dependencies: {}, devDependencies: {} });
+
+  const toName = {
+    info: '项目信息',
+    dependencies: '生产依赖',
+    devDependencies: '开发依赖',
+  };
+
+  pageDate.info = {
+    name: packagepath.name,
+    version: packagepath.version,
+  };
+  pageDate.dependencies = packagepath.dependencies;
+  pageDate.devDependencies = packagepath.devDependencies;
+
+  console.log(packagepath);
+</script>
+
 <template>
   <div>
     <el-row v-for="(item, index) in pageDate" :key="index" :gutter="30" class="enter-y">
@@ -29,26 +50,6 @@
     </el-row>
   </div>
 </template>
-<script lang="ts" setup>
-  import { reactive } from 'vue';
-  import packagepath from '../../../package.json';
-  const pageDate = reactive({ info: {}, dependencies: {}, devDependencies: {} });
-
-  const toName = {
-    info: '项目信息',
-    dependencies: '生产依赖',
-    devDependencies: '开发依赖',
-  };
-
-  pageDate.info = {
-    name: packagepath.name,
-    version: packagepath.version,
-  };
-  pageDate.dependencies = packagepath.dependencies;
-  pageDate.devDependencies = packagepath.devDependencies;
-
-  console.log(packagepath);
-</script>
 
 <style lang="scss" scoped>
   .box-card {

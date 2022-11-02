@@ -1,8 +1,9 @@
 <script lang="tsx">
-  import { getSlot } from '@/utils/slotsHelper';
-  import { DefineComponent, defineComponent, PropType, resolveComponent } from 'vue';
+  import type { DefineComponent, PropType } from 'vue';
+  import { defineComponent, resolveComponent } from 'vue';
   import { elComponentItem } from '../../componentMap';
-  import { FormItemListProps } from '../../types/from';
+  import type { FormItemListProps } from '../../types/from';
+  import { getSlot } from '@/utils/slotsHelper';
   export default defineComponent({
     props: {
       formItem: {

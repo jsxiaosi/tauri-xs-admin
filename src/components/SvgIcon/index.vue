@@ -1,12 +1,3 @@
-<template>
-  <el-icon v-if="isELIcon" :class="className">
-    <component :is="name" />
-  </el-icon>
-  <svg v-else :class="className" class="svg" :aria-hidden="true">
-    <use :xlink:href="symbolId" :fill="color" />
-  </svg>
-</template>
-
 <script setup lang="ts">
   import { computed } from 'vue';
   const props = defineProps({
@@ -33,6 +24,15 @@
 
   const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 </script>
+
+<template>
+  <el-icon v-if="isELIcon" :class="className">
+    <component :is="name" />
+  </el-icon>
+  <svg v-else :class="className" class="svg" :aria-hidden="true">
+    <use :xlink:href="symbolId" :fill="color" />
+  </svg>
+</template>
 
 <style lang="scss" scoped>
   .el-icon {

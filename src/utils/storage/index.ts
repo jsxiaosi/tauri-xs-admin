@@ -1,8 +1,5 @@
-import { StorageConfig } from '#/global';
-
 import CryptoJS from 'crypto-js';
-
-type StorageValue<T> = T | null | undefined;
+import type { StorageConfig, StorageType, StorageValue } from './types';
 
 // 十六位十六进制数作为密钥
 const SECRET_KEY = CryptoJS.enc.Utf8.parse('3333e6e143439161');
@@ -11,7 +8,6 @@ const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a');
 
 // 类型 window.localStorage,window.sessionStorage,
 let config: StorageConfig = {
-  type: 'localStorage', // 本地存储类型 sessionStorage
   prefix: 'xiaosiAdmin', // 名称前缀 建议：项目名 + 项目版本
   expire: 0, //过期时间 单位：秒
   isEncrypt: false, // 默认加密 为了调试方便, 开发过程中可以不加密
@@ -28,7 +24,12 @@ export const isSupportStorage = () => {
 };
 
 // 设置 setStorage
-export const setStorage = <T>(key: string, value: StorageValue<T>, expire = 0) => {
+export const setStorage = <T>(
+  key: string,
+  value: StorageValue<T>,
+  expire = 0,
+  type: StorageType = 'localStorage',
+) => {
   if (value === null || value === undefined) {
     value = null;
   }
@@ -44,24 +45,21 @@ export const setStorage = <T>(key: string, value: StorageValue<T>, expire = 0) =
 
   const encryptString = config.isEncrypt ? encrypt(JSON.stringify(data)) : JSON.stringify(data);
 
-  window[config.type].setItem(autoAddPrefix(key), encryptString);
+  window[type].setItem(autoAddPrefix(key), encryptString);
 };
 
 // 获取 getStorage
-export const getStorage = <T>(key: string): StorageValue<T> => {
+export const getStorage = <T>(key: string, type: StorageType = 'localStorage'): StorageValue<T> => {
   key = autoAddPrefix(key);
   // key 不存在判断
-  if (
-    !window[config.type].getItem(key) ||
-    JSON.stringify(window[config.type].getItem(key)) === 'null'
-  ) {
+  if (!window[type].getItem(key) || JSON.stringify(window[type].getItem(key)) === 'null') {
     return null;
   }
 
   // 优化 持续使用中续期
   const storage = config.isEncrypt
-    ? JSON.parse(decrypt(window[config.type].getItem(key) || ''))
-    : JSON.parse(window[config.type].getItem(key) || '');
+    ? JSON.parse(decrypt(window[type].getItem(key) || ''))
+    : JSON.parse(window[type].getItem(key) || '');
 
   const nowTime = Date.now();
 
@@ -96,24 +94,24 @@ export const getStorageKeys = (): (string | null)[] => {
 };
 
 // 根据索引获取key
-export const getStorageForIndex = (index: number) => {
-  return window[config.type].key(index);
+export const getStorageForIndex = (index: number, type: StorageType = 'localStorage') => {
+  return window[type].key(index);
 };
 
 // 获取localStorage长度
-export const getStorageLength = () => {
-  return window[config.type].length;
+export const getStorageLength = (type: StorageType = 'localStorage') => {
+  return window[type].length;
 };
 
 // 获取全部 getAllStorage
-export const getStorageAll = () => {
-  const len = window[config.type].length; // 获取长度
+export const getStorageAll = (type: StorageType = 'localStorage') => {
+  const len = window[type].length; // 获取长度
   const arr = []; // 定义数据集
   for (let i = 0; i < len; i++) {
     // 获取key 索引从0开始
-    const getKey = window[config.type].key(i) || '';
+    const getKey = window[type].key(i) || '';
     // 获取key对应的值
-    const getVal = window[config.type].getItem(getKey);
+    const getVal = window[type].getItem(getKey);
     // 放进数组
     arr[i] = { key: getKey, val: getVal };
   }
@@ -121,13 +119,13 @@ export const getStorageAll = () => {
 };
 
 // 删除 removeStorage
-export const removeStorage = (key: string) => {
-  window[config.type].removeItem(autoAddPrefix(key));
+export const removeStorage = (key: string, type: StorageType = 'localStorage') => {
+  window[type].removeItem(autoAddPrefix(key));
 };
 
 // 清空 clearStorage
-export const clearStorage = () => {
-  window[config.type].clear();
+export const clearStorage = (type: StorageType = 'localStorage') => {
+  window[type].clear();
 };
 
 // 名称前自动添加前缀
@@ -140,6 +138,36 @@ const autoAddPrefix = (key: string): string => {
 const autoRemovePrefix = (key: string) => {
   const len = config.prefix ? config.prefix.length + 1 : 0;
   return key.substr(len);
+};
+
+/** SessionStorage */
+
+export const setSessionStorage = <T>(key: string, value: StorageValue<T>, expire = 0) => {
+  return setStorage<T>(key, value, expire, 'sessionStorage');
+};
+
+export const getSessionStorage = <T>(key: string): StorageValue<T> => {
+  return getStorage<T>(key, 'sessionStorage');
+};
+
+export const getSessionStorageForIndex = (index: number) => {
+  return getStorageForIndex(index, 'sessionStorage');
+};
+
+export const getSessionStorageLength = () => {
+  return getStorageLength('sessionStorage');
+};
+
+export const getSessionStorageAll = () => {
+  return getStorageAll('sessionStorage');
+};
+
+export const removeSessionStorage = (key: string) => {
+  return removeStorage(key, 'sessionStorage');
+};
+
+export const clearSessionStorage = () => {
+  return clearStorage('sessionStorage');
 };
 
 /**

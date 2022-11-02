@@ -1,4 +1,5 @@
 <script lang="tsx">
+  import type { Ref } from 'vue';
   import {
     defineComponent,
     ref,
@@ -6,7 +7,6 @@
     onBeforeMount,
     onBeforeUnmount,
     getCurrentInstance,
-    Ref,
   } from 'vue';
   import { reboundProps } from './props';
 
@@ -24,7 +24,7 @@
         // Safari浏览器的兼容代码
         isSafari &&
           (timer.value = setTimeout(() => {
-            // @ts-ignore
+            // @ts-expect-error: 对象可能为null
             getCurrentInstance().refs['ul'].setAttribute(
               'style',
               `
@@ -40,11 +40,7 @@
       });
 
       return () => (
-        <div
-          class="scroll-num"
-          // @ts-ignore
-          style={{ '--i': props.i, '--delay': props.delay }}
-        >
+        <div class="scroll-num" style={{ '--i': props.i, '--delay': props.delay }}>
           <ul ref="ul" style={{ fontSize: '1em' }}>
             <li>0</li>
             <li>1</li>

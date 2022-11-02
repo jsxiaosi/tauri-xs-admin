@@ -1,7 +1,3 @@
-<template>
-  <div ref="logicFlowElRef" class="page-container"></div>
-</template>
-
 <script lang="ts" setup>
   import { nextTick, onMounted, ref, unref } from 'vue';
   import LogicFlow from '@logicflow/core';
@@ -69,6 +65,10 @@
     initLf();
   });
 </script>
+
+<template>
+  <div ref="logicFlowElRef" class="page-container"></div>
+</template>
 
 <style scoped>
   .page-container {

@@ -1,7 +1,7 @@
-import i18n, { availableLocales } from '@/locales/index';
 import zh_Cn from 'element-plus/lib/locale/lang/zh-cn';
 import en from 'element-plus/lib/locale/lang/en';
 import { computed } from 'vue';
+import i18n, { availableLocales } from '@/locales/index';
 
 export const useI18n = () => i18n.global;
 
@@ -31,7 +31,7 @@ export function translateI18n(message: any = '') {
   }
   const key = message.split('.')[0];
   if (key && Object.keys(i18n.global.messages.value[locale]).includes(key)) {
-    // @ts-ignore
+    // @ts-expect-error: https://github.com/intlify/vue-i18n-next/issues/1119
     return i18n.global.t(message);
   }
   return message;

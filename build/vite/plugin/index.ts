@@ -4,6 +4,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 
 import type { Plugin, ConfigEnv } from 'vite';
 
+// 按需element样式
+import ElementPlus from 'unplugin-element-plus/vite';
+// setip使用Options API
+import VueMacros from 'unplugin-vue-macros/vite';
+// 检查插件状态
+import Inspect from 'vite-plugin-inspect';
 // 按需加载样式配置
 import { configStylePlugin } from './style';
 // svg配置
@@ -14,26 +20,32 @@ import { configCompressPlugin } from './compress';
 import { configMockPlugin } from './mock';
 // pwd
 import { configPwaPlugin } from './pwa';
-// 按需element样式
-import ElementPlus from 'unplugin-element-plus/vite';
-// setip使用Options API
-import DefineOptions from 'unplugin-vue-define-options/vite';
+// 性能分析工具
+import { configVisualizerPlugin } from './visualizer';
+
 // 自定义插件 问候语，打包检测用时、大小
 import viteBuildOuteInfo from './buildOuteInfo';
-// 检查插件状态
-import Inspect from 'vite-plugin-inspect';
 
 // eslint
 // import { configEsLinterPlugin } from './eslinter'
 
 export function createVitePlugins(isBuild = false, _configEnv: ConfigEnv) {
   const vitePlugins: (Plugin | Plugin[])[] = [
-    vue({
-      reactivityTransform: true,
-    }),
+    // vue({
+    //   reactivityTransform: true,
+    // }),
   ];
 
-  vitePlugins.push(vueJsx());
+  vitePlugins.push(
+    VueMacros({
+      plugins: {
+        vue: vue({
+          reactivityTransform: true,
+        }),
+        vueJsx: vueJsx(), // if needed
+      },
+    }),
+  );
 
   vitePlugins.push(configStylePlugin());
 
@@ -45,7 +57,7 @@ export function createVitePlugins(isBuild = false, _configEnv: ConfigEnv) {
 
   vitePlugins.push(configPwaPlugin());
 
-  vitePlugins.push(DefineOptions());
+  vitePlugins.push(configVisualizerPlugin());
 
   vitePlugins.push(viteBuildOuteInfo());
 

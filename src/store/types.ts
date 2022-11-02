@@ -1,10 +1,10 @@
-import { StorageConfig } from '#/global';
-import { AppRouteRecordRaw } from '#/route';
-import { RouteRecordName, _RouteLocationBase } from 'vue-router';
+import type { LocationQuery, RouteParams, RouteRecordName, _RouteLocationBase } from 'vue-router';
+import type { AppRouteRecordRaw } from '#/route';
+import type { StorageConfig } from '@/utils/storage/types';
 
-export type AppState = {
+export interface AppState {
   appConfigMode: AppConfig;
-};
+}
 
 export type SidebarMode = 'vertical' | 'horizontal' | 'blend';
 
@@ -16,14 +16,22 @@ export interface AppConfig {
   locale: string;
   StorageConfig: StorageConfig;
   drawerSidebar?: boolean;
+  primaryColor: string;
+  greyMode: boolean;
+  colorWeaknessMode: boolean;
+  hideTabs: boolean;
+  labelPersistent: boolean;
 }
 
 export type MultiTabsType = Omit<
   _RouteLocationBase,
-  'fullPath' | 'hash' | 'params' | 'redirectedFrom'
->;
-export type PermissionState = {
+  'fullPath' | 'hash' | 'params' | 'query' | 'redirectedFrom'
+> & {
+  query?: LocationQuery;
+  params?: RouteParams;
+};
+export interface PermissionState {
   wholeMenus: AppRouteRecordRaw[];
   cachePageList: RouteRecordName[];
   multiTabs: MultiTabsType[];
-};
+}

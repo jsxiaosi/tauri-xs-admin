@@ -1,15 +1,3 @@
-<template>
-  <div>
-    <el-card class="box-card">
-      <template #header>
-        <div class="card-header">
-          <span>异步组件</span>
-        </div>
-      </template>
-      <Table :data="tabList" border row-key="date" :option="option"> </Table>
-    </el-card>
-  </div>
-</template>
 <script setup lang="ts">
   import { ref } from 'vue';
   import Table from '@/components/Table/index.vue';
@@ -61,4 +49,18 @@
     },
   ];
 </script>
+
+<template>
+  <div>
+    <el-card class="box-card">
+      <template #header>
+        <div class="card-header">
+          <span>异步组件</span>
+        </div>
+      </template>
+      <Table :data="tabList" border row-key="date" :option="option"> </Table>
+    </el-card>
+  </div>
+</template>
+
 <style lang="scss"></style>

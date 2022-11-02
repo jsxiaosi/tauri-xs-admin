@@ -1,3 +1,24 @@
+<script setup lang="ts">
+  // import { ref } from 'vue'
+  import { getCurrentInstance, ref, toRef } from 'vue';
+  import Sidebar from '../../components/Sidebar/index.vue';
+  import MinSidebar from '../../components/Sidebar/MinSidebar.vue';
+  import Setting from '../../components/Seting/index.vue';
+  import Breadcrumb from '../../components/Breadcrumb/index.vue';
+
+  import { AppLocale, AppTheme, AppAccount } from '@/components/Application';
+
+  import SvgIcon from '@/components/SvgIcon/index.vue';
+  import { useAppStoreHook } from '@/store/modules/app';
+
+  const drawer = ref(false);
+
+  const config = getCurrentInstance()?.appContext.config.globalProperties.$config;
+
+  const appStore = useAppStoreHook();
+  const appConfigMode = toRef(appStore, 'appConfigMode');
+</script>
+
 <template>
   <div class="navbar">
     <div class="navbar-left">
@@ -5,7 +26,8 @@
         v-if="appConfigMode.sidebarMode !== 'horizontal' || appConfigMode.drawerSidebar"
       />
       <div v-else class="app-logo">
-        <SvgIcon name="Vue"></SvgIcon>
+        <!-- <SvgIcon name="Vue"></SvgIcon> -->
+        <img class="logo_img" src="@/assets/logo.png" mode="scaleToFill" />
         <span class="name">{{ config.title }}</span>
       </div>
     </div>
@@ -27,33 +49,12 @@
       <AppTheme></AppTheme>
       <AppLocale class="icon"></AppLocale>
       <AppAccount></AppAccount>
-      <SvgIcon class="icon" name="iEL-setting" @click="drawer = true"></SvgIcon>
+      <SvgIcon class="icon cursor" name="iEL-setting" @click="drawer = true"></SvgIcon>
     </div>
 
     <Setting v-model:modelValue="drawer"></Setting>
   </div>
 </template>
-
-<script setup lang="ts">
-  // import { ref } from 'vue'
-  import Sidebar from '../../components/Sidebar/index.vue';
-  import MinSidebar from '../../components/Sidebar/MinSidebar.vue';
-  import Setting from '../../components/Seting/index.vue';
-  import Breadcrumb from '../../components/Breadcrumb/index.vue';
-
-  import { AppLocale, AppTheme, AppAccount } from '@/components/Application';
-
-  import SvgIcon from '@/components/SvgIcon/index.vue';
-  import { getCurrentInstance, ref, toRef } from 'vue';
-  import { useAppStoreHook } from '@/store/modules/app';
-
-  const drawer = ref(false);
-
-  const config = getCurrentInstance()?.appContext.config.globalProperties.$config;
-
-  const appStore = useAppStoreHook();
-  const appConfigMode = toRef(appStore, 'appConfigMode');
-</script>
 
 <style lang="scss" scoped>
   .navbar {
@@ -71,6 +72,11 @@
     // .navbar-left {
     // }
 
+    .logo_img {
+      width: 38px;
+      height: 38px;
+    }
+
     .navbar-center {
       height: 100%;
       min-width: 0;
@@ -84,7 +90,7 @@
 
       .icon {
         margin-left: 12px;
-        font-size: 20px;
+        font-size: var(--font-size-extra-large);
       }
     }
   }

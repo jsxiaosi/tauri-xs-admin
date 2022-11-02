@@ -1,4 +1,4 @@
-import { App, Component } from 'vue';
+import type { App, Component } from 'vue';
 import {
   ElTag,
   ElButton,
@@ -36,10 +36,30 @@ import {
   ElCalendar,
   ElTabs,
   ElTabPane,
+  ElDivider,
+  ElSwitch,
+  ElProgress,
   // 指令
   ElLoading,
   ElInfiniteScroll,
 } from 'element-plus';
+
+// https://element-plus.org/zh-CN/component/icon.html
+import {
+  HomeFilled,
+  Avatar,
+  Operation,
+  Grid,
+  Setting,
+  RemoveFilled,
+  Refresh,
+  CaretLeft,
+  CaretRight,
+  ArrowDown,
+  Management,
+  Select,
+  ArrowRight,
+} from '@element-plus/icons-vue';
 
 // Directives
 const plugins = [ElLoading, ElInfiniteScroll];
@@ -81,22 +101,10 @@ const components = [
   ElCalendar,
   ElTabs,
   ElTabPane,
+  ElDivider,
+  ElSwitch,
+  ElProgress,
 ];
-
-// https://element-plus.org/zh-CN/component/icon.html
-import {
-  HomeFilled,
-  Avatar,
-  Operation,
-  Grid,
-  Setting,
-  RemoveFilled,
-  Refresh,
-  CaretLeft,
-  CaretRight,
-  ArrowDown,
-  Management,
-} from '@element-plus/icons-vue';
 
 // Icon
 export const iconComponents = [
@@ -111,6 +119,8 @@ export const iconComponents = [
   CaretRight,
   ArrowDown,
   Management,
+  Select,
+  ArrowRight,
 ];
 
 export function useElementPlus(app: App) {

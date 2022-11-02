@@ -1,34 +1,21 @@
-<template>
-  <el-drawer
-    v-if="isPhoneScreen"
-    v-model="drawer"
-    :with-header="false"
-    custom-class="drawer-sidebar"
-    direction="ltr"
-    :before-close="handleClose"
-  >
-    <VerticalSidebar />
-  </el-drawer>
-
-  <VerticalSidebar v-else></VerticalSidebar>
-</template>
 <script setup lang="ts">
-  import { useAppStoreHook } from '@/store/modules/app';
-  import { computed, ref, watch } from 'vue';
-  import VerticalSidebar from '../VerticalSidebar/index.vue';
+  import { ref, watch } from 'vue';
+  import { storeToRefs } from 'pinia';
   import { useDebounceFn, useEventListener, useMediaQuery } from '@vueuse/core';
-  import { AppConfig } from '@/store/types';
+  import VerticalSidebar from '../VerticalSidebar/index.vue';
+  import { useAppStoreHook } from '@/store/modules/app';
+  import type { AppConfig } from '@/store/types';
 
   const appStore = useAppStoreHook();
 
-  const drawer = computed(() => !appStore.appConfigMode.collapseMenu);
+  const drawer = ref<boolean>(!appStore.appConfigMode.collapseMenu);
 
   const setAppStore = (appData: Partial<AppConfig>) => {
     appStore.setAppConfigMode(appData);
   };
 
   const handleClose = () => {
-    setAppStore({ collapseMenu: true });
+    setAppStore({ collapseMenu: drawer.value });
   };
 
   const isPhoneScreen = ref<boolean>(false);
@@ -50,10 +37,32 @@
     setAppStore({ collapseMenu: isSmallScreen.value });
   });
 
+  const { appConfigMode } = storeToRefs(appStore);
+
+  watch(appConfigMode, () => {
+    drawer.value = !appConfigMode.value.collapseMenu;
+  });
+
   useEventListener(window, 'resize', () => mediaQuery());
 
   mediaQuery();
 </script>
+
+<template>
+  <el-drawer
+    v-if="isPhoneScreen"
+    v-model="drawer"
+    :with-header="false"
+    custom-class="drawer-sidebar"
+    direction="ltr"
+    :before-close="handleClose"
+  >
+    <VerticalSidebar />
+  </el-drawer>
+
+  <VerticalSidebar v-else></VerticalSidebar>
+</template>
+
 <style lang="scss">
   .drawer-sidebar {
     width: #{$sideBarWidth} !important;

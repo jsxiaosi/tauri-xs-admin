@@ -1,25 +1,7 @@
-<template>
-  <div class="page-container">
-    <div class="config">
-      <el-button @click="handlerForm('vertical')">垂直</el-button>
-      <el-button @click="handlerForm('horizontal')">水平</el-button>
-    </div>
-    <Form ref="formRef" :form-option="formOption" @submit-form="submitForm">
-      <template #slotInput="{ formModel, formItem }">
-        <el-input
-          v-model="formModel[formItem.prop]"
-          :type="formItem.inputType"
-          placeholder="自定义输入框"
-        ></el-input>
-      </template>
-    </Form>
-  </div>
-</template>
-
 <script lang="ts" setup>
-  import Form from '@/components/Form/index.vue';
-  import { FormProps } from '@/components/Form/types/from';
   import { h, reactive, ref } from 'vue';
+  import Form from '@/components/Form/index.vue';
+  import type { FormProps } from '@/components/Form/types/from';
 
   defineOptions({
     name: 'RtForm',
@@ -431,6 +413,24 @@
     // console.log(form.value);
   };
 </script>
+
+<template>
+  <div class="page-container">
+    <div class="config">
+      <el-button @click="handlerForm('vertical')">垂直</el-button>
+      <el-button @click="handlerForm('horizontal')">水平</el-button>
+    </div>
+    <Form ref="formRef" :form-option="formOption" @submit-form="submitForm">
+      <template #slotInput="{ formModel, formItem }">
+        <el-input
+          v-model="formModel[formItem.prop]"
+          :type="formItem.inputType"
+          placeholder="自定义输入框"
+        ></el-input>
+      </template>
+    </Form>
+  </div>
+</template>
 
 <style lang="scss" scoped>
   .config {

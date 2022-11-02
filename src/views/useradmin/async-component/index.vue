@@ -1,3 +1,7 @@
+<script setup lang="ts">
+  import ToModal from './component/ToModal.vue';
+</script>
+
 <template>
   <div>
     <Suspense>
@@ -14,9 +18,7 @@
     </Suspense>
   </div>
 </template>
-<script setup lang="ts">
-  import ToModal from './component/ToModal.vue';
-</script>
+
 <style lang="scss">
   .loading {
     width: 100%;

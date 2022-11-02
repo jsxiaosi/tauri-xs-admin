@@ -1,9 +1,3 @@
-<template>
-  <div class="page-container">
-    <div ref="editorELRef"></div>
-    <div class="innerHTML" :innerHTML="html"></div>
-  </div>
-</template>
 <script lang="ts" setup>
   import { onMounted, ref, unref } from 'vue';
   import wangeDitor from 'wangeditor';
@@ -35,6 +29,13 @@
     init();
   });
 </script>
+
+<template>
+  <div class="page-container">
+    <div ref="editorELRef"></div>
+    <div class="innerHTML" :innerHTML="html"></div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
   .innerHTML {

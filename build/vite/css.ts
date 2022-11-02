@@ -1,4 +1,4 @@
-import { CSSOptions } from 'vite';
+import type { CSSOptions } from 'vite';
 
 export function createViteCSS(): CSSOptions {
   const viteCSS: CSSOptions = {

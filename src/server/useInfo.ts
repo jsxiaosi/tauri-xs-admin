@@ -1,6 +1,6 @@
 import { deffHttp } from '@/utils/axios';
 
-export type UseInfoType = {
+export interface UseInfoType {
   name: string;
   userid: string;
   email: string;
@@ -9,7 +9,7 @@ export type UseInfoType = {
   title: string;
   token: string;
   power: string;
-};
+}
 
 export const getUserInfo = (user: string, pwd: string) =>
   deffHttp.post<UseInfoType>(

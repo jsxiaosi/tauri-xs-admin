@@ -1,9 +1,64 @@
+<script setup lang="ts">
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
+  import SvgIcon from '@/components/SvgIcon/index.vue';
+  import { AppLocale, AppTheme } from '@/components/Application';
+  import { addClass, removeClass } from '@/utils/operate';
+
+  import { initAsyncRoute } from '@/router/utils';
+  import type { UseInfoType } from '@/server/useInfo';
+  import { getUserInfo } from '@/server/useInfo';
+  import { setStorage } from '@/utils/storage';
+  import { useAppStoreHook } from '@/store/modules/app';
+  import { useI18n } from '@/hooks/web/useI18n';
+
+  const { appConfigMode } = useAppStoreHook();
+
+  const { t } = useI18n();
+
+  let user = ref('');
+  let pwd = ref('');
+
+  const router = useRouter();
+
+  const onLogin = async (): Promise<void> => {
+    const res = await getUserInfo(user.value, pwd.value);
+
+    if (res.code === 1) {
+      setStorage<UseInfoType>('userInfo', res.data);
+      await initAsyncRoute(res.data.power);
+      router.push('/');
+    }
+  };
+
+  function onUserFocus() {
+    addClass(document.querySelector('.user'), 'focus');
+  }
+
+  function onUserBlur() {
+    if (user.value.length === 0) removeClass(document.querySelector('.user'), 'focus');
+  }
+
+  function onPwdFocus() {
+    addClass(document.querySelector('.pwd'), 'focus');
+  }
+
+  function onPwdBlur() {
+    if (pwd.value.length === 0) removeClass(document.querySelector('.pwd'), 'focus');
+  }
+</script>
+
 <template>
   <div class="page-container">
     <div class="container mx-auto">
-      <img src="@/assets/login/bg.png" class="wave" />
+      <!-- <img src="@/assets/login/bg.png" class="wave" /> -->
+      <div class="wave">
+        <div class="bg"></div>
+        <div class="prospect"></div>
+        <div class="prospect-bg"></div>
+      </div>
       <div class="img -enter-x">
-        <img src="@/assets/login/illustration.svg" />
+        <SvgIcon name="login_Illustration" />
       </div>
 
       <div class="application">
@@ -53,55 +108,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-  import SvgIcon from '@/components/SvgIcon/index.vue';
-  import { AppLocale, AppTheme } from '@/components/Application';
-  import { ref } from 'vue';
-  import { addClass, removeClass } from '@/utils/operate';
-
-  import { initAsyncRoute } from '@/router/utils';
-  import { useRouter } from 'vue-router';
-  import { getUserInfo, UseInfoType } from '@/server/useInfo';
-  import { setStorage } from '@/utils/storage';
-  import { useAppStoreHook } from '@/store/modules/app';
-  import { useI18n } from '@/hooks/web/useI18n';
-
-  const { appConfigMode } = useAppStoreHook();
-
-  const { t } = useI18n();
-
-  let user = ref('');
-  let pwd = ref('');
-
-  const router = useRouter();
-
-  const onLogin = async (): Promise<void> => {
-    const res = await getUserInfo(user.value, pwd.value);
-
-    if (res.code === 1) {
-      setStorage<UseInfoType>('userInfo', res.data);
-      await initAsyncRoute(res.data.power);
-      router.push('/');
-    }
-  };
-
-  function onUserFocus() {
-    addClass(document.querySelector('.user'), 'focus');
-  }
-
-  function onUserBlur() {
-    if (user.value.length === 0) removeClass(document.querySelector('.user'), 'focus');
-  }
-
-  function onPwdFocus() {
-    addClass(document.querySelector('.pwd'), 'focus');
-  }
-
-  function onPwdBlur() {
-    if (pwd.value.length === 0) removeClass(document.querySelector('.pwd'), 'focus');
-  }
-</script>
-
 <style lang="scss" scoped>
   .page-container {
     width: 100vw;
@@ -122,6 +128,30 @@
         left: 0;
         bottom: 0;
         z-index: 0;
+        .bg {
+          position: absolute;
+          top: -50%;
+          left: 0;
+          width: 60%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: var(--main-bg-color);
+        }
+        .prospect {
+          width: 30%;
+          height: 100%;
+          background-color: var(--main-color);
+        }
+        .prospect-bg {
+          position: absolute;
+          bottom: -50%;
+          left: 4%;
+          width: 50%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: var(--main-color);
+          z-index: 0;
+        }
       }
 
       .img {
@@ -129,9 +159,8 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        img {
-          width: 500px;
-        }
+        color: var(--main-color);
+        font-size: 500px;
       }
 
       @media screen and (max-width: 1024px) {
@@ -151,7 +180,7 @@
         justify-content: space-between;
 
         .icon-size {
-          font-size: 20px;
+          font-size: var(--font-size-extra-large);
         }
 
         .item {
@@ -231,19 +260,19 @@
             top: 50%;
             transform: translateY(-50%);
             color: #d9d9d9;
-            font-size: 16px;
+            font-size: var(--font-size-medium);
             transition: 0.3s;
             margin: 0;
             padding: 0;
           }
 
           .input-group.focus .icon {
-            color: #5392f0;
+            color: var(--main-color);
           }
 
           .input-group.focus div h5 {
             top: -5px;
-            font-size: 14px;
+            font-size: var(--font-size-base);
           }
 
           .input-group.focus::after,
@@ -276,7 +305,7 @@
           }
 
           a:hover {
-            color: #5392f0;
+            color: var(--main-color);
           }
 
           .btn {
@@ -290,9 +319,9 @@
             border: none;
             background-image: linear-gradient(
               to right,
-              var(--mian-color),
+              var(--main-color),
               var(--sub-color),
-              var(--mian-color)
+              var(--main-color)
             );
             cursor: pointer;
             color: #fff;

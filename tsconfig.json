@@ -24,7 +24,7 @@
     "noImplicitAny": true,
     "removeComments": true,
     "isolatedModules": true,
-    "types": ["vite/client", "element-plus/global", "unplugin-vue-define-options"],
+    "types": ["vite/client", "element-plus/global", "unplugin-vue-macros/macros-global"],
     "typeRoots": ["./node_modules", "./types"],
     "lib": ["esnext", "dom"],
     "paths": {
@@ -39,6 +39,7 @@
     "src/**/*.vue",
     "types/*.d.ts",
     "types/*.ts",
+    "tests/*.ts",
     "mock/**/*.ts",
     "build/**/*.ts",
     "vite.config.ts"

@@ -1,9 +1,6 @@
-<template>
-  <div ref="chartRef" class="chartRef"></div>
-</template>
-<script lang="ts"></script>
 <script lang="ts" setup>
-  import { onMounted, ref, Ref } from 'vue';
+  import type { Ref } from 'vue';
+  import { onMounted, ref } from 'vue';
   import { useECharts } from '@/hooks/web/useECharts';
 
   const chartRef = ref<HTMLDivElement | null>(null);
@@ -11,9 +8,6 @@
 
   onMounted(() => {
     setOptions({
-      title: {
-        // text: 'Stacked Area Chart',
-      },
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -23,95 +17,84 @@
           },
         },
       },
-      // legend: {
-      //   data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
-      // },
-      // toolbox: {
-      //   feature: {
-      //     saveAsImage: {},
-      //   },
-      // },
       grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
+        left: '0%',
+        right: '2%',
+        bottom: '0%',
+        top: '2%',
         containLabel: true,
       },
       xAxis: [
         {
           type: 'category',
           boundaryGap: false,
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+          splitLine: {
+            show: true,
+          },
         },
       ],
       yAxis: [
         {
           type: 'value',
+          splitLine: {
+            show: true,
+          },
+          splitArea: {
+            show: true,
+          },
         },
       ],
       series: [
         {
-          name: 'Email',
+          name: '任务',
           type: 'line',
           stack: 'Total',
           areaStyle: {},
+          smooth: true,
           emphasis: {
             focus: 'series',
           },
-          data: [120, 132, 101, 134, 90, 230, 210],
+
+          data: [50, 134, 191, 280, 90, 30, 10],
         },
         {
-          name: 'Union Ads',
+          name: '事项',
           type: 'line',
           stack: 'Total',
           areaStyle: {},
+          smooth: true,
           emphasis: {
             focus: 'series',
           },
           data: [220, 182, 191, 234, 290, 330, 310],
         },
         {
-          name: 'Video Ads',
+          name: '目标任务',
           type: 'line',
           stack: 'Total',
           areaStyle: {},
+          smooth: true,
           emphasis: {
             focus: 'series',
           },
-          data: [150, 232, 201, 154, 190, 330, 410],
-        },
-        {
-          name: 'Direct',
-          type: 'line',
-          stack: 'Total',
-          areaStyle: {},
-          emphasis: {
-            focus: 'series',
+          itemStyle: {
+            color: '#409eff',
           },
-          data: [320, 332, 301, 334, 390, 330, 320],
-        },
-        {
-          name: 'Search Engine',
-          type: 'line',
-          stack: 'Total',
-          label: {
-            show: true,
-            position: 'top',
-          },
-          areaStyle: {},
-          emphasis: {
-            focus: 'series',
-          },
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          data: [150, 154, 201, 299, 190, 330, 410],
         },
       ],
     });
   });
 </script>
 
+<template>
+  <div ref="chartRef" class="chartRef"></div>
+</template>
+
 <style scoped lang="scss">
   .chartRef {
     width: 100%;
-    height: 380px;
+    height: 362px;
   }
 </style>

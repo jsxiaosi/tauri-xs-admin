@@ -1,12 +1,6 @@
-<template>
-  <component :is="type" v-bind="linkProps(to)">
-    <slot />
-  </component>
-</template>
-
 <script setup lang="ts">
-  import { isExternal as isExt } from '@/utils/validate';
   import { computed } from 'vue';
+  import { isExternal as isExt } from '@/utils/validate';
 
   const props = defineProps({
     to: {
@@ -38,3 +32,9 @@
     };
   };
 </script>
+
+<template>
+  <component :is="type" v-bind="linkProps(to)">
+    <slot />
+  </component>
+</template>

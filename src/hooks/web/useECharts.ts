@@ -1,4 +1,5 @@
-import { nextTick, ref, Ref, unref } from 'vue';
+import type { Ref } from 'vue';
+import { nextTick, ref, unref } from 'vue';
 import type { EChartsOption } from 'echarts';
 import { useDebounceFn, tryOnUnmounted } from '@vueuse/core';
 import echarts from '@/utils/plugin/echarts';
@@ -20,7 +21,7 @@ export function useECharts(elRef: Ref<HTMLDivElement>) {
     if (!el || !unref(el)) {
       return;
     }
-    chartInstance = echarts.init(el, 'default');
+    chartInstance = echarts.init(el, 'light');
 
     // 监听window宽度变化重新渲染echarts
     const { removeEvent } = useEventListener({

@@ -1,4 +1,4 @@
-import { ErrorMessageMode } from '#/axios';
+import type { ErrorMessageMode } from '#/axios';
 import i18n from '@/locales';
 import { useMessage } from '@/hooks/web/useMessage';
 const { createErrorModal, createErrorMsg } = useMessage();

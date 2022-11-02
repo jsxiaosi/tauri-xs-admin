@@ -1,7 +1,3 @@
-<template>
-  <div />
-</template>
-
 <script setup lang="ts">
   import { unref } from 'vue';
   import { useRouter } from 'vue-router';
@@ -18,3 +14,7 @@
     query,
   });
 </script>
+
+<template>
+  <div />
+</template>

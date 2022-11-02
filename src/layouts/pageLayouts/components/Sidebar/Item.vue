@@ -1,8 +1,3 @@
-<template>
-  <SvgIcon :class-name="className" :name="icon" />
-  <span v-if="title">{{ $t(title) }}</span>
-</template>
-
 <script setup lang="ts">
   import SvgIcon from '@/components/SvgIcon/index.vue';
   defineProps({
@@ -20,6 +15,11 @@
     },
   });
 </script>
+
+<template>
+  <SvgIcon :class-name="className" :name="icon" />
+  <span v-if="title">{{ $t(title) }}</span>
+</template>
 
 <style scoped>
   .sub-el-icon {

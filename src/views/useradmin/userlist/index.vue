@@ -1,15 +1,7 @@
-<template>
-  <div class="page-container">
-    <TsComponents />
-    <div>获取环境变量：{{ env.VITE_ENV }}</div>
-    <div>获取原型方法：{{ instance?.appContext.config.globalProperties.foo }}</div>
-    <div v-my-directive="dirValue"></div>
-  </div>
-</template>
-
 <script setup lang="ts">
-  import TsComponents from '@/components/tscomponents';
-  import { DirectiveBinding, getCurrentInstance, nextTick, ref, VNode } from 'vue';
+  import type { DirectiveBinding, VNode } from 'vue';
+  import { getCurrentInstance, nextTick, ref } from 'vue';
+  import TsComponents from '@/components/TsxComponents';
   const env = import.meta.env;
   nextTick(() => {
     console.log('渲染完了？');
@@ -55,5 +47,14 @@
   // store.commit(mutation.SET_USER, '进来了是吗？？？？')
   // console.log(useStore())
 </script>
+
+<template>
+  <div class="page-container">
+    <TsComponents />
+    <div>获取环境变量：{{ env.VITE_ENV }}</div>
+    <div>获取原型方法：{{ instance?.appContext.config.globalProperties.foo }}</div>
+    <div v-my-directive="dirValue"></div>
+  </div>
+</template>
 
 <style scoped lang="scss"></style>

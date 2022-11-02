@@ -1,10 +1,10 @@
-import { usePermissionStoreHook } from '@/store/modules/permission';
-import { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
+import type { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
 import { useTimeoutFn } from '@vueuse/core';
-import { getRouteApi, RouteDataItemType } from '@/server/route';
-import { router } from './index';
-import { AppRouteRecordRaw, Menu } from '#/route';
-import { sidebarRouteList } from './index';
+import { router, sidebarRouteList } from './index';
+import { usePermissionStoreHook } from '@/store/modules/permission';
+import type { RouteDataItemType } from '@/server/route';
+import { getRouteApi } from '@/server/route';
+import type { AppRouteRecordRaw, Menu } from '#/route';
 import { isExternal } from '@/utils/validate';
 
 // 初始化权限路由
@@ -13,8 +13,9 @@ async function initAsyncRoute(power: string) {
   const res = await getRouteApi({ name: power });
   let routeList: AppRouteRecordRaw[] = [];
   if (res.data.length) {
-    // 更具接口返回的路由列表生成新的理由
+    // 根据接口返回的路由列表生成新的路由（此时的路由是带有层级关系）
     routeList = handleRouteList(sortRouteList(sidebarRouteList), res.data);
+    // 更新路由列表前通过formatFlatteningRoutes打平树结构
     privilegeRouting(
       router.options.routes as RouteRecordRaw[],
       formatFlatteningRoutes(routeList) as AppRouteRecordRaw[],
@@ -27,7 +28,7 @@ async function initAsyncRoute(power: string) {
   return routeList;
 }
 
-// 根据返回的权限路由，处理路由列表
+// 根据返回的权限路由，处理路由列表（权限判断逻辑，可以根据自己的业务修改，返回一个带层级关系的路由列表）
 function handleRouteList(routerList: AppRouteRecordRaw[], dataRouter: RouteDataItemType[]) {
   const newRouteList: AppRouteRecordRaw[] = [];
   routerList.forEach((i) => {

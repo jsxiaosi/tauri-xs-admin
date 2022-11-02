@@ -1,5 +1,6 @@
 @import 'element-plus/theme-chalk/src/dark/css-vars.scss';
 @import './theme.scss';
+@import './element-style.scss';
 @import './intro.scss';
 @import './transition.scss';
 @import './sidebar.scss';
@@ -9,7 +10,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-size: var(--el-font-size-base);
+  font-size: var(--font-size-base);
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial,
     sans-serif;
   -moz-osx-font-smoothing: grayscale;
@@ -67,7 +68,7 @@ div:focus {
 
 .title {
   display: inline-block;
-  font-size: 18px;
+  font-size: var(--font-size-large);
   font-weight: 700;
   // margin: 10px 0;
 }
@@ -99,6 +100,15 @@ ul {
     background-color: var(--main-bg-color) !important;
     cursor: not-allowed;
   }
+}
+
+// 灰色
+.html-grey {
+  filter: grayscale(100%);
+}
+// 色弱
+.html-weakness {
+  filter: invert(80%);
 }
 
 @for $i from 1 to 6 {

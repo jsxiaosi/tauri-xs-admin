@@ -1,7 +1,3 @@
-<template>
-  <div class="page-container" @click="updateStem"> {{ stem }}-{{ x }}-{{ y }} </div>
-</template>
-
 <script setup lang="ts">
   // import { useMouse } from '@vueuse/core';
   // import { ref } from 'vue';
@@ -32,5 +28,9 @@
     x = 200;
   };
 </script>
+
+<template>
+  <div class="page-container" @click="updateStem"> {{ stem }}-{{ x }}-{{ y }} </div>
+</template>
 
 <style scoped lang="scss"></style>

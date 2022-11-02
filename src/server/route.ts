@@ -4,7 +4,9 @@ enum Api {
   ROUTE_LIST = '/mock_api/getRoute',
 }
 
-type Param = { name: string };
+interface Param {
+  name: string;
+}
 
 export interface RouteDataItemType {
   path: string;

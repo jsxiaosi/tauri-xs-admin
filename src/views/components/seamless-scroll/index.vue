@@ -1,43 +1,8 @@
-<template>
-  <el-card class="box-card">
-    <template #header>
-      <div class="card-header">
-        <span>无缝滚动示例</span>
-        <el-button class="button" @click="changeDirection('top')">
-          <span :style="{ color: classOption.direction === 'top' ? 'red' : '' }">向上滚动</span>
-        </el-button>
-        <el-button class="button" @click="changeDirection('bottom')">
-          <span
-            :style="{
-              color: classOption.direction === 'bottom' ? 'red' : '',
-            }"
-            >向下滚动</span
-          >
-        </el-button>
-        <el-button class="button" @click="changeDirection('left')">
-          <span :style="{ color: classOption.direction === 'left' ? 'red' : '' }">向左滚动</span>
-        </el-button>
-        <el-button class="button" @click="changeDirection('right')">
-          <span :style="{ color: classOption.direction === 'right' ? 'red' : '' }">向右滚动</span>
-        </el-button>
-      </div>
-    </template>
-    <SeamlessScroll ref="scroll" :data="listData" :class-option="classOption" class="warp">
-      <ul class="item">
-        <li v-for="(item, index) in listData" :key="index">
-          {{ item.title }}
-        </li>
-      </ul>
-    </SeamlessScroll>
-  </el-card>
-</template>
-
 <script setup lang="ts">
   import { ref, reactive, unref } from 'vue';
   import { templateRef } from '@vueuse/core';
   import SeamlessScroll from '@/components/SeamlessScroll/index.vue';
 
-  // eslint-disable-next-line no-undef
   const scroll = templateRef<HTMLElement | null>('scroll', null);
 
   let listData = ref([
@@ -75,11 +40,45 @@
   });
 
   function changeDirection(val: string) {
-    // @ts-ignore
+    // @ts-expect-error: 对象可能为null
     unref(scroll).reset();
     unref(classOption).direction = val;
   }
 </script>
+
+<template>
+  <el-card class="box-card">
+    <template #header>
+      <div class="card-header">
+        <span>无缝滚动示例</span>
+        <el-button class="button" @click="changeDirection('top')">
+          <span :style="{ color: classOption.direction === 'top' ? 'red' : '' }">向上滚动</span>
+        </el-button>
+        <el-button class="button" @click="changeDirection('bottom')">
+          <span
+            :style="{
+              color: classOption.direction === 'bottom' ? 'red' : '',
+            }"
+            >向下滚动</span
+          >
+        </el-button>
+        <el-button class="button" @click="changeDirection('left')">
+          <span :style="{ color: classOption.direction === 'left' ? 'red' : '' }">向左滚动</span>
+        </el-button>
+        <el-button class="button" @click="changeDirection('right')">
+          <span :style="{ color: classOption.direction === 'right' ? 'red' : '' }">向右滚动</span>
+        </el-button>
+      </div>
+    </template>
+    <SeamlessScroll ref="scroll" :data="listData" :class-option="classOption" class="warp">
+      <ul class="item">
+        <li v-for="(item, index) in listData" :key="index">
+          {{ item.title }}
+        </li>
+      </ul>
+    </SeamlessScroll>
+  </el-card>
+</template>
 
 <style lang="scss" scoped>
   .card-header {

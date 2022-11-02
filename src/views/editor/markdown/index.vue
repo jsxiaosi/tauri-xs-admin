@@ -1,9 +1,3 @@
-<template>
-  <div class="page-container">
-    <el-input v-model="inputText" class="input" type="textarea"></el-input>
-    <div class="marked" :innerHTML="html"></div>
-  </div>
-</template>
 <script lang="ts" setup>
   import { computed, ref } from 'vue';
   import { marked } from 'marked';
@@ -12,6 +6,13 @@
 
   const html = computed(() => marked.parse(inputText.value));
 </script>
+
+<template>
+  <div class="page-container">
+    <el-input v-model="inputText" class="input" type="textarea"></el-input>
+    <div class="marked" :innerHTML="html"></div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
   .page-container {

@@ -1,4 +1,4 @@
-import { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '#/route';
 import { t } from '@/hooks/web/useI18n';
 
 const system: AppRouteRecordRaw[] = [
@@ -12,7 +12,7 @@ const system: AppRouteRecordRaw[] = [
         path: 'power',
         name: 'RtPower',
         component: () => import('@/views/system/power/index.vue'),
-        meta: { title: t('route.pathName.power') },
+        meta: { title: t('route.pathName.power'), keepAlive: true },
       },
       {
         path: 'guide',

@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
-import { store } from '@/store';
-import { RouteRecordName } from 'vue-router';
-import type { MultiTabsType, PermissionState } from '../types';
-import { AppRouteRecordRaw } from '#/route';
+import type { RouteRecordName } from 'vue-router';
 import { isEqual } from 'lodash-es';
+import type { MultiTabsType, PermissionState } from '../types';
+import { useAppStoreHook } from './app';
+import { store } from '@/store';
+import type { AppRouteRecordRaw } from '#/route';
 import { getStorage, removeStorage, setStorage } from '@/utils/storage';
 
 // console.log(getStorage('multiTabsList'));
@@ -22,13 +23,14 @@ const usePermissionStore = defineStore({
       this.wholeMenus = [...routeList];
     },
     cacheOperate({ mode, name = '' }: { mode: string; name: RouteRecordName }) {
+      let delIndex = -1;
       switch (mode) {
         case 'add':
           this.cachePageList.push(name);
           this.cachePageList = [...new Set(this.cachePageList)];
           break;
         case 'delete':
-          const delIndex = this.cachePageList.findIndex((v) => v === name);
+          delIndex = this.cachePageList.findIndex((v) => v === name);
           delIndex !== -1 && this.cachePageList.splice(delIndex, 1);
           break;
       }
@@ -37,14 +39,20 @@ const usePermissionStore = defineStore({
     clearAllCachePage() {
       this.cachePageList = [];
     },
-    handleMultiTabs<T>(type: 'add' | 'delete', value: T | MultiTabsType) {
+    // 持久化
+    persistent() {
+      setStorage('multiTabsList', this.multiTabs);
+    },
+    handleMultiTabs(type: 'add' | 'delete', value: MultiTabsType) {
       const route = value as MultiTabsType;
       const index = this.multiTabs.findIndex(
-        (i) => i.path === route.path && isEqual(i.query, route.query),
+        (i) =>
+          i.path === route.path && isEqual(i.query, route.query) && isEqual(i.params, route.params),
       );
+
       switch (type) {
         case 'add':
-          if (index !== -1) return;
+          if (index !== -1 || !value.meta.title) return;
           this.multiTabs.push(route);
           break;
         case 'delete':
@@ -54,7 +62,8 @@ const usePermissionStore = defineStore({
         default:
           break;
       }
-      setStorage('multiTabsList', this.multiTabs);
+      const appConfig = useAppStoreHook();
+      if (appConfig.appConfigMode.labelPersistent) this.persistent();
     },
     handleRemoveMultiTabs() {
       removeStorage('multiTabsList');

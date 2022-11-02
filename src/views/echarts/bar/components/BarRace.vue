@@ -1,14 +1,11 @@
-<template>
-  <div>
-    <h3>动态柱状图</h3>
-    <div ref="chartRef" class="chartRef"></div>
-  </div>
-</template>
 <script lang="ts"></script>
+
 <script lang="ts" setup>
-  import { onMounted, ref, Ref } from 'vue';
-  import { useECharts, createEChartsOption } from '@/hooks/web/useECharts';
+  import type { Ref } from 'vue';
+  import { onMounted, ref } from 'vue';
   import { useIntervalFn } from '@vueuse/core';
+  import type { createEChartsOption } from '@/hooks/web/useECharts';
+  import { useECharts } from '@/hooks/web/useECharts';
 
   const chartRef = ref<HTMLDivElement | null>(null);
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
@@ -83,6 +80,13 @@
     setOptions(options, false);
   }
 </script>
+
+<template>
+  <div>
+    <h3>动态柱状图</h3>
+    <div ref="chartRef" class="chartRef"></div>
+  </div>
+</template>
 
 <style scoped lang="scss">
   .chartRef {

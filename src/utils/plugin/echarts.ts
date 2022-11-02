@@ -8,7 +8,7 @@ import {
   VisualMapComponent,
   GeoComponent,
 } from 'echarts/components';
-import { LineChart, BarChart, MapChart } from 'echarts/charts';
+import { LineChart, BarChart, MapChart, PieChart } from 'echarts/charts';
 import { UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
@@ -25,6 +25,7 @@ echarts.use([
   VisualMapComponent,
   GeoComponent,
   MapChart,
+  PieChart,
 ]);
 
 export default echarts;
