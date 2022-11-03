@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 
-import { UserConfig, ConfigEnv } from 'vite';
+import type { UserConfig, ConfigEnv } from 'vite';
 
 import { createVitePlugins } from './build/vite/plugin';
 import { createViteResolve } from './build/vite/resolve';

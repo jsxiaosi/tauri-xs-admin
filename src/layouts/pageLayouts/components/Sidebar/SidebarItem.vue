@@ -4,8 +4,8 @@
   import { ref } from 'vue';
   import Item from './Item.vue';
   import AppLink from './Link.vue';
-  import { isExternal } from '@/utils/validate';
   import type { AppRouteRecordRaw } from '#/route';
+  import { isUrl } from '@/utils/is';
 
   const props = defineProps({
     // route object
@@ -51,10 +51,10 @@
     return false;
   };
   const resolvePath = (routePath: string) => {
-    if (isExternal(routePath)) {
+    if (isUrl(routePath)) {
       return routePath;
     }
-    if (isExternal(props.basePath)) {
+    if (isUrl(props.basePath)) {
       return props.basePath;
     }
     return path.resolve(props.basePath, routePath);

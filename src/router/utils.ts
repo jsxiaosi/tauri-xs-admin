@@ -5,7 +5,7 @@ import { usePermissionStoreHook } from '@/store/modules/permission';
 import type { RouteDataItemType } from '@/server/route';
 import { getRouteApi } from '@/server/route';
 import type { AppRouteRecordRaw, Menu } from '#/route';
-import { isExternal } from '@/utils/validate';
+import { isUrl } from '@/utils/is';
 
 // 初始化权限路由
 async function initAsyncRoute(power: string) {
@@ -123,7 +123,7 @@ function pathResolve(...paths: string[]) {
 function setUpRoutePath(routeList: AppRouteRecordRaw[], pathName = '', pathList: number[] = []) {
   for (const [key, node] of routeList.entries()) {
     node.meta = { ...(node.meta as Menu), pathList: [...pathList, key] };
-    if (pathName && !isExternal(node.path)) {
+    if (pathName && !isUrl(node.path)) {
       node.path = pathResolve(pathName, node.path || '');
     }
     if (node.children && node.children.length) {

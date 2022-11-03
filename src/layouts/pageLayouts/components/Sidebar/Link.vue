@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { isExternal as isExt } from '@/utils/validate';
+  import { isUrl } from '@/utils/is';
 
   const props = defineProps({
     to: {
@@ -9,7 +9,7 @@
     },
   });
 
-  const isExternal = computed(() => isExt(props.to));
+  const isExternal = computed(() => isUrl(props.to));
 
   // 判断是否是外部链接，如果是外部链接，使用标签
   const type = computed(() => {
