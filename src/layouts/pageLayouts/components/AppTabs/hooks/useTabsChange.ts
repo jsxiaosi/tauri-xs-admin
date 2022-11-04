@@ -56,7 +56,7 @@ export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
     const item = multiTabs.value.findIndex((i) => setTabPaneKey(i) === setTabPaneKey(e));
     const tabsLength = multiTabs.value.length;
     let value, toRoute;
-    if (multiTabs.value[item].name === e.name) {
+    if (multiTabs.value[item].name === route.name) {
       if (item === tabsLength - 1) {
         value = multiTabs.value[item - 1];
       } else {
