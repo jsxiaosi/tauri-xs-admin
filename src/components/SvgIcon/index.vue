@@ -29,9 +29,11 @@
   <el-icon v-if="isELIcon" :class="className">
     <component :is="name" />
   </el-icon>
-  <svg v-else :class="className" class="svg" :aria-hidden="true">
-    <use :xlink:href="symbolId" :fill="color" />
-  </svg>
+  <i v-else class="svg-icon">
+    <svg :class="className" class="svg" :aria-hidden="true">
+      <use :xlink:href="symbolId" :fill="color" />
+    </svg>
+  </i>
 </template>
 
 <style lang="scss" scoped>
@@ -43,13 +45,17 @@
     font-size: 1em;
     color: currentColor;
   }
-
-  .svg {
-    width: 1em;
+  .svg-icon {
     height: 1em;
+    line-height: 1em;
+    font-size: 1em;
+    .svg {
+      width: 1em;
+      height: 1em;
 
-    use {
-      fill: currentColor;
+      use {
+        fill: currentColor;
+      }
     }
   }
 </style>

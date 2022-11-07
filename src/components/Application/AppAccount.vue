@@ -28,7 +28,6 @@
 
 <style lang="scss" scoped>
   .account {
-    margin-left: 12px;
     .wave {
       width: 30px;
       height: 30px;

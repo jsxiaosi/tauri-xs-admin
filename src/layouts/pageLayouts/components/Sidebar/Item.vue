@@ -21,7 +21,7 @@
   <span v-if="title">{{ $t(title) }}</span>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
   .sub-el-icon {
     /* color: currentColor; */
     width: 1em;

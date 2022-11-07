@@ -39,6 +39,7 @@ import {
   ElDivider,
   ElSwitch,
   ElProgress,
+  ElColorPicker,
   // 指令
   ElLoading,
   ElInfiniteScroll,
@@ -59,6 +60,7 @@ import {
   Management,
   Select,
   ArrowRight,
+  FullScreen,
 } from '@element-plus/icons-vue';
 
 // Directives
@@ -104,6 +106,7 @@ const components = [
   ElDivider,
   ElSwitch,
   ElProgress,
+  ElColorPicker,
 ];
 
 // Icon
@@ -121,6 +124,7 @@ export const iconComponents = [
   Management,
   Select,
   ArrowRight,
+  FullScreen,
 ];
 
 export function useElementPlus(app: App) {

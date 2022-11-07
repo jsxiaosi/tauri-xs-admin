@@ -1,5 +1,5 @@
 {
-  "title":"xiaosiAdmin",
+  "title": "xiaosiAdmin",
   "collapseMenu": false,
   "sidebarMode": "vertical",
   "themeMode": "dark",
@@ -7,8 +7,10 @@
   "primaryColor": "#409eff",
   "greyMode": false,
   "colorWeaknessMode":false,
+  "hideNavbart": false,
   "hideTabs": false,
   "labelPersistent": true,
+  "sidebarFold": "top",
   "StorageConfig":{
     "expire": 0, 
     "isEncrypt": false

@@ -2,17 +2,17 @@
   import { useColorMode } from '@vueuse/core';
   import { watch } from 'vue';
   import SvgIcon from '../SvgIcon/index.vue';
-  import { useAppStoreHook } from '@/store/modules/app';
   import { useTransformTheme } from '@/hooks/useTransformTheme';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
-  const appStore = useAppStoreHook();
   const color = useColorMode();
+
+  const { setAppConfigMode } = useRootSetting();
 
   const { updateColor } = useTransformTheme();
 
   const toggleDarkMode = () => {
-    appStore.appConfigMode.themeMode = color.value;
-    appStore.setAppConfigMode(appStore.appConfigMode);
+    setAppConfigMode({ themeMode: color.value });
   };
 
   watch(
@@ -44,21 +44,21 @@
 <style lang="scss" scoped>
   .theme {
     position: relative;
-    width: 50px;
+    width: 48px;
     height: 26px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: 151515;
     border: 1px solid var(--text-color-primary);
-    padding: 0 6px;
-    font-size: 1em;
+    padding: 0 5px;
+    font-size: 0.8em;
     border-radius: 30px;
     .theme-inner {
       position: absolute;
       z-index: 1;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       background-color: var(--text-color-primary);
       border-radius: 50%;
       transition: transform 0.5s, background-color 0.5s;
@@ -67,7 +67,7 @@
   }
   .theme-dark {
     .theme-inner {
-      transform: translateX(calc(100% + 2px));
+      transform: translateX(calc(100% + 4px));
     }
   }
   .icon {

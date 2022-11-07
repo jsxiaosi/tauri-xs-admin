@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  import { watch, ref, toRef } from 'vue';
+  import { watch, ref } from 'vue';
   import ThemeSettings from './ThemeSettings/index.vue';
   import pageSettings from './pageSettings/index.vue';
-  import { useAppStoreHook } from '@/store/modules/app';
   import type { SidebarMode } from '@/store/types';
   import { clearStorage } from '@/utils/storage';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
   const props = defineProps({
     modelValue: {
@@ -24,8 +24,7 @@
     },
   );
 
-  const appStore = useAppStoreHook();
-  const appConfigMode = toRef(appStore, 'appConfigMode');
+  const { appConfig, setAppConfigMode } = useRootSetting();
 
   const sidebarSeting: { label: string; value: SidebarMode }[] = [
     {
@@ -44,7 +43,7 @@
 
   // 折叠菜单事件
   const handerShowElmenu = (vale: SidebarMode) => {
-    appStore.setAppConfigMode({ sidebarMode: vale });
+    setAppConfigMode({ sidebarMode: vale });
   };
 
   const handerClearStorage = () => {
@@ -74,7 +73,7 @@
             >
               <div
                 class="sidebar_mode cursor"
-                :class="{ 'sidebar_mode-select': appConfigMode.sidebarMode === item.value }"
+                :class="{ 'sidebar_mode-select': appConfig.sidebarMode === item.value }"
                 @click="handerShowElmenu(item.value)"
               >
                 <div></div>

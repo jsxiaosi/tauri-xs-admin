@@ -1,45 +1,41 @@
 <script setup lang="ts">
-  import { getCurrentInstance, toRef } from 'vue';
   import Sidebar from '../Sidebar/index.vue';
-  import { useAppStoreHook } from '@/store/modules/app';
-
-  const appStore = useAppStoreHook();
-  const appConfigMode = toRef(appStore, 'appConfigMode');
-  const config = getCurrentInstance()?.appContext.config.globalProperties.$config;
+  import AppLogo from '../AppLogo/index.vue';
+  import AppFold from '../AppFold/index.vue';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  const { appConfig } = useRootSetting();
 </script>
 
 <template>
   <div
-    v-if="appConfigMode.sidebarMode !== 'horizontal' || appConfigMode.drawerSidebar"
+    v-show="
+      !appConfig.hideSidebar && (appConfig.sidebarMode !== 'horizontal' || appConfig.drawerSidebar)
+    "
     class="sidebar-container"
-    :class="{ hideSidebar: appConfigMode.collapseMenu }"
+    :class="{ hideSidebar: appConfig.collapseMenu }"
   >
-    <div class="app-logo" :class="{ 'app-logo-hide': appConfigMode.collapseMenu }">
-      <div class="logo">
-        <img class="logo_img" src="@/assets/logo.png" mode="scaleToFill" />
-      </div>
-
-      <span class="name">{{ config.title }}</span>
-    </div>
+    <AppLogo />
     <Sidebar mode="vertical" />
+    <div
+      v-if="
+        (appConfig.sidebarFold === 'bottom' || appConfig.sidebarMode === 'blend') &&
+        appConfig.sidebarFold !== 'none'
+      "
+      class="sidebar-fold"
+    >
+      <AppFold />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .app-logo {
-    .logo_img {
-      width: 38px;
-      height: 38px;
-    }
-    .name {
-      transition: all 0.5s;
-    }
-  }
-  .app-logo-hide {
-    width: $sideHideBarWidth;
-    .name {
-      opacity: 0;
-      transform: translateX(-20px);
+  .sidebar-container {
+    .sidebar-fold {
+      border-top: 1px solid var(--border-color-light);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      font-size: var(--font-size-extra-large);
     }
   }
 </style>

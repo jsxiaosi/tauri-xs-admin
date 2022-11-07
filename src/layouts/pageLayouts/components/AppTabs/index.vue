@@ -1,16 +1,15 @@
 <script setup lang="ts">
   import { ref, computed, watch, onBeforeMount } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
-  import { storeToRefs } from 'pinia';
   import { useTabsView } from './hooks/useTabsView';
   import { useTabsChange } from './hooks/useTabsChange';
   import { translateI18n } from '@/hooks/web/useI18n';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   import type { MultiTabsType } from '@/store/types';
   import SvgIcon from '@/components/SvgIcon/index.vue';
-  import { useAppStoreHook } from '@/store/modules/app';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
-  const { appConfigMode } = storeToRefs(useAppStoreHook());
+  const { appConfig, setAppConfigMode } = useRootSetting();
 
   const route = useRoute();
   const router = useRouter();
@@ -49,10 +48,19 @@
       query: e.query,
     });
   };
+
+  const fullScreenChange = () => {
+    const { hideNavbart, hideSidebar } = appConfig.value;
+    if (hideNavbart && hideSidebar) {
+      setAppConfigMode({ hideNavbart: false, hideSidebar: false });
+    } else {
+      setAppConfigMode({ hideNavbart: true, hideSidebar: true });
+    }
+  };
 </script>
 
 <template>
-  <div v-if="!appConfigMode.hideTabs" class="main-container-tabs">
+  <div v-if="!appConfig.hideTabs" class="main-container-tabs">
     <el-tabs
       v-model="editableTabsValue"
       type="card"
@@ -86,14 +94,14 @@
         </div>
       </ul>
     </transition>
-    <div class="right-button">
+    <div v-if="!appConfig.hideTabsConfig" class="right-button">
       <ul>
         <li class="cursor" @click="onFresh()">
           <SvgIcon class="rotate" name="iEL-refresh"></SvgIcon>
         </li>
         <li>
           <el-dropdown trigger="click" placement="bottom-end">
-            <SvgIcon class="action-item" name="iEL-arrow-down"></SvgIcon>
+            <SvgIcon class="action-item cursor" name="iEL-arrow-down"></SvgIcon>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item
@@ -108,6 +116,9 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
+        </li>
+        <li class="cursor" @click="fullScreenChange">
+          <SvgIcon name="full_screen_page"></SvgIcon>
         </li>
       </ul>
     </div>
@@ -200,12 +211,16 @@
         display: flex;
         li {
           width: $tabsPageHeight;
-          height: 100%;
           text-align: center;
-          line-height: $tabsPageHeight;
+          height: $tabsPageHeight;
           font-size: var(--font-size-medium);
-          border: 1px solid var(--border-color-light);
+          border-left: 1px solid var(--border-color-light);
+          display: flex;
+          align-items: center;
+          justify-content: center;
           .action-item {
+            font-size: var(--font-size-medium);
+
             height: $tabsPageHeight;
           }
         }

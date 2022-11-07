@@ -9,10 +9,10 @@
   import type { UseInfoType } from '@/server/useInfo';
   import { getUserInfo } from '@/server/useInfo';
   import { setStorage } from '@/utils/storage';
-  import { useAppStoreHook } from '@/store/modules/app';
   import { useI18n } from '@/hooks/web/useI18n';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
-  const { appConfigMode } = useAppStoreHook();
+  const { appConfig } = useRootSetting();
 
   const { t } = useI18n();
 
@@ -67,7 +67,7 @@
       </div>
       <div class="login-box">
         <div class="login-form">
-          <h2 class="enter-x p-4">{{ appConfigMode.title }}</h2>
+          <h2 class="enter-x p-4">{{ appConfig.title }}</h2>
           <div class="enter-x"
             >{{ $t('sys.login.userName') }}：admin {{ $t('sys.login.password') }}：admin123</div
           >

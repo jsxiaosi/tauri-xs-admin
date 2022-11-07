@@ -1,7 +1,7 @@
-import { useAppStoreHook } from '@/store/modules/app';
+import { useRootSetting } from './setting/useRootSetting';
 
-export const useTransformTheme = () => {
-  const appStore = useAppStoreHook();
+export function useTransformTheme() {
+  const { appConfig } = useRootSetting();
 
   const body = document.documentElement as HTMLElement;
 
@@ -34,7 +34,7 @@ export const useTransformTheme = () => {
   }
 
   function updateColor() {
-    const { primaryColor, themeMode } = appStore.appConfigMode;
+    const { primaryColor, themeMode } = appConfig.value;
     if (!primaryColor) return;
 
     const style = document.getElementById('admin-style-root-color');
@@ -63,4 +63,4 @@ export const useTransformTheme = () => {
   }
 
   return { updateColor, themeHtmlClassName };
-};
+}

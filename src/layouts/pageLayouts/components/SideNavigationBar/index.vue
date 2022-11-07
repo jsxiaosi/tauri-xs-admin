@@ -1,17 +1,16 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue';
-  import { storeToRefs } from 'pinia';
   import { useDebounceFn, useEventListener, useMediaQuery } from '@vueuse/core';
   import VerticalSidebar from '../VerticalSidebar/index.vue';
-  import { useAppStoreHook } from '@/store/modules/app';
   import type { AppConfig } from '@/store/types';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
-  const appStore = useAppStoreHook();
+  const { appConfig, setAppConfigMode } = useRootSetting();
 
-  const drawer = ref<boolean>(!appStore.appConfigMode.collapseMenu);
+  const drawer = ref<boolean>(!appConfig.value.collapseMenu);
 
   const setAppStore = (appData: Partial<AppConfig>) => {
-    appStore.setAppConfigMode(appData);
+    setAppConfigMode(appData);
   };
 
   const handleClose = () => {
@@ -37,11 +36,12 @@
     setAppStore({ collapseMenu: isSmallScreen.value });
   });
 
-  const { appConfigMode } = storeToRefs(appStore);
-
-  watch(appConfigMode, () => {
-    drawer.value = !appConfigMode.value.collapseMenu;
-  });
+  watch(
+    () => appConfig.value.collapseMenu,
+    () => {
+      drawer.value = !appConfig.value.collapseMenu;
+    },
+  );
 
   useEventListener(window, 'resize', () => mediaQuery());
 
@@ -59,8 +59,9 @@
   >
     <VerticalSidebar />
   </el-drawer>
-
-  <VerticalSidebar v-else></VerticalSidebar>
+  <template v-else>
+    <VerticalSidebar></VerticalSidebar>
+  </template>
 </template>
 
 <style lang="scss">

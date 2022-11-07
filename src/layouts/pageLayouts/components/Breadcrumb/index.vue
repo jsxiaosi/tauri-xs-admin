@@ -1,13 +1,13 @@
 <script setup lang="ts">
-  import { ref, toRef, watch } from 'vue';
+  import { ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import { isEqual } from 'lodash-es';
-  import SvgIcon from '@/components/SvgIcon/index.vue';
+  import AppFold from '../AppFold/index.vue';
   import { translateI18n } from '@/hooks/web/useI18n';
-  import { useAppStoreHook } from '@/store/modules/app';
   import type { AppRouteRecordRaw } from '#/route';
   import { getParentPaths, findRouteByPath } from '@/router/utils';
   import { usePermissionStoreHook } from '@/store/modules/permission';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
   const { multiTabs } = usePermissionStoreHook();
 
@@ -64,31 +64,14 @@
   // 监控route的变化，避免组件复用信息同步问题
   watch(route, getBreadcrumb);
 
-  // 当前是否折叠导航栏
-  const appStore = useAppStoreHook();
-  const appConfigMode = toRef(appStore, 'appConfigMode');
-  // 折叠菜单事件
-  const handerShowElmenu = () => {
-    appStore.setAppConfigMode({
-      collapseMenu: !appStore.appConfigMode.collapseMenu,
-    });
-  };
+  const { appConfig } = useRootSetting();
 </script>
 
 <template>
   <div class="breadcrumb">
-    <SvgIcon
-      class="breadcrumb-fold cursor"
-      :class="{ 'breadcrumb-unfold': appConfigMode.collapseMenu }"
-      name="fold"
-      color="#e3e3e3"
-      @click="handerShowElmenu"
-    ></SvgIcon>
-    <el-breadcrumb
-      v-show="appConfigMode.sidebarMode === 'vertical'"
-      class="app-breadcrumb"
-      separator="/"
-    >
+    <AppFold v-if="appConfig.sidebarFold === 'top'" class="app-fold"></AppFold>
+
+    <el-breadcrumb class="app-breadcrumb" separator="/">
       <transition-group name="breadcrumb">
         <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
           <span
@@ -109,18 +92,10 @@
   .breadcrumb {
     display: flex;
     align-items: center;
+    margin-left: 10px;
 
-    .breadcrumb-icon {
-      margin-right: 20px;
-      font-size: var(--font-size-extra-large);
-    }
-
-    .breadcrumb-fold {
-      margin-right: 20px;
-    }
-
-    .breadcrumb-unfold {
-      transform: rotate(180deg);
+    .app-fold {
+      margin-right: 10px;
     }
 
     .app-breadcrumb.el-breadcrumb {

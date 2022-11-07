@@ -14,8 +14,8 @@ const useAppStore = defineStore({
     },
   },
   actions: {
-    setAppConfigMode(data: Partial<AppConfig>): void {
-      const newData = { ...this.appConfigMode, ...data };
+    setAppConfigMode(data: AppConfig): void {
+      const newData = data;
       localStorage.setItem('appConfigMode', JSON.stringify(newData));
       this.appConfigMode = newData;
     },

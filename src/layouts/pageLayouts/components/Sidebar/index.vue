@@ -1,12 +1,12 @@
 <script setup lang="ts">
   import type { PropType } from 'vue';
-  import { computed, ref, toRef, watch } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { useRoute } from 'vue-router';
   import SidebarItem from './SidebarItem.vue';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   import type { AppRouteRecordRaw } from '#/route';
   import { getParentPaths, findRouteByPath } from '@/router/utils';
-  import { useAppStoreHook } from '@/store/modules/app';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
   defineProps({
     mode: {
@@ -16,12 +16,11 @@
   });
 
   const route = useRoute();
-  const appStore = useAppStoreHook();
-  const appConfigMode = toRef(appStore, 'appConfigMode');
+  const { appConfig } = useRootSetting();
   let subMenuData = ref<AppRouteRecordRaw[]>(usePermissionStoreHook().wholeMenus);
 
   const menuData = computed<AppRouteRecordRaw[]>(() => {
-    return appConfigMode.value.sidebarMode === 'blend' && !appConfigMode.value.drawerSidebar
+    return appConfig.value.sidebarMode === 'blend' && !appConfig.value.drawerSidebar
       ? subMenuData.value
       : usePermissionStoreHook().wholeMenus;
   });
@@ -40,9 +39,9 @@
 
   getSubMenuData(route.path);
   watch(
-    () => [route.path, appConfigMode.value.sidebarMode],
+    () => [route.path, appConfig.value.sidebarMode],
     () => {
-      if (appConfigMode.value.sidebarMode === 'blend') {
+      if (appConfig.value.sidebarMode === 'blend') {
         getSubMenuData(route.path);
       }
     },
@@ -62,7 +61,7 @@
     <el-menu
       :default-active="activeMenyu"
       :unique-opened="true"
-      :collapse="appConfigMode.sidebarMode === 'horizontal' ? false : appConfigMode.collapseMenu"
+      :collapse="appConfig.sidebarMode === 'horizontal' ? false : appConfig.collapseMenu"
       :mode="mode"
     >
       <SidebarItem
