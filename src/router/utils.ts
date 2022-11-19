@@ -2,53 +2,62 @@ import type { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue
 import { useTimeoutFn } from '@vueuse/core';
 import { router, sidebarRouteList } from './index';
 import { usePermissionStoreHook } from '@/store/modules/permission';
-import type { RouteDataItemType } from '@/server/route';
-import { getRouteApi } from '@/server/route';
+// import type { RouteDataItemType } from '@/server/route';
+// import { getRouteApi } from '@/server/route';
 import type { AppRouteRecordRaw, Menu } from '#/route';
 import { isUrl } from '@/utils/is';
 
 // 初始化权限路由
-async function initAsyncRoute(power: string) {
+async function initAsyncRoute(_power: string) {
   resetRouter();
-  const res = await getRouteApi({ name: power });
-  let routeList: AppRouteRecordRaw[] = [];
-  if (res.data.length) {
-    // 根据接口返回的路由列表生成新的路由（此时的路由是带有层级关系）
-    routeList = handleRouteList(sortRouteList(sidebarRouteList), res.data);
-    // 更新路由列表前通过formatFlatteningRoutes打平树结构
-    privilegeRouting(
-      router.options.routes as RouteRecordRaw[],
-      formatFlatteningRoutes(routeList) as AppRouteRecordRaw[],
-    );
-    usePermissionStoreHook().setWholeMenus(routeList);
-  } else {
-    console.error('No requested route');
-  }
+  // 简化模版关闭权限路由，如果要使用权限路由，删除以下代码，打开注释代码
+  const routeList = sortRouteList(sidebarRouteList);
+  privilegeRouting(
+    router.options.routes as RouteRecordRaw[],
+    formatFlatteningRoutes(routeList) as AppRouteRecordRaw[],
+  );
+  usePermissionStoreHook().setWholeMenus(routeList);
+
+  /* 权限路由 */
+  // const res = await getRouteApi({ name: power });
+  // let routeList: AppRouteRecordRaw[] = [];
+  // if (res.data.length) {
+  //   // 根据接口返回的路由列表生成新的路由（此时的路由是带有层级关系）
+  //   routeList = handleRouteList(sortRouteList(sidebarRouteList), res.data);
+  //   // 更新路由列表前通过formatFlatteningRoutes打平树结构
+  //   privilegeRouting(
+  //     router.options.routes as RouteRecordRaw[],
+  //     formatFlatteningRoutes(routeList) as AppRouteRecordRaw[],
+  //   );
+  //   usePermissionStoreHook().setWholeMenus(routeList);
+  // } else {
+  //   console.error('No requested route');
+  // }
 
   return routeList;
 }
 
 // 根据返回的权限路由，处理路由列表（权限判断逻辑，可以根据自己的业务修改，返回一个带层级关系的路由列表）
-function handleRouteList(routerList: AppRouteRecordRaw[], dataRouter: RouteDataItemType[]) {
-  const newRouteList: AppRouteRecordRaw[] = [];
-  routerList.forEach((i) => {
-    if (!i.meta?.whiteList) {
-      const rItem = dataRouter.find((r) => r.name === i.name);
-      if (rItem) {
-        if (rItem.children && rItem.children.length && i.children && i.children.length) {
-          const children = handleRouteList(i.children, rItem.children);
-          i.children = children;
-          if (children) newRouteList.push(i);
-        } else {
-          newRouteList.push(i);
-        }
-      }
-    } else {
-      newRouteList.push(i);
-    }
-  });
-  return newRouteList;
-}
+// function handleRouteList(routerList: AppRouteRecordRaw[], dataRouter: RouteDataItemType[]) {
+//   const newRouteList: AppRouteRecordRaw[] = [];
+//   routerList.forEach((i) => {
+//     if (!i.meta?.whiteList) {
+//       const rItem = dataRouter.find((r) => r.name === i.name);
+//       if (rItem) {
+//         if (rItem.children && rItem.children.length && i.children && i.children.length) {
+//           const children = handleRouteList(i.children, rItem.children);
+//           i.children = children;
+//           if (children) newRouteList.push(i);
+//         } else {
+//           newRouteList.push(i);
+//         }
+//       }
+//     } else {
+//       newRouteList.push(i);
+//     }
+//   });
+//   return newRouteList;
+// }
 
 // 更新route的路由列表
 function privilegeRouting(routeList: RouteRecordRaw[], dataRouter: AppRouteRecordRaw[]) {
