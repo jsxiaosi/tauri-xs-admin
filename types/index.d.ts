@@ -10,5 +10,3 @@ declare interface Fn<T = any, R = T> {
 declare module '@zougt/*';
 
 declare module 'editor.md/*';
-
-declare module '*.js';

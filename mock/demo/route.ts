@@ -6,46 +6,6 @@ const power = [
     name: 'RtWelcome',
   },
   {
-    path: '/components',
-    name: 'RtComponents',
-    children: [
-      {
-        path: 'form',
-        name: 'RtForm',
-      },
-      {
-        path: 'table',
-        name: 'RtTable',
-      },
-      {
-        path: 'drag',
-        name: 'RtDrag',
-      },
-      {
-        path: 'count-to',
-        name: 'RtCountTo',
-      },
-      {
-        path: 'seamless-scroll',
-        name: 'RtSeamlessScroll',
-      },
-      {
-        path: 'date-time',
-        name: 'DateTime',
-        children: [
-          {
-            path: 'date-select',
-            name: 'RtDate',
-          },
-          {
-            path: 'calendar',
-            name: 'RtCalendar',
-          },
-        ],
-      },
-    ],
-  },
-  {
     path: '/echarts',
     name: 'RtEcharts',
 
