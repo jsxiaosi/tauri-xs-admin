@@ -20,24 +20,6 @@ const power = [
     ],
   },
   {
-    path: '/editor',
-    name: 'RtEditor',
-    children: [
-      {
-        path: 'rich-text',
-        name: 'RtRichText',
-      },
-      {
-        path: 'markdown',
-        name: 'RtMarkdown',
-      },
-      {
-        path: 'logic-flow',
-        name: 'RtLogicFlow',
-      },
-    ],
-  },
-  {
     path: '/details_page',
     name: 'RtDetailsPage',
   },
