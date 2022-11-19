@@ -1,6 +1,6 @@
 <div align="center">
-<a href="https://github.com/jsxiaosi/vue-xs-admin">
-<h1>vue-xs-admin</h1>
+<a href="https://github.com/jsxiaosi/min-xs-admin">
+<h1>min-xs-admin</h1>
 </a>
 </div>
 
@@ -8,11 +8,15 @@
 
 ## 简介
 
-基于`Vue3`,`Vite3`,`Element-Plus`等主流技术开发的开箱即用后台模板，内置 I18n 翻译、路由权限控制等方案能够满足多数企业管理系统需求！
+基于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)创建的简易模版，由于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)内置了一些模版以及插件使用例子，开发新项目的时候不一定全部用的上，所以创建了此简易模版。
 
 预览地址：<https://www.supercutexiaosi.top/>  
 账号：admin  
 密码：admin123
+
+## 完整版
+
+- [vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)
 
 ## electron 版
 
@@ -44,9 +48,9 @@
 ### 1. 获取项目代码（Https or SSH）
 
 ```bash
-git clone https://github.com/jsxiaosi/vue-xs-admin.git
+git clone https://github.com/jsxiaosi/min-xs-admin.git
 
-git clone git@github.com:jsxiaosi/vue-xs-admin.git
+git clone git@github.com:jsxiaosi/min-xs-admin.git
 ```
 
 或者通过[`xs-cli`](https://github.com/jsxiaosi/xs-cli)快速创建
@@ -58,7 +62,7 @@ npx @jsxiaosi/xs-cli create [project-name]
 ### 2.安装依赖
 
 ```bash
-cd vue-xs-admin
+cd min-xs-admin
 ```
 
 推荐使用`pnpm`
@@ -92,7 +96,7 @@ npm run build
 
 ## 项目地址
 
-- [vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)
+- [min-xs-admin](https://github.com/jsxiaosi/min-xs-admin)
 
 ## 如何贡献
 
