@@ -190,11 +190,6 @@ npm run build
 └── vite.config.js                #vite配置文件
 ```
 
-## 感谢以下作者项目提供帮助
-
-- [vue-vben-admin](https://github.com/anncwb/vue-vben-admin)
-- [vue-pure-admin](https://github.com/xiaoxian521/vue-pure-admin)
-
 ## 维护者
 
 [@jsxiaosi](https://github.com/jsxiaosi)
