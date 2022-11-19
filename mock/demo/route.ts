@@ -6,21 +6,6 @@ const power = [
     name: 'RtWelcome',
   },
   {
-    path: '/echarts',
-    name: 'RtEcharts',
-
-    children: [
-      {
-        path: 'bar',
-        name: 'RtBar',
-      },
-      {
-        path: 'map',
-        name: 'RtMap',
-      },
-    ],
-  },
-  {
     path: '/system',
     name: 'RtSystem',
     children: [
