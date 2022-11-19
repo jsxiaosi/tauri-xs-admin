@@ -6,38 +6,6 @@ const power = [
     name: 'RtWelcome',
   },
   {
-    path: '/system',
-    name: 'RtSystem',
-    children: [
-      {
-        path: 'power',
-        name: 'RtPower',
-      },
-      {
-        path: 'guide',
-        name: 'RtGuide',
-      },
-    ],
-  },
-  {
-    path: '/details_page',
-    name: 'RtDetailsPage',
-  },
-  {
-    path: '/error',
-    redirect: '/error/404',
-    name: 'error',
-    children: [
-      {
-        path: '404',
-        name: '404',
-      },
-    ],
-  },
-];
-
-const adminRoute = [
-  {
     path: '/nested',
     name: 'RtNested',
     children: [
@@ -76,23 +44,13 @@ const adminRoute = [
     ],
   },
   {
-    path: '/external-link',
-    name: 'RtExternal',
+    path: '/error',
+    redirect: '/error/404',
+    name: 'error',
     children: [
       {
-        path: 'https://github.com/SuperCuteXiaoSi/xiaosiAdmin',
-        name: 'RtGitLink',
-      },
-    ],
-  },
-  {
-    path: '/about',
-    redirect: '/about',
-    name: 'RtAdminInfo',
-    children: [
-      {
-        path: '',
-        name: 'RtAbout',
+        path: '404',
+        name: '404',
       },
     ],
   },
@@ -107,7 +65,7 @@ export default [
       const { name } = body;
       if (name == 'admin') {
         return {
-          data: [...power, ...adminRoute],
+          data: [...power],
           code: 1,
           message: 'ok',
         };
