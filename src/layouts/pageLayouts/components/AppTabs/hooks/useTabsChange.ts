@@ -5,9 +5,6 @@ import qs from 'qs';
 import { removeClass, toggleClass } from '@/utils/operate';
 import type { MultiTabsType } from '@/store/types';
 import { usePermissionStoreHook } from '@/store/modules/permission';
-import { findRouteByPath } from '@/router/utils';
-import { isUrl } from '@/utils/is';
-import type { AppRouteRecordRaw } from '#/route';
 
 export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
   const route = useRoute();
@@ -89,24 +86,5 @@ export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
     }, 600);
   }
 
-  const selectMenu = (path: string) => {
-    const routerinfo = (router.options.routes.find((i) => i.path === '/') ||
-      []) as AppRouteRecordRaw;
-    const findRoute = findRouteByPath(path, routerinfo.children || []);
-    if (findRoute) {
-      if (findRoute.redirect && findRoute.children && findRoute.children.length) {
-        selectMenu(findRoute.children[0].path);
-        return;
-      }
-
-      if (isUrl(findRoute.path)) return;
-      addRouteTabs(route);
-    }
-  };
-
-  // const logout = () => {
-  //   usePermissionStoreHook().handleRemoveMultiTabs();
-  // };
-
-  return { setTabPaneKey, addRouteTabs, onFresh, closeTabsRoute, removeTab, selectMenu };
+  return { setTabPaneKey, addRouteTabs, onFresh, closeTabsRoute, removeTab };
 };

@@ -29,8 +29,8 @@
   <el-icon v-if="isELIcon" :class="className">
     <component :is="name" />
   </el-icon>
-  <i v-else class="svg-icon">
-    <svg :class="className" class="svg" :aria-hidden="true">
+  <i v-else class="svg-icon" :class="className">
+    <svg class="svg" :aria-hidden="true">
       <use :xlink:href="symbolId" :fill="color" />
     </svg>
   </i>

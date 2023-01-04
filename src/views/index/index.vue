@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import VisitAnalysis from './components/AnalysisChart.vue';
   import PieChart from './components/PieChart.vue';
-  import Activity from './components/Activity.vue';
+  import WordCloud from './components/WordCloud.vue';
   import Comment from './components/Comment.vue';
   import SvgIcon from '@/components/SvgIcon/index.vue';
 
@@ -107,10 +107,10 @@
         <el-card class="box-card">
           <template #header>
             <div class="card-header cursor">
-              <span>滚动信息</span>
+              <span>词云</span>
             </div>
           </template>
-          <Activity></Activity>
+          <WordCloud></WordCloud>
         </el-card>
       </el-col>
     </el-row>
@@ -127,6 +127,8 @@
     .card-header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
     }
     .card-content {
       :deep(.el-progress-bar__outer) {

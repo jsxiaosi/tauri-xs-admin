@@ -9,7 +9,7 @@
 <template>
   <div
     v-show="
-      !appConfig.hideSidebar && (appConfig.sidebarMode !== 'horizontal' || appConfig.drawerSidebar)
+      (!appConfig.hideSidebar && appConfig.sidebarMode !== 'horizontal') || appConfig.drawerSidebar
     "
     class="sidebar-container"
     :class="{ hideSidebar: appConfig.collapseMenu }"

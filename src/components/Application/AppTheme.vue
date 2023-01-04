@@ -2,27 +2,22 @@
   import { useColorMode } from '@vueuse/core';
   import { watch } from 'vue';
   import SvgIcon from '../SvgIcon/index.vue';
-  import { useTransformTheme } from '@/hooks/useTransformTheme';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import type { AppConfig } from '@/store/types';
+  import { updateColor } from '@/utils/theme/transformTheme';
 
   const color = useColorMode();
 
-  const { setAppConfigMode } = useRootSetting();
-
-  const { updateColor } = useTransformTheme();
+  const { appConfig, setAppConfigMode } = useRootSetting();
 
   const toggleDarkMode = () => {
-    setAppConfigMode({ themeMode: color.value });
+    setAppConfigMode({ themeMode: color.value as AppConfig['themeMode'] });
   };
 
-  watch(
-    color,
-    () => {
-      toggleDarkMode();
-      updateColor();
-    },
-    { immediate: true },
-  );
+  watch(color, () => {
+    toggleDarkMode();
+    updateColor(appConfig.value.primaryColor, color.value as AppConfig['themeMode']);
+  });
 </script>
 
 <template>

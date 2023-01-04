@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
 
-const tost = `🤩你好！如果您感觉内容还不错，在右边链接给个star哦😘！https://github.com/jsxiaosi/xiaosiAdmin`;
+const tost = `🤩你好！如果您感觉内容还不错，在右边链接给个star哦😘！https://github.com/jsxiaosi/vue-xs-admin`;
 
 function getdirsize(dir: string, callback: (fileNumber: number, size: number) => void) {
   let size = 0;

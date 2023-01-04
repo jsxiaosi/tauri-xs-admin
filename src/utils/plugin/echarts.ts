@@ -11,6 +11,7 @@ import {
 import { LineChart, BarChart, MapChart, PieChart } from 'echarts/charts';
 import { UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
+import 'echarts-wordcloud';
 
 echarts.use([
   GridComponent,

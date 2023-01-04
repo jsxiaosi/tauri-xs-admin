@@ -53,7 +53,7 @@
     v-if="isPhoneScreen"
     v-model="drawer"
     :with-header="false"
-    custom-class="drawer-sidebar"
+    class="drawer-sidebar"
     direction="ltr"
     :before-close="handleClose"
   >

@@ -1,17 +1,11 @@
 <script setup lang="ts">
-  import { useRouter } from 'vue-router';
+  import { useDatailsInfo } from './hooks/useDatailsInfo';
   // import { usePermissionStoreHook } from '@/store/modules/permission';
 
-  const router = useRouter();
+  const { toDatailsInfo } = useDatailsInfo();
 
   const toPath = (item: number, type = 'query') => {
-    if (type === 'params') {
-      const params = { id: `${item}` };
-      router.push({ name: 'RtDetailsParams', params });
-    } else {
-      const query = { id: `${item}` };
-      router.push({ name: 'RtDetailsInfo', query });
-    }
+    toDatailsInfo(`${item}`, type);
   };
 </script>
 

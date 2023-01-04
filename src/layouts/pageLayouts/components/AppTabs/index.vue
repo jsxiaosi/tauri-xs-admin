@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref, computed, watch, onBeforeMount } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
+  import { ElDropdown } from 'element-plus';
   import { useTabsView } from './hooks/useTabsView';
   import { useTabsChange } from './hooks/useTabsChange';
   import { translateI18n } from '@/hooks/web/useI18n';
@@ -8,6 +9,7 @@
   import type { MultiTabsType } from '@/store/types';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { emitter } from '@/utils/mitt';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 
@@ -19,22 +21,21 @@
   const { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange } =
     useTabsView(multiTabs);
 
-  const { setTabPaneKey, selectMenu, onFresh, removeTab } = useTabsChange(multiTabs);
+  const { setTabPaneKey, addRouteTabs, onFresh, removeTab } = useTabsChange(multiTabs);
 
   const editableTabsValue = ref(setTabPaneKey(route));
 
   watch(
-    () => [route.path, route.query],
+    () => [route.path],
     async () => {
-      await selectMenu(route.path);
-      contextmenu(route);
-      setTimeout(() => (editableTabsValue.value = setTabPaneKey(route)));
+      editableTabsValue.value = setTabPaneKey(route);
     },
   );
 
   onBeforeMount(() => {
-    selectMenu(route.path);
-    contextmenu(route);
+    emitter.on('siteBarChange', ({ routeRaw }) => {
+      addRouteTabs(routeRaw as unknown as MultiTabsType);
+    });
   });
 
   const tabRemoveChange = (e: string) => {
@@ -57,6 +58,13 @@
       setAppConfigMode({ hideNavbart: true, hideSidebar: true });
     }
   };
+
+  const elDropdownRef = ref<InstanceType<typeof ElDropdown>>();
+
+  const tabPaneMenu = (item: MultiTabsType, event: MouseEvent) => {
+    elDropdownRef.value?.handleClose();
+    contextmenu(item, event);
+  };
 </script>
 
 <template>
@@ -73,7 +81,7 @@
           <div
             class="tabs-view-item"
             @click="changeTab(item)"
-            @contextmenu.prevent="contextmenu(item, $event)"
+            @contextmenu.prevent="tabPaneMenu(item, $event)"
           ></div>
           <span>{{ translateI18n(item.meta.title) }}</span>
         </template>
@@ -81,17 +89,15 @@
     </el-tabs>
     <transition name="el-zoom-in-top">
       <ul v-show="visible" class="right-view" :style="rightViewStyle">
-        <div
+        <li
           v-for="(item, key) in rightClickTags"
           :key="key"
           class="right-view-item cursor"
           :class="{ disabled: item.disabled }"
           @click="rightViewChange(item)"
         >
-          <li>
-            <span>{{ item.text }}</span>
-          </li>
-        </div>
+          <span>{{ item.text }}</span>
+        </li>
       </ul>
     </transition>
     <div v-if="!appConfig.hideTabsConfig" class="right-button">
@@ -100,7 +106,12 @@
           <SvgIcon class="rotate" name="iEL-refresh"></SvgIcon>
         </li>
         <li>
-          <el-dropdown trigger="click" placement="bottom-end">
+          <ElDropdown
+            ref="elDropdownRef"
+            trigger="click"
+            placement="bottom-end"
+            @visible-change="(e:boolean)=>e && contextmenu(route)"
+          >
             <SvgIcon class="action-item cursor" name="iEL-arrow-down"></SvgIcon>
             <template #dropdown>
               <el-dropdown-menu>
@@ -115,7 +126,7 @@
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>
-          </el-dropdown>
+          </ElDropdown>
         </li>
         <li class="cursor" @click="fullScreenChange">
           <SvgIcon name="full_screen_page"></SvgIcon>

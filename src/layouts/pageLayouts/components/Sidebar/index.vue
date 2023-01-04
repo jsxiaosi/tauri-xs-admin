@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import type { PropType } from 'vue';
-  import { computed, ref, watch } from 'vue';
+  import { onMounted, computed, ref, watch } from 'vue';
   import { useRoute } from 'vue-router';
+  import { useNavSideBar } from '../../hooks/useNavSideBar';
   import SidebarItem from './SidebarItem.vue';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   import type { AppRouteRecordRaw } from '#/route';
@@ -14,6 +15,8 @@
       default: 'vertical',
     },
   });
+
+  const { selectMenu } = useNavSideBar();
 
   const route = useRoute();
   const { appConfig } = useRootSetting();
@@ -40,12 +43,17 @@
   getSubMenuData(route.path);
   watch(
     () => [route.path, appConfig.value.sidebarMode],
-    () => {
+    ([newPath], [oldPath]) => {
       if (appConfig.value.sidebarMode === 'blend') {
         getSubMenuData(route.path);
       }
+      if (newPath !== oldPath) selectMenu(route.path);
     },
   );
+
+  onMounted(() => {
+    selectMenu(route.path);
+  });
 
   const activeMenyu = computed<string>(() => {
     const { meta, path } = route;
@@ -63,6 +71,7 @@
       :unique-opened="true"
       :collapse="appConfig.sidebarMode === 'horizontal' ? false : appConfig.collapseMenu"
       :mode="mode"
+      @select="(indexPath: string) => selectMenu(indexPath)"
     >
       <SidebarItem
         v-for="menuRoute in menuData"

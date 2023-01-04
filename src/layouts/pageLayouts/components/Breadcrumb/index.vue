@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, watch } from 'vue';
+  import { onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import { isEqual } from 'lodash-es';
   import AppFold from '../AppFold/index.vue';
@@ -23,7 +23,10 @@
   // 解析路由匹配的数组
   const getBreadcrumb = () => {
     const matched: AppRouteRecordRaw[] = [];
-    const parentRoutes = getParentPaths(router.currentRoute.value.path || '', routes || []);
+    const parentRoutes = getParentPaths(
+      router.currentRoute.value.matched[1].path || '',
+      routes || [],
+    );
     // 获取每个父级路径对应的路由信息
     parentRoutes.forEach((path) => {
       if (path !== '/') {
@@ -36,7 +39,9 @@
         itemQuery = JSON.parse(JSON.stringify(item.query));
       }
       if (matched.find((i) => i.path === item.path)) return false;
-      return route.name === item.name && isEqual(route.query, itemQuery);
+      return (
+        route.name === item.name && isEqual(route.query, itemQuery) && route.path === item.path
+      );
     });
     if (item) matched.push(item as unknown as AppRouteRecordRaw);
     levelList.value = matched.filter(
@@ -60,7 +65,8 @@
     router.push(pathCompile(path));
   };
   // 首次调用
-  getBreadcrumb();
+  onMounted(getBreadcrumb);
+
   // 监控route的变化，避免组件复用信息同步问题
   watch(route, getBreadcrumb);
 

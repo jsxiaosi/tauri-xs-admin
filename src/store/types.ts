@@ -15,8 +15,8 @@ export interface AppConfig {
   collapseMenu: boolean;
   // 菜单显示模式： 'vertical'：左侧模式 | 'horizontal'：顶部模式 | 'blend'：混合模式
   sidebarMode: SidebarMode;
-  // 主题模式：夜间主题、白天主题
-  themeMode: string;
+  // 主题模式：白天主题、夜间主题
+  themeMode: 'light' | 'dark';
   // 国际化
   locale: string;
   // storage配置

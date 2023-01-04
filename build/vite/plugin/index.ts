@@ -22,6 +22,8 @@ import { configMockPlugin } from './mock';
 import { configPwaPlugin } from './pwa';
 // 性能分析工具
 import { configVisualizerPlugin } from './visualizer';
+// 图片压缩
+import { configImageminPlugin } from './imagemin';
 
 // 自定义插件 问候语，打包检测用时、大小
 import viteBuildOuteInfo from './buildOuteInfo';
@@ -59,11 +61,12 @@ export function createVitePlugins(isBuild = false, _configEnv: ConfigEnv) {
 
   vitePlugins.push(configVisualizerPlugin());
 
+  vitePlugins.push(configImageminPlugin());
+
   vitePlugins.push(viteBuildOuteInfo());
 
   vitePlugins.push(Inspect());
 
-  /* 会重复引入与组件数量相等的主题变量 */
   vitePlugins.push(
     ElementPlus({
       useSource: true,

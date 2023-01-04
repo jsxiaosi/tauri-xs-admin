@@ -10,6 +10,10 @@
 账号：admin  
 密码：admin123
 
+## 简易版
+
+- [min-xs-admin](https://github.com/jsxiaosi/min-xs-admin)
+
 ## electron 版
 
 - [electron-xs-admin](https://github.com/jsxiaosi/electron-xs-admin)

@@ -1,11 +1,9 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue';
-  import { useTransformTheme } from '@/hooks/useTransformTheme';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import type { AppConfig } from '@/store/types';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
-
-  const { updateColor, themeHtmlClassName } = useTransformTheme();
+  import { themeHtmlClassName, updateColor } from '@/utils/theme/transformTheme';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 
@@ -17,7 +15,7 @@
 
   watch([pureColor], () => {
     setAppConfigMode({ primaryColor: pureColor.value });
-    updateColor();
+    updateColor(pureColor.value, appConfig.value.themeMode);
   });
 
   const htmlGrey = ref<boolean>(greyMode || false);

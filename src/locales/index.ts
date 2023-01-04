@@ -11,10 +11,12 @@ const config: Recordable = import.meta.glob('./**/index.ts', { eager: true });
 const messages: Recordable = {};
 const localesList: localesType[] = [];
 Object.keys(config).forEach((key) => {
-  const name: RegExpMatchArray = key.match(/^\.\/([\s\S]+)\/index.ts$/) || [];
-  if (!name[1]) return;
-  messages[name[1]] = config[key].default;
-  localesList.push({ name: config[key].name, locale: name[1] });
+  const name: RegExpMatchArray | null = key.match(/^\.\/([\s\S]+)\/index.ts$/);
+  if (name) {
+    if (!name[1]) return;
+    messages[name[1]] = config[key].default;
+    localesList.push({ name: config[key].name, locale: name[1] });
+  }
 });
 
 const locStoAPP = localStorage.getItem('appConfigMode');

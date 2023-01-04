@@ -10,7 +10,7 @@ const component: AppRouteRecordRaw[] = [
     meta: { title: t('route.pathName.components'), icon: 'components', position: 2 },
     children: [
       {
-        path: '/components/form',
+        path: 'form',
         name: 'RtForm',
         component: () => import('@/views/components/form/index.vue'),
         meta: { title: t('route.pathName.form'), keepAlive: true },
@@ -47,7 +47,7 @@ const component: AppRouteRecordRaw[] = [
         meta: { title: t('route.pathName.date') },
         children: [
           {
-            path: '/components/date-time/date-select',
+            path: 'date-select',
             name: 'RtDate',
             component: () => import('@/views/components/date/index.vue'),
             meta: { title: t('route.pathName.dateSelect'), keepAlive: true },

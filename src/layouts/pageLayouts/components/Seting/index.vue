@@ -56,7 +56,6 @@
   <div class="setting">
     <el-drawer
       v-model="drawer"
-      custom-class="setting-drawer"
       :title="$t('layout.setup')"
       :size="320"
       @close="emit('update:modelValue', false)"

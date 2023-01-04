@@ -291,8 +291,14 @@
             background: none;
             padding: 0.5rem 0.7rem;
             font-size: 1.2rem;
-            color: #555;
+            color: var(--text-color-primary);
             font-family: 'Roboto', sans-serif;
+          }
+
+          .input:-webkit-autofill {
+            background: none;
+            transition: background-color 50000s ease-in-out 0s;
+            -webkit-text-fill-color: var(--text-color-primary);
           }
 
           a {
