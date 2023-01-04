@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "vite-tauri",
-    "version": "0.0.0"
+    "productName": "tauri-xs-admin",
+    "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
@@ -22,13 +22,7 @@
         "depends": []
       },
       "externalBin": [],
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ],
+      "icon": ["icons/logo-128x128.png", "icons/logo.ico"],
       "identifier": "com.xsadmin.tauri",
       "longDescription": "",
       "macOS": {
@@ -58,7 +52,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "vite-tauri",
+        "title": "tauri-xs-admin",
         "width": 800
       }
     ]
