@@ -249,6 +249,7 @@
         .refresh-button {
           animation: rotate 600ms linear infinite;
         }
+
         @keyframes rotate {
           from {
             transform: rotate(0deg);

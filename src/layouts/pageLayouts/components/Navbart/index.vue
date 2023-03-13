@@ -75,6 +75,7 @@
     background-color: $navBarColor;
     border-bottom: 1px solid var(--border-color-light);
     box-shadow: 1px 0 20px rgb(0 0 0 / 8%);
+
     .navbar-content {
       width: 100%;
       height: #{$navBarHeight};
