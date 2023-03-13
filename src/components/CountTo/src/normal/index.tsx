@@ -1,6 +1,6 @@
 import { defineComponent, reactive, computed, watch, onMounted, unref } from 'vue';
+import { isNumber } from 'xs-vue-utils';
 import { countToProps } from './props';
-import { isNumber } from '@/utils/is';
 
 export default defineComponent({
   name: 'CountToNormal',

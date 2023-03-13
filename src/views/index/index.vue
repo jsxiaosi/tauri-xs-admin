@@ -120,20 +120,24 @@
 <style lang="scss" scoped>
   .box-card {
     margin-bottom: 20px;
+
     :deep(.el-card__header) {
       padding-bottom: 0;
       border: none;
     }
+
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-weight: 600;
     }
+
     .card-content {
       :deep(.el-progress-bar__outer) {
         height: 17px !important;
       }
+
       .numerical-value {
         display: flex;
         justify-content: space-between;

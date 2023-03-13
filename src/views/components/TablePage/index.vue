@@ -147,6 +147,7 @@
   .box-card {
     margin-bottom: 20px;
   }
+
   .nesting {
     padding: 0 20px;
   }

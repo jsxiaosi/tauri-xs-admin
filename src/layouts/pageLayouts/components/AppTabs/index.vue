@@ -152,11 +152,13 @@
         left: 0;
       }
     }
+
     .el-tabs {
       width: 0;
       height: $tabsPageHeight;
       flex: 1;
       margin: 0 10px;
+
       :deep(.el-tabs__header) {
         height: 100%;
         margin: 0;
@@ -171,9 +173,11 @@
         .el-tabs__nav-scroll {
           display: flex;
           align-items: center;
+
           .el-tabs__nav {
             border: none;
             border-radius: 0;
+
             .el-tabs__item {
               height: 100%;
               line-height: $tabsPageHeight - 10;
@@ -194,6 +198,7 @@
         // }
       }
     }
+
     .right-view {
       position: fixed;
       z-index: 999;
@@ -201,16 +206,19 @@
       border: 1px solid var(--border-color-light);
       border-radius: 5px;
       padding: 5px;
-      box-shadow: 0px 0px 12px rgb(28 29 30 / 8%);
+      box-shadow: 0 0 12px rgb(28 29 30 / 8%);
+
       .right-view-item {
         padding: 5px 10px;
         font-size: var(--font-size-base);
         display: flex;
         align-items: center;
         border-radius: 5px;
+
         .right-view-item-icon {
           margin-right: 5px;
         }
+
         &:hover {
           background-color: var(--sub-color-8);
         }
@@ -220,6 +228,7 @@
     .right-button {
       ul {
         display: flex;
+
         li {
           width: $tabsPageHeight;
           text-align: center;
@@ -229,16 +238,18 @@
           display: flex;
           align-items: center;
           justify-content: center;
+
           .action-item {
             font-size: var(--font-size-medium);
-
             height: $tabsPageHeight;
           }
         }
+
         /* 刷新按钮动画效果 */
         .refresh-button {
           animation: rotate 600ms linear infinite;
         }
+
         @keyframes rotate {
           from {
             transform: rotate(0deg);

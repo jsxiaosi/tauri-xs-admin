@@ -32,6 +32,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       .logo_img {
         width: 38px;
         height: 38px;
@@ -47,6 +48,7 @@
       overflow: hidden;
     }
   }
+
   .app-logo-hide {
     // width: $sideBarWidth;
     .name {

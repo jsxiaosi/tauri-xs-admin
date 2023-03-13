@@ -121,6 +121,7 @@
     width: 100%;
     height: 100%;
   }
+
   .page-container {
     width: 100%;
     height: 100%;

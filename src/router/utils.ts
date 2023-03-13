@@ -1,11 +1,11 @@
 import type { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
 import { useTimeoutFn } from '@vueuse/core';
+import { isUrl } from 'xs-vue-utils';
 import { router, sidebarRouteList } from './index';
 import { usePermissionStoreHook } from '@/store/modules/permission';
 import type { RouteDataItemType } from '@/server/route';
 import { getRouteApi } from '@/server/route';
 import type { AppRouteRecordRaw, Menu } from '#/route';
-import { isUrl } from '@/utils/is';
 
 // 初始化权限路由
 async function initAsyncRoute(power: string) {
@@ -40,6 +40,7 @@ function handleRouteList(routerList: AppRouteRecordRaw[], dataRouter: RouteDataI
           i.children = children;
           if (children) newRouteList.push(i);
         } else {
+          delete i.children;
           newRouteList.push(i);
         }
       }

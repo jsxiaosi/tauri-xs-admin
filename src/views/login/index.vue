@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+  import { storage } from 'xs-vue-utils';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { AppLocale, AppTheme } from '@/components/Application';
   import { addClass, removeClass } from '@/utils/operate';
@@ -8,7 +9,6 @@
   import { initAsyncRoute } from '@/router/utils';
   import type { UseInfoType } from '@/server/useInfo';
   import { getUserInfo } from '@/server/useInfo';
-  import { setStorage } from '@/utils/storage';
   import { useI18n } from '@/hooks/web/useI18n';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
@@ -25,7 +25,7 @@
     const res = await getUserInfo(user.value, pwd.value);
 
     if (res.code === 1) {
-      setStorage<UseInfoType>('userInfo', res.data);
+      storage.setStorage<UseInfoType>('userInfo', res.data);
       await initAsyncRoute(res.data.power);
       router.push('/');
     }
@@ -128,6 +128,7 @@
         left: 0;
         bottom: 0;
         z-index: 0;
+
         .bg {
           position: absolute;
           top: -50%;
@@ -137,11 +138,13 @@
           border-radius: 50%;
           background-color: var(--main-bg-color);
         }
+
         .prospect {
           width: 30%;
           height: 100%;
           background-color: var(--main-color);
         }
+
         .prospect-bg {
           position: absolute;
           bottom: -50%;
@@ -194,8 +197,10 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+
         .login-form {
           width: 360px;
+
           .avatar {
             width: 350px;
             height: 80px;
@@ -292,7 +297,7 @@
             padding: 0.5rem 0.7rem;
             font-size: 1.2rem;
             color: var(--text-color-primary);
-            font-family: 'Roboto', sans-serif;
+            font-family: Roboto, sans-serif;
           }
 
           .input:-webkit-autofill {
@@ -332,7 +337,7 @@
             cursor: pointer;
             color: #fff;
             text-transform: uppercase;
-            font-family: 'Roboto', sans-serif;
+            font-family: Roboto, sans-serif;
             background-size: 200%;
             transition: 0.5s;
           }

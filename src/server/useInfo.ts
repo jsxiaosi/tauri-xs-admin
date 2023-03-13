@@ -11,8 +11,13 @@ export interface UseInfoType {
   power: string;
 }
 
+export interface UserParams {
+  username: string;
+  password: string;
+}
+
 export const getUserInfo = (user: string, pwd: string) =>
-  deffHttp.post<UseInfoType>(
+  deffHttp.post<UseInfoType, UserParams>(
     {
       url: '/mock_api/login',
       data: { username: user, password: pwd },

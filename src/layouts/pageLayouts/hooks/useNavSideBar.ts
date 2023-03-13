@@ -1,9 +1,9 @@
 import { useRouter } from 'vue-router';
 import { useThrottleFn } from '@vueuse/core';
+import { isUrl } from 'xs-vue-utils';
 import type { AppRouteRecordRaw } from '#/route';
 import { findRouteByPath } from '@/router/utils';
 import { usePermissionStoreHook } from '@/store/modules/permission';
-import { isUrl } from '@/utils/is';
 import { emitter } from '@/utils/mitt';
 
 export const useNavSideBar = () => {

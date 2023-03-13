@@ -103,6 +103,7 @@
   .infinite {
     height: 410px;
     border: 1px solid var(--border-color-light);
+
     .top {
       // width: 95%;
       height: 40px;
@@ -132,6 +133,7 @@
 
       ul {
         margin: 0;
+
         li {
           height: 30px;
           line-height: 30px;

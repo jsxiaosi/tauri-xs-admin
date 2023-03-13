@@ -64,31 +64,37 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 24px;
+
     .color-list-item {
       width: 20px;
       height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+
       .icon {
         color: #fff;
       }
     }
   }
+
   .options {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
+
     .color-picker {
       position: relative;
       width: 50px;
       height: 24px;
+
       span {
         display: block;
         width: 100%;
         height: 100%;
       }
+
       .mask {
         position: fixed;
         left: 0;
@@ -97,6 +103,7 @@
         height: 100vh;
         z-index: 98;
       }
+
       :deep(.vc-colorpicker) {
         position: absolute;
         top: 30px;

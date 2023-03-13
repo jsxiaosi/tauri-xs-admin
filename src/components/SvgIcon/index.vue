@@ -43,18 +43,20 @@
     margin: 0;
     // 取父级的宽高
     font-size: 1em;
-    color: currentColor;
+    color: currentcolor;
   }
+
   .svg-icon {
     height: 1em;
     line-height: 1em;
     font-size: 1em;
+
     .svg {
       width: 1em;
       height: 1em;
 
       use {
-        fill: currentColor;
+        fill: currentcolor;
       }
     }
   }

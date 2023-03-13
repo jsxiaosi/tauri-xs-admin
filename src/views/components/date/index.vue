@@ -60,17 +60,21 @@
       .el-date-range-picker {
         width: 800px;
       }
+
       .el-picker-panel__content {
         .el-date-table td.start-date .el-date-table-cell {
           border-top-left-radius: 20px;
           border-bottom-left-radius: 20px;
         }
+
         .el-date-table td.end-date .el-date-table-cell {
           border-top-right-radius: 20px;
           border-bottom-right-radius: 20px;
         }
+
         .el-date-table-cell {
           height: 42px;
+
           .el-date-table-cell__text {
             display: flex;
             flex-direction: column;

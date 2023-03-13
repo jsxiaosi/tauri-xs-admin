@@ -196,6 +196,7 @@ npm run tauri build
 
 - [vue-vben-admin](https://github.com/anncwb/vue-vben-admin)
 - [vue-pure-admin](https://github.com/xiaoxian521/vue-pure-admin)
+- [vue-office](https://github.com/501351981/vue-office)
 
 ## 维护者
 

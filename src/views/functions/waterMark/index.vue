@@ -1,0 +1,83 @@
+<script setup lang="ts">
+  import { ref } from 'vue';
+  import { vWaterMark, useWaterMark } from 'xs-vue-utils';
+
+  const { setWaterMark, close } = useWaterMark();
+  const overallName = ref<string>('vue-xs-admin');
+  const creatOverall = () => {
+    setWaterMark(overallName.value);
+  };
+  const closeOverall = () => {
+    close();
+  };
+
+  const name = ref<string>('vue-xs-admin');
+  const markName = ref<string>(name.value);
+  const updateName = () => {
+    markName.value = name.value;
+  };
+
+  const hooksDeom = ref<HTMLElement | undefined>();
+  const { setWaterMark: hooksSetWaterMark, close: hooksCloseChange } = useWaterMark(hooksDeom);
+  const hooksName = ref<string>('这是一个水印');
+  const hooksUpdateName = () => {
+    hooksSetWaterMark(hooksName.value);
+  };
+  const hooksClose = () => {
+    hooksCloseChange();
+  };
+</script>
+
+<template>
+  <div>
+    <div class="config">
+      修改水印名称：
+      <ElInput v-model="overallName" style="width: 200px">
+        <template #append>
+          <el-button @click="creatOverall">确定</el-button>
+        </template>
+      </ElInput>
+      （全局）
+      <el-button @click="closeOverall">清除</el-button>
+    </div>
+
+    <div class="config">
+      修改水印名称：
+      <ElInput v-model="hooksName" style="width: 200px">
+        <template #append>
+          <el-button @click="hooksUpdateName()">确定</el-button>
+        </template>
+      </ElInput>
+      （hooks）
+      <el-button @click="hooksClose">清除</el-button>
+    </div>
+    <div ref="hooksDeom" class="region" />
+
+    <div class="config">
+      修改水印名称：
+      <ElInput v-model="name" style="width: 200px">
+        <template #append>
+          <el-button @click="updateName">确定</el-button>
+        </template>
+      </ElInput>
+      （指令）
+    </div>
+    <div v-water-mark="markName" class="region" />
+  </div>
+</template>
+
+<style lang="scss" scoped>
+  .config {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .region {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #e3e3e3;
+    margin-top: 12px;
+    overflow-y: auto;
+  }
+</style>

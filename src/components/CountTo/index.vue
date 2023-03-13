@@ -14,7 +14,7 @@
    */
   const CountToProps = {
     type: propTypes.string.def('normal'),
-    prefix: propTypes.string.def(),
+    prefix: propTypes.string.def(''),
     duration: propTypes.number.def(2000),
     startVal: propTypes.number.def(0),
     numVal: propTypes.number.def(1666),

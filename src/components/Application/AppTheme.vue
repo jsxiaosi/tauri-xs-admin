@@ -49,6 +49,7 @@
     padding: 0 5px;
     font-size: 0.8em;
     border-radius: 30px;
+
     .theme-inner {
       position: absolute;
       z-index: 1;
@@ -60,11 +61,13 @@
       will-change: transform;
     }
   }
+
   .theme-dark {
     .theme-inner {
       transform: translateX(calc(100% + 4px));
     }
   }
+
   .icon {
     font-size: 1em;
   }

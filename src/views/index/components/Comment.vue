@@ -25,24 +25,30 @@
     width: 100%;
     height: 410px;
     overflow-y: auto;
+
     .item {
       display: flex;
+
       img {
         border-radius: 50%;
         width: 50px;
         height: 50px;
       }
+
       .item-content {
         margin-left: 16px;
         display: flex;
         flex-direction: column;
+
         .title {
           font-size: var(--font-size-medium);
         }
+
         .time {
           font-size: var(--font-size-extra-small);
           margin: 5px 0;
         }
+
         .text {
           text-overflow: ellipsis;
           overflow: hidden;

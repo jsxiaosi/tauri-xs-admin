@@ -80,26 +80,32 @@
     height: 300px;
     overflow: auto;
   }
+
   .list {
     width: 100%;
+
     .list-item {
       width: 100%;
       padding: 20px;
       // line-height: 50px;
       border: 1px solid var(--border-color-light);
+
       .handle {
         margin-right: 20px;
         cursor: move;
       }
     }
+
     .sortable-chosen {
       border: 1px solid red;
     }
   }
+
   .listgrid {
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows: 100px 100px 100px;
+
     .list-item {
       cursor: move;
       display: flex;

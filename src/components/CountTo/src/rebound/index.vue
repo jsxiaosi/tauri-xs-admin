@@ -70,6 +70,7 @@
   :root {
     --width: 30px;
   }
+
   .scroll-num {
     height: 1em;
     font-size: 1em;
@@ -87,17 +88,17 @@
   @keyframes move {
     from {
       transform: translateY(-90%);
-      filter: url(#blur);
+      filter: url('#blur');
     }
 
     to {
       transform: translateY(1%);
-      filter: url(#blur);
+      filter: url('#blur');
     }
   }
 
   @keyframes bounce-in-down {
-    from {
+    0% {
       transform: translateY(calc(var(--i) * -9.09% - 7%));
       filter: none;
     }
@@ -118,7 +119,7 @@
       transform: translateY(calc(var(--i) * -9.09% - 0.3%));
     }
 
-    to {
+    100% {
       transform: translateY(calc(var(--i) * -9.09%));
     }
   }
@@ -140,7 +141,7 @@
       transform: translateY(-1%);
     }
 
-    to {
+    100% {
       transform: translateY(0);
     }
   }

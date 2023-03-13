@@ -19,9 +19,11 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
+
     .input {
       width: 49%;
       height: 100%;
+
       :deep(.el-textarea__inner) {
         height: 100% !important;
       }
