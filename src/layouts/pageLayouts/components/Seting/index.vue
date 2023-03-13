@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import { watch, ref } from 'vue';
+  import { storage } from 'xs-vue-utils';
   import ThemeSettings from './ThemeSettings/index.vue';
   import pageSettings from './pageSettings/index.vue';
   import type { SidebarMode } from '@/store/types';
-  import { clearStorage } from '@/utils/storage';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
   const props = defineProps({
@@ -47,7 +47,7 @@
   };
 
   const handerClearStorage = () => {
-    clearStorage();
+    storage.clearStorage();
     window.location.reload();
   };
 </script>
@@ -56,7 +56,6 @@
   <div class="setting">
     <el-drawer
       v-model="drawer"
-      custom-class="setting-drawer"
       :title="$t('layout.setup')"
       :size="320"
       @close="emit('update:modelValue', false)"
@@ -108,6 +107,7 @@
     height: 100%;
     overflow-y: auto;
     position: relative;
+
     .layout_seting {
       .sidebar_seting {
         display: flex;

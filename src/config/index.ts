@@ -1,7 +1,8 @@
 import type { App } from 'vue';
+import { storage } from 'xs-vue-utils';
 import { getConfigInfo } from '@/server/config';
 import type { AppConfig } from '@/store/types';
-import { setStorageConfig } from '@/utils/storage';
+import { configTheme } from '@/utils/theme/transformTheme';
 
 let config: AppConfig = {} as AppConfig;
 
@@ -23,7 +24,8 @@ export async function getServerConfig(app: App): Promise<AppConfig> {
       throw `\npublic文件夹下无法查找到serverConfig配置文件\nUnable to find serverconfig configuration file under public folder`;
     }
   }
-  setStorageConfig({ ...config.StorageConfig, prefix: config.title });
+  configTheme(config);
+  storage.setStorageConfig({ ...config.StorageConfig, prefix: config.title });
   app.config.globalProperties.$config = getConfig();
   return config;
 }

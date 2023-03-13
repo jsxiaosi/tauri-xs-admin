@@ -29,8 +29,8 @@
   <el-icon v-if="isELIcon" :class="className">
     <component :is="name" />
   </el-icon>
-  <i v-else class="svg-icon">
-    <svg :class="className" class="svg" :aria-hidden="true">
+  <i v-else class="svg-icon" :class="className">
+    <svg class="svg" :aria-hidden="true">
       <use :xlink:href="symbolId" :fill="color" />
     </svg>
   </i>
@@ -43,18 +43,20 @@
     margin: 0;
     // 取父级的宽高
     font-size: 1em;
-    color: currentColor;
+    color: currentcolor;
   }
+
   .svg-icon {
     height: 1em;
     line-height: 1em;
     font-size: 1em;
+
     .svg {
       width: 1em;
       height: 1em;
 
       use {
-        fill: currentColor;
+        fill: currentcolor;
       }
     }
   }

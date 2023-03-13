@@ -1,14 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
 import type { App } from 'vue';
+import { storage, isUrl } from 'xs-vue-utils';
 import { configRouteList } from './modules';
 import { handleAliveRoute, initAsyncRoute } from './utils';
 import { usePermissionStoreHook } from '@/store/modules/permission';
 import NProgress from '@/utils/plugin/progress';
 import { getConfig } from '@/config';
 import { translateI18n } from '@/hooks/web/useI18n';
-import { isUrl } from '@/utils/is';
-import { getStorage, removeStorage } from '@/utils/storage';
 import type { UseInfoType } from '@/server/useInfo';
 
 const { whiteRouteModulesList, routeModulesList } = configRouteList();
@@ -44,7 +43,7 @@ router.beforeEach((to, from, next) => {
     else document.title = translateI18n(to.meta.title);
   }
 
-  const userInfo = getStorage<UseInfoType>('userInfo');
+  const userInfo = storage.getStorage<UseInfoType>('userInfo');
   if (userInfo) {
     // 已登陆状态不允许去登录页
     if (to.path === '/login') {
@@ -65,7 +64,7 @@ router.beforeEach((to, from, next) => {
               query: to.query,
             });
           } else {
-            removeStorage('userInfo');
+            storage.removeStorage('userInfo');
             router.push('login');
           }
         });

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { PropType } from 'vue';
-  import { computed, ref, watch } from 'vue';
+  import { onMounted, computed, ref, watch } from 'vue';
   import { useRoute } from 'vue-router';
   import { useNavSideBar } from '../../hooks/useNavSideBar';
   import SidebarItem from './SidebarItem.vue';
@@ -43,12 +43,17 @@
   getSubMenuData(route.path);
   watch(
     () => [route.path, appConfig.value.sidebarMode],
-    () => {
+    ([newPath], [oldPath]) => {
       if (appConfig.value.sidebarMode === 'blend') {
         getSubMenuData(route.path);
       }
+      if (newPath !== oldPath) selectMenu(route.path);
     },
   );
+
+  onMounted(() => {
+    selectMenu(route.path);
+  });
 
   const activeMenyu = computed<string>(() => {
     const { meta, path } = route;

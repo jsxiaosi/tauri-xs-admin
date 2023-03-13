@@ -3,7 +3,7 @@ module.exports = {
   customSyntax: 'postcss-html',
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   rules: {
-    indentation: 2, // 缩进2个空格
+    'selector-class-pattern': null,
     'at-rule-no-unknown': [
       true,
       {

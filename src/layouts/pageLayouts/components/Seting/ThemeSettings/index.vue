@@ -1,11 +1,9 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue';
-  import { useTransformTheme } from '@/hooks/useTransformTheme';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import type { AppConfig } from '@/store/types';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
-
-  const { updateColor, themeHtmlClassName } = useTransformTheme();
+  import { themeHtmlClassName, updateColor } from '@/utils/theme/transformTheme';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 
@@ -17,7 +15,7 @@
 
   watch([pureColor], () => {
     setAppConfigMode({ primaryColor: pureColor.value });
-    updateColor();
+    updateColor(pureColor.value, appConfig.value.themeMode);
   });
 
   const htmlGrey = ref<boolean>(greyMode || false);
@@ -66,31 +64,37 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 24px;
+
     .color-list-item {
       width: 20px;
       height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+
       .icon {
         color: #fff;
       }
     }
   }
+
   .options {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
+
     .color-picker {
       position: relative;
       width: 50px;
       height: 24px;
+
       span {
         display: block;
         width: 100%;
         height: 100%;
       }
+
       .mask {
         position: fixed;
         left: 0;
@@ -99,6 +103,7 @@
         height: 100vh;
         z-index: 98;
       }
+
       :deep(.vc-colorpicker) {
         position: absolute;
         top: 30px;

@@ -1,9 +1,9 @@
 {
   // https://www.tslang.cn/docs/handbook/compiler-options.html
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "noLib": false,
     "strict": true,
     "skipLibCheck": true,
@@ -26,23 +26,17 @@
     "isolatedModules": true,
     "types": ["vite/client", "element-plus/global", "unplugin-vue-macros/macros-global"],
     "typeRoots": ["./node_modules", "./types"],
-    "lib": ["esnext", "dom"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "types/*.d.ts",
-    "types/*.ts",
-    "tests/*.ts",
-    "mock/**/*.ts",
-    "build/**/*.ts",
-    "vite.config.ts"
-  ],
-  "exclude": ["node_modules", "dist", "**/*.js", "discard/"]
+  "include": ["src", "types", "tests"],
+  "exclude": ["node_modules", "dist", "**/*.js", "discard/"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

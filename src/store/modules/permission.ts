@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import type { RouteRecordName } from 'vue-router';
 import { isEqual } from 'lodash-es';
+import { storage } from 'xs-vue-utils';
 import type { MultiTabsType, PermissionState } from '../types';
 import { useAppStoreHook } from './app';
 import { store } from '@/store';
 import type { AppRouteRecordRaw } from '#/route';
-import { getStorage, removeStorage, setStorage } from '@/utils/storage';
 
 // console.log(getStorage('multiTabsList'));
 const usePermissionStore = defineStore({
@@ -16,7 +16,7 @@ const usePermissionStore = defineStore({
     // 缓存页面keepAlive
     cachePageList: [],
     // 标签页（路由记录）
-    multiTabs: getStorage<MultiTabsType[]>('multiTabsList') || [],
+    multiTabs: storage.getStorage<MultiTabsType[]>('multiTabsList') || [],
   }),
   actions: {
     setWholeMenus(routeList: AppRouteRecordRaw[]) {
@@ -41,7 +41,7 @@ const usePermissionStore = defineStore({
     },
     // 持久化
     persistent() {
-      setStorage('multiTabsList', this.multiTabs);
+      storage.setStorage('multiTabsList', this.multiTabs);
     },
     handleMultiTabs(type: 'add' | 'delete', value: MultiTabsType) {
       const route = value as MultiTabsType;
@@ -66,7 +66,7 @@ const usePermissionStore = defineStore({
       if (appConfig.appConfigMode.labelPersistent) this.persistent();
     },
     handleRemoveMultiTabs() {
-      removeStorage('multiTabsList');
+      storage.removeStorage('multiTabsList');
       this.multiTabs = [];
       this.clearAllCachePage();
     },

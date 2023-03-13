@@ -15,4 +15,4 @@ export interface RouteDataItemType {
 }
 
 export const getRouteApi = (data: Param) =>
-  deffHttp.post<RouteDataItemType[]>({ url: Api.ROUTE_LIST, data });
+  deffHttp.post<RouteDataItemType[], Param>({ url: Api.ROUTE_LIST, data });

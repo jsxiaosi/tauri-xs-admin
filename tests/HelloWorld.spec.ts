@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest';
-import HelloWorld from '../src/components/HelloWorld.vue';
 import { mount } from '@vue/test-utils';
+import HelloWorld from '../src/components/HelloWorld.vue';
 
 test('HelloWorld', () => {
   console.log(HelloWorld);
