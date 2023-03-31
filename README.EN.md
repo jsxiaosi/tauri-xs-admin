@@ -10,7 +10,11 @@
 
 The out of the box background template developed based on mainstream technologies such as `Vue3`、`Vite3`、`Element Plus`, built-in `I18n` translation, routing permission control and other solutions can meet the needs of most enterprise management systems!
 
-Preview address: <https://www.supercutexiaosi.top/>  
+## Preview address
+
+- [github site](https://jsxiaosi.github.io/vue-xs-admin/)
+- [gitee site](http://jsxiaosi.gitee.io/vue-xs-admin)
+
 Account: admin  
 Password: admin123
 

@@ -5,8 +5,13 @@
 
 ## 简介
 
-基于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)开发的 tauri 后台框架模板  
-预览地址：https://www.supercutexiaosi.top/  
+基于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)开发的 tauri 后台框架模板
+
+## 预览地址
+
+- [github 站点](https://jsxiaosi.github.io/vue-xs-admin/)
+- [gitee 站点](http://jsxiaosi.gitee.io/vue-xs-admin)
+
 账号：admin  
 密码：admin123
 
