@@ -10,6 +10,7 @@ specifiers:
   '@jsxiaosi/commitlint-config': ^0.0.14
   '@jsxiaosi/eslint-config-prettier': ^0.0.14
   '@jsxiaosi/eslint-config-vue': ^0.0.14
+  '@jsxiaosi/utils': ^0.0.2
   '@logicflow/core': ^1.1.31
   '@logicflow/extension': ^1.1.31
   '@tauri-apps/api': ^1.2.0
@@ -96,10 +97,10 @@ specifiers:
   vuex: ^4.1.0
   wangeditor: ^4.7.15
   xlsx: ^0.18.5
-  xs-vue-utils: ^0.0.1
 
 dependencies:
   '@element-plus/icons-vue': 2.1.0_vue@3.2.47
+  '@jsxiaosi/utils': 0.0.2_vue@3.2.47
   '@logicflow/core': 1.1.31
   '@logicflow/extension': 1.1.31
   '@tauri-apps/api': 1.2.0
@@ -131,7 +132,6 @@ dependencies:
   vue-types: 5.0.2_vue@3.2.47
   vuex: 4.1.0_vue@3.2.47
   wangeditor: 4.7.15
-  xs-vue-utils: 0.0.1_vue@3.2.47
 
 devDependencies:
   '@ehutch79/vite-eslint': 0.0.1
@@ -2823,6 +2823,22 @@ packages:
       - typescript
     dev: true
 
+  /@jsxiaosi/utils/0.0.2_vue@3.2.47:
+    resolution:
+      {
+        integrity: sha512-hG+Wt6oqFI5I0D8Awuz+IWfXG+bPpTDPwqrYU0lptfd7X6/7nWJmakDjz7L1NYQPjLzFKOZX8Njq6qcjZHNW/w==,
+      }
+    dependencies:
+      '@types/lodash': 4.14.191
+      '@vueuse/core': 9.13.0_vue@3.2.47
+      crypto-js: 4.1.1
+      image-conversion: 2.1.1
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
   /@logicflow/core/1.1.31:
     resolution:
       {
@@ -4189,19 +4205,6 @@ packages:
       - supports-color
     dev: true
 
-  /@vue/compiler-core/3.2.45:
-    resolution:
-      {
-        integrity: sha512-rcMj7H+PYe5wBV3iYeUgbCglC+pbpN8hBLTJvRiK2eKQiWqu+fG9F+8sW99JdL4LQi7Re178UOxn09puSXvn4A==,
-      }
-    dependencies:
-      '@babel/parser': 7.21.2
-      '@vue/shared': 3.2.45
-      estree-walker: 2.0.2
-      source-map: 0.6.1
-    dev: true
-    optional: true
-
   /@vue/compiler-core/3.2.47:
     resolution:
       {
@@ -4212,17 +4215,6 @@ packages:
       '@vue/shared': 3.2.47
       estree-walker: 2.0.2
       source-map: 0.6.1
-
-  /@vue/compiler-dom/3.2.45:
-    resolution:
-      {
-        integrity: sha512-tyYeUEuKqqZO137WrZkpwfPCdiiIeXYCcJ8L4gWz9vqaxzIQRccTSwSWZ/Axx5YR2z+LvpUbmPNXxuBU45lyRw==,
-      }
-    dependencies:
-      '@vue/compiler-core': 3.2.45
-      '@vue/shared': 3.2.45
-    dev: true
-    optional: true
 
   /@vue/compiler-dom/3.2.47:
     resolution:
@@ -4249,17 +4241,6 @@ packages:
       magic-string: 0.25.9
       postcss: 8.4.21
       source-map: 0.6.1
-
-  /@vue/compiler-ssr/3.2.45:
-    resolution:
-      {
-        integrity: sha512-6BRaggEGqhWht3lt24CrIbQSRD5O07MTmd+LjAn5fJj568+R9eUD2F7wMQJjX859seSlrYog7sUtrZSd7feqrQ==,
-      }
-    dependencies:
-      '@vue/compiler-dom': 3.2.45
-      '@vue/shared': 3.2.45
-    dev: true
-    optional: true
 
   /@vue/compiler-ssr/3.2.47:
     resolution:
@@ -4330,21 +4311,6 @@ packages:
       '@vue/shared': 3.2.47
       csstype: 2.6.20
 
-  /@vue/server-renderer/3.2.45_vue@3.2.47:
-    resolution:
-      {
-        integrity: sha512-ebiMq7q24WBU1D6uhPK//2OTR1iRIyxjF5iVq/1a5I1SDMDyDu4Ts6fJaMnjrvD3MqnaiFkKQj+LKAgz5WIK3g==,
-      }
-    requiresBuild: true
-    peerDependencies:
-      vue: 3.2.45
-    dependencies:
-      '@vue/compiler-ssr': 3.2.45
-      '@vue/shared': 3.2.45
-      vue: 3.2.47
-    dev: true
-    optional: true
-
   /@vue/server-renderer/3.2.47_vue@3.2.47:
     resolution:
       {
@@ -4356,14 +4322,6 @@ packages:
       '@vue/compiler-ssr': 3.2.47
       '@vue/shared': 3.2.47
       vue: 3.2.47
-
-  /@vue/shared/3.2.45:
-    resolution:
-      {
-        integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==,
-      }
-    dev: true
-    optional: true
 
   /@vue/shared/3.2.47:
     resolution:
@@ -4383,7 +4341,7 @@ packages:
       vue: 3.2.47
     optionalDependencies:
       '@vue/compiler-dom': 3.2.47
-      '@vue/server-renderer': 3.2.45_vue@3.2.47
+      '@vue/server-renderer': 3.2.47_vue@3.2.47
     dev: true
 
   /@vueuse/core/9.13.0_vue@3.2.47:
@@ -17180,24 +17138,6 @@ packages:
         integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==,
       }
     dev: true
-
-  /xs-vue-utils/0.0.1_vue@3.2.47:
-    resolution:
-      {
-        integrity: sha512-xkEMkQK7g534MTdXaPahMLZDrydtYIkd1YenjKsZ7Usb3ydau+qYwCxPUa2ZDOCFMFM5p14/UOEaPKdsWMd6Tw==,
-      }
-    peerDependencies:
-      vue: ^3.2.0
-    dependencies:
-      '@types/lodash': 4.14.191
-      '@vueuse/core': 9.13.0_vue@3.2.47
-      crypto-js: 4.1.1
-      image-conversion: 2.1.1
-      lodash: 4.17.21
-      vue: 3.2.47
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-    dev: false
 
   /xtend/4.0.2:
     resolution:

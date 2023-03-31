@@ -1,5 +1,5 @@
 import { defineComponent, reactive, computed, watch, onMounted, unref } from 'vue';
-import { isNumber } from 'xs-vue-utils';
+import { isNumber } from '@jsxiaosi/utils';
 import { countToProps } from './props';
 
 export default defineComponent({

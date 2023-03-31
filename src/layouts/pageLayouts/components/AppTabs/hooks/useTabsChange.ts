@@ -2,7 +2,7 @@ import type { Ref } from 'vue';
 import { unref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import qs from 'qs';
-import { removeClass, toggleClass } from '@/utils/operate';
+import { addClass, removeClass } from '@jsxiaosi/utils';
 import type { MultiTabsType } from '@/store/types';
 import { usePermissionStoreHook } from '@/store/modules/permission';
 
@@ -75,14 +75,14 @@ export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
   // 重新加载
   function onFresh(item?: MultiTabsType) {
     const refreshButton = 'refresh-button';
-    toggleClass(true, refreshButton, document.querySelector('.rotate'));
+    addClass(document.querySelector('.rotate') as HTMLElement, refreshButton);
     const { path, query } = unref(item || route);
     router.replace({
       path: '/redirect' + path,
       query: query,
     });
     setTimeout(() => {
-      removeClass(document.querySelector('.rotate'), refreshButton);
+      removeClass(document.querySelector('.rotate') as HTMLElement, refreshButton);
     }, 600);
   }
 

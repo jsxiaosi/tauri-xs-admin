@@ -1,6 +1,10 @@
 <script setup lang="ts">
   import { ref } from 'vue';
-  import { vWaterMark, useWaterMark } from 'xs-vue-utils';
+
+  import { useWaterMark } from './hooks/useWaterMark';
+  import waterMark from '@/instruct/waterMark';
+
+  const vWaterMark = waterMark;
 
   const { setWaterMark, close } = useWaterMark();
   const overallName = ref<string>('vue-xs-admin');

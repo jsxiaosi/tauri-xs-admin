@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router';
-  import { storage } from 'xs-vue-utils';
+  import { storage } from '@jsxiaosi/utils';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   const router = useRouter();
 

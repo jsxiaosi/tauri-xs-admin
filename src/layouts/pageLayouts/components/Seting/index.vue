@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { watch, ref } from 'vue';
-  import { storage } from 'xs-vue-utils';
+  import { storage } from '@jsxiaosi/utils';
   import ThemeSettings from './ThemeSettings/index.vue';
   import pageSettings from './pageSettings/index.vue';
   import type { SidebarMode } from '@/store/types';

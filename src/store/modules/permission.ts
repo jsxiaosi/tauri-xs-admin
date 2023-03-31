@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import type { RouteRecordName } from 'vue-router';
 import { isEqual } from 'lodash-es';
-import { storage } from 'xs-vue-utils';
+import { storage } from '@jsxiaosi/utils';
 import type { MultiTabsType, PermissionState } from '../types';
 import { useAppStoreHook } from './app';
 import { store } from '@/store';

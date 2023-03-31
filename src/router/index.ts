@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
 import type { App } from 'vue';
-import { storage, isUrl } from 'xs-vue-utils';
+import { storage, isUrl } from '@jsxiaosi/utils';
 import { configRouteList } from './modules';
 import { handleAliveRoute, initAsyncRoute } from './utils';
 import { usePermissionStoreHook } from '@/store/modules/permission';

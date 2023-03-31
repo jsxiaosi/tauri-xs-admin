@@ -1,10 +1,9 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import { storage } from 'xs-vue-utils';
+  import { storage, addClass, removeClass } from '@jsxiaosi/utils';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { AppLocale, AppTheme } from '@/components/Application';
-  import { addClass, removeClass } from '@/utils/operate';
 
   import { initAsyncRoute } from '@/router/utils';
   import type { UseInfoType } from '@/server/useInfo';
@@ -19,6 +18,9 @@
   let user = ref('');
   let pwd = ref('');
 
+  const useInput = ref<HTMLElement>();
+  const pwdInput = ref<HTMLElement>();
+
   const router = useRouter();
 
   const onLogin = async (): Promise<void> => {
@@ -32,19 +34,23 @@
   };
 
   function onUserFocus() {
-    addClass(document.querySelector('.user'), 'focus');
+    if (useInput.value) {
+      addClass(useInput.value, 'focus');
+    }
   }
 
   function onUserBlur() {
-    if (user.value.length === 0) removeClass(document.querySelector('.user'), 'focus');
+    if (user.value.length === 0 && useInput.value) removeClass(useInput.value, 'focus');
   }
 
   function onPwdFocus() {
-    addClass(document.querySelector('.pwd'), 'focus');
+    if (pwdInput.value) {
+      addClass(pwdInput.value, 'focus');
+    }
   }
 
   function onPwdBlur() {
-    if (pwd.value.length === 0) removeClass(document.querySelector('.pwd'), 'focus');
+    if (pwd.value.length === 0 && pwdInput) removeClass(pwdInput.value, 'focus');
   }
 </script>
 
@@ -71,7 +77,7 @@
           <div class="enter-x"
             >{{ $t('sys.login.userName') }}：admin {{ $t('sys.login.password') }}：admin123</div
           >
-          <div class="input-group user enter-x">
+          <div ref="useInput" class="input-group user enter-x">
             <SvgIcon class-name="icon" name="iEL-avatar"></SvgIcon>
             <div>
               <h5>{{ $t('sys.login.userName') }}</h5>
@@ -84,7 +90,7 @@
               />
             </div>
           </div>
-          <div class="input-group pwd enter-x">
+          <div ref="pwdInput" class="input-group pwd enter-x">
             <SvgIcon class-name="icon" name="password"></SvgIcon>
 
             <div>

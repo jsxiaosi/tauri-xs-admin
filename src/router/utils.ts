@@ -1,6 +1,6 @@
 import type { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
 import { useTimeoutFn } from '@vueuse/core';
-import { isUrl } from 'xs-vue-utils';
+import { isUrl } from '@jsxiaosi/utils';
 import { router, sidebarRouteList } from './index';
 import { usePermissionStoreHook } from '@/store/modules/permission';
 import type { RouteDataItemType } from '@/server/route';
