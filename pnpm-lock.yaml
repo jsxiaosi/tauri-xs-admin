@@ -10,6 +10,7 @@ specifiers:
   '@jsxiaosi/commitlint-config': ^0.0.14
   '@jsxiaosi/eslint-config-prettier': ^0.0.14
   '@jsxiaosi/eslint-config-vue': ^0.0.14
+  '@jsxiaosi/utils': ^0.0.2
   '@types/core-js': ^2.5.5
   '@types/crypto-js': ^4.1.1
   '@types/lodash-es': ^4.17.6
@@ -25,7 +26,6 @@ specifiers:
   axios: ^1.3.4
   conventional-changelog-cli: ^2.2.2
   cross-env: ^7.0.3
-  crypto-js: ^4.1.1
   czg: ^1.6.0
   dayjs: ^1.11.7
   element-plus: ^2.3.0
@@ -33,7 +33,6 @@ specifiers:
   eslint: ^8.36.0
   http-server: ^14.1.1
   husky: ^8.0.3
-  image-conversion: ^2.1.1
   jsdom: ^21.1.1
   kolorist: ^1.7.0
   lint-staged: ^13.2.0
@@ -54,7 +53,6 @@ specifiers:
   rollup-plugin-visualizer: ^5.9.0
   sass: ^1.59.2
   stylelint: ^15.2.0
-  stylelint-config-prettier: ^9.0.5
   stylelint-config-recess-order: ^4.0.0
   stylelint-config-standard: ^30.0.1
   stylelint-order: ^6.0.3
@@ -84,12 +82,12 @@ specifiers:
 
 dependencies:
   '@element-plus/icons-vue': 2.1.0_vue@3.2.47
+  '@jsxiaosi/utils': 0.0.2_vue@3.2.47
   '@vueuse/core': 9.13.0_vue@3.2.47
   axios: 1.3.4
   dayjs: 1.11.7
   element-plus: 2.3.0_vue@3.2.47
   es6-promise: 4.2.8
-  image-conversion: 2.1.1
   lodash: 4.17.21
   lodash-es: 4.17.21
   mitt: 3.0.0
@@ -125,7 +123,6 @@ devDependencies:
   autoprefixer: 10.4.14_postcss@8.4.21
   conventional-changelog-cli: 2.2.2
   cross-env: 7.0.3
-  crypto-js: 4.1.1
   czg: 1.6.0
   eslint: 8.36.0
   http-server: 14.1.1
@@ -141,7 +138,6 @@ devDependencies:
   rollup-plugin-visualizer: 5.9.0
   sass: 1.59.2
   stylelint: 15.2.0
-  stylelint-config-prettier: 9.0.5_stylelint@15.2.0
   stylelint-config-recess-order: 4.0.0_stylelint@15.2.0
   stylelint-config-standard: 30.0.1_stylelint@15.2.0
   stylelint-order: 6.0.3_stylelint@15.2.0
@@ -2769,6 +2765,22 @@ packages:
       - supports-color
       - typescript
     dev: true
+
+  /@jsxiaosi/utils/0.0.2_vue@3.2.47:
+    resolution:
+      {
+        integrity: sha512-hG+Wt6oqFI5I0D8Awuz+IWfXG+bPpTDPwqrYU0lptfd7X6/7nWJmakDjz7L1NYQPjLzFKOZX8Njq6qcjZHNW/w==,
+      }
+    dependencies:
+      '@types/lodash': 4.14.191
+      '@vueuse/core': 9.13.0_vue@3.2.47
+      crypto-js: 4.1.1
+      image-conversion: 2.1.1
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution:
@@ -6021,6 +6033,7 @@ packages:
       {
         integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==,
       }
+    dev: false
 
   /crypto-random-string/2.0.0:
     resolution:
@@ -14661,19 +14674,6 @@ packages:
       {
         integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==,
       }
-    dev: true
-
-  /stylelint-config-prettier/9.0.5_stylelint@15.2.0:
-    resolution:
-      {
-        integrity: sha512-U44lELgLZhbAD/xy/vncZ2Pq8sh2TnpiPvo38Ifg9+zeioR+LAkHu0i6YORIOxFafZoVg0xqQwex6e6F25S5XA==,
-      }
-    engines: { node: '>= 12' }
-    hasBin: true
-    peerDependencies:
-      stylelint: '>= 11.x < 15'
-    dependencies:
-      stylelint: 15.2.0
     dev: true
 
   /stylelint-config-recess-order/4.0.0_stylelint@15.2.0:

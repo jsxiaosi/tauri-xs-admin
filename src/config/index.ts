@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-import { storage } from 'xs-vue-utils';
+import { storage } from '@jsxiaosi/utils';
 import { getConfigInfo } from '@/server/config';
 import type { AppConfig } from '@/store/types';
 import { configTheme } from '@/utils/theme/transformTheme';

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { isUrl } from 'xs-vue-utils';
+  import { isUrl } from '@jsxiaosi/utils';
 
   const props = defineProps({
     to: {

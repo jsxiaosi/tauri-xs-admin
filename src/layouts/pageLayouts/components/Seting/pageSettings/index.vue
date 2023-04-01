@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ref } from 'vue';
-  import { storage } from 'xs-vue-utils';
+  import { storage } from '@jsxiaosi/utils';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
 

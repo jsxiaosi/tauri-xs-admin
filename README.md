@@ -10,7 +10,11 @@
 
 基于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)创建的简易模版，由于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)内置了一些模版以及插件使用例子，开发新项目的时候不一定全部用的上，所以创建了此简易模版。
 
-预览地址：<https://www.supercutexiaosi.top/>  
+## 预览地址
+
+- [github 站点](https://jsxiaosi.github.io/vue-xs-admin/)
+- [gitee 站点](http://jsxiaosi.gitee.io/vue-xs-admin)
+
 账号：admin  
 密码：admin123
 
