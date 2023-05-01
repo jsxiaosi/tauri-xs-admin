@@ -1,13 +1,13 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router';
-  import { storage } from '@jsxiaosi/utils';
+  import { _storage } from '@jsxiaosi/utils';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   const router = useRouter();
 
   const command = (value: string) => {
     if (value === 'signOut') {
       usePermissionStoreHook().handleRemoveMultiTabs();
-      storage.removeStorage('userInfo');
+      _storage.removeStorage('userInfo');
       router.push('/login');
     }
   };
