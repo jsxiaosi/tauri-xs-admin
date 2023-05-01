@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-import { storage } from '@jsxiaosi/utils';
+import { _storage } from '@jsxiaosi/utils';
 import { getConfigInfo } from '@/server/config';
 import type { AppConfig } from '@/store/types';
 import { configTheme } from '@/utils/theme/transformTheme';
@@ -25,7 +25,7 @@ export async function getServerConfig(app: App): Promise<AppConfig> {
     }
   }
   configTheme(config);
-  storage.setStorageConfig({ ...config.StorageConfig, prefix: config.title });
+  _storage.setStorageConfig({ ...config.StorageConfig, prefix: config.title });
   app.config.globalProperties.$config = getConfig();
   return config;
 }

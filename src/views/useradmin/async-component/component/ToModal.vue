@@ -2,7 +2,13 @@
   import { ref } from 'vue';
   import Table from '@/components/Table/index.vue';
 
-  const data = () => {
+  interface TableList {
+    date: string;
+    name: string;
+    address: string;
+  }
+
+  const data = (): Promise<TableList[]> => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([
@@ -32,7 +38,7 @@
   };
 
   const res = await data();
-  const tabList = ref(res);
+  const tabList = ref<TableList[]>(res);
 
   const option = [
     {

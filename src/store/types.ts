@@ -1,5 +1,5 @@
 import type { LocationQuery, RouteParams, RouteRecordName, _RouteLocationBase } from 'vue-router';
-import type { StorageConfig } from '@jsxiaosi/utils/es/utils/storage/types';
+import type { StorageConfig } from '@jsxiaosi/utils/es/window/storage/types';
 import type { AppRouteRecordRaw } from '#/route';
 
 export interface AppState {

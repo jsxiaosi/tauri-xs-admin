@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { watch, ref } from 'vue';
-  import { storage } from '@jsxiaosi/utils';
+  import { _storage } from '@jsxiaosi/utils';
   import ThemeSettings from './ThemeSettings/index.vue';
   import pageSettings from './pageSettings/index.vue';
   import type { SidebarMode } from '@/store/types';
@@ -47,7 +47,7 @@
   };
 
   const handerClearStorage = () => {
-    storage.clearStorage();
+    _storage.clearStorage();
     window.location.reload();
   };
 </script>

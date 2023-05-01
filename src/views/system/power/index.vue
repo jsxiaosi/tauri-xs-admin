@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import { ref } from 'vue';
-  import { storage } from '@jsxiaosi/utils';
+  import { _storage } from '@jsxiaosi/utils';
   import { initAsyncRoute } from '@/router/utils';
   import type { UseInfoType } from '@/server/useInfo';
-  const userInfo = storage.getStorage<UseInfoType>('userInfo');
+  const userInfo = _storage.getStorage<UseInfoType>('userInfo');
 
   defineOptions({
     name: 'RtPower',

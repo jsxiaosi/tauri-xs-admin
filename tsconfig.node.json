@@ -3,6 +3,7 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
+    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "types": ["vite/client"]
   },

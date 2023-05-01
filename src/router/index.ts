@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
 import type { App } from 'vue';
-import { storage, isUrl } from '@jsxiaosi/utils';
+import { _storage, isUrl } from '@jsxiaosi/utils';
 import { configRouteList } from './modules';
 import { handleAliveRoute, initAsyncRoute } from './utils';
 import { usePermissionStoreHook } from '@/store/modules/permission';
@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
     else document.title = translateI18n(to.meta.title);
   }
 
-  const userInfo = storage.getStorage<UseInfoType>('userInfo');
+  const userInfo = _storage.getStorage<UseInfoType>('userInfo');
   if (userInfo) {
     // 已登陆状态不允许去登录页
     if (to.path === '/login') {
@@ -64,7 +64,7 @@ router.beforeEach((to, from, next) => {
               query: to.query,
             });
           } else {
-            storage.removeStorage('userInfo');
+            _storage.removeStorage('userInfo');
             router.push('login');
           }
         });

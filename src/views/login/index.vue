@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import { storage, addClass, removeClass } from '@jsxiaosi/utils';
+  import { _storage, addClass, removeClass } from '@jsxiaosi/utils';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { AppLocale, AppTheme } from '@/components/Application';
 
@@ -27,7 +27,7 @@
     const res = await getUserInfo(user.value, pwd.value);
 
     if (res.code === 1) {
-      storage.setStorage<UseInfoType>('userInfo', res.data);
+      _storage.setStorage<UseInfoType>('userInfo', res.data);
       await initAsyncRoute(res.data.power);
       router.push('/');
     }
@@ -50,7 +50,7 @@
   }
 
   function onPwdBlur() {
-    if (pwd.value.length === 0 && pwdInput) removeClass(pwdInput.value, 'focus');
+    if (pwd.value.length === 0 && pwdInput.value) removeClass(pwdInput.value, 'focus');
   }
 </script>
 
@@ -172,7 +172,7 @@
         font-size: 500px;
       }
 
-      @media screen and (max-width: 1024px) {
+      @media screen and (width <= 1024px) {
         .wave,
         .img {
           display: none !important;
