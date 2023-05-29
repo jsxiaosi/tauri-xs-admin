@@ -1,4 +1,10 @@
+## <small>1.7.1 (2023-05-29)</small>
+
+- fix(views): 🐛 删除 $ 语法糖 ([cb9fefe](https://github.com/jsxiaosi/vue-xs-admin/commit/cb9fefe))
+
 ## 1.7.0 (2023-05-29)
+
+- feat: ✨ vue 3.3 ([699d320](https://github.com/jsxiaosi/vue-xs-admin/commit/699d320))
 
 ## <small>1.6.2 (2023-05-01)</small>
 
