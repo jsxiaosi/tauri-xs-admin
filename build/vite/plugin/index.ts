@@ -7,7 +7,7 @@ import type { Plugin, ConfigEnv } from 'vite';
 // 按需element样式
 import ElementPlus from 'unplugin-element-plus/vite';
 // setip使用Options API
-import VueMacros from 'unplugin-vue-macros/vite';
+// import VueMacros from 'unplugin-vue-macros/vite';
 // 检查插件状态
 import Inspect from 'vite-plugin-inspect';
 // 按需加载样式配置
@@ -39,14 +39,8 @@ export function createVitePlugins(isBuild = false, _configEnv: ConfigEnv) {
   ];
 
   vitePlugins.push(
-    VueMacros({
-      plugins: {
-        vue: vue({
-          reactivityTransform: true,
-        }),
-        vueJsx: vueJsx(), // if needed
-      },
-    }),
+    vue(),
+    vueJsx(), // if needed
   );
 
   vitePlugins.push(configStylePlugin());

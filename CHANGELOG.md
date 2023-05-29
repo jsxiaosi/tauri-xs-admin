@@ -1,5 +1,37 @@
+## 1.7.0 (2023-05-29)
+
+## <small>1.6.2 (2023-05-01)</small>
+
+- feat: ✨ 1.6.2 ([f010b22](https://github.com/jsxiaosi/vue-xs-admin/commit/f010b22))
+- feat: ✨ functions ([7815ee7](https://github.com/jsxiaosi/vue-xs-admin/commit/7815ee7))
+- feat: ✨ utils ([6fb9a4d](https://github.com/jsxiaosi/vue-xs-admin/commit/6fb9a4d))
+- feat: ✨ 水印功能 ([5fb7687](https://github.com/jsxiaosi/vue-xs-admin/commit/5fb7687))
+- feat: creact gh-pages.yml ([174b3c5](https://github.com/jsxiaosi/vue-xs-admin/commit/174b3c5))
+- feat(components): ✨ xs-vue-utils ([0b8f6df](https://github.com/jsxiaosi/vue-xs-admin/commit/0b8f6df))
+- feat(server): ✨ axios Type ([5c2b86d](https://github.com/jsxiaosi/vue-xs-admin/commit/5c2b86d))
+- feat(views): ✨ preview pdf ([6c77e93](https://github.com/jsxiaosi/vue-xs-admin/commit/6c77e93))
+- feat(views): ✨ 预览 docx ([77f93d1](https://github.com/jsxiaosi/vue-xs-admin/commit/77f93d1))
+- types: 💡 tsc error ([34e5b3c](https://github.com/jsxiaosi/vue-xs-admin/commit/34e5b3c))
+- build: 📦️ node version ([c4a0824](https://github.com/jsxiaosi/vue-xs-admin/commit/c4a0824))
+- build: 📦️ upgrade Dependencies ([bd244d1](https://github.com/jsxiaosi/vue-xs-admin/commit/bd244d1))
+- build: 📦️ vite4 ([f02f54d](https://github.com/jsxiaosi/vue-xs-admin/commit/f02f54d))
+- build: 📦️ yarn.lock ([4c9b467](https://github.com/jsxiaosi/vue-xs-admin/commit/4c9b467))
+- build: 📦️ 添加包管理器约束 ([e88fcc8](https://github.com/jsxiaosi/vue-xs-admin/commit/e88fcc8))
+- chore: 🔨 删除多余的依赖 ([66e68a9](https://github.com/jsxiaosi/vue-xs-admin/commit/66e68a9))
+- docs: 📝 - ([ad2c4c2](https://github.com/jsxiaosi/vue-xs-admin/commit/ad2c4c2))
+- docs: 📝 md 预览地址 ([6193c4a](https://github.com/jsxiaosi/vue-xs-admin/commit/6193c4a))
+- fix: 🐛 delete git-pages file ([bc7c0e7](https://github.com/jsxiaosi/vue-xs-admin/commit/bc7c0e7))
+- fix: 🐛 type error ([0e9774f](https://github.com/jsxiaosi/vue-xs-admin/commit/0e9774f))
+- fix(router): 🐛 父路由无权限子路由不在白名单能访问问题 ([a9f6669](https://github.com/jsxiaosi/vue-xs-admin/commit/a9f6669))
+- fix(utils): 🐛 [utils] axios type error ([8f7125a](https://github.com/jsxiaosi/vue-xs-admin/commit/8f7125a))
+- fix(views): 🐛 pdf link ([4024f28](https://github.com/jsxiaosi/vue-xs-admin/commit/4024f28))
+- style: 💄 style lint ([d151ef4](https://github.com/jsxiaosi/vue-xs-admin/commit/d151ef4))
+- perf: ⚡️ xs-vue-utils file ([698ac5b](https://github.com/jsxiaosi/vue-xs-admin/commit/698ac5b))
+- perf: ⚡️ xs-vue-utils is ([10ec432](https://github.com/jsxiaosi/vue-xs-admin/commit/10ec432))
+
 ## <small>1.6.1 (2022-12-24)</small>
 
+- docs: 📝 log ([fcf7470](https://github.com/jsxiaosi/vue-xs-admin/commit/fcf7470))
 - fix: 🐛 npm install Error pngquant failed to build, make sure that libpng is ([5716a32](https://github.com/jsxiaosi/vue-xs-admin/commit/5716a32))
 - fix(locales): 🐛 修复刷新 灰色模式 色弱模式不生效 ([168d3e6](https://github.com/jsxiaosi/vue-xs-admin/commit/168d3e6))
 - build: 📦️ update eslint ([11d2c7c](https://github.com/jsxiaosi/vue-xs-admin/commit/11d2c7c))
