@@ -12,6 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "strictFunctionTypes": false,
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "baseUrl": "./",
     "allowJs": false,
     "sourceMap": true,
@@ -24,7 +25,7 @@
     "noImplicitAny": true,
     "removeComments": true,
     "isolatedModules": true,
-    "types": ["vite/client", "element-plus/global", "unplugin-vue-macros/macros-global"],
+    "types": ["vite/client", "element-plus/global"],
     "typeRoots": ["./node_modules", "./types"],
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "paths": {
