@@ -3,12 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import type { App } from 'vue';
 import { _storage, isUrl } from '@jsxiaosi/utils';
 import { configRouteList } from './modules';
-import { handleAliveRoute, initAsyncRoute } from './utils';
+import { handleAliveRoute, initRoute } from './utils';
 import { usePermissionStoreHook } from '@/store/modules/permission';
 import NProgress from '@/utils/plugin/progress';
 import { getConfig } from '@/config';
 import { translateI18n } from '@/hooks/web/useI18n';
-import type { UseInfoType } from '@/server/useInfo';
+import { useUserInfoStoreHook } from '@/store/modules/user';
 
 const { whiteRouteModulesList, routeModulesList } = configRouteList();
 
@@ -43,29 +43,30 @@ router.beforeEach((to, from, next) => {
     else document.title = translateI18n(to.meta.title);
   }
 
-  const userInfo = _storage.getStorage<UseInfoType>('userInfo');
-  if (userInfo) {
+  const userInfoStore = useUserInfoStoreHook();
+  if (userInfoStore.userInfo) {
     // 已登陆状态不允许去登录页
     if (to.path === '/login') {
       next({
         path: from.path,
         query: from.query,
       });
+      return;
     }
 
     if (from.name) {
       next();
     } else {
       if (usePermissionStoreHook().wholeMenus.length === 0) {
-        initAsyncRoute(userInfo.power || '').then((res) => {
+        initRoute(userInfoStore.roles).then((res) => {
           if (res.length) {
             router.push({
               path: to.path,
               query: to.query,
             });
           } else {
-            _storage.removeStorage('userInfo');
-            router.push('login');
+            userInfoStore.removeUserInfo();
+            router.push('/login');
           }
         });
       } else {

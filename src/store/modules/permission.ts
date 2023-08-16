@@ -5,10 +5,10 @@ import { _storage } from '@jsxiaosi/utils';
 import type { MultiTabsType, PermissionState } from '../types';
 import { useAppStoreHook } from './app';
 import { store } from '@/store';
-import type { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '@/router/type';
 
 // console.log(getStorage('multiTabsList'));
-const usePermissionStore = defineStore({
+export const usePermissionStore = defineStore({
   id: 'permission',
   state: (): PermissionState => ({
     // 路由菜单
@@ -37,6 +37,7 @@ const usePermissionStore = defineStore({
     },
     // 清空缓存页面
     clearAllCachePage() {
+      this.wholeMenus = [];
       this.cachePageList = [];
     },
     // 持久化

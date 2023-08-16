@@ -1,4 +1,4 @@
-const sys = {
+export default {
   errorTip: 'Error Tip',
 
   okText: 'OK',
@@ -12,7 +12,11 @@ const sys = {
     userName: 'Username',
     password: 'Password',
     loginButton: 'Sign in',
+    rememberPassword: 'Remember Password',
+    forgotPassword: 'Forgot Password?',
+    rules: {
+      userName: 'Please enter your username',
+      password: 'Please enter your password',
+    },
   },
 };
-
-export default sys;

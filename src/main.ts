@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-
 import App from './App.vue';
 
 import { getServerConfig } from './config';
@@ -20,7 +19,7 @@ getServerConfig(app).then(async (config) => {
   // 全局钩子
   configMainGlobalProperties(app);
 
-  // Vuex
+  // Pinia
   configMainStore(app);
 
   // 国际化

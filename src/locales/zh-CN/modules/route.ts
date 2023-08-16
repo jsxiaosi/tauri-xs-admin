@@ -1,0 +1,25 @@
+export default {
+  pathName: {
+    index: '首页',
+    permissions: '权限管理',
+    permissionsPage: '权限切换',
+    testPermissionsPage1: 'Admin权限测试页面',
+    testPermissionsPage2: 'Test权限测试页面',
+    detailsPage: '详情页',
+    error: '异常页面',
+    error403: '403',
+    error404: '404',
+    error500: '500',
+    nested: '嵌套路由',
+    nested1: '路由1',
+    nested1_1: '路由1-1',
+    nested1_2: '路由1-2',
+    nested1_2_1: '路由1-2-1',
+    nested1_2_2: '路由1-2-2',
+    nested1_3: '路由1-3',
+    nested2: '路由2',
+  },
+  log: {
+    importError: '文件没有默认导出',
+  },
+};

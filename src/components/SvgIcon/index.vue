@@ -47,6 +47,7 @@
   }
 
   .svg-icon {
+    display: block;
     height: 1em;
     line-height: 1em;
     font-size: 1em;

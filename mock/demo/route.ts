@@ -44,17 +44,46 @@ const power = [
     ],
   },
   {
-    path: '/error',
-    redirect: '/error/404',
-    name: 'error',
+    path: '/details_page',
+    name: 'RtDetailsPage',
+  },
+];
+
+const adminPermissionRouter = [
+  {
+    path: '/permissions',
+    name: 'RtPermissions',
     children: [
       {
-        path: '404',
-        name: '404',
+        path: 'page',
+        name: 'RtPermissionsPage',
+      },
+      {
+        path: 'test-page-admin',
+        name: 'RtPermissionsTestPageAdmin',
       },
     ],
   },
 ];
+
+const testPermissionRouter = [
+  {
+    path: '/permissions',
+    name: 'RtPermissions',
+    children: [
+      {
+        path: 'page',
+        name: 'RtPermissionsPage',
+      },
+      {
+        path: 'test-page-test',
+        name: 'RtPermissionsTestPageTest',
+      },
+    ],
+  },
+];
+
+// permissionRouter
 
 export default [
   {
@@ -65,13 +94,13 @@ export default [
       const { name } = body;
       if (name == 'admin') {
         return {
-          data: [...power],
+          data: [...power, ...adminPermissionRouter],
           code: 1,
           message: 'ok',
         };
       } else if (name == 'test') {
         return {
-          data: [...power],
+          data: [...power, ...testPermissionRouter],
           code: 1,
           message: 'ok',
         };

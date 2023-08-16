@@ -1,4 +1,4 @@
-const layout = {
+export default {
   setup: 'Set Up',
   layoutSettings: 'Layout Settings',
   themeSettings: 'Theme Settings',
@@ -18,5 +18,3 @@ const layout = {
     fullScreen: 'Full Screen',
   },
 };
-
-export default layout;

@@ -1,4 +1,4 @@
-const api = {
+export default {
   errMsg401: 'The user does not have permission!',
   errMsg403: 'The user is authorized, but access is forbidden!',
   errMsg404: 'Network request error, the resource was not found!',
@@ -11,5 +11,3 @@ const api = {
   errMsg504: 'Network timeout!',
   errMsg505: 'The http version does not support the request!',
 };
-
-export default api;

@@ -166,10 +166,14 @@ npm run build
 │   ├── App.vue                   #主vue模块
 │   ├── assets                    #项目静态文件目录
 │   ├── components                #公共组件
+│   ├── config                    #项目配置
+│   ├── enum                      #枚举
 │   ├── layouts                   #布局目录
 │   ├── locales                   #国际化配置
+│   ├── instruct                  #指令
 │   ├── main.js                   #入口文件
 │   ├── router                    #路由
+│   ├── server                    #请求存放目录
 │   ├── store                     #vuex
 │   ├── styles                    #公共样式
 │   ├── utils                     #公共方法

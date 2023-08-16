@@ -1,5 +1,5 @@
 import { pathNamekeyCheck, setUpRoutePath } from '../utils';
-import type { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '@/router/type';
 
 export function configRouteList() {
   // 白名单目录/文件，白名单目录 = 不渲染到菜单，不显示标签页

@@ -1,8 +1,15 @@
-const route = {
+export default {
   pathName: {
     index: 'Home',
+    permissions: 'Permissions',
+    permissionsPage: 'Permissions Toggle',
+    testPermissionsPage1: 'Admin Permissions',
+    testPermissionsPage2: 'Test Permissions',
+    detailsPage: 'DetailsPage',
     error: 'error',
+    error403: '403',
     error404: '404',
+    error500: '500',
     nested: 'Nested Route',
     nested1: 'Route1',
     nested1_1: 'Route1-1',
@@ -16,5 +23,3 @@ const route = {
     importError: 'The file has no default export',
   },
 };
-
-export default route;

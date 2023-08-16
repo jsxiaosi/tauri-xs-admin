@@ -8,7 +8,7 @@ const userInfo = {
   introduction: '微笑着，努力着，欣赏着',
   title: '小斯斯',
   token: '',
-  power: 'admin',
+  role: 'admin',
 };
 
 const userInfo2 = {
@@ -19,7 +19,7 @@ const userInfo2 = {
   introduction: '一个只会喝蜂蜜绿的小前端',
   title: '咪咪咪',
   token: '',
-  power: 'test',
+  role: 'test',
 };
 
 export default [
