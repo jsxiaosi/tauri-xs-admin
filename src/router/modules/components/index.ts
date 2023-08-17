@@ -1,4 +1,4 @@
-import type { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '@/router/type';
 import { t } from '@/hooks/web/useI18n';
 
 const component: AppRouteRecordRaw[] = [
@@ -18,7 +18,7 @@ const component: AppRouteRecordRaw[] = [
       {
         path: 'table',
         name: 'RtTable',
-        component: () => import('@/views/components/TablePage/index.vue'),
+        component: () => import('@/views/components/table-page/index.vue'),
         meta: { title: t('route.pathName.table') },
       },
       {

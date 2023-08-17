@@ -25,7 +25,7 @@
     "noImplicitAny": true,
     "removeComments": true,
     "isolatedModules": true,
-    "types": ["vite/client", "element-plus/global"],
+    "types": ["vite/client", "element-plus/global", "element-plus/lib/locale"],
     "typeRoots": ["./node_modules", "./types"],
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "paths": {

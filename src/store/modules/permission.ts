@@ -5,24 +5,33 @@ import { _storage } from '@jsxiaosi/utils';
 import type { MultiTabsType, PermissionState } from '../types';
 import { useAppStoreHook } from './app';
 import { store } from '@/store';
-import type { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '@/router/type';
 
-// console.log(getStorage('multiTabsList'));
-const usePermissionStore = defineStore({
-  id: 'permission',
-  state: (): PermissionState => ({
+const getPermissionState = (): PermissionState => {
+  return {
     // 路由菜单
     wholeMenus: [],
     // 缓存页面keepAlive
     cachePageList: [],
     // 标签页（路由记录）
     multiTabs: _storage.getStorage<MultiTabsType[]>('multiTabsList') || [],
-  }),
+  };
+};
+
+export const usePermissionStore = defineStore({
+  id: 'permission',
+  state: (): PermissionState => getPermissionState(),
   actions: {
     setWholeMenus(routeList: AppRouteRecordRaw[]) {
       this.wholeMenus = [...routeList];
     },
-    cacheOperate({ mode, name = '' }: { mode: string; name: RouteRecordName }) {
+    cacheOperate({
+      mode = 'sync',
+      name = '',
+    }: {
+      mode: 'add' | 'delete' | 'sync';
+      name?: RouteRecordName;
+    }) {
       let delIndex = -1;
       switch (mode) {
         case 'add':
@@ -33,10 +42,19 @@ const usePermissionStore = defineStore({
           delIndex = this.cachePageList.findIndex((v) => v === name);
           delIndex !== -1 && this.cachePageList.splice(delIndex, 1);
           break;
+        case 'sync':
+          // 延时加载：解决因为清除缓存导致回退到上一个页面时页面显示错位问题
+          setTimeout(() => {
+            this.cachePageList = this.cachePageList.filter((i) => {
+              return this.multiTabs.some((tabs) => tabs.name === i);
+            });
+          }, 400);
+          break;
       }
     },
     // 清空缓存页面
     clearAllCachePage() {
+      this.wholeMenus = [];
       this.cachePageList = [];
     },
     // 持久化
@@ -58,6 +76,7 @@ const usePermissionStore = defineStore({
         case 'delete':
           if (index === -1) return;
           this.multiTabs.splice(index, 1);
+          this.cacheOperate({ mode: 'sync' });
           break;
         default:
           break;

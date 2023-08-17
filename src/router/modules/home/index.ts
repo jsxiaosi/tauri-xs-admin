@@ -1,7 +1,7 @@
 /* Layout */
 // import Layout from '@/layouts/index.vue'
 // import AppMain from '@/layouts/components/AppMain/index.vue'
-import type { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '@/router/type';
 import { t } from '@/hooks/web/useI18n';
 
 const safeManagerRoutes: Array<AppRouteRecordRaw> = [

@@ -27,7 +27,6 @@ export default {
     const { oldValue, value } = binding;
     if (oldValue !== value) {
       const waterMarkEl = el.querySelector('.water-mark') as HTMLElement;
-      console.log();
       if (waterMarkEl) {
         waterMarkEl.style.background = `url(${createBase64(value)}) left top repeat`;
       }

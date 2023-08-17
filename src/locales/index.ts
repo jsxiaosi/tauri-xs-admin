@@ -27,8 +27,8 @@ if (locStoAPP) {
 
 const i18n = createI18n({
   legacy: false,
-  locale: appConfigMode.locale || 'zh-ch',
-  fallbackLocale: appConfigMode.locale || 'zh-ch',
+  locale: appConfigMode.locale || 'zh-CN',
+  fallbackLocale: appConfigMode.locale || 'zh-CN',
   messages,
 });
 

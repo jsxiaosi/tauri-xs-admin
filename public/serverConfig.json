@@ -1,9 +1,9 @@
 {
-  "title": "xiaosiAdmin",
+  "title": "XsAdmin",
   "collapseMenu": false,
   "sidebarMode": "vertical",
   "themeMode": "dark",
-  "locale": "zh-ch",
+  "locale": "zh-CN",
   "primaryColor": "#409eff",
   "greyMode": false,
   "colorWeaknessMode":false,
@@ -11,6 +11,7 @@
   "hideTabs": false,
   "labelPersistent": true,
   "sidebarFold": "top",
+  "permissionMode": "REAREND",
   "StorageConfig":{
     "expire": 0, 
     "isEncrypt": false

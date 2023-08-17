@@ -1,6 +1,6 @@
 import type { LocationQuery, RouteParams, RouteRecordName, _RouteLocationBase } from 'vue-router';
 import type { StorageConfig } from '@jsxiaosi/utils/es/window/storage/types';
-import type { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '@/router/type';
 
 export interface AppState {
   appConfigMode: AppConfig;
@@ -41,6 +41,13 @@ export interface AppConfig {
   labelPersistent: boolean;
   // 侧边栏按钮
   sidebarFold: 'none' | 'top' | 'bottom';
+  // 路由模式 REAREND后端路由、ROLE角色权限控制路由
+  permissionMode: keyof typeof PermissionMode;
+}
+
+export enum PermissionMode {
+  REAREND = 'REAREND',
+  ROLE = 'ROLE',
 }
 
 export type MultiTabsType = Omit<

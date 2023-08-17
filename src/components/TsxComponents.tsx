@@ -23,8 +23,7 @@ type List = string;
 
 export default defineComponent({
   name: 'TsxComponents',
-  setup(props) {
-    console.log(props);
+  setup(_props) {
     const dataname = ref<string>('admin');
     return () => (
       <>

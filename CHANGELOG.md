@@ -1,5 +1,17 @@
+## 1.8.0 (2023-08-05)
+
+- fix: 🐛 mock ([7a0aa7e](https://github.com/jsxiaosi/vue-xs-admin/commit/7a0aa7e))
+- fix: 🐛 类型报错 ([004bedd](https://github.com/jsxiaosi/vue-xs-admin/commit/004bedd))
+- feat(router): ✨ 权限路由 ([623e538](https://github.com/jsxiaosi/vue-xs-admin/commit/623e538))
+- feat(store): ✨ userInfo ([319bdeb](https://github.com/jsxiaosi/vue-xs-admin/commit/319bdeb))
+- feat(views): ✨ error ([430fc45](https://github.com/jsxiaosi/vue-xs-admin/commit/430fc45))
+- feat(views): ✨ permissions ([02d1db5](https://github.com/jsxiaosi/vue-xs-admin/commit/02d1db5))
+- fix(styles,views): 🐛 transition，国际化 ([57a3d57](https://github.com/jsxiaosi/vue-xs-admin/commit/57a3d57))
+- refactor(views): ♻️ login ([c827f17](https://github.com/jsxiaosi/vue-xs-admin/commit/c827f17))
+
 ## <small>1.7.1 (2023-05-29)</small>
 
+- feat: ✨ v1.7.1 ([3143f45](https://github.com/jsxiaosi/vue-xs-admin/commit/3143f45))
 - fix(views): 🐛 删除 $ 语法糖 ([cb9fefe](https://github.com/jsxiaosi/vue-xs-admin/commit/cb9fefe))
 
 ## 1.7.0 (2023-05-29)

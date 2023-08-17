@@ -1,4 +1,4 @@
-import type { AppRouteRecordRaw } from '#/route';
+import type { AppRouteRecordRaw } from '@/router/type';
 import { t } from '@/hooks/web/useI18n';
 
 const editor: AppRouteRecordRaw[] = [
@@ -11,7 +11,7 @@ const editor: AppRouteRecordRaw[] = [
       {
         path: 'rich-text',
         name: 'RtRichText',
-        component: () => import('@/views/editor/richText/index.vue'),
+        component: () => import('@/views/editor/rich-text/index.vue'),
         meta: { title: t('route.pathName.editor_richText') },
       },
       {
@@ -23,7 +23,7 @@ const editor: AppRouteRecordRaw[] = [
       {
         path: 'logic-flow',
         name: 'RtLogicFlow',
-        component: () => import('@/views/editor/logicFlow/index.vue'),
+        component: () => import('@/views/editor/logic-flow/index.vue'),
         meta: { title: t('route.pathName.editor_logicFlow') },
       },
     ],

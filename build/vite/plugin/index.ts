@@ -6,8 +6,7 @@ import type { Plugin, ConfigEnv } from 'vite';
 
 // 按需element样式
 import ElementPlus from 'unplugin-element-plus/vite';
-// setip使用Options API
-// import VueMacros from 'unplugin-vue-macros/vite';
+
 // 检查插件状态
 import Inspect from 'vite-plugin-inspect';
 // 按需加载样式配置

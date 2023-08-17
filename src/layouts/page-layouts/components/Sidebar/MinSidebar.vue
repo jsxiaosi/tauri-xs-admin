@@ -1,0 +1,58 @@
+<script setup lang="ts">
+  import { computed } from 'vue';
+  import { useRoute } from 'vue-router';
+  import { useNavSideBar } from '../../hooks/useNavSideBar';
+  import Item from './Item.vue';
+  import AppLink from './Link.vue';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
+  import type { AppRouteRecordRaw } from '@/router/type';
+  import { getParentPaths, findRouteByPath } from '@/router/utils';
+
+  const route = useRoute();
+
+  const { selectMenu } = useNavSideBar();
+
+  const resolvePath = (routeRaw: AppRouteRecordRaw): string => {
+    let path = routeRaw.path;
+    if (routeRaw.children && routeRaw.children.length && !routeRaw.children[0].hidden) {
+      path = routeRaw.children[0].path;
+    }
+    return path;
+  };
+
+  const activeMenyu = computed<string>(() => {
+    const { path } = route;
+    const wholeMenus = usePermissionStoreHook().wholeMenus;
+    // 当前路由的父级路径
+    const parentRoutes = getParentPaths(path, wholeMenus)[0];
+    const routeByPath = findRouteByPath(parentRoutes, wholeMenus);
+    if (routeByPath?.children && routeByPath.children.length && !routeByPath.children[0].hidden) {
+      return routeByPath.children[0].path;
+    }
+    return path;
+  });
+</script>
+
+<template>
+  <el-menu
+    ref="menu"
+    :default-active="activeMenyu"
+    class="horizontal-header-menu"
+    mode="horizontal"
+    @select="(indexPath: string) => selectMenu(indexPath)"
+  >
+    <AppLink
+      v-for="menusRoute in usePermissionStoreHook().wholeMenus"
+      :key="menusRoute.path"
+      :to="resolvePath(menusRoute)"
+    >
+      <el-menu-item :index="resolvePath(menusRoute)">
+        <Item
+          class-name="menu-item-svg"
+          :icon="menusRoute.meta && menusRoute.meta.icon"
+          :title="menusRoute.meta?.title"
+        />
+      </el-menu-item>
+    </AppLink>
+  </el-menu>
+</template>

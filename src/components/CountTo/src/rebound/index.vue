@@ -14,7 +14,7 @@
     name: 'CountToRebound',
     props: reboundProps,
     setup(props) {
-      const timer = ref<NodeJS.Timeout | null>(null);
+      const timer = ref<NodeJS.Timer | null>(null);
 
       onBeforeMount(() => {
         const ua = navigator.userAgent.toLowerCase();
@@ -36,7 +36,7 @@
       });
 
       onBeforeUnmount(() => {
-        clearTimeout(unref(timer as Ref<NodeJS.Timeout>));
+        clearTimeout(unref(timer as Ref<NodeJS.Timer>));
       });
 
       return () => (

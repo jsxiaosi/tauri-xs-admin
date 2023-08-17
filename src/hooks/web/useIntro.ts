@@ -4,7 +4,6 @@ import intro from 'intro.js';
 import 'intro.js/minified/introjs.min.css';
 
 async function useIntro(options: intro.Options = {}) {
-  console.log(options);
   intro()
     .setOptions({
       ...{
