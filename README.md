@@ -13,10 +13,15 @@
 ## 预览地址
 
 - [github 站点](https://jsxiaosi.github.io/vue-xs-admin/)
-- [gitee 站点](http://jsxiaosi.gitee.io/vue-xs-admin)
+- [gitee 站点](https://jsxiaosi.gitee.io/vue-xs-admin)
 
 账号：admin  
 密码：admin123
+
+## 文档
+
+- [github 站点](https://jsxiaosi.github.io/vue-xs-admin-docs/)
+- [gitee 站点](https://jsxiaosi.gitee.io/vue-xs-admin-docs)
 
 ## 完整版
 
@@ -40,10 +45,10 @@
 
 ## 准备
 
-- [Node](http://nodejs.org/) 和 [Git](https://git-scm.com/) -项目开发环境
+- [Node](https://nodejs.org/zh-cn/) 和 [Git](https://git-scm.com/) -项目开发环境
 - [Vite](https://cn.vitejs.dev/) - 熟悉 Vite 特性
 - [Vue3](https://v3.cn.vuejs.org/) - 熟悉 Vue 基础语法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 Es6 基本语法
+- [Es6+](https://es6.ruanyifeng.com/) - 熟悉 Es6 基本语法
 - [Vue-Router-Next](https://next.router.vuejs.org/zh/) - 熟悉 Vue-Router 基本使用
 - [Element-Plus](https://element-plus.gitee.io/#/zh-CN/) - Ui 基本使用
 

@@ -1,11 +1,27 @@
+## <small>1.8.1 (2023-08-17)</small>
+
+- docs: 📝 rEADME ([61e3a86](https://github.com/jsxiaosi/vue-xs-admin/commit/61e3a86))
+- style: 💄 delelte console.log ([4933976](https://github.com/jsxiaosi/vue-xs-admin/commit/4933976))
+- fix: 🐛 delete useadmin ([1b4014a](https://github.com/jsxiaosi/vue-xs-admin/commit/1b4014a))
+- fix(layouts): 🐛 tabs ([b6811df](https://github.com/jsxiaosi/vue-xs-admin/commit/b6811df))
+- fix(router): 🐛 link ([4899150](https://github.com/jsxiaosi/vue-xs-admin/commit/4899150))
+- fix(router): 🐛 semantic ([031f48e](https://github.com/jsxiaosi/vue-xs-admin/commit/031f48e))
+- refactor(locales): ♻️ 修改翻译目录名称 ([562d79b](https://github.com/jsxiaosi/vue-xs-admin/commit/562d79b))
+- refactor(locales): ♻️ 匿名导出 ([abed8be](https://github.com/jsxiaosi/vue-xs-admin/commit/abed8be))
+- feat(router,views): ✨ 外部链接 ([7d4ab92](https://github.com/jsxiaosi/vue-xs-admin/commit/7d4ab92))
+- refactor(locales,layouts,router,views): ♻️ 语义化重构目录 ([9f76057](https://github.com/jsxiaosi/vue-xs-admin/commit/9f76057))
+- feat: ✨ 添加工作区建议 ([e610504](https://github.com/jsxiaosi/vue-xs-admin/commit/e610504))
+- feat(hooks): ✨ useTheme ([b3d63b9](https://github.com/jsxiaosi/vue-xs-admin/commit/b3d63b9))
+
 ## 1.8.0 (2023-08-05)
 
-- fix: 🐛 mock ([7a0aa7e](https://github.com/jsxiaosi/vue-xs-admin/commit/7a0aa7e))
-- fix: 🐛 类型报错 ([004bedd](https://github.com/jsxiaosi/vue-xs-admin/commit/004bedd))
+- feat: ✨ 1.8.0 ([e41a930](https://github.com/jsxiaosi/vue-xs-admin/commit/e41a930))
 - feat(router): ✨ 权限路由 ([623e538](https://github.com/jsxiaosi/vue-xs-admin/commit/623e538))
 - feat(store): ✨ userInfo ([319bdeb](https://github.com/jsxiaosi/vue-xs-admin/commit/319bdeb))
 - feat(views): ✨ error ([430fc45](https://github.com/jsxiaosi/vue-xs-admin/commit/430fc45))
 - feat(views): ✨ permissions ([02d1db5](https://github.com/jsxiaosi/vue-xs-admin/commit/02d1db5))
+- fix: 🐛 mock ([7a0aa7e](https://github.com/jsxiaosi/vue-xs-admin/commit/7a0aa7e))
+- fix: 🐛 类型报错 ([004bedd](https://github.com/jsxiaosi/vue-xs-admin/commit/004bedd))
 - fix(styles,views): 🐛 transition，国际化 ([57a3d57](https://github.com/jsxiaosi/vue-xs-admin/commit/57a3d57))
 - refactor(views): ♻️ login ([c827f17](https://github.com/jsxiaosi/vue-xs-admin/commit/c827f17))
 
