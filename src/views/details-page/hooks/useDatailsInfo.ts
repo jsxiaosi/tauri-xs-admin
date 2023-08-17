@@ -11,7 +11,7 @@ export function useDatailsInfo() {
         name: `RtDetailsInfo`,
         query: { id: `${params}` },
         meta: {
-          title: { 'zh-ch': `详情页-${params}`, en: `pageDatails-${params}` },
+          title: { 'zh-CN': `详情页-${params}`, en: `pageDatails-${params}` },
         },
       });
       try {
@@ -25,7 +25,7 @@ export function useDatailsInfo() {
         name: `RtDetailsParams`,
         params: { id: `${params}` },
         meta: {
-          title: { 'zh-ch': `详情页-params-${params}`, en: `pageDatails-${params}` },
+          title: { 'zh-CN': `详情页-params-${params}`, en: `pageDatails-${params}` },
         },
       });
       try {

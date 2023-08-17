@@ -11,8 +11,6 @@ import { useAppStoreHook } from '@/store/modules/app';
 import { PermissionMode } from '@/store/types';
 import type { RoleEnum } from '@/enum/role';
 
-const { clearAllCachePage, setWholeMenus } = usePermissionStoreHook();
-
 // 获取路由列表
 async function getRouteList(permission: RoleEnum) {
   const appStore = useAppStoreHook();
@@ -26,7 +24,8 @@ async function getRouteList(permission: RoleEnum) {
 }
 
 // 初始化权限路由
-async function initRoute(permission: RoleEnum | null) {
+export async function initRoute(permission: RoleEnum | null) {
+  const { clearAllCachePage, setWholeMenus } = usePermissionStoreHook();
   resetRouter();
   clearAllCachePage();
   let routeList: AppRouteRecordRaw[] = [];
@@ -111,36 +110,6 @@ function privilegeRouting(routeList: RouteRecordRaw[], dataRouter: AppRouteRecor
   }
 }
 
-// 匹配不被清除的文件夹和文件
-function pathNamekeyCheck(key: string, whiteCatalogue: string[]) {
-  const pathName = key.split('/')[1];
-  const index = whiteCatalogue.findIndex((i: string) => {
-    if (pathName.indexOf(i) != -1) {
-      if (pathName === i) return true;
-      else if (/^[\s\S]*\.(ts|tsx|js|jsx)$/.test(pathName)) {
-        return true;
-      }
-      return false;
-    }
-    return false;
-  });
-  return index !== -1;
-}
-
-// 扁平路由
-function formatFlatteningRoutes(routesList: AppRouteRecordRaw[]) {
-  if (routesList.length === 0) return routesList;
-  let hierarchyList = routesList;
-  for (let i = 0; i < hierarchyList.length; i++) {
-    if (hierarchyList[i].children) {
-      hierarchyList = hierarchyList
-        .slice(0, i + 1)
-        .concat(hierarchyList[i].children || [], hierarchyList.slice(i + 1));
-    }
-  }
-  return hierarchyList;
-}
-
 // 拼接路径 path
 function pathResolve(...paths: string[]) {
   let resolvePath = '';
@@ -167,8 +136,55 @@ function pathResolve(...paths: string[]) {
   return resolvePath;
 }
 
+// 按照路由中meta下的rank等级升序来排序路由
+function sortRouteList(arr: any[]) {
+  arr.forEach((v) => {
+    if (v?.meta?.rank === null) v.meta.rank = undefined;
+    if (v.children) {
+      v.children = sortRouteList(v.children);
+    }
+  });
+  return arr.sort((a: { meta: { position: number } }, b: { meta: { position: number } }) => {
+    return a?.meta?.position - b?.meta?.position;
+  });
+}
+
+// 匹配不被清除的文件夹和文件
+export function pathNamekeyCheck(key: string, whiteCatalogue: string[]) {
+  const pathName = key.split('/')[1];
+  const index = whiteCatalogue.findIndex((i: string) => {
+    if (pathName.indexOf(i) != -1) {
+      if (pathName === i) return true;
+      else if (/^[\s\S]*\.(ts|tsx|js|jsx)$/.test(pathName)) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  });
+  return index !== -1;
+}
+
+// 扁平路由
+export function formatFlatteningRoutes(routesList: AppRouteRecordRaw[]) {
+  if (routesList.length === 0) return routesList;
+  let hierarchyList = routesList;
+  for (let i = 0; i < hierarchyList.length; i++) {
+    if (hierarchyList[i].children) {
+      hierarchyList = hierarchyList
+        .slice(0, i + 1)
+        .concat(hierarchyList[i].children || [], hierarchyList.slice(i + 1));
+    }
+  }
+  return hierarchyList;
+}
+
 // 设置路由path,并创建路由层级
-function setUpRoutePath(routeList: AppRouteRecordRaw[], pathName = '', pathList: number[] = []) {
+export function setUpRoutePath(
+  routeList: AppRouteRecordRaw[],
+  pathName = '',
+  pathList: number[] = [],
+) {
   for (const [key, node] of routeList.entries()) {
     node.meta = { ...(node.meta as Meta), pathList: [...pathList, key] };
     if (pathName && !isUrl(node.path)) {
@@ -182,35 +198,36 @@ function setUpRoutePath(routeList: AppRouteRecordRaw[], pathName = '', pathList:
 }
 
 // 处理缓存路由（添加、删除、刷新）
-function handleAliveRoute(matched: RouteRecordNormalized[], mode?: string) {
+export function handleAliveRoute(matched: RouteRecordNormalized[], mode?: string) {
+  const { cacheOperate } = usePermissionStoreHook();
   const name: RouteRecordName = matched[matched.length - 1].name as RouteRecordName;
   switch (mode) {
     case 'add':
       matched.forEach((v: RouteRecordNormalized) => {
-        usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name as RouteRecordName });
+        cacheOperate({ mode: 'add', name: v.name as RouteRecordName });
       });
       break;
     case 'delete':
-      usePermissionStoreHook().cacheOperate({
+      cacheOperate({
         mode: 'delete',
         name,
       });
       break;
     default:
-      usePermissionStoreHook().cacheOperate({
+      cacheOperate({
         mode: 'delete',
         name,
       });
       useTimeoutFn(() => {
         matched.forEach((v: RouteRecordNormalized) => {
-          usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name as RouteRecordName });
+          cacheOperate({ mode: 'add', name: v.name as RouteRecordName });
         });
       }, 100);
   }
 }
 
 // 通过path获取父级路径
-function getParentPaths(routePath: string, routes: AppRouteRecordRaw[]) {
+export function getParentPaths(routePath: string, routes: AppRouteRecordRaw[]) {
   // 深度遍历查找
   function dfs(routes: AppRouteRecordRaw[], path: string, parents: string[]) {
     for (let i = 0; i < routes.length; i++) {
@@ -233,7 +250,10 @@ function getParentPaths(routePath: string, routes: AppRouteRecordRaw[]) {
 }
 
 // 查找对应path的路由信息
-function findRouteByPath(path: string, routes: AppRouteRecordRaw[]): AppRouteRecordRaw | null {
+export function findRouteByPath(
+  path: string,
+  routes: AppRouteRecordRaw[],
+): AppRouteRecordRaw | null {
   const res = routes.find((item: { path: string }) => item.path == path) || null;
   if (res) {
     return res;
@@ -253,7 +273,7 @@ function findRouteByPath(path: string, routes: AppRouteRecordRaw[]): AppRouteRec
 }
 
 // 重置路由 不重置白名单
-function resetRouter() {
+export function resetRouter() {
   sidebarRouteList.forEach((route) => {
     const { name } = route;
     if (name) {
@@ -261,27 +281,3 @@ function resetRouter() {
     }
   });
 }
-
-// 按照路由中meta下的rank等级升序来排序路由
-function sortRouteList(arr: any[]) {
-  arr.forEach((v) => {
-    if (v?.meta?.rank === null) v.meta.rank = undefined;
-    if (v.children) {
-      v.children = sortRouteList(v.children);
-    }
-  });
-  return arr.sort((a: { meta: { position: number } }, b: { meta: { position: number } }) => {
-    return a?.meta?.position - b?.meta?.position;
-  });
-}
-
-export {
-  initRoute,
-  pathNamekeyCheck,
-  formatFlatteningRoutes,
-  setUpRoutePath,
-  handleAliveRoute,
-  getParentPaths,
-  findRouteByPath,
-  resetRouter,
-};

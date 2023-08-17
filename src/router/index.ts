@@ -44,6 +44,7 @@ router.beforeEach((to, from, next) => {
   }
 
   const userInfoStore = useUserInfoStoreHook();
+
   if (userInfoStore.userInfo) {
     // 已登陆状态不允许去登录页
     if (to.path === '/login') {

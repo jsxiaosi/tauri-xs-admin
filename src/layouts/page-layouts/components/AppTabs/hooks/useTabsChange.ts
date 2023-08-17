@@ -39,13 +39,7 @@ export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
         query,
       });
     }
-    mapList.forEach((i) => {
-      usePermissionStoreHook().cacheOperate({
-        mode: 'delete',
-        name: i.name || '',
-      });
-      usePermissionStoreHook().handleMultiTabs('delete', i);
-    });
+    mapList.forEach((i) => usePermissionStoreHook().handleMultiTabs('delete', i));
   };
 
   // 关闭当前导航
@@ -65,10 +59,7 @@ export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
       };
       router.push(toRoute);
     }
-    usePermissionStoreHook().cacheOperate({
-      mode: 'delete',
-      name: multiTabs.value[item].name || '',
-    });
+
     usePermissionStoreHook().handleMultiTabs('delete', multiTabs.value[item]);
   };
 
