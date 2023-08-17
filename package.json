@@ -1,6 +1,6 @@
 {
   "name": "vue-xs-admin",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "packageManager": "pnpm@8.1.0",
   "author": {
     "name": "小斯斯",
@@ -121,7 +121,7 @@
     "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-inspect": "^0.7.35",
     "vite-plugin-linter": "^2.0.2",
-    "vite-plugin-mock": "3.0.0",
+    "vite-plugin-mock": "2.9.1",
     "vite-plugin-pwa": "^0.16.4",
     "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
