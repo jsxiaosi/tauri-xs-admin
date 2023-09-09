@@ -1,17 +1,30 @@
+## 1.9.0 (2023-09-09)
+
+- fix: 🐛 mock ([1a085cc](https://github.com/jsxiaosi/vue-xs-admin/commit/1a085cc))
+- fix(hooks): 🐛 intro ([4267823](https://github.com/jsxiaosi/vue-xs-admin/commit/4267823))
+- fix(layouts): 🐛 修改类型报错 ([831a03a](https://github.com/jsxiaosi/vue-xs-admin/commit/831a03a))
+- build: 📦️ i18n ([54a2cce](https://github.com/jsxiaosi/vue-xs-admin/commit/54a2cce))
+- feat(layouts): ✨ tabs ([0c700ee](https://github.com/jsxiaosi/vue-xs-admin/commit/0c700ee))
+- feat(layouts): ✨ tabs ([01911b2](https://github.com/jsxiaosi/vue-xs-admin/commit/01911b2))
+- perf(layouts): ⚡️ tabs ([2d4a677](https://github.com/jsxiaosi/vue-xs-admin/commit/2d4a677))
+- refactor(locales): ♻️ 重构国际化功能 ([2820cec](https://github.com/jsxiaosi/vue-xs-admin/commit/2820cec))
+
 ## <small>1.8.1 (2023-08-17)</small>
 
-- docs: 📝 rEADME ([61e3a86](https://github.com/jsxiaosi/vue-xs-admin/commit/61e3a86))
-- style: 💄 delelte console.log ([4933976](https://github.com/jsxiaosi/vue-xs-admin/commit/4933976))
 - fix: 🐛 delete useadmin ([1b4014a](https://github.com/jsxiaosi/vue-xs-admin/commit/1b4014a))
+- fix: 🐛 mork ([7f63950](https://github.com/jsxiaosi/vue-xs-admin/commit/7f63950))
 - fix(layouts): 🐛 tabs ([b6811df](https://github.com/jsxiaosi/vue-xs-admin/commit/b6811df))
 - fix(router): 🐛 link ([4899150](https://github.com/jsxiaosi/vue-xs-admin/commit/4899150))
 - fix(router): 🐛 semantic ([031f48e](https://github.com/jsxiaosi/vue-xs-admin/commit/031f48e))
+- feat: ✨ v1.8.1 ([1044eb2](https://github.com/jsxiaosi/vue-xs-admin/commit/1044eb2))
+- feat: ✨ 添加工作区建议 ([e610504](https://github.com/jsxiaosi/vue-xs-admin/commit/e610504))
+- feat(hooks): ✨ useTheme ([b3d63b9](https://github.com/jsxiaosi/vue-xs-admin/commit/b3d63b9))
+- docs: 📝 rEADME ([61e3a86](https://github.com/jsxiaosi/vue-xs-admin/commit/61e3a86))
+- style: 💄 delelte console.log ([4933976](https://github.com/jsxiaosi/vue-xs-admin/commit/4933976))
 - refactor(locales): ♻️ 修改翻译目录名称 ([562d79b](https://github.com/jsxiaosi/vue-xs-admin/commit/562d79b))
 - refactor(locales): ♻️ 匿名导出 ([abed8be](https://github.com/jsxiaosi/vue-xs-admin/commit/abed8be))
 - feat(router,views): ✨ 外部链接 ([7d4ab92](https://github.com/jsxiaosi/vue-xs-admin/commit/7d4ab92))
 - refactor(locales,layouts,router,views): ♻️ 语义化重构目录 ([9f76057](https://github.com/jsxiaosi/vue-xs-admin/commit/9f76057))
-- feat: ✨ 添加工作区建议 ([e610504](https://github.com/jsxiaosi/vue-xs-admin/commit/e610504))
-- feat(hooks): ✨ useTheme ([b3d63b9](https://github.com/jsxiaosi/vue-xs-admin/commit/b3d63b9))
 
 ## 1.8.0 (2023-08-05)
 

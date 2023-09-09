@@ -1,43 +1,41 @@
 {
-  // https://www.tslang.cn/docs/handbook/compiler-options.html
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "noLib": false,
-    "strict": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "noImplicitThis": true,
-    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
-    "strictFunctionTypes": false,
+
+    /* Bundler mode */
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "baseUrl": "./",
-    "allowJs": false,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "incremental": false,
+
+    /* Linting */
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "isolatedModules": true,
-    "types": ["vite/client", "element-plus/global", "element-plus/lib/locale"],
-    "typeRoots": ["./node_modules", "./types"],
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "noFallthroughCasesInSwitch": true,
+    "types": [
+      "vite/client",
+      "element-plus/global",
+      "element-plus/lib/locale",
+      "@intlify/unplugin-vue-i18n/messages"
+    ],
+    "typeRoots": ["./node_modules"],
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]
     }
   },
+
   "include": ["src", "types", "tests"],
   "exclude": ["node_modules", "dist", "**/*.js", "discard/"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

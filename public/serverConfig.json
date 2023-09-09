@@ -9,7 +9,8 @@
   "colorWeaknessMode":false,
   "hideNavbart": false,
   "hideTabs": false,
-  "labelPersistent": true,
+  "closeTabDrag":false,
+  "tabPersistent": true,
   "sidebarFold": "top",
   "permissionMode": "REAREND",
   "StorageConfig":{

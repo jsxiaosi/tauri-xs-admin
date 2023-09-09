@@ -2,10 +2,12 @@
   import { useI18n, localesList } from '@/hooks/web/useI18n';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import type { localeKey } from '@/locales/types';
 
   const i18n = useI18n();
   const { setAppConfigMode } = useRootSetting();
-  const tolochos = (key: string) => {
+
+  const tolochos = (key: localeKey) => {
     i18n.locale.value = key;
     setAppConfigMode({ locale: key });
   };

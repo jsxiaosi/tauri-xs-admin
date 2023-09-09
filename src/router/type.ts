@@ -1,13 +1,19 @@
 import type { RouteRecordRaw, RouteMeta } from 'vue-router';
 import type { RoleEnum } from '@/enum/role';
+import type { localeKey } from '@/locales/types';
 
+export type localeTitle = { [key in localeKey]: string };
 export interface Meta extends RouteMeta {
   // 菜单标题
-  title: string;
+  title: string | localeTitle;
   // 设置菜单图标
   icon?: string;
   //排序位置 （子路由无效）
   position?: number;
+  // 单个路由的时候是否开启折叠
+  alwaysShow?: boolean;
+  // 不显示侧边栏
+  hideSidebar?: boolean;
   // 是否显示面包屑
   breadcrumb?: boolean;
   // 是否开启缓存
@@ -20,11 +26,11 @@ export interface Meta extends RouteMeta {
   roles?: RoleEnum[];
   // 外部页面地址
   externalUrl?: string;
+  // 不显示标签
+  hideTabs?: boolean;
 }
 
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta' | 'children'> {
-  alwaysShow?: boolean; //单个路由的时候是否开启折叠
-  hidden?: boolean;
   children?: AppRouteRecordRaw[];
   meta?: Meta;
   basePath?: string;

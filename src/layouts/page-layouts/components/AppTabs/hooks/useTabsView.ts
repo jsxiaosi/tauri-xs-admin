@@ -1,5 +1,6 @@
 import type { CSSProperties, Ref } from 'vue';
 import { computed, reactive, ref, watch } from 'vue';
+import type { RouteLocationNormalizedLoaded } from 'vue-router';
 import { useTabsChange } from './useTabsChange';
 import type { MultiTabsType } from '@/store/types';
 
@@ -67,7 +68,7 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
     }
   };
 
-  const contextmenu = (route: MultiTabsType, e?: MouseEvent) => {
+  const contextmenu = (route: MultiTabsType | RouteLocationNormalizedLoaded, e?: MouseEvent) => {
     const item = multiTabs.value.find((i) => setTabPaneKey(i) === setTabPaneKey(route));
     if (!item) return;
     closeMenu();
