@@ -68,7 +68,7 @@
         >
           <FormItem :form-item="fItem" :form-model="form" :set-form-model="setFormModel">
             <template v-for="item in Object.keys($slots)" #[item]="data">
-              <slot :name="item" v-bind="((data || {}) as Recordable)"></slot>
+              <slot :name="item" v-bind="(data || {}) as Recordable"></slot>
             </template>
           </FormItem>
         </el-col>

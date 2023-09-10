@@ -1,6 +1,7 @@
 <script setup lang="ts">
-  import { ref, computed, watch, onBeforeMount } from 'vue';
+  import { ref, computed, watch, onMounted } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
+  import type { TabPaneName } from 'element-plus';
   import { ElDropdown } from 'element-plus';
   import { useTabsView } from './hooks/useTabsView';
   import { useTabsChange } from './hooks/useTabsChange';
@@ -9,14 +10,16 @@
   import type { MultiTabsType } from '@/store/types';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { emitter } from '@/utils/mitt';
+  import useSortable from '@/hooks/web/useSortable';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 
   const route = useRoute();
   const router = useRouter();
 
-  const multiTabs = computed<MultiTabsType[]>(() => usePermissionStoreHook().multiTabs);
+  const { multiTabs: storeMultiTabs, MultiTabsDropReordering } = usePermissionStoreHook();
+
+  const multiTabs = computed<MultiTabsType[]>(() => storeMultiTabs);
 
   const { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange } =
     useTabsView(multiTabs);
@@ -28,17 +31,15 @@
   watch(
     () => [route.path],
     async () => {
+      addRouteTabs(route.matched[route.matched.length - 1] as unknown as MultiTabsType);
       editableTabsValue.value = setTabPaneKey(route);
+    },
+    {
+      immediate: true,
     },
   );
 
-  onBeforeMount(() => {
-    emitter.on('siteBarChange', ({ routeRaw }) => {
-      addRouteTabs(routeRaw as unknown as MultiTabsType);
-    });
-  });
-
-  const tabRemoveChange = (e: string) => {
+  const tabRemoveChange = (e: TabPaneName) => {
     const item = multiTabs.value.find((i) => setTabPaneKey(i) === e);
     if (item) removeTab(item);
   };
@@ -65,28 +66,62 @@
     elDropdownRef.value?.handleClose();
     contextmenu(item, event);
   };
+
+  const { initSortable, destroy } = useSortable({
+    handle: '.tabs-view-item',
+    onEnd({ newIndex, oldIndex }) {
+      const oldMultiTabs = multiTabs.value;
+      const currTab = oldMultiTabs.splice(oldIndex as number, 1)[0];
+      oldMultiTabs.splice(newIndex as number, 0, currTab);
+      MultiTabsDropReordering(oldMultiTabs);
+    },
+  });
+
+  const initTableDrag = () => {
+    if (!appConfig.value.closeTabDrag)
+      initSortable(document.querySelector<HTMLElement>('.tabs-container .el-tabs__nav'));
+  };
+
+  onMounted(() => {
+    initTableDrag();
+  });
+
+  watch(
+    () => appConfig.value.closeTabDrag,
+    (closeTabDrag) => {
+      if (closeTabDrag) destroy();
+      else initTableDrag();
+    },
+  );
 </script>
 
 <template>
   <div v-if="!appConfig.hideTabs" class="main-container-tabs">
-    <el-tabs
-      v-model="editableTabsValue"
-      type="card"
-      class="tabs-view"
-      :closable="multiTabs.length > 1"
-      @tab-remove="tabRemoveChange"
-    >
-      <el-tab-pane v-for="item in multiTabs" :key="setTabPaneKey(item)" :name="setTabPaneKey(item)">
-        <template #label>
-          <div
-            class="tabs-view-item"
-            @click="changeTab(item)"
-            @contextmenu.prevent="tabPaneMenu(item, $event)"
-          ></div>
-          <span>{{ translateI18n(item.meta.title) }}</span>
-        </template>
-      </el-tab-pane>
-    </el-tabs>
+    <div class="tabs-container">
+      <el-tabs
+        v-model="editableTabsValue"
+        type="card"
+        class="tabs-view"
+        :closable="multiTabs.length > 1"
+        @tab-remove="tabRemoveChange"
+      >
+        <el-tab-pane
+          v-for="item in multiTabs"
+          :key="setTabPaneKey(item)"
+          :name="setTabPaneKey(item)"
+        >
+          <template #label>
+            <div
+              class="tabs-view-item"
+              @click="changeTab(item)"
+              @contextmenu.prevent="tabPaneMenu(item, $event)"
+            ></div>
+            <span>{{ translateI18n(item.meta?.title) }}</span>
+          </template>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+
     <transition name="el-zoom-in-top">
       <ul v-show="visible" class="right-view" :style="rightViewStyle">
         <li
@@ -110,7 +145,7 @@
             ref="elDropdownRef"
             trigger="click"
             placement="bottom-end"
-            @visible-change="(e:boolean)=>e && contextmenu(route)"
+            @visible-change="(e: boolean) => e && contextmenu(route)"
           >
             <SvgIcon class="action-item cursor" name="iEL-arrow-down"></SvgIcon>
             <template #dropdown>
@@ -144,19 +179,23 @@
     // .el-tabs :deep(.el-tabs__header) {
     //   margin: 0;
     // }
-    .tabs-view {
-      .tabs-view-item {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
+
+    .tabs-container {
+      width: 0;
+      flex: 1;
+
+      .tabs-view {
+        .tabs-view-item {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+        }
       }
     }
 
     .el-tabs {
-      width: 0;
       height: $tabsPageHeight;
-      flex: 1;
       margin: 0 10px;
 
       :deep(.el-tabs__header) {

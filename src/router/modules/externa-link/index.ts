@@ -5,9 +5,8 @@ const externalLink: AppRouteRecordRaw[] = [
   {
     path: '/external-link',
     // component: Layout,
-    alwaysShow: true,
     name: 'RtExternal',
-    meta: { title: t('route.pathName.externalLink'), icon: 'link', position: 9 },
+    meta: { title: t('route.pathName.externalLink'), icon: 'link', alwaysShow: true, position: 9 },
     children: [
       {
         path: 'https://jsxiaosi.github.io/vue-xs-admin-docs/',

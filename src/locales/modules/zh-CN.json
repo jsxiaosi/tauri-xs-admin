@@ -1,0 +1,128 @@
+{
+  "api": {
+    "errMsg401": "用户没有权限!",
+    "errMsg403": "用户得到授权，但是访问是被禁止的。!",
+    "errMsg404": "网络请求错误,未找到该资源!",
+    "errMsg405": "网络请求错误,请求方法未允许!",
+    "errMsg408": "网络请求超时!",
+    "errMsg500": "服务器错误,请联系管理员!",
+    "errMsg501": "网络未实现!",
+    "errMsg502": "网络错误!",
+    "errMsg503": "服务不可用，服务器暂时过载或维护!",
+    "errMsg504": "网络超时!",
+    "errMsg505": "http版本不支持该请求!"
+  },
+  "error-page": {
+    "403": {
+      "title": "禁止访问",
+      "description": "抱歉，访问服务器上的此资源被拒绝。"
+    },
+    "404": {
+      "title": "找不到网页",
+      "description": "抱歉，您要查找的页面无法访问。"
+    },
+    "500": {
+      "title": "服务器报告错误。",
+      "description": "抱歉，发生意外错误，无法完成您的请求。"
+    },
+    "back": "返回首页"
+  },
+  "layout": {
+    "setup": "设置",
+    "layoutSettings": "布局设置",
+    "themeSettings": "主题设置",
+    "customTheme": "自定义主题",
+    "greyMode": "灰色模式",
+    "colorWeaknessMode": "色弱模式",
+    "pageSettings": "页面设置",
+    "hideSidebar": "隐藏侧边栏",
+    "hideNavBart": "隐藏顶部导航栏",
+    "hideTabs": "隐藏标签栏",
+    "hideTabsConfig": "隐藏标签栏操作按钮",
+    "labelPersistent": "标签持久化",
+    "sidebarFold": "侧边栏折叠按钮",
+    "sidebarFoldList": {
+      "top": "顶部",
+      "bottom": "底部",
+      "none": "不显示"
+    },
+    "clearStorage": "清空缓存回到登录页",
+    "navbar": {
+      "fullScreen": "全屏"
+    },
+    "closeTabDrag": "关闭标签页拖拽"
+  },
+  "route": {
+    "pathName": {
+      "index": "首页",
+      "functions": "功能",
+      "waterMark": "水印",
+      "pdf": "PDF",
+      "docx": "Docx",
+      "guide": "引导页",
+      "components": "组件",
+      "dragCpts": "拖拽组件",
+      "countTo": "数字动画",
+      "form": "表单",
+      "seamlessScroll": "无限滚动",
+      "date": "日期组件",
+      "dateSelect": "日期选择器",
+      "calendar": "日历",
+      "table": "表格",
+      "echarts": "图表",
+      "echarts_bar": "柱状图",
+      "echarts_map": "地图",
+      "editor": "编辑器",
+      "editor_logicFlow": "流程图编辑器",
+      "editor_richText": "富文本编辑器",
+      "editor_markdown": "Markdown",
+      "asyncComponent": "异步组件",
+      "refSyntax": "ref语法糖",
+      "userDateil": "用户详情",
+      "permissions": "权限管理",
+      "permissionsPage": "权限切换",
+      "testPermissionsPage1": "Admin权限测试页面",
+      "testPermissionsPage2": "Test权限测试页面",
+      "detailsPage": "详情页",
+      "error": "异常页面",
+      "error403": "403",
+      "error404": "404",
+      "error500": "500",
+      "externalLink": "外链",
+      "externalDocument": "外链文档",
+      "embeddedDocument": "内嵌文档",
+      "nested": "嵌套路由",
+      "nested1": "路由1",
+      "nested1_1": "路由1-1",
+      "nested1_2": "路由1-2",
+      "nested1_2_1": "路由1-2-1",
+      "nested1_2_2": "路由1-2-2",
+      "nested1_3": "路由1-3",
+      "nested2": "路由2",
+      "about": "关于"
+    },
+    "log": {
+      "importError": "文件没有默认导出"
+    }
+  },
+  "sys": {
+    "errorTip": "错误提示",
+    "okText": "确认",
+    "closeText": "关闭",
+    "cancelText": "取消",
+    "loadingText": "加载中...",
+    "saveText": "保存",
+    "delText": "删除",
+    "login": {
+      "userName": "用户名",
+      "password": "密码",
+      "loginButton": "登录",
+      "rememberPassword": "记住密码",
+      "forgotPassword": "忘记密码？",
+      "rules": {
+        "userName": "请输入您的用户名",
+        "password": "请输入您的密码"
+      }
+    }
+  }
+}

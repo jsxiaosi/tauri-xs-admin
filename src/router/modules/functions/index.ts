@@ -6,12 +6,12 @@ const functions: AppRouteRecordRaw[] = [
     path: '/functions',
     redirect: '/functions/preview-pdf',
     name: 'Functions',
-    alwaysShow: true,
     meta: {
       title: 'route.pathName.functions',
       icon: 'iEL-briefcase',
       position: 2,
       whiteRoute: true,
+      alwaysShow: true,
     },
     children: [
       {

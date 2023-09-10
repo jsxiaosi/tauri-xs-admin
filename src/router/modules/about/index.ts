@@ -6,8 +6,12 @@ const about: AppRouteRecordRaw[] = [
     path: '/about',
     redirect: '/about/index',
     name: 'RtAdminInfo',
-    alwaysShow: false,
-    meta: { title: t('route.pathName.about'), icon: 'about', position: 11 },
+    meta: {
+      title: t('route.pathName.about'),
+      icon: 'about',
+      alwaysShow: false,
+      position: 11,
+    },
     children: [
       {
         path: 'index',

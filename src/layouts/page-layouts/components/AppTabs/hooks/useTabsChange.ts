@@ -1,5 +1,6 @@
 import type { Ref } from 'vue';
 import { unref } from 'vue';
+import type { RouteLocationNormalizedLoaded } from 'vue-router';
 import { useRoute, useRouter } from 'vue-router';
 import qs from 'qs';
 import { addClass, removeClass } from '@jsxiaosi/utils';
@@ -10,7 +11,7 @@ export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
   const route = useRoute();
   const router = useRouter();
 
-  const setTabPaneKey = (item: MultiTabsType): string => {
+  const setTabPaneKey = (item: MultiTabsType | RouteLocationNormalizedLoaded): string => {
     return `${item.path}${
       item.query && Object.keys(item.query).length ? '?' + qs.stringify(item.query) : ''
     }`;
@@ -19,8 +20,10 @@ export const useTabsChange = (multiTabs: Ref<MultiTabsType[]>) => {
   // 添加标签
   const addRouteTabs = (routeRaw: MultiTabsType) => {
     const { path, name, meta } = routeRaw;
-    const currentRoute = { path, meta, name };
-    usePermissionStoreHook().handleMultiTabs('add', currentRoute);
+    if (!meta?.hideTabs && !meta?.hideSidebar) {
+      const currentRoute = { path, meta, name };
+      usePermissionStoreHook().handleMultiTabs('add', currentRoute);
+    }
   };
 
   // 关闭标签

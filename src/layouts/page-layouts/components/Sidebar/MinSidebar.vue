@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import { useRoute } from 'vue-router';
-  import { useNavSideBar } from '../../hooks/useNavSideBar';
   import Item from './Item.vue';
   import AppLink from './Link.vue';
   import { usePermissionStoreHook } from '@/store/modules/permission';
@@ -10,11 +9,9 @@
 
   const route = useRoute();
 
-  const { selectMenu } = useNavSideBar();
-
   const resolvePath = (routeRaw: AppRouteRecordRaw): string => {
     let path = routeRaw.path;
-    if (routeRaw.children && routeRaw.children.length && !routeRaw.children[0].hidden) {
+    if (routeRaw.children && routeRaw.children.length && !routeRaw.children[0].meta?.hideSidebar) {
       path = routeRaw.children[0].path;
     }
     return path;
@@ -26,7 +23,11 @@
     // 当前路由的父级路径
     const parentRoutes = getParentPaths(path, wholeMenus)[0];
     const routeByPath = findRouteByPath(parentRoutes, wholeMenus);
-    if (routeByPath?.children && routeByPath.children.length && !routeByPath.children[0].hidden) {
+    if (
+      routeByPath?.children &&
+      routeByPath.children.length &&
+      !routeByPath.children[0].meta?.hideSidebar
+    ) {
       return routeByPath.children[0].path;
     }
     return path;
@@ -39,7 +40,6 @@
     :default-active="activeMenyu"
     class="horizontal-header-menu"
     mode="horizontal"
-    @select="(indexPath: string) => selectMenu(indexPath)"
   >
     <AppLink
       v-for="menusRoute in usePermissionStoreHook().wholeMenus"

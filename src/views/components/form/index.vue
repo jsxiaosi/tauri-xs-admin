@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import { h, reactive, ref } from 'vue';
+  import { ElInput } from 'element-plus';
   import Form from '@/components/Form/index.vue';
   import type { FormProps } from '@/components/Form/types/from';
 
@@ -375,7 +376,7 @@
             label: 'render组件',
             prop: 'renderInput',
             render: ({ formModel, formItem }) => {
-              return h('input', {
+              return h(ElInput, {
                 placeholder: '请输入',
                 value: formModel[formItem.prop],
                 onChange: (e: any) => {
@@ -422,11 +423,11 @@
     </div>
     <Form ref="formRef" :form-option="formOption" @submit-form="submitForm">
       <template #slotInput="{ formModel, formItem }">
-        <el-input
+        <ElInput
           v-model="formModel[formItem.prop]"
           :type="formItem.inputType"
           placeholder="自定义输入框"
-        ></el-input>
+        ></ElInput>
       </template>
     </Form>
   </div>

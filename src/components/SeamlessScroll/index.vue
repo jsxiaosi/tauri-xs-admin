@@ -49,7 +49,6 @@
   let isHover = false;
   let ease = 'ease-in';
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   let { classOption } = props;
 
   if (classOption['key'] === undefined) {

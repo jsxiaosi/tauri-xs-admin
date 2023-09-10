@@ -3,6 +3,7 @@
   import wangeDitor from 'wangeditor';
   import i18next from 'i18next';
   import { useI18n } from '@/hooks/web/useI18n';
+  import { LocalesEnum } from '@/enum/locales';
 
   const editorELRef = ref<HTMLElement>({} as HTMLElement);
   const editor = ref<wangeDitor>({} as wangeDitor);
@@ -11,7 +12,8 @@
 
   function init() {
     editor.value = new wangeDitor(unref(editorELRef));
-    editor.value.config.lang = locale.value === 'zh-ch' ? 'zh-ch' : 'en';
+    editor.value.config.lang =
+      locale.value === LocalesEnum.ZHCN ? LocalesEnum.ZHCN : LocalesEnum.EN;
     editor.value.config.height = 500;
     editor.value.i18next = i18next;
     Object.assign(editor.value.config, {

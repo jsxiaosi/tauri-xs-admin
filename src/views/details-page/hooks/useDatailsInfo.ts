@@ -1,38 +1,24 @@
-import { useRouter } from 'vue-router';
-import { usePermissionStoreHook } from '@/store/modules/permission';
+import { useDetailsNavigation } from '@/hooks/web/useDetailsNavigation';
 
 export function useDatailsInfo() {
-  const router = useRouter();
+  const { openDetails } = useDetailsNavigation();
 
   function toDatailsInfo(params: string, model: string) {
     if (model === 'query') {
-      usePermissionStoreHook().handleMultiTabs('add', {
+      // query 参数详情页
+      openDetails({
         path: `/details_page/details_info`,
         name: `RtDetailsInfo`,
         query: { id: `${params}` },
-        meta: {
-          title: { 'zh-CN': `详情页-${params}`, en: `pageDatails-${params}` },
-        },
+        title: { 'zh-CN': `详情页-${params}`, en: `pageDatails-${params}` },
       });
-      try {
-        router.push({ name: 'RtDetailsInfo', query: { id: `${params}` } });
-      } catch (e) {
-        console.log(e);
-      }
     } else {
-      usePermissionStoreHook().handleMultiTabs('add', {
+      // params 参数详情页
+      openDetails({
         path: `/details_page/details_params/${params}`,
         name: `RtDetailsParams`,
-        params: { id: `${params}` },
-        meta: {
-          title: { 'zh-CN': `详情页-params-${params}`, en: `pageDatails-${params}` },
-        },
+        title: { 'zh-CN': `详情页-params-${params}`, en: `pageDatails-${params}` },
       });
-      try {
-        router.push({ name: 'RtDetailsParams', params: { id: `${params}` } });
-      } catch (e) {
-        console.log(e);
-      }
     }
   }
 

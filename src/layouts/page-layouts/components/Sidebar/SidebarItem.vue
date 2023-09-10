@@ -28,7 +28,7 @@
     parent: AppRouteRecordRaw,
   ) => {
     const showingChildren = children.filter((item: AppRouteRecordRaw) => {
-      if (item.hidden) {
+      if (item.meta?.hideSidebar) {
         return false;
       } else {
         // Temp set(will be used if only has one showing child)
@@ -62,12 +62,12 @@
 </script>
 
 <template>
-  <div v-if="!item.hidden">
+  <div v-if="!item.meta?.hideSidebar">
     <template
       v-if="
         hasOneShowingChild(item.children, item) &&
         (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-        !item.alwaysShow
+        !item.meta?.alwaysShow
       "
     >
       <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">

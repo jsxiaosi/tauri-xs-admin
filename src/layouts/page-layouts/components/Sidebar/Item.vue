@@ -1,24 +1,25 @@
 <script setup lang="ts">
   import SvgIcon from '@/components/SvgIcon/index.vue';
-  defineProps({
-    icon: {
-      type: String,
-      default: '',
+  import type { localeTitle } from '@/router/type';
+  import { translateI18n } from '@/hooks/web/useI18n';
+
+  const props = withDefaults(
+    defineProps<{
+      icon?: string;
+      title?: string | localeTitle;
+      className?: string;
+    }>(),
+    {
+      icon: 'hello',
+      title: '',
+      className: '',
     },
-    title: {
-      type: String,
-      default: '',
-    },
-    className: {
-      type: String,
-      default: '',
-    },
-  });
+  );
 </script>
 
 <template>
-  <SvgIcon :class-name="className" :name="icon" />
-  <span v-if="title">{{ $t(title) }}</span>
+  <SvgIcon :class-name="props.className" :name="props.icon" />
+  <span v-if="props.title">{{ translateI18n(props.title) }}</span>
 </template>
 
 <style lang="scss" scoped>

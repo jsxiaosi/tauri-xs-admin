@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import type { PropType } from 'vue';
-  import { onMounted, computed, ref, watch } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { useRoute } from 'vue-router';
-  import { useNavSideBar } from '../../hooks/useNavSideBar';
   import SidebarItem from './SidebarItem.vue';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   import type { AppRouteRecordRaw } from '@/router/type';
@@ -15,8 +14,6 @@
       default: 'vertical',
     },
   });
-
-  const { selectMenu } = useNavSideBar();
 
   const permission = usePermissionStoreHook();
 
@@ -36,7 +33,7 @@
     // 当前路由的信息
     const parenetRoute = findRouteByPath(parentPathArr[0], permission.wholeMenus);
     if (parenetRoute) {
-      if (parenetRoute.children && !parenetRoute.children[0].hidden)
+      if (parenetRoute.children && !parenetRoute.children[0].meta?.hideSidebar)
         subMenuData.value = parenetRoute.children;
       else subMenuData.value = [parenetRoute];
     }
@@ -44,18 +41,13 @@
 
   getSubMenuData(route.path);
   watch(
-    () => [route.path, appConfig.value.sidebarMode, () => permission.wholeMenus],
-    ([newPath], [oldPath]) => {
+    () => [route.path, appConfig.value.sidebarMode],
+    () => {
       if (appConfig.value.sidebarMode === 'blend') {
         getSubMenuData(route.path);
       }
-      if (newPath !== oldPath) selectMenu(route.path);
     },
   );
-
-  onMounted(() => {
-    selectMenu(route.path);
-  });
 
   const activeMenyu = computed<string>(() => {
     const { meta, path } = route;
@@ -73,7 +65,6 @@
       :unique-opened="true"
       :collapse="appConfig.sidebarMode === 'horizontal' ? false : appConfig.collapseMenu"
       :mode="mode"
-      @select="(indexPath: string) => selectMenu(indexPath)"
     >
       <SidebarItem
         v-for="menuRoute in menuData"

@@ -11,24 +11,24 @@ const detailsPage: AppRouteRecordRaw[] = [
       {
         path: 'details_info',
         name: 'RtDetailsInfo',
-        hidden: true,
         meta: {
           title: '',
           icon: 'iEL-management',
           whiteRoute: true,
           keepAlive: true,
+          hideSidebar: true,
         },
         component: () => import('@/views/details-page/datails-info/index.vue'),
       },
       {
         path: 'details_params/:id',
         name: 'RtDetailsParams',
-        hidden: true,
         meta: {
           title: '',
           icon: 'iEL-management',
           whiteRoute: true,
           keepAlive: true,
+          hideSidebar: true,
         },
         component: () => import('@/views/details-page/datails-params/index.vue'),
       },

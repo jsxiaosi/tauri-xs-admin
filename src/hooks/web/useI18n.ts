@@ -5,7 +5,7 @@ import i18n, { availableLocales } from '@/locales/index';
 
 export const useI18n = () => i18n.global;
 
-export const t = (key: string) => key;
+export const t: typeof i18n.global.t = (key: string) => key;
 
 export const localesList = availableLocales;
 
@@ -31,7 +31,6 @@ export function translateI18n(message: any = '') {
   }
   const key = message.split('.')[0];
   if (key && Object.keys(i18n.global.messages.value[locale]).includes(key)) {
-    // @ts-expect-error: https://github.com/intlify/vue-i18n-next/issues/1119
     return i18n.global.t(message);
   }
   return message;

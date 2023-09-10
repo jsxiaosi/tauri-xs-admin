@@ -17,22 +17,28 @@
   }
 
   const sortableEl = ref<HTMLElement | null>(null);
-  useSortable(sortableEl, {
-    handle: '.handle',
-    // chosenClass: '.sortable-chosen',
-    onEnd(e) {
-      console.log(e);
+  useSortable(
+    {
+      handle: '.handle',
+      group: 'name',
+      onEnd(e) {
+        console.log(e);
+      },
     },
-  });
+    sortableEl,
+  );
 
   const gridSortableEl = ref<HTMLElement | null>(null);
-  useSortable(gridSortableEl, {
-    handle: '.list-item',
-    // chosenClass: '.sortable-chosen',
-    onEnd(e) {
-      console.log(e);
+  useSortable(
+    {
+      handle: '.list-item',
+      group: 'name',
+      onEnd(e) {
+        console.log(e);
+      },
     },
-  });
+    gridSortableEl,
+  );
 </script>
 
 <template>

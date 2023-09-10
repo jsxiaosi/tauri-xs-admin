@@ -2,8 +2,9 @@
 
 import intro from 'intro.js';
 import 'intro.js/minified/introjs.min.css';
+import type { Options } from 'intro.js/src/option';
 
-async function useIntro(options: intro.Options = {}) {
+async function useIntro(options: Partial<Options> = {}) {
   intro()
     .setOptions({
       ...{

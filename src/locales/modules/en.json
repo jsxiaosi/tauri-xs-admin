@@ -1,0 +1,128 @@
+{
+  "api": {
+    "errMsg401": "The user does not have permission!",
+    "errMsg403": "The user is authorized, but access is forbidden!",
+    "errMsg404": "Network request error, the resource was not found!",
+    "errMsg405": "Network request error, request method not allowed!",
+    "errMsg408": "Network request timed out!",
+    "errMsg500": "Server error, please contact the administrator!",
+    "errMsg501": "The network is not implemented!",
+    "errMsg502": "Network Error!",
+    "errMsg503": "The service is unavailable, the server is temporarily overloaded or maintained!",
+    "errMsg504": "Network timeout!",
+    "errMsg505": "The http version does not support the request!"
+  },
+  "error-page": {
+    "403": {
+      "title": "No Access",
+      "description": "Sorry, access to this resource on the server is denied."
+    },
+    "404": {
+      "title": "Page Not Found",
+      "description": "Sorry, the page you're looking for cannot be accessed."
+    },
+    "500": {
+      "title": "the server is reporting an error.",
+      "description": "An unexpected error occurred and your request could not be completed."
+    },
+    "back": "Back Home"
+  },
+  "layout": {
+    "setup": "Set Up",
+    "layoutSettings": "Layout Settings",
+    "themeSettings": "Theme Settings",
+    "customTheme": "Custom Theme",
+    "greyMode": "Grey Mode",
+    "colorWeaknessMode": "Color Weakness Mode",
+    "pageSettings": "Page Settings",
+    "hideSidebar": "Hide Sidebar",
+    "hideNavBart": "Hide NavBar",
+    "hideTabs": "Hide Tabs",
+    "hideTabsConfig": "Hide Tabs Config",
+    "labelPersistent": "Label Persistent",
+    "sidebarFold": "Sidebar Fold Button",
+    "sidebarFoldList": {
+      "top": "Top",
+      "bottom": "Bottom",
+      "none": "None"
+    },
+    "clearStorage": "Clear cache and return to login page",
+    "navbar": {
+      "fullScreen": "Full Screen"
+    },
+    "closeTabDrag": "Close tab drag"
+  },
+  "route": {
+    "pathName": {
+      "index": "Home",
+      "functions": "Functions",
+      "waterMark": "Water Mark",
+      "pdf": "PDF",
+      "docx": "Docx",
+      "guide": "GuidePage",
+      "components": "Components",
+      "dragCpts": "DragComponents",
+      "countTo": "DigitalAnimation",
+      "form": "Form",
+      "seamlessScroll": "SeamlessScroll",
+      "date": "Date",
+      "dateSelect": "DateSelect",
+      "calendar": "Calendar",
+      "table": "Table",
+      "echarts": "Echarts",
+      "echarts_bar": "Bar",
+      "echarts_map": "Map",
+      "editor": "Editor",
+      "editor_logicFlow": "LogicFlow",
+      "editor_richText": "RichText Editor",
+      "editor_markdown": "Markdown",
+      "asyncComponent": "AsyncComponent",
+      "refSyntax": "RefSyntax",
+      "userDateil": "UserDateil",
+      "permissions": "Permissions",
+      "permissionsPage": "Permissions Toggle",
+      "testPermissionsPage1": "Admin Permissions",
+      "testPermissionsPage2": "Test Permissions",
+      "detailsPage": "DetailsPage",
+      "error": "Error",
+      "error403": "403",
+      "error404": "404",
+      "error500": "500",
+      "externalLink": "External Link",
+      "externalDocument": "External Document",
+      "embeddedDocument": "Embeddded Document",
+      "nested": "Nested Route",
+      "nested1": "Route1",
+      "nested1_1": "Route1-1",
+      "nested1_2": "Route1-2",
+      "nested1_2_1": "Route1-2-1",
+      "nested1_2_2": "Route1-2-2",
+      "nested1_3": "Route1-3",
+      "nested2": "Route2",
+      "about": "About"
+    },
+    "log": {
+      "importError": "The file has no default export"
+    }
+  },
+  "sys": {
+    "errorTip": "Error Tip",
+    "okText": "OK",
+    "closeText": "Close",
+    "cancelText": "Cancel",
+    "loadingText": "Loading...",
+    "saveText": "Save",
+    "delText": "Delete",
+    "login": {
+      "userName": "Username",
+      "password": "Password",
+      "loginButton": "Sign in",
+      "rememberPassword": "Remember Password",
+      "forgotPassword": "Forgot Password?",
+      "rules": {
+        "userName": "Please enter your username",
+        "password": "Please enter your password"
+      }
+    }
+  }
+}

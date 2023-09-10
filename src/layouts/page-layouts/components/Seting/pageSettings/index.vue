@@ -8,11 +8,11 @@
 
   const { persistent } = usePermissionStoreHook();
 
-  const labelPersistentRef = ref<boolean>(appConfig.value.labelPersistent);
-  const labelPersistentChange = (e: boolean) => {
+  const labelPersistentRef = ref<boolean>(appConfig.value.tabPersistent);
+  const labelPersistentChange = (e: string | number | boolean) => {
     if (!e) _storage.removeStorage('multiTabsList');
     else persistent();
-    setAppConfigMode({ labelPersistent: e });
+    setAppConfigMode({ tabPersistent: Boolean(e) });
   };
 
   const hidePublicChange = () => {
@@ -37,6 +37,10 @@
     <div class="options">
       <span>{{ $t('layout.hideTabsConfig') }}</span>
       <el-switch v-model="appConfig.hideTabsConfig" @change="hidePublicChange" />
+    </div>
+    <div class="options">
+      <span>{{ $t('layout.closeTabDrag') }}</span>
+      <el-switch v-model="appConfig.closeTabDrag" @change="hidePublicChange" />
     </div>
     <div class="options">
       <span>{{ $t('layout.labelPersistent') }}</span>

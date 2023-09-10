@@ -59,7 +59,9 @@ export const usePermissionStore = defineStore({
     },
     // 持久化
     persistent() {
-      _storage.setStorage('multiTabsList', this.multiTabs);
+      const appConfig = useAppStoreHook();
+      if (appConfig.appConfigMode.tabPersistent)
+        _storage.setStorage('multiTabsList', this.multiTabs);
     },
     handleMultiTabs(type: 'add' | 'delete', value: MultiTabsType) {
       const route = value as MultiTabsType;
@@ -70,8 +72,12 @@ export const usePermissionStore = defineStore({
 
       switch (type) {
         case 'add':
-          if (index !== -1 || !value.meta.title) return;
-          this.multiTabs.push(route);
+          if (!value.meta?.title) return;
+          if (index !== -1) {
+            this.multiTabs[index] = route;
+          } else {
+            this.multiTabs.push(route);
+          }
           break;
         case 'delete':
           if (index === -1) return;
@@ -81,8 +87,13 @@ export const usePermissionStore = defineStore({
         default:
           break;
       }
-      const appConfig = useAppStoreHook();
-      if (appConfig.appConfigMode.labelPersistent) this.persistent();
+
+      this.persistent();
+    },
+
+    MultiTabsDropReordering(value: MultiTabsType[]) {
+      this.multiTabs = value;
+      this.persistent();
     },
     handleRemoveMultiTabs() {
       _storage.removeStorage('multiTabsList');
