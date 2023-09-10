@@ -1,11 +1,16 @@
+## <small>1.9.1 (2023-09-10)</small>
+
+- fix: 🐛 eslint ([35a21bb](https://github.com/jsxiaosi/vue-xs-admin/commit/35a21bb))
+
 ## 1.9.0 (2023-09-09)
 
+- feat: ✨ v1.9.0 ([c1d9ac0](https://github.com/jsxiaosi/vue-xs-admin/commit/c1d9ac0))
+- feat(layouts): ✨ tabs ([0c700ee](https://github.com/jsxiaosi/vue-xs-admin/commit/0c700ee))
+- feat(layouts): ✨ tabs ([01911b2](https://github.com/jsxiaosi/vue-xs-admin/commit/01911b2))
 - fix: 🐛 mock ([1a085cc](https://github.com/jsxiaosi/vue-xs-admin/commit/1a085cc))
 - fix(hooks): 🐛 intro ([4267823](https://github.com/jsxiaosi/vue-xs-admin/commit/4267823))
 - fix(layouts): 🐛 修改类型报错 ([831a03a](https://github.com/jsxiaosi/vue-xs-admin/commit/831a03a))
 - build: 📦️ i18n ([54a2cce](https://github.com/jsxiaosi/vue-xs-admin/commit/54a2cce))
-- feat(layouts): ✨ tabs ([0c700ee](https://github.com/jsxiaosi/vue-xs-admin/commit/0c700ee))
-- feat(layouts): ✨ tabs ([01911b2](https://github.com/jsxiaosi/vue-xs-admin/commit/01911b2))
 - perf(layouts): ⚡️ tabs ([2d4a677](https://github.com/jsxiaosi/vue-xs-admin/commit/2d4a677))
 - refactor(locales): ♻️ 重构国际化功能 ([2820cec](https://github.com/jsxiaosi/vue-xs-admin/commit/2820cec))
 

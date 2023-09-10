@@ -145,7 +145,7 @@
             ref="elDropdownRef"
             trigger="click"
             placement="bottom-end"
-            @visible-change="(e:boolean)=>e && contextmenu(route)"
+            @visible-change="(e: boolean) => e && contextmenu(route)"
           >
             <SvgIcon class="action-item cursor" name="iEL-arrow-down"></SvgIcon>
             <template #dropdown>

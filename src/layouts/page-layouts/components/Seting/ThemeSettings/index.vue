@@ -51,14 +51,14 @@
       <span>灰色模式</span>
       <el-switch
         v-model="htmlGrey"
-        @change="(e:string | number | boolean) => themeChange(Boolean(e),'html-grey')"
+        @change="(e: string | number | boolean) => themeChange(Boolean(e), 'html-grey')"
       />
     </div>
     <div class="options">
       <span>色弱模式</span>
       <el-switch
         v-model="htmlWeakness"
-        @change="(e:string | number | boolean) => themeChange(Boolean(e),'html-weakness')"
+        @change="(e: string | number | boolean) => themeChange(Boolean(e), 'html-weakness')"
       />
     </div>
   </div>
