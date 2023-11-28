@@ -62,16 +62,6 @@
       }
 
       .el-picker-panel__content {
-        .el-date-table td.start-date .el-date-table-cell {
-          border-top-left-radius: 20px;
-          border-bottom-left-radius: 20px;
-        }
-
-        .el-date-table td.end-date .el-date-table-cell {
-          border-top-right-radius: 20px;
-          border-bottom-right-radius: 20px;
-        }
-
         .el-date-table-cell {
           height: 42px;
 
@@ -80,10 +70,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 36px;
             width: 36px;
+            height: 36px;
             line-height: 15px;
           }
+        }
+
+        .el-date-table td.start-date .el-date-table-cell {
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+        }
+
+        .el-date-table td.end-date .el-date-table-cell {
+          border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;
         }
       }
     }

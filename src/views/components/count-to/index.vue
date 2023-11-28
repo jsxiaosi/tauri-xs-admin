@@ -8,5 +8,3 @@
     <CountTo style="font-size: 36px" type="rebound" :num-val="1234212"></CountTo>
   </div>
 </template>
-
-<style scoped lang="scss"></style>

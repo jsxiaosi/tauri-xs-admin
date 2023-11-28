@@ -37,7 +37,7 @@
   let realBoxHeight = ref<number>(0);
   let copyHtml = ref('');
   // single 单步滚动的定时器
-  let singleWaitTime: NodeJS.Timer | null = null;
+  let singleWaitTime: NodeJS.Timeout | string | number | undefined;
   // move动画的animationFrame定时器
   let reqFrame = 0;
   let startPos: { x: number; y: number };

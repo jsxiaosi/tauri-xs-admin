@@ -66,12 +66,12 @@
 
 <style lang="scss">
   .drawer-sidebar {
-    width: #{$sideBarWidth} !important;
+    width: #{$side-bar-width} !important;
     background-color: var(--main-bg-color);
 
     .el-drawer__body {
-      padding: 0 !important;
       height: 100vh;
+      padding: 0 !important;
       overflow: hidden;
 
       .sidebar-container {

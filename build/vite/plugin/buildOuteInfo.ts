@@ -56,8 +56,8 @@ export function viteBuildOuteInfo(): Plugin {
     // 该插件在 plugin-vue 插件之前执行，这样就可以直接解析到原模板文件
     enforce: 'post',
     transformIndexHtml: {
-      enforce: 'post',
-      transform: () => {},
+      order: 'post',
+      handler: () => {},
     },
 
     configResolved(resolvedConfig) {

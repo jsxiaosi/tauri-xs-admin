@@ -80,8 +80,8 @@
   .region {
     width: 100%;
     height: 500px;
-    border: 1px solid #e3e3e3;
     margin-top: 12px;
     overflow-y: auto;
+    border: 1px solid #e3e3e3;
   }
 </style>

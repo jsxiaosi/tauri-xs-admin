@@ -16,9 +16,9 @@
 
 <style lang="scss" scoped>
   .page-container {
-    height: 100%;
     display: flex;
     justify-content: space-between;
+    height: 100%;
 
     .input {
       width: 49%;

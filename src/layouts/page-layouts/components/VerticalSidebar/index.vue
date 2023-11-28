@@ -12,7 +12,7 @@
       (!appConfig.hideSidebar && appConfig.sidebarMode !== 'horizontal') || appConfig.drawerSidebar
     "
     class="sidebar-container"
-    :class="{ hideSidebar: appConfig.collapseMenu }"
+    :class="{ 'hide-sidebar': appConfig.collapseMenu }"
   >
     <AppLogo />
     <Sidebar mode="vertical" />
@@ -31,10 +31,10 @@
 <style lang="scss" scoped>
   .sidebar-container {
     .sidebar-fold {
-      border-top: 1px solid var(--border-color-light);
-      padding: 10px;
       display: flex;
       justify-content: center;
+      padding: 10px;
+      border-top: 1px solid var(--border-color-light);
       font-size: var(--font-size-extra-large);
     }
   }

@@ -25,5 +25,3 @@
     <el-input v-model="value"></el-input>
   </div>
 </template>
-
-<style lang="scss"></style>

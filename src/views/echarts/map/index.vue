@@ -92,7 +92,7 @@
   let currentOption = mapOption;
 
   onMounted(async () => {
-    const json = (await (await import('./china.json')).default) as any;
+    const json = (await import('./china.json')).default as any;
     registerMap('china', json);
     setOptions(mapOption);
     useIntervalFn(
@@ -112,12 +112,12 @@
 
 <template>
   <div class="page-container">
-    <div ref="chartRef" class="chartRef"></div>
+    <div ref="chartRef" class="chart-ref"></div>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .chartRef {
+  .chart-ref {
     width: 100%;
     height: 100%;
   }

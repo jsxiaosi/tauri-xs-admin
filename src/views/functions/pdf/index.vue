@@ -2,9 +2,18 @@
   import { onBeforeUnmount, ref, watchEffect } from 'vue';
   import VuePdfEmbed from 'vue-pdf-embed';
   import { useEventListener, useDebounceFn } from '@vueuse/core';
+  import type { UploadRawFile } from 'element-plus';
+  import { ElUpload } from 'element-plus';
+  import { fileToBase64 } from '@jsxiaosi/utils';
   import SvgIcon from '@/components/SvgIcon/index.vue';
 
-  const pdfSource = ref<string>('https://supercutexiaosi.top/resource/develop_pdf.pdf');
+  const fileSrc = ref<string>();
+
+  const beforeUpload = async (rawFile: UploadRawFile) => {
+    fileSrc.value = await fileToBase64(rawFile);
+    return false;
+  };
+
   const pdfRef = ref<InstanceType<typeof VuePdfEmbed>>();
   const isLoading = ref<boolean>(true);
 
@@ -16,7 +25,7 @@
   });
   const handleDocumentRender = () => {
     isLoading.value = false;
-    pageCount.value = pdfRef.value?.pageCount || 0;
+    pageCount.value = pdfRef.value?.pageCount ?? 0;
   };
 
   const renderPdf = () => {
@@ -34,38 +43,42 @@
 </script>
 
 <template>
-  <div v-loading="isLoading" class="pdf">
-    <div class="app-header">
-      <span v-if="showAllPages"> {{ pageCount }} 页 </span>
+  <div class="w-full h-full flex flex-col">
+    <div>123123</div>
+    <ElUpload :limit="1" accept=".pdf" :before-upload="beforeUpload" action="">
+      <ElButton style="margin-bottom: 12px">点击上传</ElButton>
+    </ElUpload>
+    <div v-if="fileSrc" v-loading="isLoading" class="pdf flex-1">
+      <div class="app-header">
+        <span v-if="showAllPages"> {{ pageCount }} 页 </span>
 
-      <span v-else>
-        <button :disabled="page <= 1" @click="page--">❮</button>
+        <span v-else>
+          <button :disabled="page <= 1" @click="page--">❮</button>
 
-        {{ page }} / {{ pageCount }}
+          {{ page }} / {{ pageCount }}
 
-        <button :disabled="page >= pageCount" @click="page++">❯</button>
-      </span>
+          <button :disabled="page >= pageCount" @click="page++">❯</button>
+        </span>
 
-      <div class="config">
-        <ElTooltip class="box-item" content="打印pdf" placement="bottom">
-          <SvgIcon class="icon cursor" name="iEL-printer" @click="printerPdf"></SvgIcon>
-        </ElTooltip>
-        <el-switch v-model="showAllPages" class="mb-2" active-text="显示所有pdf" />
+        <div class="config">
+          <ElTooltip class="box-item" content="打印pdf" placement="bottom">
+            <SvgIcon class="icon cursor" name="iEL-printer" @click="printerPdf"></SvgIcon>
+          </ElTooltip>
+          <el-switch v-model="showAllPages" class="mb-2" active-text="显示所有pdf" />
+        </div>
       </div>
+      <VuePdfEmbed
+        ref="pdfRef"
+        :page="page"
+        :source="fileSrc"
+        @rendered="handleDocumentRender"
+      ></VuePdfEmbed>
     </div>
-    <VuePdfEmbed
-      ref="pdfRef"
-      :page="page"
-      :source="pdfSource"
-      @rendered="handleDocumentRender"
-    ></VuePdfEmbed>
   </div>
 </template>
 
 <style lang="scss" scoped>
   .pdf {
-    min-height: 100%;
-
     .app-header {
       display: flex;
       align-items: center;
@@ -80,15 +93,10 @@
         align-items: center;
 
         .icon {
-          font-size: var(--font-size-large);
           margin-right: 12px;
+          font-size: var(--font-size-large);
         }
       }
-    }
-
-    .textLayer {
-      background-color: var(--main-bg-color);
-      color: var(--text-color-primary);
     }
   }
 </style>

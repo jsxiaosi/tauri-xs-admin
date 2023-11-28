@@ -6,6 +6,7 @@
     "syler.sass-indented",
     "esbenp.prettier-vscode",
     "lokalise.i18n-ally",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "donjayamanne.githistory"
   ]
 }

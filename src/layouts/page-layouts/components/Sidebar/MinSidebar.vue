@@ -51,6 +51,7 @@
           class-name="menu-item-svg"
           :icon="menusRoute.meta && menusRoute.meta.icon"
           :title="menusRoute.meta?.title"
+          mode="horizontal"
         />
       </el-menu-item>
     </AppLink>

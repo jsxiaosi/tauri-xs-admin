@@ -89,11 +89,11 @@
 </script>
 
 <template>
-  <div ref="chartRef" class="chartRef"></div>
+  <div ref="chartRef" class="chart-ref"></div>
 </template>
 
 <style scoped lang="scss">
-  .chartRef {
+  .chart-ref {
     width: 100%;
     height: 362px;
   }

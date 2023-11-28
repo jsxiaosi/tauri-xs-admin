@@ -84,12 +84,12 @@
 <template>
   <div>
     <h3>动态柱状图</h3>
-    <div ref="chartRef" class="chartRef"></div>
+    <div ref="chartRef" class="chart-ref"></div>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .chartRef {
+  .chart-ref {
     width: 100%;
     height: 380px;
   }

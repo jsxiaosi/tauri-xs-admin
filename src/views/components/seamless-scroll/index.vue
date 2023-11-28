@@ -83,8 +83,8 @@
 <style lang="scss" scoped>
   .card-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
     span {
       margin-right: 20px;
@@ -92,8 +92,8 @@
   }
 
   .warp {
-    height: 200px;
     width: 400px;
+    height: 200px;
     margin: 0 auto;
     overflow: hidden;
 

@@ -1,4 +1,4 @@
-import type { MockMethod, Recordable } from 'vite-plugin-mock';
+import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 
 const power = [
   {
@@ -178,7 +178,7 @@ const testPermissionRouter = [
 
 // permissionRouter
 
-export default [
+export default defineFakeRoute([
   {
     url: '/mock_api/getRoute',
     timeout: 0,
@@ -206,4 +206,4 @@ export default [
       }
     },
   },
-] as MockMethod[];
+]);

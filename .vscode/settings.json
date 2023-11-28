@@ -3,7 +3,15 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
+  "files.associations": {
+    "tailwind.css": "tailwindcss"
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
   "eslint.validate": ["json", "javascript", "typescript", "typescriptreact", "javascriptreact"],
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"],
   "i18n-ally.localesPaths": ["src/locales/modules"],
   "i18n-ally.displayLanguage": "zh-CN",
   "i18n-ally.enabledFrameworks": ["vue"],

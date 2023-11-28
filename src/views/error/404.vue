@@ -28,9 +28,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 88px;
     width: 100%;
     height: 100%;
+    padding-top: 88px;
 
     .error-icon {
       // font-size: 80px;
@@ -56,10 +56,10 @@
     }
 
     .description {
-      color: var(--text-color-regular);
-      font-weight: 400;
-      font-size: var(--font-size-base);
       margin: 24px 0;
+      color: var(--text-color-regular);
+      font-size: var(--font-size-base);
+      font-weight: 400;
     }
   }
 </style>

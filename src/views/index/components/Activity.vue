@@ -105,21 +105,21 @@
     border: 1px solid var(--border-color-light);
 
     .top {
+      display: flex;
       // width: 95%;
       height: 40px;
-      line-height: 40px;
-      display: flex;
       margin: 0 auto;
+      border-bottom: 1px solid var(--border-color-light);
+      background: var(--sub-main-bg-content);
       font-size: var(--font-size-base);
       // color: #909399;
       font-weight: 400;
-      background: var(--sub-main-bg-content);
-      border-bottom: 1px solid var(--border-color-light);
+      line-height: 40px;
 
       li {
         width: 34%;
-        text-align: center;
         overflow: hidden;
+        text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
@@ -135,17 +135,17 @@
         margin: 0;
 
         li {
-          height: 30px;
-          line-height: 30px;
           display: flex;
+          height: 30px;
           font-size: var(--font-size-medium);
+          line-height: 30px;
         }
       }
 
       span {
         width: 34%;
-        text-align: center;
         overflow: hidden;
+        text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
       }

@@ -30,29 +30,29 @@
       display: flex;
 
       img {
-        border-radius: 50%;
         width: 50px;
         height: 50px;
+        border-radius: 50%;
       }
 
       .item-content {
-        margin-left: 16px;
         display: flex;
         flex-direction: column;
+        margin-left: 16px;
 
         .title {
           font-size: var(--font-size-medium);
         }
 
         .time {
-          font-size: var(--font-size-extra-small);
           margin: 5px 0;
+          font-size: var(--font-size-extra-small);
         }
 
         .text {
-          text-overflow: ellipsis;
-          overflow: hidden;
           display: -webkit-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
         }

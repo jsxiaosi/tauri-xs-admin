@@ -1,5 +1,4 @@
 <script lang="tsx">
-  import type { Ref } from 'vue';
   import {
     defineComponent,
     ref,
@@ -14,7 +13,7 @@
     name: 'CountToRebound',
     props: reboundProps,
     setup(props) {
-      const timer = ref<NodeJS.Timer | null>(null);
+      const timer = ref<NodeJS.Timeout | string | number | undefined>();
 
       onBeforeMount(() => {
         const ua = navigator.userAgent.toLowerCase();
@@ -36,7 +35,7 @@
       });
 
       onBeforeUnmount(() => {
-        clearTimeout(unref(timer as Ref<NodeJS.Timer>));
+        clearTimeout(unref(timer));
       });
 
       return () => (
@@ -73,11 +72,11 @@
 
   .scroll-num {
     height: 1em;
+    overflow: hidden;
+    animation: enhance-bounce-in-down 1s calc(var(--delay) * 1s) forwards;
     font-size: 1em;
     line-height: 1em;
     text-align: center;
-    overflow: hidden;
-    animation: enhance-bounce-in-down 1s calc(var(--delay) * 1s) forwards;
   }
 
   ul {

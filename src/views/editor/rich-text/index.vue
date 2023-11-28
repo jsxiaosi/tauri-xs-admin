@@ -32,14 +32,14 @@
 <template>
   <div class="page-container">
     <div ref="editorELRef"></div>
-    <div class="innerHTML" :innerHTML="html"></div>
+    <div class="inner-html" :innerHTML="html"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .innerHTML {
-    margin-top: 20px;
+  .inner-html {
     min-height: 50px;
+    margin-top: 20px;
     border: 1px solid #e3e3e3;
   }
 </style>

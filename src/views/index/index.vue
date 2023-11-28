@@ -129,8 +129,8 @@
 
     .card-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       font-weight: 600;
     }
 
@@ -141,8 +141,8 @@
 
       .numerical-value {
         display: flex;
-        justify-content: space-between;
         align-items: flex-end;
+        justify-content: space-between;
         margin-bottom: 10px;
 
         .number {

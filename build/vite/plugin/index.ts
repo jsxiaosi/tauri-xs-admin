@@ -2,7 +2,9 @@ import vue from '@vitejs/plugin-vue';
 
 import vueJsx from '@vitejs/plugin-vue-jsx';
 
-import type { Plugin, ConfigEnv } from 'vite';
+// import VueMacros from 'unplugin-vue-macros/vite';
+
+import type { ConfigEnv, PluginOption } from 'vite';
 
 // 检查插件状态
 import Inspect from 'vite-plugin-inspect';
@@ -31,8 +33,8 @@ import viteBuildOuteInfo from './buildOuteInfo';
 // eslint
 // import { configEsLinterPlugin } from './eslinter'
 
-export function createVitePlugins(isBuild = false, _configEnv: ConfigEnv) {
-  const vitePlugins: (Plugin | Plugin[])[] = [
+export function createVitePlugins(_isBuild = false, _configEnv: ConfigEnv) {
+  const vitePlugins: PluginOption[] = [
     // vue({
     //   reactivityTransform: true,
     // }),
@@ -40,7 +42,7 @@ export function createVitePlugins(isBuild = false, _configEnv: ConfigEnv) {
 
   vitePlugins.push(
     vue(),
-    vueJsx(), // if needed
+    vueJsx(), // 如果需要
   );
 
   vitePlugins.push(configStylePlugin());
@@ -49,7 +51,7 @@ export function createVitePlugins(isBuild = false, _configEnv: ConfigEnv) {
 
   vitePlugins.push(configCompressPlugin('gzip', true));
 
-  vitePlugins.push(configMockPlugin(isBuild));
+  vitePlugins.push(configMockPlugin());
 
   vitePlugins.push(configPwaPlugin());
 

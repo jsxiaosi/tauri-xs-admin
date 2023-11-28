@@ -12,5 +12,3 @@
     <el-button type="primary" @click="handleIntro">引导页</el-button>
   </div>
 </template>
-
-<style scoped lang="scss"></style>

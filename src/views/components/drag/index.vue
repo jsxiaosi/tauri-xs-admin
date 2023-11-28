@@ -113,11 +113,11 @@
     grid-template-rows: 100px 100px 100px;
 
     .list-item {
-      cursor: move;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 1px solid var(--border-color-light);
+      cursor: move;
     }
   }
 </style>

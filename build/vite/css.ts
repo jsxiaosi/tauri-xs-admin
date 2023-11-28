@@ -13,20 +13,6 @@ export function createViteCSS(): CSSOptions {
         javascriptEnabled: true,
       },
     },
-    postcss: {
-      plugins: [
-        {
-          postcssPlugin: 'internal:charset-removal',
-          AtRule: {
-            charset: (atRule: { name: string; remove: () => void }) => {
-              if (atRule.name === 'charset') {
-                atRule.remove();
-              }
-            },
-          },
-        },
-      ],
-    },
   };
   return viteCSS;
 }

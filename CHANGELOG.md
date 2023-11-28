@@ -1,5 +1,19 @@
+## 2.0.0 (2023-11-20)
+
+- fix(components): 🐛 seamless-scroll, count-to ([7c47f0b](https://github.com/jsxiaosi/vue-xs-admin/commit/7c47f0b))
+- fix(views): 🐛 pdf、docx ([b410194](https://github.com/jsxiaosi/vue-xs-admin/commit/b410194))
+- build: 📦️ mock ([250b847](https://github.com/jsxiaosi/vue-xs-admin/commit/250b847))
+- build: 📦️ package.json ([6927583](https://github.com/jsxiaosi/vue-xs-admin/commit/6927583))
+- build: 📦️ vite ([754df3d](https://github.com/jsxiaosi/vue-xs-admin/commit/754df3d))
+- build(package.json): 📦️ - peerDependencyRules 添加忽略过期依赖警告 ([621d52a](https://github.com/jsxiaosi/vue-xs-admin/commit/621d52a))
+- feat: ✨ tailwind css ([46372e7](https://github.com/jsxiaosi/vue-xs-admin/commit/46372e7))
+- feat: ✨ vite ([b829131](https://github.com/jsxiaosi/vue-xs-admin/commit/b829131))
+- feat(layouts): ✨ sidebar ([8acd3a0](https://github.com/jsxiaosi/vue-xs-admin/commit/8acd3a0))
+- perf: ⚡️ style ([fe4905c](https://github.com/jsxiaosi/vue-xs-admin/commit/fe4905c))
+
 ## <small>1.9.1 (2023-09-10)</small>
 
+- feat: ✨ v1.9.1 ([8b98a5b](https://github.com/jsxiaosi/vue-xs-admin/commit/8b98a5b))
 - fix: 🐛 eslint ([35a21bb](https://github.com/jsxiaosi/vue-xs-admin/commit/35a21bb))
 
 ## 1.9.0 (2023-09-09)
