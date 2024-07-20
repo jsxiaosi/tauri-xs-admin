@@ -181,21 +181,21 @@
     // }
 
     .tabs-container {
-      width: 0;
       flex: 1;
+      width: 0;
 
       .tabs-view {
         .tabs-view-item {
-          width: 100%;
-          height: 100%;
           position: absolute;
           left: 0;
+          width: 100%;
+          height: 100%;
         }
       }
     }
 
     .el-tabs {
-      height: $tabsPageHeight;
+      height: $tabs-page-height;
       margin: 0 10px;
 
       :deep(.el-tabs__header) {
@@ -219,18 +219,18 @@
 
             .el-tabs__item {
               height: 100%;
-              line-height: $tabsPageHeight - 10;
-              border-radius: 4px;
-              border: 1px solid var(--border-color-light);
               margin-right: 4px;
+              border: 1px solid var(--border-color-light);
+              border-radius: 4px;
+              line-height: $tabs-page-height - 10;
             }
           }
         }
 
         .el-tabs__nav-next,
         .el-tabs__nav-prev {
-          height: $tabsPageHeight;
-          line-height: $tabsPageHeight;
+          height: $tabs-page-height;
+          line-height: $tabs-page-height;
         }
         // .el-tabs__nav-*{
 
@@ -241,18 +241,18 @@
     .right-view {
       position: fixed;
       z-index: 999;
-      background-color: var(--main-bg-color);
+      padding: 5px;
       border: 1px solid var(--border-color-light);
       border-radius: 5px;
-      padding: 5px;
+      background-color: var(--main-bg-color);
       box-shadow: 0 0 12px rgb(28 29 30 / 8%);
 
       .right-view-item {
-        padding: 5px 10px;
-        font-size: var(--font-size-base);
         display: flex;
         align-items: center;
+        padding: 5px 10px;
         border-radius: 5px;
+        font-size: var(--font-size-base);
 
         .right-view-item-icon {
           margin-right: 5px;
@@ -269,18 +269,18 @@
         display: flex;
 
         li {
-          width: $tabsPageHeight;
-          text-align: center;
-          height: $tabsPageHeight;
-          font-size: var(--font-size-medium);
-          border-left: 1px solid var(--border-color-light);
           display: flex;
           align-items: center;
           justify-content: center;
+          width: $tabs-page-height;
+          height: $tabs-page-height;
+          border-left: 1px solid var(--border-color-light);
+          font-size: var(--font-size-medium);
+          text-align: center;
 
           .action-item {
+            height: $tabs-page-height;
             font-size: var(--font-size-medium);
-            height: $tabsPageHeight;
           }
         }
 

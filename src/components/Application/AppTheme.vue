@@ -23,26 +23,28 @@
 
 <style lang="scss" scoped>
   .theme {
+    display: flex;
     position: relative;
+    align-items: center;
+    justify-content: space-between;
     width: 48px;
     height: 26px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: 151515;
-    border: 1px solid var(--text-color-primary);
     padding: 0 5px;
-    font-size: 0.8em;
+    border: 1px solid var(--text-color-primary);
     border-radius: 30px;
+    background-color: 151515;
+    font-size: 0.8em;
 
     .theme-inner {
       position: absolute;
       z-index: 1;
       width: 16px;
       height: 16px;
-      background-color: var(--text-color-primary);
+      transition:
+        transform 0.5s,
+        background-color 0.5s;
       border-radius: 50%;
-      transition: transform 0.5s, background-color 0.5s;
+      background-color: var(--text-color-primary);
       will-change: transform;
     }
   }

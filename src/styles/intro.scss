@@ -1,24 +1,23 @@
-.customIntroTooltip * {
-  color: var(--text-color-primary);
+.custom-intro-tooltip * {
+  color: black;
+
   a {
-    background-color: #{--main-bg-color};
     border: 1px solid var(--text-color-primary);
+    background-color: #{--main-bg-color};
     text-shadow: none;
-    &:hover {
-      color: var(--main-color);
-    }
   }
 }
 
-.customIntroTooltip {
+.custom-intro-tooltip {
   width: 300px;
-  background-color: #{--main-bg-color};
   border: 1px solid var(--text-color-primary);
+  background-color: #{--main-bg-color};
+
   .introjs-skipbutton {
     font-size: var(--font-size-base);
   }
 }
 
-.customIntroHighlight {
+.custom-intro-highlight {
   border: 1px solid var(--text-color-primary);
 }

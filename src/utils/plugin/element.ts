@@ -40,6 +40,9 @@ import {
   ElSwitch,
   ElProgress,
   ElColorPicker,
+  ElText,
+  ElCollapseTransition,
+
   // 指令
   ElLoading,
   ElInfiniteScroll,
@@ -109,6 +112,8 @@ const components = [
   ElSwitch,
   ElProgress,
   ElColorPicker,
+  ElText,
+  ElCollapseTransition,
 ];
 
 // Icon

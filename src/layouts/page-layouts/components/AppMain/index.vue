@@ -23,12 +23,12 @@
 <style lang="scss">
   .app-main {
     position: relative;
-    width: 100%;
-    // height: calc(100vh - #{$navBarHeight+$tabsPageHeight});
-    // min-height: calc(100vh - #{$navBarHeight+$tabsPageHeight});
+    // height: calc(100vh - #{$nav-bar-height+$tabs-page-height});
+    // min-height: calc(100vh - #{$nav-bar-height+$tabs-page-height});
     flex: 1;
-    overflow: auto;
+    width: 100%;
     padding: 20px;
+    overflow: auto;
     background-color: #{$app-main-bg-color};
   }
 

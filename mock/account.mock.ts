@@ -1,4 +1,4 @@
-import type { MockMethod, Recordable } from 'vite-plugin-mock';
+import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 
 const userInfo = {
   name: '爱喝蜂蜜绿的小斯斯',
@@ -22,21 +22,21 @@ const userInfo2 = {
   role: 'test',
 };
 
-export default [
+export default defineFakeRoute([
   {
     url: '/mock_api/login',
     timeout: 1000,
     method: 'post',
     response: ({ body }: { body: Recordable }) => {
       const { username, password } = body;
-      if (username == 'admin' && password == 'admin123') {
+      if (username === 'admin' && password === 'admin123') {
         userInfo.token = genID(16);
         return {
           data: userInfo,
           code: 1,
           message: 'ok',
         };
-      } else if (username == 'test' && password == 'test123') {
+      } else if (username === 'test' && password === 'test123') {
         userInfo2.token = genID(16);
         return {
           data: userInfo2,
@@ -68,7 +68,7 @@ export default [
       return userInfo;
     },
   },
-] as MockMethod[];
+]);
 
 function genID(length: number) {
   return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36);

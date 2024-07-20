@@ -21,5 +21,3 @@
     <span>page-params --- {{ params.id }}</span>
   </div>
 </template>
-
-<style lang="scss"></style>

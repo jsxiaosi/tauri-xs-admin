@@ -71,17 +71,17 @@
 <style lang="scss" scoped>
   .navbar {
     width: 100%;
-    // margin-left: #{$sideBarWidth};
-    background-color: $navBarColor;
     border-bottom: 1px solid var(--border-color-light);
+    // margin-left: #{$side-bar-width};
+    background-color: $nav-bar-color;
     box-shadow: 1px 0 20px rgb(0 0 0 / 8%);
 
     .navbar-content {
-      width: 100%;
-      height: #{$navBarHeight};
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
+      height: #{$nav-bar-height};
       font-size: var(--font-size-extra-large);
 
       // .navbar-left {
@@ -89,39 +89,34 @@
       //   align-items: center;
       // }
 
-      .logo_img {
-        width: 38px;
-        height: 38px;
-      }
-
       .navbar-center {
-        height: 100%;
-        min-width: 0;
         flex: 1;
+        min-width: 0;
+        height: 100%;
       }
 
       .navbar-right {
         display: grid;
         grid-auto-flow: column;
-        align-items: center;
         grid-gap: 10px;
+        align-items: center;
         margin-right: 10px;
       }
     }
 
     .setting-icon {
+      display: flex;
       position: fixed;
+      z-index: 99;
       top: 50%;
       right: 0;
-      transform: translateY(-50%);
-      z-index: 99;
-      display: flex;
       padding: 8px;
+      transform: translateY(-50%);
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
       background-color: var(--main-color);
       color: #fff;
       font-size: var(--font-size-extra-large);
-      border-top-left-radius: 6px;
-      border-bottom-left-radius: 6px;
     }
   }
 </style>

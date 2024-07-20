@@ -72,11 +72,11 @@
     margin-bottom: 24px;
 
     .color-list-item {
-      width: 20px;
-      height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 20px;
+      height: 20px;
 
       .icon {
         color: #fff;
@@ -103,18 +103,18 @@
 
       .mask {
         position: fixed;
-        left: 0;
+        z-index: 98;
         top: 0;
+        left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 98;
       }
 
       :deep(.vc-colorpicker) {
         position: absolute;
+        z-index: 99;
         top: 30px;
         right: 0;
-        z-index: 99;
       }
     }
   }

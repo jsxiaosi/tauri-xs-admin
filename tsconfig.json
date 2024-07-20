@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
 
     /* Bundler mode */
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -23,12 +23,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "types": [
+      "node",
       "vite/client",
       "element-plus/global",
       "element-plus/lib/locale",
       "@intlify/unplugin-vue-i18n/messages"
     ],
-    "typeRoots": ["./node_modules"],
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]

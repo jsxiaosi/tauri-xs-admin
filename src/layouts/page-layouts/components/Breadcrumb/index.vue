@@ -106,7 +106,7 @@
 
     .app-breadcrumb.el-breadcrumb {
       .redirect {
-        color: $BreadcrumbText;
+        color: $breadcrumb-text;
       }
 
       .no-redirect {

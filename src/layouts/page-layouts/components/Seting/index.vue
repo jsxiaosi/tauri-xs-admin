@@ -62,8 +62,8 @@
     >
       <div class="drawer-content">
         <el-divider content-position="center">{{ $t('layout.layoutSettings') }}</el-divider>
-        <div class="layout_seting">
-          <div class="sidebar_seting">
+        <div class="layout-seting">
+          <div class="sidebar-seting">
             <el-tooltip
               v-for="item in sidebarSeting"
               :key="item.value"
@@ -71,12 +71,12 @@
               placement="bottom"
             >
               <div
-                class="sidebar_mode cursor"
-                :class="{ 'sidebar_mode-select': appConfig.sidebarMode === item.value }"
+                class="sidebar-mode cursor"
+                :class="{ 'sidebar-mode-select': appConfig.sidebarMode === item.value }"
                 @click="handerShowElmenu(item.value)"
               >
-                <div></div>
-                <div></div>
+                <div class="sidebar-mode__left"></div>
+                <div class="sidebar-mode__top"></div>
               </div>
             </el-tooltip>
           </div>
@@ -89,7 +89,7 @@
         <div>
           <pageSettings></pageSettings>
         </div>
-        <el-button class="clear_storage" type="danger" @click="handerClearStorage">{{
+        <el-button class="clear-storage" type="danger" @click="handerClearStorage">{{
           $t('layout.clearStorage')
         }}</el-button>
       </div>
@@ -103,78 +103,72 @@
   }
 
   .drawer-content {
+    position: relative;
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    position: relative;
 
-    .layout_seting {
-      .sidebar_seting {
+    .layout-seting {
+      .sidebar-seting {
         display: flex;
         align-items: center;
         justify-content: space-around;
 
-        .sidebar_mode-select {
+        .sidebar-mode-select {
           border: 2px solid var(--main-color);
         }
 
-        .sidebar_mode {
+        .sidebar-mode {
           position: relative;
           width: 80px;
           height: 60px;
-          background: #f0f2f5;
-          border-radius: 5px;
-          box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
           overflow: hidden;
+          border-radius: 5px;
+          background: #f0f2f5;
+          box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
 
           &:nth-child(1) {
-            div {
-              &:nth-child(1) {
-                width: 30%;
-                height: 100%;
-                background: var(--main-color);
-              }
+            .sidebar-mode__left {
+              width: 30%;
+              height: 100%;
+              background: var(--main-color);
+            }
 
-              &:nth-child(2) {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 70%;
-                height: 30%;
-                background: #fff;
-                box-shadow: 0 0 1px #888;
-              }
+            .sidebar-mode__top {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 70%;
+              height: 30%;
+              background: #fff;
+              box-shadow: 0 0 1px #888;
             }
           }
 
           &:nth-child(2) {
-            div {
-              &:nth-child(1) {
-                width: 100%;
-                height: 30%;
-                background: var(--main-color);
-                box-shadow: 0 0 1px #888;
-              }
+            .sidebar-mode__top {
+              width: 100%;
+              height: 30%;
+              background: var(--main-color);
+              box-shadow: 0 0 1px #888;
             }
           }
 
           &:nth-child(3) {
-            div {
-              &:nth-child(1) {
-                width: 30%;
-                height: 100%;
-                background: #fff;
-              }
+            .sidebar-mode__left {
+              width: 30%;
+              height: 100%;
+              background: #fff;
+            }
 
-              &:nth-child(2) {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 100%;
-                height: 30%;
-                background: var(--main-color);
-                box-shadow: 0 0 1px #888;
-              }
+            .sidebar-mode__top {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 100%;
+              height: 30%;
+              background: var(--main-color);
+              box-shadow: 0 0 1px #888;
             }
           }
         }
@@ -185,9 +179,9 @@
       text-align: center;
     }
 
-    .clear_storage {
-      margin-top: 24px;
+    .clear-storage {
       width: 100%;
+      margin-top: 24px;
     }
   }
 </style>

@@ -12,7 +12,7 @@
     :class="{ 'app-logo-hide': appConfig.collapseMenu && appConfig.sidebarMode !== 'horizontal' }"
   >
     <div class="logo">
-      <img class="logo_img" src="@/assets/logo.png" mode="scaleToFill" />
+      <img class="logo-img" src="@/assets/logo.png" mode="scaleToFill" alt="logo" />
     </div>
 
     <span class="name">{{ config.title }}</span>
@@ -21,39 +21,39 @@
 
 <style lang="scss" scoped>
   .app-logo {
-    width: $sideBarWidth;
-    height: #{$navBarHeight};
-    font-size: 38px;
     display: flex;
     align-items: center;
+    width: $side-bar-width;
+    height: #{$nav-bar-height};
+    font-size: 38px;
     // justify-content: center;
     .logo {
-      width: $sideHideBarWidth;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: $side-hide-bar-width;
 
-      .logo_img {
+      .logo-img {
         width: 38px;
         height: 38px;
       }
     }
 
     .name {
-      width: 100%;
       flex: 1;
+      width: 100%;
+      overflow: hidden;
+      transition: all 0.5s;
       font-size: 22px;
       font-weight: 500;
-      transition: all 0.5s;
-      overflow: hidden;
     }
   }
 
   .app-logo-hide {
-    // width: $sideBarWidth;
+    // width: $side-bar-width;
     .name {
-      opacity: 0;
       transform: translateX(-20px);
+      opacity: 0;
     }
   }
 </style>

@@ -152,7 +152,7 @@ function sortRouteList(arr: any[]) {
 export function pathNamekeyCheck(key: string, whiteCatalogue: string[]) {
   const pathName = key.split('/')[1];
   const index = whiteCatalogue.findIndex((i: string) => {
-    if (pathName.indexOf(i) != -1) {
+    if (pathName.indexOf(i) !== -1) {
       if (pathName === i) return true;
       else if (/^[\s\S]*\.(ts|tsx|js|jsx)$/.test(pathName)) {
         return true;
@@ -253,7 +253,7 @@ export function findRouteByPath(
   path: string,
   routes: AppRouteRecordRaw[],
 ): AppRouteRecordRaw | null {
-  const res = routes.find((item: { path: string }) => item.path == path) || null;
+  const res = routes.find((item: { path: string }) => item.path === path) || null;
   if (res) {
     return res;
   } else {
@@ -263,7 +263,7 @@ export function findRouteByPath(
         if (miRes) {
           return miRes;
         } else {
-          if (routes[i].path == path) return routes[i];
+          if (routes[i].path === path) return routes[i];
         }
       }
     }

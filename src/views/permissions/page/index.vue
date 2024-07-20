@@ -22,5 +22,3 @@
     <el-button @click="roleChange"> {{ userInfoStore.roles }} </el-button>
   </div>
 </template>
-
-<style scoped lang="scss"></style>

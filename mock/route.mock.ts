@@ -1,4 +1,4 @@
-import type { MockMethod, Recordable } from 'vite-plugin-mock';
+import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 
 const power = [
   {
@@ -85,20 +85,20 @@ const testPermissionRouter = [
 
 // permissionRouter
 
-export default [
+export default defineFakeRoute([
   {
     url: '/mock_api/getRoute',
     timeout: 0,
     method: 'post',
     response: ({ body }: { body: Recordable }) => {
       const { name } = body;
-      if (name == 'admin') {
+      if (name === 'admin') {
         return {
           data: [...power, ...adminPermissionRouter],
           code: 1,
           message: 'ok',
         };
-      } else if (name == 'test') {
+      } else if (name === 'test') {
         return {
           data: [...power, ...testPermissionRouter],
           code: 1,
@@ -113,4 +113,4 @@ export default [
       }
     },
   },
-] as MockMethod[];
+]);
