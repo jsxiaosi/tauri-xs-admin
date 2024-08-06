@@ -1,28 +1,22 @@
 <script setup lang="ts">
-  import { _storage } from '@jsxiaosi/utils';
   import Form from './compoontne/form.vue';
   import { AppLocale, AppTheme } from '@/components/Application';
-
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-
-  const { appConfig } = useRootSetting();
 </script>
 
 <template>
   <div class="page-container">
     <div class="container mx-auto">
       <div class="head">
-        <div class="logo -enter-x">
-          <img class="logo-img" src="@/assets/logo.png" mode="scaleToFill" />
-          <span class="logo-name p-4">{{ appConfig.title }}</span>
-        </div>
         <div class="application">
           <AppLocale class="item icon-size enter-x"></AppLocale>
           <AppTheme class="item enter-x"></AppTheme>
         </div>
       </div>
       <div class="login-box">
-        <h2 class="enter-y p-4"> {{ $t('sys.login.loginButton') }} </h2>
+        <div className="mb-10 flex flex-row items-center justify-center enter-y">
+          <img class="w-[44px] h-[44px]" src="@/assets/logo.png" mode="scaleToFill" alt="logo" />
+          <h2 className="m-0 ml-4">Vue Xs Admin</h2>
+        </div>
         <div class="login-form">
           <Form></Form>
         </div>
@@ -56,7 +50,7 @@
         top: 0;
         left: 0;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         width: 100%;
         padding: 10px 20px;
 
@@ -80,14 +74,17 @@
           justify-content: center;
 
           .logo-img {
-            width: 32px;
-            height: 32px;
+            width: 44px;
+            height: 44px;
           }
 
           .logo-name {
             margin-left: 8px;
             color: #999;
-            font: bold 200% Consolas, Monaco, monospace;
+            font:
+              bold 200% Consolas,
+              Monaco,
+              monospace;
             font-size: 18px;
             text-transform: uppercase;
           }

@@ -1,17 +1,30 @@
 <script lang="tsx" setup>
-  import { h } from 'vue';
+  import { h, ref } from 'vue';
   import Table from '@/components/Table/index.vue';
+  import type { TableColumnProps } from '@/components/Table/types/table';
 
-  const option = [
+  interface TableData {
+    date: string;
+    name: string;
+    address: string;
+    children?: TableData[];
+  }
+
+  const option: TableColumnProps<TableData>[] = [
     {
       label: 'Date',
       prop: 'date',
       sortable: true,
     },
     {
-      label: 'Name',
-      prop: 'name',
-      isSlots: true,
+      label: 'PreName',
+      children: [
+        {
+          label: 'Name',
+          prop: 'name',
+          isSlots: true,
+        },
+      ],
     },
     {
       label: 'Address',
@@ -25,7 +38,7 @@
     },
   ];
 
-  const tabList = [
+  const tabList = ref<TableData[]>([
     {
       date: '2016-05-03',
       name: 'Tom',
@@ -58,13 +71,12 @@
       name: 'Tom',
       address: 'No. 189, Grove St, Los Angeles',
     },
-  ];
+  ]);
 
-  const nestingOption = [
+  const nestingOption: TableColumnProps<TableData>[] = [
     {
       type: 'expand',
       render: (slotData: any) => {
-        // return h('span', {}, `render：${slotData.row.address}`);
         const ngOption = [
           {
             label: 'Date',
@@ -79,7 +91,7 @@
         ];
         return (
           <div style={{ padding: '0 8px' }}>
-            <Table data={[slotData.row]} border row-key="date" option={ngOption}></Table>
+            <Table data={[slotData.row]} border option={ngOption}></Table>
           </div>
         );
       },
@@ -136,7 +148,7 @@
           <span>{{ `插槽：${slotData.customItem.label}` }}</span>
         </template>
         <template #name="slotData">
-          <span>{{ slotData.row.name }}</span>
+          <span>{{ slotData.row.name }} </span>
         </template>
       </Table>
     </el-card>

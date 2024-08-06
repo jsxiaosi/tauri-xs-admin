@@ -19,7 +19,7 @@ function getdirsize(dir: string, callback: (fileNumber: number, size: number) =>
     readdir(dir, function (err, files) {
       //如果是目录
       if (err) throw err; //如果遍历目录出错
-      if (files.length == 0) return callback(0, 0); //如果目录是空的
+      if (files.length === 0) return callback(0, 0); //如果目录是空的
 
       let count = files.length; //文件数量
       for (let i = 0; i < files.length; i++) {

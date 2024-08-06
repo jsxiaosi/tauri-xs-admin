@@ -40,7 +40,9 @@
       z-index: 1;
       width: 16px;
       height: 16px;
-      transition: transform 0.5s, background-color 0.5s;
+      transition:
+        transform 0.5s,
+        background-color 0.5s;
       border-radius: 50%;
       background-color: var(--text-color-primary);
       will-change: transform;

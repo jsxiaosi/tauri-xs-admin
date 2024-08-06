@@ -1,14 +1,16 @@
-// /// <reference types="vue/macros-global" />
-// declare module '*.vue' {
-//   import { DefineComponent } from 'vue';
-//   const Component: DefineComponent<{}, {}, any>;
-//   export default Component;
-// }
+import 'vue/jsx'
 
-declare type RefType<T> = T | null;
+declare global {
+  interface Window {
+  }
 
-declare type Recordable<T = any> = Record<string, T>;
+  type RefType<T> = T | null;
 
-declare interface Fn<T = any, R = T> {
-  (...arg: T[]): R;
+  type Recordable<T = any> = Record<string, T>;
+
+  interface Fn<T = any, R = T> {
+    (...arg: T[]): R;
+  }
 }
+
+export { }; 

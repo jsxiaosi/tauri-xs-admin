@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 # 已存在文件只需添加以下命令
 # npx eslint --fix --ext src/**/*.{vue}
 # npx prettier --write --loglevel warn src/**/*.{js,scss,vue}
@@ -9,6 +6,3 @@
 # npm run lint:prettier
 # npm run lint:stylelint
 npm run lint:staged
-
-npm run lint:pretty
-# git add .

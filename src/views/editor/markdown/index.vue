@@ -4,7 +4,9 @@
 
   const inputText = ref<string>('# Marked in Node.js\n\nRendered by **marked**.');
 
-  const html = computed(() => marked.parse(inputText.value));
+  const html = computed<string>(() => {
+    return marked.parse(inputText.value) as string;
+  });
 </script>
 
 <template>

@@ -1,20 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>xiaosi-admin</title>
+    <title>vue-xs-admin</title>
     <meta name="description" content="Your app description" />
-    <link rel="icon" href="/pwa/favicon.ico" type="image/svg+xml" />
-    <link rel="alternate icon" href="/pwa/favicon.ico" type="image/png" sizes="16x16" />
+    <link rel="shortcut icon" href="/pwa/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/pwa/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/pwa/favicon-32x32.png" />
     <link rel="apple-touch-icon" href="/pwa/apple-touch-icon.png" sizes="180x180" />
-    <link rel="mask-icon" href="/pwa/favicon.svg" color="#FFFFFF" />
     <meta name="theme-color" content="#ffffff" />
     <script>
       window.process = {};
     </script>
 
-    <style id="admin-style-root-color" type="text/css"></style>
+    <style id="admin-style-root-color" type="text/css">
+      /* Theme Color */
+      html.dark:root {
+        --el-color-primary: #409eff;
+      }
+    </style>
   </head>
 
   <body>
@@ -27,19 +32,19 @@
 
         html,
         body {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 100%;
           height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
         }
 
         .loading {
           display: block;
-          font-size: 0;
-          color: #409eff;
           width: 82px;
           height: 72px;
+          color: #409eff;
+          font-size: 0;
         }
 
         .loading,
@@ -55,8 +60,8 @@
         .loading > div {
           display: inline-block;
           float: none;
-          background-color: currentcolor;
           border: 0 solid currentcolor;
+          background-color: currentcolor;
         }
 
         .loading > div:nth-child(1) {
@@ -65,9 +70,9 @@
           left: 18%;
           width: 24px;
           height: 24px;
-          border-radius: 100%;
           transform-origin: center bottom;
           animation: ball-climbing-dot-jump 0.6s ease-in-out infinite;
+          border-radius: 100%;
         }
 
         .loading > div:not(:nth-child(1)) {
@@ -76,9 +81,9 @@
           right: 0;
           width: 24px;
           height: 2px;
-          border-radius: 0;
           transform: translate(60%, 0);
           animation: ball-climbing-dot-steps 1.8s linear infinite;
+          border-radius: 0;
         }
 
         .loading > div:not(:nth-child(1)):nth-child(2) {
@@ -144,6 +149,7 @@
             opacity: 0;
           }
         }
+
         @media (prefers-color-scheme: dark) {
           html,
           body {

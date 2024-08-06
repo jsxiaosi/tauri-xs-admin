@@ -1,3 +1,4 @@
+/* eslint-disable prefer-rest-params */
 const iWindow: Recordable = window;
 /**
  * @desc AnimationFrame简单兼容hack
@@ -22,7 +23,7 @@ export const animationFrame = () => {
       iWindow.mozRequestAnimationFrame ||
       iWindow.oRequestAnimationFrame ||
       iWindow.msRequestAnimationFrame ||
-      function (callback: void) {
+      function (callback: () => void) {
         return iWindow.setTimeout(callback, 1000 / 60);
       }
     );
@@ -61,14 +62,13 @@ export function copyObj() {
     copyIsArray,
     clone,
     i = 1,
-    // eslint-disable-next-line prefer-rest-params
     target = arguments[0] || {}, // 使用||运算符，排除隐式强制类型转换为false的数据类型
-    deep = false,
-    // eslint-disable-next-line prefer-const
-    len = arguments.length;
+    deep = false;
+
+  const len = arguments.length;
   if (typeof target === 'boolean') {
     deep = target;
-    // eslint-disable-next-line prefer-rest-params
+
     target = arguments[1] || {};
     i++;
   }
@@ -81,7 +81,7 @@ export function copyObj() {
   }
   for (; i < len; i++) {
     //所以如果源对象中数据类型为Undefined或Null那么就会跳过本次循环，接着循环下一个源对象
-    // eslint-disable-next-line prefer-rest-params
+
     if ((options = arguments[i]) != null) {
       // 如果遇到源对象的数据类型为Boolean, Number for in循环会被跳过，不执行for in循环// src用于判断target对象是否存在name属性
       for (name in options) {

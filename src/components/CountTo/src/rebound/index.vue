@@ -81,7 +81,9 @@
 
   ul {
     /* display: flex; */
-    animation: move 0.3s linear infinite, bounce-in-down 1s calc(var(--delay) * 1s) forwards;
+    animation:
+      move 0.3s linear infinite,
+      bounce-in-down 1s calc(var(--delay) * 1s) forwards;
   }
 
   @keyframes move {

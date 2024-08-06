@@ -1,46 +1,41 @@
-<script lang="ts" setup>
-  import type { PropType } from 'vue';
-  import { onMounted, reactive, ref } from 'vue';
-  import type { FormProps, FormItemListProps } from './types/from';
+<script lang="ts" setup generic="T extends Object">
+  import { onMounted, reactive, ref, shallowRef } from 'vue';
+  import type { FormItemRule } from 'element-plus';
+  import type { Arrayable } from '@vueuse/core';
+  import type { FormProps, FormSlotType } from './types/from';
   import FormItem from './src/components/FormItem.vue';
 
-  const props = defineProps({
-    formData: {
-      type: Object as PropType<Recordable>,
-      default: () => {},
-    },
-    formOption: {
-      type: Object as PropType<FormProps>,
-      default: () => {},
-    },
-    rules: {
-      type: Object,
-      default: () => {},
-    },
-  });
+  const props = defineProps<{
+    formData?: T;
+    formOption: FormProps<T>;
+    rules?: Partial<Record<string, Arrayable<FormItemRule>>>;
+  }>();
 
   const emit = defineEmits<{
-    (e: 'submitForm', form: FormItemListProps): void;
+    (e: 'submitForm', form: T): void;
   }>();
-  const form = reactive<any>(props.formData || {});
+
+  const form = reactive<T>(props.formData || ({} as T));
 
   const formRef = ref();
 
   onMounted(() => {});
 
-  function setFormModel(key: string, value: any) {
-    form[key] = value;
-  }
+  // function setFormModel(key: string, value: any) {
+  //   form[key] = value;
+  // }
 
   const submitForm = () => {
     formRef.value.validate((value: any) => {
       console.log(value);
     });
     console.log(form);
-    emit('submitForm', form);
+    emit('submitForm', shallowRef(form).value);
   };
 
   const resetForm = () => {};
+
+  defineSlots<FormSlotType<T>>();
 
   defineExpose({
     form,
@@ -66,9 +61,9 @@
           :lg="f.lg || 8"
           :xl="f.xl || 8"
         >
-          <FormItem :form-item="fItem" :form-model="form" :set-form-model="setFormModel">
+          <FormItem :form-item="fItem" :form-model="form">
             <template v-for="item in Object.keys($slots)" #[item]="data">
-              <slot :name="item" v-bind="(data || {}) as Recordable"></slot>
+              <slot :name="item as keyof T" v-bind="data || {}"></slot>
             </template>
           </FormItem>
         </el-col>

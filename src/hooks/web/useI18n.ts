@@ -13,7 +13,7 @@ export const deffElementLocale = () => {
   const { locale } = useI18n();
 
   const tolocale = computed(() => {
-    if (locale.value == 'en') return en;
+    if (locale.value === 'en') return en;
     else return zh_Cn;
   });
 
