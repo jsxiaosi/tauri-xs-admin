@@ -23,7 +23,7 @@ export function configEsLinterPlugin(configEnv: ConfigEnv) {
     linters: [
       new EsLinter({
         // 环境变量
-        configEnv: configEnv,
+        configEnv,
         // 运行时是否删除缓存文件
         serveOptions: { clearCacheOnStart: true },
       }),

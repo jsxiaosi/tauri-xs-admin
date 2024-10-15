@@ -1,71 +1,70 @@
-import type { App, Component } from 'vue';
 import {
-  ElTag,
-  ElButton,
-  ElInput,
-  ElScrollbar,
-  ElMenu,
-  ElMenuItem,
-  ElSubMenu,
+  ElAlert,
   ElBreadcrumb,
   ElBreadcrumbItem,
-  ElIcon,
-  ElTooltip,
-  ElDrawer,
-  ElRow,
-  ElCol,
+  ElButton,
+  ElCalendar,
   ElCard,
+  ElCascader,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElCol,
+  ElCollapseTransition,
+  ElColorPicker,
+  ElDatePicker,
   ElDescriptions,
   ElDescriptionsItem,
+  ElDivider,
+  ElDrawer,
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
   ElForm,
   ElFormItem,
-  ElAlert,
-  ElDatePicker,
-  ElCascader,
-  ElSelect,
-  ElOption,
-  ElCheckboxGroup,
-  ElCheckbox,
-  ElRadioGroup,
-  ElRadio,
-  ElTable,
-  ElTableColumn,
-  ElCalendar,
-  ElTabs,
-  ElTabPane,
-  ElDivider,
-  ElSwitch,
-  ElProgress,
-  ElColorPicker,
-  ElText,
-  ElCollapseTransition,
-
+  ElIcon,
+  ElInfiniteScroll,
+  ElInput,
   // 指令
   ElLoading,
-  ElInfiniteScroll,
+  ElMenu,
+  ElMenuItem,
+  ElOption,
+  ElProgress,
+  ElRadio,
+  ElRadioGroup,
+  ElRow,
+  ElScrollbar,
+  ElSelect,
+  ElSubMenu,
+  ElSwitch,
+  ElTable,
+  ElTableColumn,
+  ElTabPane,
+  ElTabs,
+  ElTag,
+  ElText,
+  ElTooltip,
 } from 'element-plus';
+import type { App, Component } from 'vue';
 
 // https://element-plus.org/zh-CN/component/icon.html
 import {
-  HomeFilled,
+  ArrowDown,
+  ArrowRight,
   Avatar,
-  Operation,
-  Grid,
-  Setting,
-  RemoveFilled,
-  Refresh,
+  Briefcase,
   CaretLeft,
   CaretRight,
-  ArrowDown,
-  Management,
-  Select,
-  ArrowRight,
   FullScreen,
-  Briefcase,
+  Grid,
+  HomeFilled,
+  Management,
+  Operation,
   Printer,
+  Refresh,
+  RemoveFilled,
+  Select,
+  Setting,
 } from '@element-plus/icons-vue';
 
 // Directives
@@ -136,13 +135,17 @@ export const iconComponents = [
   Printer,
 ];
 
+const transElIconName = (iconName: string): string => {
+  return `iEL${iconName.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)}`;
+};
+
 export function useElementPlus(app: App) {
   // 注册组件
   components.forEach((component: Component) => {
     app.component(component.name as string, component);
   });
   // 注册指令
-  plugins.forEach((plugin) => {
+  plugins.forEach(plugin => {
     app.use(plugin);
   });
   // 注册图标
@@ -150,7 +153,3 @@ export function useElementPlus(app: App) {
     app.component(transElIconName(component.name as string), component);
   });
 }
-
-const transElIconName = (iconName: string): string => {
-  return 'iEL' + iconName.replace(/[A-Z]/g, (match) => '-' + match.toLowerCase());
-};

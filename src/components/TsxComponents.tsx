@@ -7,6 +7,9 @@ export default defineComponent({
     return () => (
       <>
         <div>TSX：{dataname.value}</div>
+        <div>
+          <div></div>
+        </div>
       </>
     );
   },

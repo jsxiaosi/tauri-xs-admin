@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import SvgIcon from '../SvgIcon/index.vue';
   import { useTheme } from '@/hooks/web/useTheme';
+  import SvgIcon from '../SvgIcon/index.vue';
 
   const { color } = useTheme();
 </script>
@@ -15,9 +15,9 @@
       }
     "
   >
-    <div class="theme-inner"></div>
-    <SvgIcon name="sun"></SvgIcon>
-    <SvgIcon name="moon"></SvgIcon>
+    <div class="theme-inner" />
+    <SvgIcon name="sun" />
+    <SvgIcon name="moon" />
   </div>
 </template>
 

@@ -4,7 +4,7 @@
   <router-view>
     <template #default="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <component :is="Component"></component>
+        <component :is="Component" />
       </transition>
     </template>
   </router-view>

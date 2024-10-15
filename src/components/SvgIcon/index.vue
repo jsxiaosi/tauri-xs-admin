@@ -20,7 +20,7 @@
     },
   });
 
-  const isELIcon = computed(() => props.name.indexOf('iEL') != -1);
+  const isELIcon = computed(() => props.name.indexOf('iEL') !== -1);
 
   const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 </script>

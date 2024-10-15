@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { useRouter } from 'vue-router';
-  import { ElButton } from 'element-plus';
   import SvgIcon from '@/components/SvgIcon/index.vue';
+  import { ElButton } from 'element-plus';
+  import { useRouter } from 'vue-router';
 
   const router = useRouter();
   const toHome = () => {
@@ -12,14 +12,18 @@
 <template>
   <div class="error-container">
     <div class="error-icon">
-      <SvgIcon name="error-404" class-name="icon"></SvgIcon>
+      <SvgIcon name="error-404" class-name="icon" />
     </div>
     <div class="text">
       <span>{{ $t('error-page.404.title') }}</span>
     </div>
-    <div class="description">{{ $t('error-page.404.description') }}</div>
+    <div class="description">
+      {{ $t('error-page.404.description') }}
+    </div>
 
-    <ElButton type="primary" @click="toHome">{{ $t('error-page.back') }}</ElButton>
+    <ElButton type="primary" @click="toHome">
+      {{ $t('error-page.back') }}
+    </ElButton>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
-import { pathNamekeyCheck, setUpRoutePath } from '../utils';
 import type { AppRouteRecordRaw } from '@/router/type';
+import { pathNamekeyCheck, setUpRoutePath } from '../utils';
 
 export function configRouteList() {
   // 白名单目录/文件，白名单目录 = 不渲染到菜单，不显示标签页
@@ -10,7 +10,7 @@ export function configRouteList() {
 
   // 自动查找路由配置文件
   const modules: Recordable = import.meta.glob('./**/*.ts', { eager: true });
-  Object.keys(modules).forEach((key) => {
+  Object.keys(modules).forEach(key => {
     const mod = modules[key].default;
     if (!mod) return;
     const modList = Array.isArray(mod) ? [...mod] : [mod];
@@ -27,7 +27,7 @@ export function configRouteList() {
   /**
    * 先把菜单路由插入根路径 '/' 防止route 初始化警告查找不到路由
    */
-  const whIndex = whiteRouteModulesList.findIndex((i) => i.path === '/');
-  if (whiteRouteModulesList[whIndex]) whiteRouteModulesList[whIndex]['children'] = routeModulesList;
+  const whIndex = whiteRouteModulesList.findIndex(i => i.path === '/');
+  if (whiteRouteModulesList[whIndex]) whiteRouteModulesList[whIndex].children = routeModulesList;
   return { whiteRouteModulesList, routeModulesList };
 }

@@ -22,6 +22,6 @@
 <template>
   <div>
     <span>page --- {{ query.id }}</span>
-    <el-input v-model="value"></el-input>
+    <el-input v-model="value" />
   </div>
 </template>

@@ -5,7 +5,5 @@
 </script>
 
 <template>
-  <div> page </div>
+  <div>page</div>
 </template>
-
-<style lang="scss" scoped></style>

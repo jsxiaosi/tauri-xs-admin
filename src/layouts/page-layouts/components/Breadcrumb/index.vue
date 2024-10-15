@@ -1,13 +1,13 @@
 <script setup lang="ts">
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { translateI18n } from '@/hooks/web/useI18n';
+  import { findRouteByPath, getParentPaths } from '@/router/utils';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
+  import { isEqual } from 'lodash-es';
   import { onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
-  import { isEqual } from 'lodash-es';
-  import AppFold from '../AppFold/index.vue';
-  import { translateI18n } from '@/hooks/web/useI18n';
   import type { AppRouteRecordRaw } from '@/router/type';
-  import { getParentPaths, findRouteByPath } from '@/router/utils';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import AppFold from '../AppFold/index.vue';
 
   const { multiTabs } = usePermissionStoreHook();
 
@@ -17,36 +17,28 @@
   // 当前路由
   const route = useRoute();
 
-  const routes = (useRouter().options.routes.find((i) => i.path === '/')?.children ||
-    []) as AppRouteRecordRaw[];
+  const routes = (useRouter().options.routes.find(i => i.path === '/')?.children || []) as AppRouteRecordRaw[];
 
   // 解析路由匹配的数组
   const getBreadcrumb = () => {
     const matched: AppRouteRecordRaw[] = [];
-    const parentRoutes = getParentPaths(
-      router.currentRoute.value.matched[1].path || '',
-      routes || [],
-    );
+    const parentRoutes = getParentPaths(router.currentRoute.value.matched[1].path || '', routes || []);
     // 获取每个父级路径对应的路由信息
-    parentRoutes.forEach((path) => {
+    parentRoutes.forEach(path => {
       if (path !== '/') {
         matched.push(findRouteByPath(path, routes || []) as AppRouteRecordRaw);
       }
     });
-    const item = multiTabs.find((item) => {
+    const item = multiTabs.find(item => {
       let itemQuery = {};
       if (item.query) {
         itemQuery = JSON.parse(JSON.stringify(item.query));
       }
-      if (matched.find((i) => i.path === item.path)) return false;
-      return (
-        route.name === item.name && isEqual(route.query, itemQuery) && route.path === item.path
-      );
+      if (matched.find(i => i.path === item.path)) return false;
+      return route.name === item.name && isEqual(route.query, itemQuery) && route.path === item.path;
     });
     if (item) matched.push(item as unknown as AppRouteRecordRaw);
-    levelList.value = matched.filter(
-      (item) => item && item.meta && item.meta.title && !item.meta.breadcrumb,
-    );
+    levelList.value = matched.filter(item => item && item.meta && item.meta.title && !item.meta.breadcrumb);
   };
 
   // 手动解析path中可能存在的参数
@@ -75,16 +67,14 @@
 
 <template>
   <div class="breadcrumb">
-    <AppFold v-if="appConfig.sidebarFold === 'top'" class="app-fold"></AppFold>
+    <AppFold v-if="appConfig.sidebarFold === 'top'" class="app-fold" />
 
     <el-breadcrumb class="app-breadcrumb" separator="/">
       <transition-group name="breadcrumb">
         <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
-          <span
-            v-if="item.redirect === 'noRedirect' || index == levelList.length - 1"
-            class="no-redirect"
-            >{{ translateI18n(item.meta?.title) }}</span
-          >
+          <span v-if="item.redirect === 'noRedirect' || index === levelList.length - 1" class="no-redirect">
+            {{ translateI18n(item.meta?.title) }}
+          </span>
           <a v-else class="redirect" @click.prevent="handleLink(item)">
             {{ translateI18n(item.meta?.title) }}
           </a>

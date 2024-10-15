@@ -17,7 +17,7 @@
     name="fold"
     color="#e3e3e3"
     @click="handerShowElmenu"
-  ></SvgIcon>
+  />
 </template>
 
 <style lang="scss">

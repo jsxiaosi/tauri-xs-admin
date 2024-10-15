@@ -10,7 +10,7 @@
   const _path = Array.isArray(path) ? path.join('/') : path;
 
   replace({
-    path: '/' + _path,
+    path: `/${_path}`,
     query,
   });
 </script>

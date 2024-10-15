@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { useI18n, localesList } from '@/hooks/web/useI18n';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { localesList, useI18n } from '@/hooks/web/useI18n';
   import type { localeKey } from '@/locales/types';
 
   const i18n = useI18n();
@@ -15,7 +15,7 @@
 
 <template>
   <el-dropdown trigger="click" @command="tolochos">
-    <SvgIcon class="icon cursor" name="locales"></SvgIcon>
+    <SvgIcon class="icon cursor" name="locales" />
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item v-for="item in localesList" :key="item.locale" :command="item.locale">

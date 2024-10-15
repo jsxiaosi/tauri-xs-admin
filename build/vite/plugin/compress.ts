@@ -6,10 +6,7 @@ import viteCompression from 'vite-plugin-compression';
 
 import type { Plugin } from 'vite';
 
-export function configCompressPlugin(
-  compress: 'gzip' | 'brotli' | 'none',
-  disable = false,
-): Plugin | Plugin[] {
+export function configCompressPlugin(compress: 'gzip' | 'brotli' | 'none', disable = false): Plugin | Plugin[] {
   let options = {};
   if (compress === 'gzip') {
     options = {

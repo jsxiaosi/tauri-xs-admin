@@ -1,8 +1,8 @@
+import { updateColor } from '@/utils/theme/transformTheme';
 import { useColorMode } from '@vueuse/core';
 import { watch } from 'vue';
-import { useRootSetting } from '../setting/useRootSetting';
-import { updateColor } from '@/utils/theme/transformTheme';
 import type { AppConfig } from '@/store/types';
+import { useRootSetting } from '../setting/useRootSetting';
 
 export const useTheme = () => {
   const color = useColorMode({ disableTransition: false });

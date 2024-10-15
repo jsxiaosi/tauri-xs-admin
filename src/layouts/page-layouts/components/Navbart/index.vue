@@ -1,16 +1,14 @@
 <script setup lang="ts">
-  // import { ref } from 'vue'
-  import { ref } from 'vue';
-  import Sidebar from '../../components/Sidebar/index.vue';
-  import MinSidebar from '../../components/Sidebar/MinSidebar.vue';
-  import Setting from '../../components/Seting/index.vue';
-  import Breadcrumb from '../../components/Breadcrumb/index.vue';
-  import AppLogo from '../AppLogo/index.vue';
-
-  import { AppLocale, AppTheme, AppAccount } from '@/components/Application';
-
+  import { AppAccount, AppLocale, AppTheme } from '@/components/Application';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  // import { ref } from 'vue'
+  import { ref } from 'vue';
+  import Breadcrumb from '../../components/Breadcrumb/index.vue';
+  import Setting from '../../components/Seting/index.vue';
+  import Sidebar from '../../components/Sidebar/index.vue';
+  import MinSidebar from '../../components/Sidebar/MinSidebar.vue';
+  import AppLogo from '../AppLogo/index.vue';
 
   const drawer = ref(false);
 
@@ -39,32 +37,24 @@
       </div>
       <div class="navbar-center">
         <template v-if="!appConfig.drawerSidebar">
-          <Sidebar
-            v-if="appConfig.sidebarMode === 'horizontal'"
-            class="sidebar-horizontal"
-            mode="horizontal"
-          />
-          <MinSidebar
-            v-if="appConfig.sidebarMode === 'blend'"
-            class="sidebar-horizontal"
-            mode="horizontal"
-          />
+          <Sidebar v-if="appConfig.sidebarMode === 'horizontal'" class="sidebar-horizontal" mode="horizontal" />
+          <MinSidebar v-if="appConfig.sidebarMode === 'blend'" class="sidebar-horizontal" mode="horizontal" />
         </template>
       </div>
       <div class="navbar-right">
         <el-tooltip :content="$t('layout.navbar.fullScreen')" placement="bottom">
-          <SvgIcon class="cursor" :name="full_screen" @click="fullScreenChange"></SvgIcon>
+          <SvgIcon class="cursor" :name="full_screen" @click="fullScreenChange" />
         </el-tooltip>
-        <AppLocale class="icon"></AppLocale>
-        <AppTheme></AppTheme>
-        <AppAccount></AppAccount>
-        <SvgIcon class="cursor" name="iEL-setting" @click="drawer = true"></SvgIcon>
+        <AppLocale class="icon" />
+        <AppTheme />
+        <AppAccount />
+        <SvgIcon class="cursor" name="iEL-setting" @click="drawer = true" />
       </div>
     </div>
     <div v-show="appConfig.hideNavbart" class="setting-icon cursor">
-      <SvgIcon name="iEL-setting" @click="drawer = true"></SvgIcon>
+      <SvgIcon name="iEL-setting" @click="drawer = true" />
     </div>
-    <Setting v-model:modelValue="drawer"></Setting>
+    <Setting v-model:model-value="drawer" />
   </div>
 </template>
 

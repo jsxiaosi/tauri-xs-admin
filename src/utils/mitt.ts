@@ -1,6 +1,6 @@
-import type { Emitter } from 'mitt';
 import mitt from 'mitt';
 import type { AppRouteRecordRaw } from '@/router/type';
+import type { Emitter } from 'mitt';
 
 interface Events {
   siteBarChange: {

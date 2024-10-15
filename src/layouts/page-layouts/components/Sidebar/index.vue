@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import type { PropType } from 'vue';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { findRouteByPath, getParentPaths } from '@/router/utils';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
   import { computed, ref, watch } from 'vue';
   import { useRoute } from 'vue-router';
-  import SidebarItem from './SidebarItem.vue';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
   import type { AppRouteRecordRaw } from '@/router/type';
-  import { getParentPaths, findRouteByPath } from '@/router/utils';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import type { PropType } from 'vue';
+  import SidebarItem from './SidebarItem.vue';
 
   defineProps({
     mode: {
@@ -19,7 +19,7 @@
 
   const route = useRoute();
   const { appConfig } = useRootSetting();
-  let subMenuData = ref<AppRouteRecordRaw[]>(permission.wholeMenus);
+  const subMenuData = ref<AppRouteRecordRaw[]>(permission.wholeMenus);
 
   const menuData = computed<AppRouteRecordRaw[]>(() => {
     return appConfig.value.sidebarMode === 'blend' && !appConfig.value.drawerSidebar

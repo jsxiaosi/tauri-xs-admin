@@ -1,14 +1,14 @@
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from 'axios';
+import { isFunction } from '@jsxiaosi/utils';
 import axios from 'axios';
 import { cloneDeep } from 'lodash-es';
-import { isFunction } from '@jsxiaosi/utils';
-import type { CreateAxiosOptions } from './axiosConfig';
 import type { RequestOptions, Result } from '#/axios';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { CreateAxiosOptions } from './axiosConfig';
 
 /**
  * @description: axios 模块
  */
-export class iAxios {
+export class IAxios {
   private axiosInstance: AxiosInstance;
   private readonly options: CreateAxiosOptions;
 
@@ -51,12 +51,8 @@ export class iAxios {
     if (!interceptor) {
       return;
     }
-    const {
-      requestInterceptors,
-      requestInterceptorsCatch,
-      responseInterceptors,
-      responseInterceptorsCatch,
-    } = interceptor;
+    const { requestInterceptors, requestInterceptorsCatch, responseInterceptors, responseInterceptorsCatch } =
+      interceptor;
 
     // 此方法为了过滤不挂载interceptor没配置的拦截器
 
@@ -84,50 +80,35 @@ export class iAxios {
   /**
    * @description get请求（config：axios请求配置, options：数据的特殊处理）
    */
-  get<T = any, P = any>(
-    config: AxiosRequestConfig<P>,
-    options?: RequestOptions,
-  ): Promise<Result<T>> {
+  get<T = any, P = any>(config: AxiosRequestConfig<P>, options?: RequestOptions): Promise<Result<T>> {
     return this.request<T, P>({ ...config, method: 'GET' }, options);
   }
 
   /**
    * @description post请求（config：axios请求配置, options：数据的特殊处理）
    */
-  post<T = any, P = any>(
-    config: AxiosRequestConfig<P>,
-    options?: RequestOptions,
-  ): Promise<Result<T>> {
+  post<T = any, P = any>(config: AxiosRequestConfig<P>, options?: RequestOptions): Promise<Result<T>> {
     return this.request<T, P>({ ...config, method: 'POST' }, options);
   }
 
   /**
    * @description put请求（config：axios请求配置, options：数据的特殊处理）
    */
-  put<T = any, P = any>(
-    config: AxiosRequestConfig<P>,
-    options?: RequestOptions,
-  ): Promise<Result<T>> {
+  put<T = any, P = any>(config: AxiosRequestConfig<P>, options?: RequestOptions): Promise<Result<T>> {
     return this.request<T, P>({ ...config, method: 'PUT' }, options);
   }
 
   /**
    * @description delete请求（config：axios请求配置, options：数据的特殊处理）
    */
-  delete<T = any, P = any>(
-    config: AxiosRequestConfig<P>,
-    options?: RequestOptions,
-  ): Promise<Result<T>> {
+  delete<T = any, P = any>(config: AxiosRequestConfig<P>, options?: RequestOptions): Promise<Result<T>> {
     return this.request<T, P>({ ...config, method: 'DELETE' }, options);
   }
 
   /**
    * @description 请求体
    */
-  request<T = any, P = any>(
-    config: AxiosRequestConfig<P>,
-    options?: RequestOptions,
-  ): Promise<Result<T>> {
+  request<T = any, P = any>(config: AxiosRequestConfig<P>, options?: RequestOptions): Promise<Result<T>> {
     let conf: CreateAxiosOptions = cloneDeep(config);
 
     const interceptor = this.getInterceptor();

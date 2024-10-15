@@ -1,6 +1,6 @@
+import process from 'process';
 // https://github.com/btd/rollup-plugin-visualizer
 import visualizer from 'rollup-plugin-visualizer';
-
 import type { Plugin } from 'vite';
 
 export function configVisualizerPlugin(): Plugin | Plugin[] {
@@ -11,7 +11,7 @@ export function configVisualizerPlugin(): Plugin | Plugin[] {
         open: true,
         gzipSize: true,
         brotliSize: true,
-      }) as Plugin,
+      }) as unknown as Plugin,
     ];
   } else {
     return [];

@@ -9,19 +9,13 @@ export function updateColor(primaryColor: string, themeMode: 'light' | 'dark') {
   const style = document.getElementById('admin-style-root-color');
 
   const mixColor = themeMode === 'dark' ? '#141414' : '#ffffff';
-  let innerHTML = `html${
-    themeMode === 'dark' ? '.dark' : ''
-  }:root{ --el-color-primary: ${primaryColor};\n`;
+  let innerHTML = `html${themeMode === 'dark' ? '.dark' : ''}:root{ --el-color-primary: ${primaryColor};\n`;
 
   for (let i = 1; i <= 9; i++) {
-    innerHTML += `--el-color-primary-light-${i}: ${colorPalette(
-      primaryColor,
-      mixColor,
-      i * 0.1,
-    )};\n`;
+    innerHTML += `--el-color-primary-light-${i}: ${colorPalette(primaryColor, mixColor, i * 0.1)};\n`;
   }
 
-  if (style) style.innerHTML = innerHTML + '}';
+  if (style) style.innerHTML = `${innerHTML}}`;
 }
 
 export function themeHtmlClassName(className: string, isShow: boolean) {

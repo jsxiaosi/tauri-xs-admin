@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
-  import { _storage } from '@jsxiaosi/utils';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
+  import { _storage } from '@jsxiaosi/utils';
+  import { ref } from 'vue';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 
@@ -24,7 +24,7 @@
   <div>
     <div class="options">
       <span>{{ $t('layout.hideSidebar') }}</span>
-      <el-switch v-model="appConfig['hideSidebar']" @change="hidePublicChange" />
+      <el-switch v-model="appConfig.hideSidebar" @change="hidePublicChange" />
     </div>
     <div class="options">
       <span>{{ $t('layout.hideNavBart') }}</span>

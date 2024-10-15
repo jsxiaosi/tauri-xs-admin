@@ -1,14 +1,14 @@
-import type { RouteRecordRaw } from 'vue-router';
-import { createRouter, createWebHistory } from 'vue-router';
-import type { App } from 'vue';
-import { _storage, isUrl } from '@jsxiaosi/utils';
-import { configRouteList } from './modules';
-import { handleAliveRoute, initRoute } from './utils';
-import { usePermissionStoreHook } from '@/store/modules/permission';
-import NProgress from '@/utils/plugin/progress';
 import { getConfig } from '@/config';
 import { translateI18n } from '@/hooks/web/useI18n';
+import { usePermissionStoreHook } from '@/store/modules/permission';
 import { useUserInfoStoreHook } from '@/store/modules/user';
+import NProgress from '@/utils/plugin/progress';
+import { _storage, isUrl } from '@jsxiaosi/utils';
+import { createRouter, createWebHistory } from 'vue-router';
+import type { App } from 'vue';
+import type { RouteRecordRaw } from 'vue-router';
+import { configRouteList } from './modules';
+import { handleAliveRoute, initRoute } from './utils';
 
 const { whiteRouteModulesList, routeModulesList } = configRouteList();
 
@@ -59,7 +59,7 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       if (usePermissionStoreHook().wholeMenus.length === 0) {
-        initRoute(userInfoStore.roles).then((res) => {
+        initRoute(userInfoStore.roles).then(res => {
           if (res.length) {
             router.push({
               path: to.path,
