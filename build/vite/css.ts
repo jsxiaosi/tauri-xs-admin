@@ -5,10 +5,11 @@ export function createViteCSS(): CSSOptions {
     preprocessorOptions: {
       // 配置scss全局样式以及变量
       scss: {
+        api: 'modern-compiler',
         charset: false,
         additionalData: `
-          @use "./src/styles/var/element/theme/index.scss" as *; 
-          @use "./src/styles/var/index.scss" as *;
+          @use "@/styles/var/element/theme/index.scss" as *;
+          @use "@/styles/var/index.scss" as *;
         `,
         javascriptEnabled: true,
       },
