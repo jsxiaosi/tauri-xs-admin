@@ -1,5 +1,5 @@
-import type { AppRouteRecordRaw } from '@/router/type';
 import { t } from '@/hooks/web/useI18n';
+import type { AppRouteRecordRaw } from '@/router/type';
 
 const editor: AppRouteRecordRaw[] = [
   {

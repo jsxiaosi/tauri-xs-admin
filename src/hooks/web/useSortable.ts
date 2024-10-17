@@ -1,8 +1,8 @@
 import { tryOnMounted } from '@vueuse/core';
-import type { Options } from 'sortablejs';
 import Sortable from 'sortablejs';
-import type { Ref } from 'vue';
 import { isRef, ref, unref } from 'vue';
+import type { Options } from 'sortablejs';
+import type { Ref } from 'vue';
 
 /**
  *

@@ -1,23 +1,16 @@
 <script lang="ts" setup>
-  import { nextTick, onMounted, ref, unref } from 'vue';
   import LogicFlow from '@logicflow/core';
-  import {
-    Snapshot,
-    BpmnElement,
-    Menu,
-    DndPanel,
-    SelectionSelect,
-    Control,
-  } from '@logicflow/extension';
-  import '@logicflow/core/dist/style/index.css';
-  import '@logicflow/extension/lib/style/index.css';
+  import { BpmnElement, Control, DndPanel, Menu, SelectionSelect, Snapshot } from '@logicflow/extension';
+  import { nextTick, onMounted, ref, unref, useTemplateRef } from 'vue';
   import { toLogicFlowData } from './adpter-for-turbo';
+  import { configAddItemControl, configDefaultDndPanel } from './config';
   import demoData from './data-turbo.json';
-  import { configDefaultDndPanel, configAddItemControl } from './config';
+  import '@logicflow/core/dist/index.css';
+  import '@logicflow/extension/lib/style/index.css';
 
   const lf = ref<LogicFlow>({} as LogicFlow);
-  const logicFlowElRef = ref<HTMLElement>({} as HTMLElement);
-  let config = ref({
+  const logicFlowElRef = useTemplateRef<HTMLElement>('logic-flow-ref');
+  const config = ref({
     grid: true,
     background: {
       color: '#f7f9ff',
@@ -43,7 +36,7 @@
 
     const domLf = new LogicFlow({
       ...unref(config),
-      container: unref(logicFlowElRef),
+      container: unref(logicFlowElRef)!,
     });
     lf.value = domLf;
     // 设置边类型bpmn:sequenceFlow为默认类型
@@ -67,7 +60,7 @@
 </script>
 
 <template>
-  <div ref="logicFlowElRef" class="page-container"></div>
+  <div ref="logic-flow-ref" class="page-container" />
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
-import { defineComponent, reactive, computed, watch, onMounted, unref } from 'vue';
 import { isNumber } from '@jsxiaosi/utils';
+import { computed, defineComponent, onMounted, reactive, unref, watch } from 'vue';
 import { countToProps } from './props';
 
 export default defineComponent({
@@ -85,8 +85,7 @@ export default defineComponent({
       if (useEasing) {
         if (unref(getCountDown)) {
           state.printVal =
-            state.localStartVal -
-            easingFn(progress, 0, state.localStartVal - endVal, state.localDuration as number);
+            state.localStartVal - easingFn(progress, 0, state.localStartVal - endVal, state.localDuration as number);
         } else {
           state.printVal = easingFn(
             progress,
@@ -98,12 +97,10 @@ export default defineComponent({
       } else {
         if (unref(getCountDown)) {
           state.printVal =
-            state.localStartVal -
-            (state.localStartVal - endVal) * (progress / (state.localDuration as number));
+            state.localStartVal - (state.localStartVal - endVal) * (progress / (state.localDuration as number));
         } else {
           state.printVal =
-            state.localStartVal +
-            (endVal - state.localStartVal) * (progress / (state.localDuration as number));
+            state.localStartVal + (endVal - state.localStartVal) * (progress / (state.localDuration as number));
         }
       }
       if (unref(getCountDown)) {
@@ -129,7 +126,7 @@ export default defineComponent({
       const rgx = /(\d+)(\d{3})/;
       if (separator && !isNumber(separator)) {
         while (rgx.test(x1)) {
-          x1 = x1.replace(rgx, '$1' + separator + '$2');
+          x1 = x1.replace(rgx, `$1${separator}$2`);
         }
       }
       return prefix + x1 + x2 + suffix;

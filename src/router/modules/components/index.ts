@@ -1,5 +1,5 @@
-import type { AppRouteRecordRaw } from '@/router/type';
 import { t } from '@/hooks/web/useI18n';
+import type { AppRouteRecordRaw } from '@/router/type';
 
 const component: AppRouteRecordRaw[] = [
   {
@@ -7,7 +7,11 @@ const component: AppRouteRecordRaw[] = [
     // component: Layout,
     redirect: '/components/form',
     name: 'RtComponents',
-    meta: { title: t('route.pathName.components'), icon: 'components', position: 2 },
+    meta: {
+      title: t('route.pathName.components'),
+      icon: 'components',
+      position: 2,
+    },
     children: [
       {
         path: 'form',

@@ -22,7 +22,7 @@ function convertFlowElementToEdge(element: Recordable) {
     properties: {},
   };
   const excludeProperties = ['startPoint', 'endPoint', 'pointsList', 'text', 'logicFlowType'];
-  Object.keys(element.properties).forEach((property) => {
+  Object.keys(element.properties).forEach(property => {
     if (excludeProperties.indexOf(property) === -1) {
       edge.properties[property] = element.properties[property];
     }
@@ -42,7 +42,7 @@ function convertFlowElementToNode(element: Recordable) {
     properties: {},
   };
   const excludeProperties = ['x', 'y', 'text', 'logicFlowType'];
-  Object.keys(element.properties).forEach((property) => {
+  Object.keys(element.properties).forEach(property => {
     if (excludeProperties.indexOf(property) === -1) {
       node.properties[property] = element.properties[property];
     }

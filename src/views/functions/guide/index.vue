@@ -9,6 +9,6 @@
 
 <template>
   <div class="page-container">
-    <el-button type="primary" @click="handleIntro">引导页</el-button>
+    <el-button type="primary" @click="handleIntro"> 引导页 </el-button>
   </div>
 </template>

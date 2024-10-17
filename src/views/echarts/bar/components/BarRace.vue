@@ -1,13 +1,13 @@
 <script lang="ts"></script>
 
 <script lang="ts" setup>
-  import type { Ref } from 'vue';
-  import { onMounted, ref } from 'vue';
-  import { useIntervalFn } from '@vueuse/core';
-  import type { createEChartsOption } from '@/hooks/web/useECharts';
   import { useECharts } from '@/hooks/web/useECharts';
+  import { useIntervalFn } from '@vueuse/core';
+  import { onMounted, useTemplateRef } from 'vue';
+  import type { createEChartsOption } from '@/hooks/web/useECharts';
+  import type { Ref } from 'vue';
 
-  const chartRef = ref<HTMLDivElement | null>(null);
+  const chartRef = useTemplateRef<HTMLDivElement | null>('chart-ref');
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
 
   const data: number[] = [];
@@ -38,7 +38,7 @@
       {
         realtimeSort: true,
         type: 'bar',
-        data: data,
+        data,
         label: {
           show: true,
           position: 'right',
@@ -70,7 +70,7 @@
   });
 
   function run() {
-    for (var i = 0; i < data.length; ++i) {
+    for (let i = 0; i < data.length; ++i) {
       if (Math.random() > 0.9) {
         data[i] += Math.round(Math.random() * 2000);
       } else {
@@ -84,7 +84,7 @@
 <template>
   <div>
     <h3>动态柱状图</h3>
-    <div ref="chartRef" class="chart-ref"></div>
+    <div ref="chart-ref" class="chart-ref" />
   </div>
 </template>
 

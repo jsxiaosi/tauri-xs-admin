@@ -1,11 +1,11 @@
-import { defineStore } from 'pinia';
-import type { RouteRecordName } from 'vue-router';
-import { isEqual } from 'lodash-es';
-import { _storage } from '@jsxiaosi/utils';
-import type { MultiTabsType, PermissionState } from '../types';
-import { useAppStoreHook } from './app';
 import { store } from '@/store';
+import { _storage } from '@jsxiaosi/utils';
+import { isEqual } from 'lodash-es';
+import { defineStore } from 'pinia';
 import type { AppRouteRecordRaw } from '@/router/type';
+import type { RouteRecordName } from 'vue-router';
+import { useAppStoreHook } from './app';
+import type { MultiTabsType, PermissionState } from '../types';
 
 const getPermissionState = (): PermissionState => {
   return {
@@ -25,13 +25,7 @@ export const usePermissionStore = defineStore({
     setWholeMenus(routeList: AppRouteRecordRaw[]) {
       this.wholeMenus = [...routeList];
     },
-    cacheOperate({
-      mode = 'sync',
-      name = '',
-    }: {
-      mode: 'add' | 'delete' | 'sync';
-      name?: RouteRecordName;
-    }) {
+    cacheOperate({ mode = 'sync', name = '' }: { mode: 'add' | 'delete' | 'sync'; name?: RouteRecordName }) {
       let delIndex = -1;
       switch (mode) {
         case 'add':
@@ -39,14 +33,14 @@ export const usePermissionStore = defineStore({
           this.cachePageList = [...new Set(this.cachePageList)];
           break;
         case 'delete':
-          delIndex = this.cachePageList.findIndex((v) => v === name);
+          delIndex = this.cachePageList.findIndex(v => v === name);
           delIndex !== -1 && this.cachePageList.splice(delIndex, 1);
           break;
         case 'sync':
           // 延时加载：解决因为清除缓存导致回退到上一个页面时页面显示错位问题
           setTimeout(() => {
-            this.cachePageList = this.cachePageList.filter((i) => {
-              return this.multiTabs.some((tabs) => tabs.name === i);
+            this.cachePageList = this.cachePageList.filter(i => {
+              return this.multiTabs.some(tabs => tabs.name === i);
             });
           }, 400);
           break;
@@ -60,14 +54,12 @@ export const usePermissionStore = defineStore({
     // 持久化
     persistent() {
       const appConfig = useAppStoreHook();
-      if (appConfig.appConfigMode.tabPersistent)
-        _storage.setStorage('multiTabsList', this.multiTabs);
+      if (appConfig.appConfigMode.tabPersistent) _storage.setStorage('multiTabsList', this.multiTabs);
     },
     handleMultiTabs(type: 'add' | 'delete', value: MultiTabsType) {
       const route = value as MultiTabsType;
       const index = this.multiTabs.findIndex(
-        (i) =>
-          i.path === route.path && isEqual(i.query, route.query) && isEqual(i.params, route.params),
+        i => i.path === route.path && isEqual(i.query, route.query) && isEqual(i.params, route.params),
       );
 
       switch (type) {

@@ -1,9 +1,9 @@
 <script setup lang="ts">
+  import SvgIcon from '@/components/SvgIcon/index.vue';
   import VisitAnalysis from './components/AnalysisChart.vue';
+  import Comment from './components/Comment.vue';
   import PieChart from './components/PieChart.vue';
   import WordCloud from './components/WordCloud.vue';
-  import Comment from './components/Comment.vue';
-  import SvgIcon from '@/components/SvgIcon/index.vue';
 
   defineOptions({
     name: 'RtWelcome',
@@ -41,20 +41,12 @@
 <template>
   <div>
     <el-row :gutter="20" class="enter-y">
-      <el-col
-        v-for="(item, index) in speedList"
-        :key="index"
-        :xs="24"
-        :sm="24"
-        :md="6"
-        :lg="6"
-        :xl="6"
-      >
+      <el-col v-for="(item, index) in speedList" :key="index" :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
         <el-card class="box-card">
           <template #header>
             <div class="card-header cursor">
               <span>{{ item.title }}</span>
-              <SvgIcon name="iEL-arrow-right"></SvgIcon>
+              <SvgIcon name="iEL-arrow-right" />
             </div>
           </template>
           <div class="card-content">
@@ -62,11 +54,7 @@
               <span class="number">{{ item.online }}/{{ item.total }}</span>
               <span>Online/Total</span>
             </div>
-            <el-progress
-              :text-inside="true"
-              :stroke-width="26"
-              :percentage="value(item.online, item.total)"
-            />
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="value(item.online, item.total)" />
           </div>
         </el-card>
       </el-col>
@@ -111,7 +99,7 @@
               <span>词云</span>
             </div>
           </template>
-          <WordCloud></WordCloud>
+          <WordCloud />
         </el-card>
       </el-col>
     </el-row>

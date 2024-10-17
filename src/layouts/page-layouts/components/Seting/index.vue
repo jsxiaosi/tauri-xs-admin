@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  import { watch, ref } from 'vue';
-  import { _storage } from '@jsxiaosi/utils';
-  import ThemeSettings from './ThemeSettings/index.vue';
-  import pageSettings from './pageSettings/index.vue';
-  import type { SidebarMode } from '@/store/types';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { _storage } from '@jsxiaosi/utils';
+  import { ref, watch } from 'vue';
+  import type { SidebarMode } from '@/store/types';
+  import pageSettings from './pageSettings/index.vue';
+  import ThemeSettings from './ThemeSettings/index.vue';
 
   const props = defineProps({
     modelValue: {
@@ -54,44 +54,42 @@
 
 <template>
   <div class="setting">
-    <el-drawer
-      v-model="drawer"
-      :title="$t('layout.setup')"
-      :size="320"
-      @close="emit('update:modelValue', false)"
-    >
+    <el-drawer v-model="drawer" :title="$t('layout.setup')" :size="320" @close="emit('update:modelValue', false)">
       <div class="drawer-content">
-        <el-divider content-position="center">{{ $t('layout.layoutSettings') }}</el-divider>
+        <el-divider content-position="center">
+          {{ $t('layout.layoutSettings') }}
+        </el-divider>
         <div class="layout-seting">
           <div class="sidebar-seting">
-            <el-tooltip
-              v-for="item in sidebarSeting"
-              :key="item.value"
-              :content="item.label"
-              placement="bottom"
-            >
+            <el-tooltip v-for="item in sidebarSeting" :key="item.value" :content="item.label" placement="bottom">
               <div
                 class="sidebar-mode cursor"
-                :class="{ 'sidebar-mode-select': appConfig.sidebarMode === item.value }"
+                :class="{
+                  'sidebar-mode-select': appConfig.sidebarMode === item.value,
+                }"
                 @click="handerShowElmenu(item.value)"
               >
-                <div class="sidebar-mode__left"></div>
-                <div class="sidebar-mode__top"></div>
+                <div class="sidebar-mode__left" />
+                <div class="sidebar-mode__top" />
               </div>
             </el-tooltip>
           </div>
         </div>
-        <el-divider content-position="center">{{ $t('layout.themeSettings') }}</el-divider>
+        <el-divider content-position="center">
+          {{ $t('layout.themeSettings') }}
+        </el-divider>
         <div>
-          <ThemeSettings></ThemeSettings>
+          <ThemeSettings />
         </div>
-        <el-divider content-position="center">{{ $t('layout.pageSettings') }}</el-divider>
+        <el-divider content-position="center">
+          {{ $t('layout.pageSettings') }}
+        </el-divider>
         <div>
-          <pageSettings></pageSettings>
+          <pageSettings />
         </div>
-        <el-button class="clear-storage" type="danger" @click="handerClearStorage">{{
-          $t('layout.clearStorage')
-        }}</el-button>
+        <el-button class="clear-storage" type="danger" @click="handerClearStorage">
+          {{ $t('layout.clearStorage') }}
+        </el-button>
       </div>
     </el-drawer>
   </div>

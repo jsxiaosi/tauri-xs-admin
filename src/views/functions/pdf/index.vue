@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import { ref, watchEffect } from 'vue';
+  import SvgIcon from '@/components/SvgIcon/index.vue';
+  import { fileToBase64 } from '@jsxiaosi/utils';
+  import { ElUpload } from 'element-plus';
+  import { ref, useTemplateRef, watchEffect } from 'vue';
   import VuePdfEmbed from 'vue-pdf-embed';
   // import { useEventListener, useDebounceFn } from '@vueuse/core';
   import type { UploadRawFile } from 'element-plus';
-  import { ElUpload } from 'element-plus';
-  import { fileToBase64 } from '@jsxiaosi/utils';
   import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
-  import SvgIcon from '@/components/SvgIcon/index.vue';
 
   const fileSrc = ref<string>();
 
@@ -15,7 +15,7 @@
     return false;
   }
 
-  const pdfRef = ref<InstanceType<typeof VuePdfEmbed>>();
+  const pdfRef = useTemplateRef<InstanceType<typeof VuePdfEmbed>>('pdf-ref');
   const isLoading = ref<boolean>(true);
 
   const showAllPages = ref<boolean>(false);
@@ -73,7 +73,7 @@
       </div>
       <div class="w-full overflow-x-auto">
         <VuePdfEmbed
-          ref="pdfRef"
+          ref="pdf-ref"
           :page="page"
           :source="fileSrc"
           @loaded="handleOnLoaded"

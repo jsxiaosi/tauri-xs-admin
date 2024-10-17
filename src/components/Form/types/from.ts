@@ -2,12 +2,12 @@ import type { Arrayable } from '@vueuse/core';
 import type { FormItemRule } from 'element-plus';
 import type { VNode } from 'vue';
 
-export interface FormProps<T extends Object = any> {
+export interface FormProps<T extends object = any> {
   labelPosition: 'top' | 'right' | 'left';
   formItem: Array<FormItemProps<T>>;
 }
 
-export interface FormItemProps<T extends Object = object> {
+export interface FormItemProps<T extends object = object> {
   gutter: number;
   xs?: number;
   sm?: number;
@@ -25,7 +25,7 @@ export interface FormItemProps<T extends Object = object> {
  * @param(rules) 表单校验
  * @param(childrenComponent) 子组件属性 类似ElSelect、ElCheckboxGroup、ElRadioGroup等组件
  */
-export interface FormItemListProps<T extends Object = object, P extends keyof T = keyof T> {
+export interface FormItemListProps<T extends object = object, P extends keyof T = keyof T> {
   component: string;
   label: string;
   prop: P;
@@ -44,12 +44,12 @@ export interface FormSelectOptProps {
 }
 
 // 暴露：{ formItem: FormItemListProps; formModel: T } 类型
-export interface FormItemRenderProps<T extends Object = object> {
+export interface FormItemRenderProps<T extends object = object> {
   formItem: FormItemListProps<T>;
   formModel: T;
 }
 
 // slottYPE
-export type FormSlotType<T extends Object = object> = {
+export type FormSlotType<T extends object = object> = {
   [key in keyof T]: (props: FormItemRenderProps<T>) => any;
 };

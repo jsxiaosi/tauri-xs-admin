@@ -1,10 +1,10 @@
 import { readdir, stat } from 'fs';
 import { join } from 'path';
-import type { Plugin, ResolvedConfig } from 'vite';
-import { green } from 'kolorist';
-import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+import { green } from 'kolorist';
+import type { Dayjs } from 'dayjs';
+import type { Plugin, ResolvedConfig } from 'vite';
 dayjs.extend(duration);
 
 const tost = `🤩你好！如果您感觉内容还不错，在右边链接给个star哦😘！https://github.com/jsxiaosi/vue-xs-admin`;
@@ -12,18 +12,18 @@ const tost = `🤩你好！如果您感觉内容还不错，在右边链接给�
 function getdirsize(dir: string, callback: (fileNumber: number, size: number) => void) {
   let size = 0;
   let fileNumber = 0;
-  stat(dir, function (err, stats) {
+  stat(dir, (err, stats) => {
     if (err) throw err; //如果出错
     if (stats.isFile()) return callback(1, stats.size); //如果是文件
 
-    readdir(dir, function (err, files) {
+    readdir(dir, (err, files) => {
       //如果是目录
       if (err) throw err; //如果遍历目录出错
       if (files.length === 0) return callback(0, 0); //如果目录是空的
 
       let count = files.length; //文件数量
       for (let i = 0; i < files.length; i++) {
-        getdirsize(join(dir, files[i]), function (_fileNumber: number, _size: number) {
+        getdirsize(join(dir, files[i]), (_fileNumber: number, _size: number) => {
           if (err) throw err;
           size += _size;
           fileNumber += _fileNumber;
@@ -42,7 +42,7 @@ function bytesToSize(bytes: number, fixed = 2) {
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(fixed))} ${sizes[i]}`;
+  return `${parseFloat((bytes / k ** i).toFixed(fixed))} ${sizes[i]}`;
 }
 
 export function viteBuildOuteInfo(): Plugin {

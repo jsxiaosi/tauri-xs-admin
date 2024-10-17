@@ -1,11 +1,15 @@
-import type { AppRouteRecordRaw } from '@/router/type';
 import { t } from '@/hooks/web/useI18n';
+import type { AppRouteRecordRaw } from '@/router/type';
 
 const detailsPage: AppRouteRecordRaw[] = [
   {
     path: '/details_page',
     name: 'RtDetailsPage',
-    meta: { title: t('route.pathName.detailsPage'), icon: 'iEL-management', position: 10 },
+    meta: {
+      title: t('route.pathName.detailsPage'),
+      icon: 'iEL-management',
+      position: 10,
+    },
     component: () => import('@/views/details-page/index.vue'),
     children: [
       {

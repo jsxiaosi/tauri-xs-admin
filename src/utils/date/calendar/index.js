@@ -4,7 +4,7 @@
  * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
  */
 
-/* eslint-disable */
+/* eslint-disable no-unused-vars, object-shorthand */
 const calendar = {
   /**
    * 农历1900-2100的润大小信息表
@@ -228,18 +228,7 @@ const calendar = {
    * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
    * @return Cn string
    */
-  Gan: [
-    '\u7532',
-    '\u4e59',
-    '\u4e19',
-    '\u4e01',
-    '\u620a',
-    '\u5df1',
-    '\u5e9a',
-    '\u8f9b',
-    '\u58ec',
-    '\u7678',
-  ],
+  Gan: ['\u7532', '\u4e59', '\u4e19', '\u4e01', '\u620a', '\u5df1', '\u5e9a', '\u8f9b', '\u58ec', '\u7678'],
 
   /**
    * 天干地支之地支速查表
@@ -603,19 +592,7 @@ const calendar = {
    * @trans ['日','一','二','三','四','五','六','七','八','九','十']
    * @return Cn string
    */
-  nStr1: [
-    '\u65e5',
-    '\u4e00',
-    '\u4e8c',
-    '\u4e09',
-    '\u56db',
-    '\u4e94',
-    '\u516d',
-    '\u4e03',
-    '\u516b',
-    '\u4e5d',
-    '\u5341',
-  ],
+  nStr1: ['\u65e5', '\u4e00', '\u4e8c', '\u4e09', '\u56db', '\u4e94', '\u516d', '\u4e03', '\u516b', '\u4e5d', '\u5341'],
 
   /**
    * 日期转农历称呼速查表
@@ -653,8 +630,8 @@ const calendar = {
    * @eg:var count = calendar.lYearDays(1987) ;//count=387
    */
   lYearDays: function (y) {
-    let i,
-      sum = 348;
+    let i;
+    let sum = 348;
     for (i = 0x8000; i > 0x8; i >>= 1) {
       sum += this.lunarInfo[y - 1900] & i ? 1 : 0;
     }
@@ -725,8 +702,8 @@ const calendar = {
    * @return Cn string
    */
   toGanZhiYear: function (lYear) {
-    var ganKey = (lYear - 3) % 10;
-    var zhiKey = (lYear - 3) % 12;
+    let ganKey = (lYear - 3) % 10;
+    let zhiKey = (lYear - 3) % 12;
     if (ganKey === 0) ganKey = 10; //如果余数为0则为最后一个天干
     if (zhiKey === 0) zhiKey = 12; //如果余数为0则为最后一个地支
     return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
@@ -742,7 +719,7 @@ const calendar = {
     const s =
       '\u9b54\u7faf\u6c34\u74f6\u53cc\u9c7c\u767d\u7f8a\u91d1\u725b\u53cc\u5b50\u5de8\u87f9\u72ee\u5b50\u5904\u5973\u5929\u79e4\u5929\u874e\u5c04\u624b\u9b54\u7faf';
     const arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
-    return s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + '\u5ea7'; //座
+    return `${s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2)}\u5ea7`; //座
   },
 
   /**
@@ -768,7 +745,7 @@ const calendar = {
     const _table = this.sTermInfo[y - 1900];
     const _calcDay = [];
     for (let index = 0; index < _table.length; index += 5) {
-      const chunk = parseInt('0x' + _table.substr(index, 5)).toString();
+      const chunk = parseInt(`0x${_table.substr(index, 5)}`).toString();
       _calcDay.push(chunk[0], chunk.substr(1, 2), chunk[3], chunk.substr(4, 2));
     }
     return parseInt(_calcDay[n - 1]);
@@ -855,17 +832,15 @@ const calendar = {
     } else {
       objDate = new Date(y, parseInt(m) - 1, d);
     }
-    let i,
-      leap = 0,
-      temp = 0;
+    let i;
+    let leap = 0;
+    let temp = 0;
     //修正ymd参数
     y = objDate.getFullYear();
     m = objDate.getMonth() + 1;
     d = objDate.getDate();
     let offset =
-      (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) -
-        Date.UTC(1900, 0, 31)) /
-      86400000;
+      (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 86400000;
     for (i = 1900; i < 2101 && offset > 0; i++) {
       temp = this.lYearDays(i);
       offset -= temp;
@@ -876,18 +851,14 @@ const calendar = {
     }
 
     //是否今天
-    let isTodayObj = new Date(),
-      isToday = false;
-    if (
-      isTodayObj.getFullYear() === y &&
-      isTodayObj.getMonth() + 1 === m &&
-      isTodayObj.getDate() === d
-    ) {
+    const isTodayObj = new Date();
+    let isToday = false;
+    if (isTodayObj.getFullYear() === y && isTodayObj.getMonth() + 1 === m && isTodayObj.getDate() === d) {
       isToday = true;
     }
     //星期几
-    let nWeek = objDate.getDay(),
-      cWeek = this.nStr1[nWeek];
+    let nWeek = objDate.getDay();
+    const cWeek = this.nStr1[nWeek];
     //数字表示周几顺应天朝周一开始的惯例
     if (nWeek === 0) {
       nWeek = 7;
@@ -962,14 +933,14 @@ const calendar = {
     //该日期所属的星座
     const astro = this.toAstro(m, d);
 
-    const solarDate = y + '-' + m + '-' + d;
-    const lunarDate = year + '-' + month + '-' + day;
+    const solarDate = `${y}-${m}-${d}`;
+    const lunarDate = `${year}-${month}-${day}`;
 
     const festival = this.festival;
     const lFestival = this.lFestival;
 
-    const festivalDate = m + '-' + d;
-    let lunarFestivalDate = month + '-' + day;
+    const festivalDate = `${m}-${d}`;
+    let lunarFestivalDate = `${month}-${day}`;
 
     // 天朝农历节日遇闰月过前不过后的原则，此处取农历12月天数不考虑闰月
     // 农历润12月在本工具支持的200年区间内仅1574年出现
@@ -996,7 +967,7 @@ const calendar = {
       isToday: isToday,
       isLeap: isLeap,
       nWeek: nWeek,
-      ncWeek: '\u661f\u671f' + cWeek,
+      ncWeek: `\u661f\u671f${cWeek}`,
       isTerm: isTerm,
       Term: Term,
       astro: astro,
@@ -1044,8 +1015,8 @@ const calendar = {
     for (i = 1900; i < y; i++) {
       offset += this.lYearDays(i);
     }
-    let leap = 0,
-      isAdd = false;
+    let leap = 0;
+    let isAdd = false;
     for (i = 1; i < m; i++) {
       leap = this.leapMonth(y);
       if (!isAdd) {

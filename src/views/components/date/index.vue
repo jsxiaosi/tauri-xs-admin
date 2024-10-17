@@ -1,7 +1,7 @@
 <script lang="tsx" setup>
-  import type { DateCell } from 'element-plus/lib/components/date-picker/src/date-picker.type';
-  import { onMounted, ref } from 'vue';
   import calendar from '@/utils/date/calendar/index.js';
+  import { onMounted, ref } from 'vue';
+  import type { DateCell } from 'element-plus/lib/components/date-picker/src/date-picker.type';
 
   defineOptions({
     name: 'RtDate',
@@ -18,10 +18,11 @@
   };
 
   const DateItem = (v: DateCell) => {
+    console.log(v);
     const { date } = v;
-    var year = date?.getFullYear();
-    var month = (date?.getMonth() as number) + 1;
-    var day = date?.getDate();
+    const year = date?.getFullYear();
+    const month = (date?.getMonth() as number) + 1;
+    const day = date?.getDate();
     const day1 = calendar.solar2lunar(year, month, day);
     let color = '';
     if (day1.festival) color = '#f5222d';
@@ -49,7 +50,9 @@
       :teleported="false"
       :disabled-date="disabledDate"
     >
-      <template #default="picker"> <DateItem v-bind="picker" /></template>
+      <template #default="picker">
+        <DateItem v-bind="picker" />
+      </template>
     </el-date-picker>
   </div>
 </template>

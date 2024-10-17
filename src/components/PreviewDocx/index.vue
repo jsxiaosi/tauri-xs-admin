@@ -1,27 +1,24 @@
 <script setup lang="ts">
-  import { onMounted, ref, watch } from 'vue';
-  import { renderAsync } from 'docx-preview';
   import { isUrl } from '@jsxiaosi/utils';
+  import { renderAsync } from 'docx-preview';
+  import { onMounted, useTemplateRef, watch } from 'vue';
 
   const props = defineProps<{
     src: String | ArrayBuffer | Blob;
     requestOption?: RequestInit;
   }>();
 
-  const officeDocx = ref<HTMLElement>();
+  // const officeDocx = ref<HTMLElement>();
+  const officeDocx = useTemplateRef<HTMLDivElement>('office-docx');
 
-  watch(
-    () => props.src,
-    () => {
-      init();
-    },
-  );
-
-  onMounted(() => {
-    if (props.src) {
-      init();
+  const fetchDocx = async (src: string) => {
+    const res = await fetch(src, props.requestOption);
+    if (res.status === 200) {
+      if (officeDocx.value) {
+        renderAsync(res.blob(), officeDocx.value);
+      }
     }
-  });
+  };
 
   const init = () => {
     let data;
@@ -39,18 +36,22 @@
     }
   };
 
-  const fetchDocx = async (src: string) => {
-    const res = await fetch(src, props.requestOption);
-    if (res.status === 200) {
-      if (officeDocx.value) {
-        renderAsync(res.blob(), officeDocx.value);
-      }
+  watch(
+    () => props.src,
+    () => {
+      init();
+    },
+  );
+
+  onMounted(() => {
+    if (props.src) {
+      init();
     }
-  };
+  });
 </script>
 
 <template>
-  <div ref="officeDocx" class="office-docx"></div>
+  <div ref="office-docx" class="office-docx" />
 </template>
 
 <style lang="scss" scoped>

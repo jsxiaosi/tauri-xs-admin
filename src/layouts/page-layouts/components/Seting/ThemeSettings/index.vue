@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import { ref, watch } from 'vue';
   import SvgIcon from '@/components/SvgIcon/index.vue';
-  import type { AppConfig } from '@/store/types';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
   import { themeHtmlClassName, updateColor } from '@/utils/theme/transformTheme';
+  import { ref, watch } from 'vue';
+  import type { AppConfig } from '@/store/types';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 
@@ -24,8 +24,8 @@
   const themeChange = (e: boolean, key: string) => {
     themeHtmlClassName(key, e);
     const appData = {} as AppConfig;
-    if (key === 'html-grey') appData['greyMode'] = e;
-    else appData['colorWeaknessMode'] = e;
+    if (key === 'html-grey') appData.greyMode = e;
+    else appData.colorWeaknessMode = e;
     setAppConfigMode(appData);
   };
 </script>
@@ -40,7 +40,7 @@
         :style="{ backgroundColor: i }"
         @click="() => (pureColor = i)"
       >
-        <SvgIcon v-if="i === pureColor" class="icon" name="iEL-select"></SvgIcon>
+        <SvgIcon v-if="i === pureColor" class="icon" name="iEL-select" />
       </div>
     </div>
     <div class="options">
@@ -49,10 +49,7 @@
     </div>
     <div class="options">
       <span>灰色模式</span>
-      <el-switch
-        v-model="htmlGrey"
-        @change="(e: string | number | boolean) => themeChange(Boolean(e), 'html-grey')"
-      />
+      <el-switch v-model="htmlGrey" @change="(e: string | number | boolean) => themeChange(Boolean(e), 'html-grey')" />
     </div>
     <div class="options">
       <span>色弱模式</span>

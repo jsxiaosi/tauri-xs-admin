@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import { ref } from 'vue';
   import useSortable from '@/hooks/web/useSortable';
+  import { ref, useTemplateRef } from 'vue';
 
   defineOptions({
     name: 'RtDrag',
@@ -16,7 +16,7 @@
     gridList.value.push(`第${i + 1}个`);
   }
 
-  const sortableEl = ref<HTMLElement | null>(null);
+  const sortableEl = useTemplateRef<HTMLElement | null>('sortable-ref');
   useSortable(
     {
       handle: '.handle',
@@ -28,7 +28,7 @@
     sortableEl,
   );
 
-  const gridSortableEl = ref<HTMLElement | null>(null);
+  const gridSortableEl = useTemplateRef<HTMLElement | null>('grid-sortable-ref');
   useSortable(
     {
       handle: '.list-item',
@@ -52,7 +52,7 @@
             </div>
           </template>
           <div class="card-content">
-            <div ref="sortableEl" class="list">
+            <div ref="sortable-ref" class="list">
               <div v-for="(item, index) in list" :key="index" class="list-item">
                 <span class="handle">::</span>
                 <span>{{ item }}</span>
@@ -69,7 +69,7 @@
             </div>
           </template>
           <div class="card-content">
-            <div ref="gridSortableEl" class="listgrid">
+            <div ref="grid-sortable-ref" class="listgrid">
               <div v-for="(item, index) in gridList" :key="index" class="list-item">
                 <span>{{ item }}</span>
               </div>

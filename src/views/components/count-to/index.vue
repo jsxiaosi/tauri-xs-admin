@@ -4,7 +4,7 @@
 
 <template>
   <div class="page-container">
-    <CountTo style="font-size: 36px" :num-val="2000"></CountTo>
-    <CountTo style="font-size: 36px" type="rebound" :num-val="1234212"></CountTo>
+    <CountTo style="font-size: 36px" :num-val="2000" />
+    <CountTo style="font-size: 36px" type="rebound" :num-val="1234212" />
   </div>
 </template>

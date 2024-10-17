@@ -1,8 +1,7 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
-
-  import { useWaterMark } from './hooks/useWaterMark';
   import waterMark from '@/instruct/waterMark';
+  import { ref, useTemplateRef } from 'vue';
+  import { useWaterMark } from './hooks/useWaterMark';
 
   const vWaterMark = waterMark;
 
@@ -21,7 +20,7 @@
     markName.value = name.value;
   };
 
-  const hooksDeom = ref<HTMLElement | undefined>();
+  const hooksDeom = useTemplateRef<HTMLElement | undefined>('hooks-deom');
   const { setWaterMark: hooksSetWaterMark, close: hooksCloseChange } = useWaterMark(hooksDeom);
   const hooksName = ref<string>('这是一个水印');
   const hooksUpdateName = () => {
@@ -38,30 +37,30 @@
       修改水印名称：
       <ElInput v-model="overallName" style="width: 200px">
         <template #append>
-          <el-button @click="creatOverall">确定</el-button>
+          <el-button @click="creatOverall"> 确定 </el-button>
         </template>
       </ElInput>
       （全局）
-      <el-button @click="closeOverall">清除</el-button>
+      <el-button @click="closeOverall"> 清除 </el-button>
     </div>
 
     <div class="config">
       修改水印名称：
       <ElInput v-model="hooksName" style="width: 200px">
         <template #append>
-          <el-button @click="hooksUpdateName()">确定</el-button>
+          <el-button @click="hooksUpdateName()"> 确定 </el-button>
         </template>
       </ElInput>
       （hooks）
-      <el-button @click="hooksClose">清除</el-button>
+      <el-button @click="hooksClose"> 清除 </el-button>
     </div>
-    <div ref="hooksDeom" class="region" />
+    <div ref="hooks-deom" class="region" />
 
     <div class="config">
       修改水印名称：
       <ElInput v-model="name" style="width: 200px">
         <template #append>
-          <el-button @click="updateName">确定</el-button>
+          <el-button @click="updateName"> 确定 </el-button>
         </template>
       </ElInput>
       （指令）

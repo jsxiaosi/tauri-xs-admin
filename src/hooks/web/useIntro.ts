@@ -1,8 +1,8 @@
 // https://introjs.com/docs
 
 import intro from 'intro.js';
-import 'intro.js/minified/introjs.min.css';
 import type { Options } from 'intro.js/src/option';
+import 'intro.js/minified/introjs.min.css';
 
 async function useIntro(options: Partial<Options> = {}) {
   intro()
@@ -24,12 +24,7 @@ async function useIntro(options: Partial<Options> = {}) {
         showProgress: false /* 是否显示进度条 */,
         scrollToElement: true /* 是否滑动到高亮的区域 */,
         overlayOpacity: 0.8 /* 遮罩层的透明度 */,
-        positionPrecedence: [
-          'bottom',
-          'top',
-          'right',
-          'left',
-        ] /* 当位置选择自动的时候，位置排列的优先级 */,
+        positionPrecedence: ['bottom', 'top', 'right', 'left'] /* 当位置选择自动的时候，位置排列的优先级 */,
         disableInteraction: true /* 是否禁止与元素的相互关联 */,
         hintPosition: 'top-middle' /* 默认提示位置 */,
         hintButtonLabel: '默认提示内容' /* 默认提示内容 */,

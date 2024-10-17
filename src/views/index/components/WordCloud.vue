@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-  import type { Ref } from 'vue';
-  import { onMounted, ref } from 'vue';
-  import type { EChartsOption } from 'echarts';
   import { useECharts } from '@/hooks/web/useECharts';
+  import { onMounted, useTemplateRef } from 'vue';
+  import type { EChartsOption } from 'echarts';
+  import type { Ref } from 'vue';
 
-  const chartRef = ref<HTMLDivElement | null>(null);
+  const chartRef = useTemplateRef<HTMLDivElement | null>('chart-ref');
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
 
   onMounted(() => {
@@ -23,7 +23,7 @@
       { name: 'Umi', value: 0 },
       { name: 'And Design', value: 0 },
     ];
-    data = data.map((i) => {
+    data = data.map(i => {
       i.value = Math.random() * 30 + 8;
       return i;
     });
@@ -48,17 +48,13 @@
             fontFamily: 'sans-serif',
             fontWeight: 'bold',
             // Color can be a callback function or a color string
-            color: function () {
+            color() {
               // Random color
-              return (
-                'rgb(' +
-                [
-                  Math.round(Math.random() * 255),
-                  Math.round(Math.random() * 255),
-                  Math.round(Math.random() * 255),
-                ].join(',') +
-                ')'
-              );
+              return `rgb(${[
+                Math.round(Math.random() * 255),
+                Math.round(Math.random() * 255),
+                Math.round(Math.random() * 255),
+              ].join(',')})`;
             },
           },
 
@@ -73,7 +69,7 @@
 </script>
 
 <template>
-  <div ref="chartRef" class="chart-ref"></div>
+  <div ref="chart-ref" class="chart-ref" />
 </template>
 
 <style scoped lang="scss">

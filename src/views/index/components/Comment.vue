@@ -14,7 +14,7 @@
             </span>
           </div>
         </div>
-        <el-divider v-if="index != 3" border-style="double" />
+        <el-divider v-if="index !== 3" border-style="double" />
       </li>
     </ul>
   </div>

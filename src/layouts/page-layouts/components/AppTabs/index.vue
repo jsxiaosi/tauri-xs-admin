@@ -1,16 +1,16 @@
 <script setup lang="ts">
-  import { ref, computed, watch, onMounted } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
-  import type { TabPaneName } from 'element-plus';
-  import { ElDropdown } from 'element-plus';
-  import { useTabsView } from './hooks/useTabsView';
-  import { useTabsChange } from './hooks/useTabsChange';
-  import { translateI18n } from '@/hooks/web/useI18n';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
-  import type { MultiTabsType } from '@/store/types';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { translateI18n } from '@/hooks/web/useI18n';
   import useSortable from '@/hooks/web/useSortable';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
+  import { ElDropdown } from 'element-plus';
+  import { computed, onMounted, ref, useTemplateRef, watch } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
+  import type { MultiTabsType } from '@/store/types';
+  import type { TabPaneName } from 'element-plus';
+  import { useTabsChange } from './hooks/useTabsChange';
+  import { useTabsView } from './hooks/useTabsView';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 
@@ -21,8 +21,7 @@
 
   const multiTabs = computed<MultiTabsType[]>(() => storeMultiTabs);
 
-  const { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange } =
-    useTabsView(multiTabs);
+  const { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange } = useTabsView(multiTabs);
 
   const { setTabPaneKey, addRouteTabs, onFresh, removeTab } = useTabsChange(multiTabs);
 
@@ -40,7 +39,7 @@
   );
 
   const tabRemoveChange = (e: TabPaneName) => {
-    const item = multiTabs.value.find((i) => setTabPaneKey(i) === e);
+    const item = multiTabs.value.find(i => setTabPaneKey(i) === e);
     if (item) removeTab(item);
   };
 
@@ -60,7 +59,7 @@
     }
   };
 
-  const elDropdownRef = ref<InstanceType<typeof ElDropdown>>();
+  const elDropdownRef = useTemplateRef<InstanceType<typeof ElDropdown>>('el-dropdown-ref');
 
   const tabPaneMenu = (item: MultiTabsType, event: MouseEvent) => {
     elDropdownRef.value?.handleClose();
@@ -88,7 +87,7 @@
 
   watch(
     () => appConfig.value.closeTabDrag,
-    (closeTabDrag) => {
+    closeTabDrag => {
       if (closeTabDrag) destroy();
       else initTableDrag();
     },
@@ -105,17 +104,9 @@
         :closable="multiTabs.length > 1"
         @tab-remove="tabRemoveChange"
       >
-        <el-tab-pane
-          v-for="item in multiTabs"
-          :key="setTabPaneKey(item)"
-          :name="setTabPaneKey(item)"
-        >
+        <el-tab-pane v-for="item in multiTabs" :key="setTabPaneKey(item)" :name="setTabPaneKey(item)">
           <template #label>
-            <div
-              class="tabs-view-item"
-              @click="changeTab(item)"
-              @contextmenu.prevent="tabPaneMenu(item, $event)"
-            ></div>
+            <div class="tabs-view-item" @click="changeTab(item)" @contextmenu.prevent="tabPaneMenu(item, $event)" />
             <span>{{ translateI18n(item.meta?.title) }}</span>
           </template>
         </el-tab-pane>
@@ -138,16 +129,16 @@
     <div v-if="!appConfig.hideTabsConfig" class="right-button">
       <ul>
         <li class="cursor" @click="onFresh()">
-          <SvgIcon class="rotate" name="iEL-refresh"></SvgIcon>
+          <SvgIcon class="rotate" name="iEL-refresh" />
         </li>
         <li>
           <ElDropdown
-            ref="elDropdownRef"
+            ref="el-dropdown-ref"
             trigger="click"
             placement="bottom-end"
             @visible-change="(e: boolean) => e && contextmenu(route)"
           >
-            <SvgIcon class="action-item cursor" name="iEL-arrow-down"></SvgIcon>
+            <SvgIcon class="action-item cursor" name="iEL-arrow-down" />
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item
@@ -164,7 +155,7 @@
           </ElDropdown>
         </li>
         <li class="cursor" @click="fullScreenChange">
-          <SvgIcon name="full_screen_page"></SvgIcon>
+          <SvgIcon name="full_screen_page" />
         </li>
       </ul>
     </div>

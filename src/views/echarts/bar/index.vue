@@ -6,6 +6,6 @@
 
 <template>
   <div class="page-container">
-    <BarRace></BarRace>
+    <BarRace />
   </div>
 </template>

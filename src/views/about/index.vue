@@ -30,13 +30,7 @@
             </div>
           </template>
           <div class="descriptions">
-            <el-descriptions
-              class="margin-top"
-              direction="horizontal"
-              :column="2"
-              size="default"
-              border
-            >
+            <el-descriptions class="margin-top" direction="horizontal" :column="2" size="default" border>
               <el-descriptions-item v-for="(i, cindex) in item" :key="cindex" min-width="200px">
                 <template #label>
                   {{ cindex }}

@@ -1,4 +1,5 @@
 import type LogicFlow from '@logicflow/core';
+import type { Control } from '@logicflow/extension';
 
 export function configDefaultDndPanel(lf: LogicFlow) {
   return [
@@ -42,11 +43,13 @@ export function configDefaultDndPanel(lf: LogicFlow) {
 }
 
 export function configAddItemControl(lf: LogicFlow) {
-  lf.extension.control.addItem({
+  console.log(lf.extension);
+  (lf.extension.control as Control).addItem({
+    key: 'download',
     iconClass: 'lf-control-redo',
     title: '下载',
     text: '下载',
-    onClick: (lf: LogicFlow, _ev: PointerEvent) => {
+    onClick: (lf: LogicFlow, _ev: MouseEvent) => {
       lf.getSnapshot();
     },
   });

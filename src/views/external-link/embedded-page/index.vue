@@ -16,7 +16,7 @@
 
 <template>
   <div v-loading="loading" class="embedded-page">
-    <iframe class="iframe" :src="iframeUrl" @load="hideLoading"></iframe>
+    <iframe class="iframe" :src="iframeUrl" @load="hideLoading" />
   </div>
 </template>
 

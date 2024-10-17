@@ -1,5 +1,5 @@
-import type { AppRouteRecordRaw } from '@/router/type';
 import { t } from '@/hooks/web/useI18n';
+import type { AppRouteRecordRaw } from '@/router/type';
 
 const Layout = () => import('@/layouts/page-layouts/index.vue');
 
@@ -8,7 +8,11 @@ const root: Array<AppRouteRecordRaw> = [
     path: '/',
     component: Layout,
     name: 'RtRoot',
-    meta: { title: t('route.pathName.index'), icon: 'iEL-home-filled', whiteRoute: true },
+    meta: {
+      title: t('route.pathName.index'),
+      icon: 'iEL-home-filled',
+      whiteRoute: true,
+    },
   },
   {
     path: '/login',

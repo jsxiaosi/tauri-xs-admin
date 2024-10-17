@@ -1,8 +1,8 @@
-import type { LocationQuery, RouteParams, RouteRecordName, _RouteLocationBase } from 'vue-router';
-import type { StorageConfig } from '@jsxiaosi/utils/es/window/storage/types';
-import type { AppRouteRecordRaw, Meta } from '@/router/type';
-import type { localeKey } from '@/locales/types';
 import type { PermissionMode } from '@/enum/role';
+import type { localeKey } from '@/locales/types';
+import type { AppRouteRecordRaw, Meta } from '@/router/type';
+import type { StorageConfig } from '@jsxiaosi/utils/es/window/storage/types';
+import type { _RouteLocationBase, LocationQuery, RouteParams, RouteRecordName } from 'vue-router';
 
 export interface AppState {
   appConfigMode: AppConfig;

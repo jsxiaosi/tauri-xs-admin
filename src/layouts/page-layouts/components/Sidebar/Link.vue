@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { computed } from 'vue';
   import { isUrl } from '@jsxiaosi/utils';
+  import { computed } from 'vue';
 
   const props = defineProps({
     to: {
@@ -28,7 +28,7 @@
       };
     }
     return {
-      to: to,
+      to,
     };
   };
 </script>

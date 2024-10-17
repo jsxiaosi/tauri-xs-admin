@@ -1,8 +1,8 @@
-import type { CSSProperties, Ref } from 'vue';
 import { computed, reactive, ref, watch } from 'vue';
+import type { MultiTabsType } from '@/store/types';
+import type { CSSProperties, Ref } from 'vue';
 import type { RouteLocationNormalizedLoaded } from 'vue-router';
 import { useTabsChange } from './useTabsChange';
-import type { MultiTabsType } from '@/store/types';
 
 interface RightClickTags {
   text: string;
@@ -48,16 +48,14 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
   const activityItem = ref<MultiTabsType | null>(null);
 
   const disabledMenu = (signList: number[], show: boolean) => {
-    signList.forEach((v) => {
+    signList.forEach(v => {
       rightClickTags[v].disabled = show;
     });
   };
 
   const showMenu = (item: MultiTabsType) => {
     disabledMenu([0, 1, 2, 3, 4], false);
-    const multFindIndex = multiTabs.value.findIndex(
-      (i) => setTabPaneKey(i) === setTabPaneKey(item),
-    );
+    const multFindIndex = multiTabs.value.findIndex(i => setTabPaneKey(i) === setTabPaneKey(item));
     const multlength = multiTabs.value.length;
     if (multFindIndex === 0 && multlength > 1) {
       disabledMenu([3], true);
@@ -68,8 +66,12 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
     }
   };
 
+  const closeMenu = () => {
+    visible.value = false;
+  };
+
   const contextmenu = (route: MultiTabsType | RouteLocationNormalizedLoaded, e?: MouseEvent) => {
-    const item = multiTabs.value.find((i) => setTabPaneKey(i) === setTabPaneKey(route));
+    const item = multiTabs.value.find(i => setTabPaneKey(i) === setTabPaneKey(route));
     if (!item) return;
     closeMenu();
     showMenu(item);
@@ -84,16 +86,12 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
   };
 
   const rightViewStyle = computed((): CSSProperties => {
-    return { left: rightViewLeft.value + 'px', top: rightViewTop.value + 'px' };
+    return { left: `${rightViewLeft.value}px`, top: `${rightViewTop.value}px` };
   });
-
-  const closeMenu = () => {
-    visible.value = false;
-  };
 
   watch(
     () => visible.value,
-    (val) => {
+    val => {
       if (val) {
         document.body.addEventListener('click', closeMenu);
       } else {
@@ -131,5 +129,11 @@ export const useTabsView = (multiTabs: Ref<MultiTabsType[]>) => {
     showMenu(activityItem.value);
   };
 
-  return { visible, rightClickTags, rightViewStyle, contextmenu, rightViewChange };
+  return {
+    visible,
+    rightClickTags,
+    rightViewStyle,
+    contextmenu,
+    rightViewChange,
+  };
 };

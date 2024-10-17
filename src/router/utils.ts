@@ -1,14 +1,14 @@
-import type { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
-import { useTimeoutFn } from '@vueuse/core';
-import { isUrl } from '@jsxiaosi/utils';
-import { cloneDeep } from 'lodash-es';
-import type { AppRouteRecordRaw, Meta } from './type';
-import { router, sidebarRouteList } from './index';
-import { usePermissionStoreHook } from '@/store/modules/permission';
-import type { RouteDataItemType } from '@/server/route';
+import { PermissionMode, type RoleEnum } from '@/enum/role';
 import { getRouteApi } from '@/server/route';
 import { useAppStoreHook } from '@/store/modules/app';
-import { PermissionMode, type RoleEnum } from '@/enum/role';
+import { usePermissionStoreHook } from '@/store/modules/permission';
+import { isUrl } from '@jsxiaosi/utils';
+import { useTimeoutFn } from '@vueuse/core';
+import { cloneDeep } from 'lodash-es';
+import type { RouteDataItemType } from '@/server/route';
+import type { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
+import { router, sidebarRouteList } from './index';
+import type { AppRouteRecordRaw, Meta } from './type';
 
 // 获取路由列表
 async function getRouteList(permission: RoleEnum) {
@@ -59,13 +59,10 @@ async function getStaticRoute(permission: RoleEnum) {
 }
 
 // 通过角色过滤无权限路由
-function filterNoPermissionRouteList(
-  routerList: AppRouteRecordRaw[],
-  roleName: RoleEnum,
-): AppRouteRecordRaw[] {
+function filterNoPermissionRouteList(routerList: AppRouteRecordRaw[], roleName: RoleEnum): AppRouteRecordRaw[] {
   const newRouteList = [...routerList];
-  let newRoute = newRouteList.filter((i) => !i.meta?.roles || i.meta?.roles?.includes(roleName));
-  newRoute = newRoute.map((i) => {
+  let newRoute = newRouteList.filter(i => !i.meta?.roles || i.meta?.roles?.includes(roleName));
+  newRoute = newRoute.map(i => {
     if (i.children && i.children.length) {
       i.children = filterNoPermissionRouteList(i.children, roleName);
     }
@@ -78,13 +75,13 @@ function filterNoPermissionRouteList(
 // 通过后端返回路由列表过滤无权限路由
 function handleRouteList(routerList: AppRouteRecordRaw[], dataRouter: RouteDataItemType[]) {
   const newRouteList: AppRouteRecordRaw[] = [];
-  routerList.forEach((i) => {
+  routerList.forEach(i => {
     if (!i.meta?.whiteRoute) {
-      const rItem = dataRouter.find((r) => r.name === i.name);
+      const rItem = dataRouter.find(r => r.name === i.name);
       if (rItem) {
         if (i.children && i.children.length) {
           const children = handleRouteList(i.children, rItem.children);
-          if (children) newRouteList.push({ ...i, children: children });
+          if (children) newRouteList.push({ ...i, children });
         } else {
           newRouteList.push(i);
         }
@@ -98,11 +95,11 @@ function handleRouteList(routerList: AppRouteRecordRaw[], dataRouter: RouteDataI
 
 // 更新route的路由列表
 function privilegeRouting(routeList: RouteRecordRaw[], dataRouter: AppRouteRecordRaw[]) {
-  const homeIndex = routeList.findIndex((i) => i.path === '/');
+  const homeIndex = routeList.findIndex(i => i.path === '/');
   if (homeIndex !== -1) {
     routeList[homeIndex].redirect = dataRouter[0].path;
     routeList[homeIndex].children = [];
-    dataRouter.forEach((i) => {
+    dataRouter.forEach(i => {
       routeList[homeIndex].children?.push(i as RouteRecordRaw);
     });
     router.addRoute(routeList[homeIndex]);
@@ -121,7 +118,7 @@ function pathResolve(...paths: string[]) {
     if (!path) {
       continue;
     }
-    resolvePath = path + '/' + resolvePath;
+    resolvePath = `${path}/${resolvePath}`;
     isAbsolutePath = path.charCodeAt(0) === 47;
   }
   if (/^\/+$/.test(resolvePath)) {
@@ -137,7 +134,7 @@ function pathResolve(...paths: string[]) {
 
 // 按照路由中meta下的rank等级升序来排序路由
 function sortRouteList(arr: any[]) {
-  arr.forEach((v) => {
+  arr.forEach(v => {
     if (v?.meta?.rank === null) v.meta.rank = undefined;
     if (v.children) {
       v.children = sortRouteList(v.children);
@@ -170,20 +167,14 @@ export function formatFlatteningRoutes(routesList: AppRouteRecordRaw[]) {
   let hierarchyList = routesList;
   for (let i = 0; i < hierarchyList.length; i++) {
     if (hierarchyList[i].children) {
-      hierarchyList = hierarchyList
-        .slice(0, i + 1)
-        .concat(hierarchyList[i].children || [], hierarchyList.slice(i + 1));
+      hierarchyList = hierarchyList.slice(0, i + 1).concat(hierarchyList[i].children || [], hierarchyList.slice(i + 1));
     }
   }
   return hierarchyList;
 }
 
 // 设置路由path,并创建路由层级
-export function setUpRoutePath(
-  routeList: AppRouteRecordRaw[],
-  pathName = '',
-  pathList: number[] = [],
-) {
+export function setUpRoutePath(routeList: AppRouteRecordRaw[], pathName = '', pathList: number[] = []) {
   for (const [key, node] of routeList.entries()) {
     node.meta = { ...(node.meta as Meta), pathList: [...pathList, key] };
     if (pathName && !isUrl(node.path)) {
@@ -249,10 +240,7 @@ export function getParentPaths(routePath: string, routes: AppRouteRecordRaw[]) {
 }
 
 // 查找对应path的路由信息
-export function findRouteByPath(
-  path: string,
-  routes: AppRouteRecordRaw[],
-): AppRouteRecordRaw | null {
+export function findRouteByPath(path: string, routes: AppRouteRecordRaw[]): AppRouteRecordRaw | null {
   const res = routes.find((item: { path: string }) => item.path === path) || null;
   if (res) {
     return res;
@@ -273,7 +261,7 @@ export function findRouteByPath(
 
 // 重置路由 不重置白名单
 export function resetRouter() {
-  sidebarRouteList.forEach((route) => {
+  sidebarRouteList.forEach(route => {
     const { name } = route;
     if (name) {
       router.hasRoute(name) && router.removeRoute(name);

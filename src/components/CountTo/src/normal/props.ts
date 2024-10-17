@@ -1,5 +1,5 @@
-import type { PropType } from 'vue';
 import { propTypes } from '@/utils/propTypes';
+import type { PropType } from 'vue';
 export const countToProps = {
   startVal: propTypes.number.def(0),
   endVal: propTypes.number.def(2020),
@@ -23,7 +23,7 @@ export const countToProps = {
   easingFn: {
     type: Function as PropType<(t: number, b: number, c: number, d: number) => number>,
     default(t: number, b: number, c: number, d: number) {
-      return (c * (-Math.pow(2, (-10 * t) / d) + 1) * 1024) / 1023 + b;
+      return (c * (-(2 ** ((-10 * t) / d)) + 1) * 1024) / 1023 + b;
     },
   },
 };

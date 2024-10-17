@@ -1,15 +1,12 @@
 <script lang="tsx" setup>
-  import { ref } from 'vue';
   import calendar from '@/utils/date/calendar/index.js';
-
-  const value = ref<Date>();
 
   const DateItem = (v: Recordable) => {
     const { day } = v.data;
     const date = new Date(day);
-    var year = date?.getFullYear();
-    var month = (date?.getMonth() as number) + 1;
-    var vDay = date?.getDate();
+    const year = date?.getFullYear();
+    const month = (date?.getMonth() as number) + 1;
+    const vDay = date?.getDate();
     const day1 = calendar.solar2lunar(year, month, vDay);
     let color = '';
     if (day1.festival) color = '#f5222d';
@@ -29,8 +26,10 @@
 
 <template>
   <div class="page-container">
-    <el-calendar v-model="value">
-      <template #dateCell="defDate"> <DateItem v-bind="defDate" /></template>
+    <el-calendar>
+      <template #date-cell="defDate">
+        <DateItem v-bind="defDate" />
+      </template>
     </el-calendar>
   </div>
 </template>

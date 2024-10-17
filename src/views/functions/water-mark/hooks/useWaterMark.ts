@@ -1,10 +1,10 @@
-import type { Ref } from 'vue';
-import { onBeforeUnmount, shallowRef, ref, unref } from 'vue';
-import type { WaterMarkOptions } from '@/utils/waterMark';
 import { createBase64, createWaterMarkDom } from '@/utils/waterMark';
+import { onBeforeUnmount, ref, shallowRef, unref } from 'vue';
+import type { WaterMarkOptions } from '@/utils/waterMark';
+import type { Ref } from 'vue';
 
 export const useWaterMark = (
-  appendEl: Ref<HTMLElement | undefined> = ref(document.body) as Ref<HTMLElement>,
+  appendEl: Ref<HTMLElement | undefined | null> = ref(document.body) as Ref<HTMLElement>,
   options?: WaterMarkOptions,
 ) => {
   const watermarkEl = shallowRef<HTMLElement>();
@@ -35,10 +35,6 @@ export const useWaterMark = (
     createWatermark(text);
   };
 
-  onBeforeUnmount(() => {
-    close();
-  });
-
   const close = () => {
     const el = unref(appendEl);
     if (!el) return;
@@ -47,6 +43,10 @@ export const useWaterMark = (
     watermarkEl.value = undefined;
     el.removeChild(waterMark);
   };
+
+  onBeforeUnmount(() => {
+    close();
+  });
 
   return { setWaterMark, close };
 };

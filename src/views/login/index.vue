@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import Form from './compoontne/form.vue';
   import { AppLocale, AppTheme } from '@/components/Application';
+  import Form from './compoontne/form.vue';
 </script>
 
 <template>
@@ -8,8 +8,8 @@
     <div class="container mx-auto">
       <div class="head">
         <div class="application">
-          <AppLocale class="item icon-size enter-x"></AppLocale>
-          <AppTheme class="item enter-x"></AppTheme>
+          <AppLocale class="item icon-size enter-x" />
+          <AppTheme class="item enter-x" />
         </div>
       </div>
       <div class="login-box">
@@ -18,7 +18,7 @@
           <h2 className="m-0 ml-4">Vue Xs Admin</h2>
         </div>
         <div class="login-form">
-          <Form></Form>
+          <Form />
         </div>
       </div>
     </div>

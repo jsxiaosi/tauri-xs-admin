@@ -1,9 +1,9 @@
+import { useMessage } from '@/hooks/web/useMessage';
 import { isString } from 'lodash-es';
-import type { AxiosInterceptor, CreateAxiosOptions } from './axiosConfig';
-import { iAxios } from './iAxios';
 import { checkStatus } from './axiosStatus';
 import { errorData } from './errorConfig';
-import { useMessage } from '@/hooks/web/useMessage';
+import { IAxios } from './iAxios';
+import type { AxiosInterceptor, CreateAxiosOptions } from './axiosConfig';
 
 const { createErrorModal, createErrorMsg } = useMessage();
 
@@ -34,7 +34,7 @@ const interceptor: AxiosInterceptor = {
         if (!code && !dataInfo && !message) {
           const toData = {
             code: 1,
-            data: data,
+            data,
             message: 'ok',
           };
           return toData;
@@ -63,12 +63,11 @@ const interceptor: AxiosInterceptor = {
   /**
    * @description: 请求拦截器处理
    */
-  requestInterceptors: (config) => {
+  requestInterceptors: config => {
     const { requestOptions } = config;
     if (requestOptions?.withToken) {
       (config as Recordable).headers._token = 'myToken';
-      if (requestOptions?.specialToken)
-        (config as Recordable).headers._token = requestOptions?.specialToken;
+      if (requestOptions?.specialToken) (config as Recordable).headers._token = requestOptions?.specialToken;
     }
 
     return config;
@@ -77,14 +76,14 @@ const interceptor: AxiosInterceptor = {
   /**
    * @description: 请求拦截器错误处理
    */
-  requestInterceptorsCatch: (error) => {
+  requestInterceptorsCatch: error => {
     return error;
   },
 
   /**
    * @description: 响应拦截器处理
    */
-  responseInterceptors: (res) => {
+  responseInterceptors: res => {
     return res;
   },
 
@@ -100,7 +99,7 @@ const interceptor: AxiosInterceptor = {
 };
 
 function createAxios(opt?: Partial<CreateAxiosOptions>) {
-  return new iAxios({
+  return new IAxios({
     ...{
       acoisadmisf: '',
       // 请求时间

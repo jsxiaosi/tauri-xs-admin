@@ -1,40 +1,27 @@
 <script setup lang="ts">
   import path from 'path';
-  import type { PropType } from 'vue';
-  import { ref } from 'vue';
+  import { translateI18n } from '@/hooks/web/useI18n';
   import { isUrl } from '@jsxiaosi/utils';
+  import { ref } from 'vue';
+  import type { AppRouteRecordRaw } from '@/router/type';
   import Item from './Item.vue';
   import AppLink from './Link.vue';
-  import type { AppRouteRecordRaw } from '@/router/type';
-  import { translateI18n } from '@/hooks/web/useI18n';
 
-  const props = defineProps({
-    // route object
-    item: {
-      type: Object as PropType<AppRouteRecordRaw>,
-      default: () => {},
-    },
-    isNest: {
-      type: Boolean,
-      default: false,
-    },
-    basePath: {
-      type: String,
-      default: '',
-    },
-    level: {
-      type: Number,
-      default: 0,
-    },
-    collapse: {
-      type: Boolean,
-      default: false,
-    },
-    mode: {
-      type: String as PropType<'vertical' | 'horizontal'>,
-      default: 'vertical',
-    },
-  });
+  const {
+    isNest = false,
+    level = 0,
+    collapse = false,
+    mode = 'vertical',
+    item,
+    basePath = '',
+  } = defineProps<{
+    item: AppRouteRecordRaw;
+    isNest: boolean;
+    basePath: string;
+    level?: number;
+    collapse: boolean;
+    mode?: 'vertical' | 'horizontal';
+  }>();
 
   const onlyOneChild = ref<Partial<AppRouteRecordRaw & { noShowingChildren: boolean }>>({});
   const hasOneShowingChild = (parent: AppRouteRecordRaw) => {
@@ -66,10 +53,10 @@
     if (isUrl(routePath)) {
       return routePath;
     }
-    if (isUrl(props.basePath)) {
-      return props.basePath;
+    if (isUrl(basePath)) {
+      return basePath;
     }
-    return path.resolve(props.basePath, routePath);
+    return path.resolve(basePath, routePath);
   };
 </script>
 
@@ -77,14 +64,12 @@
   <div v-if="!item.meta?.hideSidebar">
     <template
       v-if="
-        hasOneShowingChild(item) &&
-        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-        !item.meta?.alwaysShow
+        hasOneShowingChild(item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.meta?.alwaysShow
       "
     >
       <el-tooltip
         class="box-item"
-        :disabled="props.level > 0 || !props.collapse"
+        :disabled="level > 0 || !collapse"
         :content="translateI18n(onlyOneChild.meta?.title)"
         placement="right"
       >
@@ -93,14 +78,14 @@
             :index="resolvePath(onlyOneChild?.path ?? '')"
             :class="{
               'submenu-title-no-dropdown': !isNest,
-              'one-level-menu-item': props.level === 0,
+              'one-level-menu-item': level === 0,
             }"
           >
             <Item
               class-name="menu-item-svg"
               :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
               :title="onlyOneChild.meta.title || (item.meta && item.meta.title)"
-              :collapse="props.level === 0 && props.collapse"
+              :collapse="level === 0 && collapse"
               :mode="mode"
             />
           </el-menu-item>
@@ -108,22 +93,18 @@
       </el-tooltip>
     </template>
 
-    <el-sub-menu
-      v-else
-      :index="resolvePath(item.path)"
-      :class="{ 'one-level-sub-menu': props.level === 0 }"
-      teleported
-    >
+    <el-sub-menu v-else :index="resolvePath(item.path)" :class="{ 'one-level-sub-menu': level === 0 }" teleported>
       <template #title>
         <Item
           v-if="item.meta"
           class-name="sub-menu-svg"
           :icon="item.meta && item.meta.icon"
           :title="item.meta.title"
-          :collapse="props.level === 0 && props.collapse"
+          :collapse="level === 0 && collapse"
           :mode="mode"
         />
       </template>
+
       <sidebar-item
         v-for="(child, index) in item.children"
         :key="child.path + index"
@@ -131,8 +112,8 @@
         :item="child"
         :base-path="resolvePath(child.path)"
         class="nest-menu"
-        :level="props.level + 1"
-        :collapse="props.collapse"
+        :level="level + 1"
+        :collapse="collapse"
       />
     </el-sub-menu>
   </div>

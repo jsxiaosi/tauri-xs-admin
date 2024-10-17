@@ -1,11 +1,10 @@
 <script setup lang="ts">
-  import { ref, reactive, unref } from 'vue';
-  import { templateRef } from '@vueuse/core';
   import SeamlessScroll from '@/components/SeamlessScroll/index.vue';
+  import { reactive, ref, unref, useTemplateRef } from 'vue';
 
-  const scroll = templateRef<HTMLElement | null>('scroll', null);
+  const scroll = useTemplateRef<InstanceType<typeof SeamlessScroll>>('scroll');
 
-  let listData = ref([
+  const listData = ref([
     {
       title: '无缝滚动第一行无缝滚动第一行！！！！！！！！！！',
     },
@@ -35,13 +34,12 @@
     },
   ]);
 
-  let classOption = reactive({
+  const classOption = reactive({
     direction: 'top',
   });
 
   function changeDirection(val: string) {
-    // @ts-expect-error: 对象可能为null
-    unref(scroll).reset();
+    unref(scroll)?.reset();
     unref(classOption).direction = val;
   }
 </script>
@@ -59,8 +57,9 @@
             :style="{
               color: classOption.direction === 'bottom' ? 'red' : '',
             }"
-            >向下滚动</span
           >
+            向下滚动
+          </span>
         </el-button>
         <el-button class="button" @click="changeDirection('left')">
           <span :style="{ color: classOption.direction === 'left' ? 'red' : '' }">向左滚动</span>

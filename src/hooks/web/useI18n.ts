@@ -1,7 +1,7 @@
-import zh_Cn from 'element-plus/es/locale/lang/zh-cn';
-import en from 'element-plus/es/locale/lang/en';
-import { computed } from 'vue';
 import i18n, { availableLocales } from '@/locales/index';
+import en from 'element-plus/es/locale/lang/en';
+import zh_Cn from 'element-plus/es/locale/lang/zh-cn';
+import { computed } from 'vue';
 
 export const useI18n = () => i18n.global;
 

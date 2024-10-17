@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
   import SvgIcon from '@/components/SvgIcon/index.vue';
-  import type { localeTitle } from '@/router/type';
   import { translateI18n } from '@/hooks/web/useI18n';
+  import { ref, useTemplateRef } from 'vue';
+  import type { localeTitle } from '@/router/type';
 
   const props = withDefaults(
     defineProps<{
@@ -22,7 +22,7 @@
   );
 
   const showTextTooltip = ref<Boolean | null>(null);
-  const sidebarItemTextRef = ref<HTMLDivElement>();
+  const sidebarItemTextRef = useTemplateRef<HTMLDivElement>('sidebar-item-text-ref');
 
   const onTextMove = () => {
     if (showTextTooltip.value !== null || props.mode === 'horizontal') return;
@@ -36,19 +36,12 @@
 <template>
   <SvgIcon v-if="props.icon" :class-name="props.className" :name="props.icon" />
   <div
-    ref="sidebarItemTextRef"
+    ref="sidebar-item-text-ref"
     class="menu-item-text"
-    :class="[
-      !props.icon && 'menu-item-text-only',
-      props.mode === 'vertical' && 'sidebar-menu-item-text',
-    ]"
+    :class="[!props.icon && 'menu-item-text-only', props.mode === 'vertical' && 'sidebar-menu-item-text']"
     @mouseover="onTextMove"
   >
-    <el-tooltip
-      :content="translateI18n(props.title)"
-      :disabled="!showTextTooltip || props.collapse"
-      placement="top"
-    >
+    <el-tooltip :content="translateI18n(props.title)" :disabled="!showTextTooltip || props.collapse" placement="top">
       <el-text truncated>
         {{ translateI18n(props.title) }}
       </el-text>

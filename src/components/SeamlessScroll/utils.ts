@@ -55,15 +55,15 @@ export function copyObj() {
       return Object.prototype.toString.call(arg) === '[object Array]';
     };
   }
-  let name,
-    options,
-    src,
-    copy,
-    copyIsArray,
-    clone,
-    i = 1,
-    target = arguments[0] || {}, // 使用||运算符，排除隐式强制类型转换为false的数据类型
-    deep = false;
+  let name;
+  let options;
+  let src;
+  let copy;
+  let copyIsArray;
+  let clone;
+  let i = 1;
+  let target = arguments[0] || {}; // 使用||运算符，排除隐式强制类型转换为false的数据类型
+  let deep = false;
 
   const len = arguments.length;
   if (typeof target === 'boolean') {
@@ -82,7 +82,8 @@ export function copyObj() {
   for (; i < len; i++) {
     //所以如果源对象中数据类型为Undefined或Null那么就会跳过本次循环，接着循环下一个源对象
 
-    if ((options = arguments[i]) != null) {
+    options = arguments[i];
+    if (options != null) {
       // 如果遇到源对象的数据类型为Boolean, Number for in循环会被跳过，不执行for in循环// src用于判断target对象是否存在name属性
       for (name in options) {
         // src用于判断target对象是否存在name属性

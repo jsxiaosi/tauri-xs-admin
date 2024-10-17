@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import { h, reactive, ref } from 'vue';
-  import { ElInput } from 'element-plus';
   import Form from '@/components/Form/index.vue';
+  import { ElInput } from 'element-plus';
+  import { h, reactive, ref } from 'vue';
   import type { FormProps } from '@/components/Form/types/from';
 
   defineOptions({
@@ -406,15 +406,15 @@
   });
 
   const handlerForm = async (val: string) => {
-    if (val == 'vertical') {
-      formOption.formItem.map((res) => {
+    if (val === 'vertical') {
+      formOption.formItem.map(res => {
         res.md = 24;
         res.lg = 24;
         res.xl = 24;
         return res;
       });
-    } else if (val == 'horizontal') {
-      formOption.formItem.map((res) => {
+    } else if (val === 'horizontal') {
+      formOption.formItem.map(res => {
         delete res.md;
         delete res.lg;
         delete res.xl;
@@ -433,12 +433,12 @@
 <template>
   <div class="page-container">
     <div class="config">
-      <el-button @click="handlerForm('vertical')">垂直</el-button>
-      <el-button @click="handlerForm('horizontal')">水平</el-button>
+      <el-button @click="handlerForm('vertical')"> 垂直 </el-button>
+      <el-button @click="handlerForm('horizontal')"> 水平 </el-button>
     </div>
     <Form ref="formRef" :form-data="form" :form-option="formOption" @submit-form="submitForm">
       <template #slotInput="{ formModel }">
-        <ElInput v-model="formModel.slotInput" placeholder="自定义输入框"></ElInput>
+        <ElInput v-model="formModel.slotInput" placeholder="自定义输入框" />
       </template>
     </Form>
   </div>

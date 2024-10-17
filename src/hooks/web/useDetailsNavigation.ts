@@ -1,7 +1,7 @@
-import { useRouter } from 'vue-router';
-import type { LocationQuery } from 'vue-router';
 import { usePermissionStoreHook } from '@/store/modules/permission';
+import { useRouter } from 'vue-router';
 import type { Meta } from '@/router/type';
+import type { LocationQuery } from 'vue-router';
 
 export interface DetailsNavigationOption {
   path: string;

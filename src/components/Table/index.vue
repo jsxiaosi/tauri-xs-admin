@@ -1,6 +1,6 @@
 <script lang="ts" setup generic="T extends Recordable">
-  import type { TableProps } from 'element-plus';
   import { ElTable } from 'element-plus';
+  import type { TableProps } from 'element-plus';
   import TableChild from './src/components/TableChild';
   import type { TableColumnProps } from './types/table';
 
@@ -12,7 +12,7 @@
     <ElTable v-bind="{ ...props, ...$attrs }" :data="data" :border="border" fit show-header>
       <TableChild v-for="(item, index) in option" :key="index" :item="item">
         <template v-for="soitem in Object.keys($slots)" #[soitem]="data">
-          <slot :name="soitem" v-bind="data"></slot>
+          <slot :name="soitem" v-bind="data" />
         </template>
       </TableChild>
     </ElTable>

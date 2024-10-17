@@ -1,9 +1,9 @@
 <script lang="ts" setup generic="T extends Object">
-  import { onMounted, reactive, ref, shallowRef } from 'vue';
-  import type { FormItemRule } from 'element-plus';
+  import { onMounted, reactive, shallowRef, useTemplateRef } from 'vue';
   import type { Arrayable } from '@vueuse/core';
-  import type { FormProps, FormSlotType } from './types/from';
+  import type { ElForm, FormItemRule } from 'element-plus';
   import FormItem from './src/components/FormItem.vue';
+  import type { FormProps, FormSlotType } from './types/from';
 
   const props = defineProps<{
     formData?: T;
@@ -15,9 +15,12 @@
     (e: 'submitForm', form: T): void;
   }>();
 
+  defineSlots<FormSlotType<T>>();
+
   const form = reactive<T>(props.formData || ({} as T));
 
-  const formRef = ref();
+  // const formRef = ref();
+  const fromRef = useTemplateRef<InstanceType<typeof ElForm>>('form-ref');
 
   onMounted(() => {});
 
@@ -26,7 +29,7 @@
   // }
 
   const submitForm = () => {
-    formRef.value.validate((value: any) => {
+    fromRef.value?.validate((value: any) => {
       console.log(value);
     });
     console.log(form);
@@ -35,8 +38,6 @@
 
   const resetForm = () => {};
 
-  defineSlots<FormSlotType<T>>();
-
   defineExpose({
     form,
   });
@@ -44,13 +45,7 @@
 
 <template>
   <div>
-    <el-form
-      ref="formRef"
-      :rules="rules"
-      :model="form"
-      :label-position="formOption.labelPosition"
-      label-width="120px"
-    >
+    <el-form ref="form-ref" :rules="rules" :model="form" :label-position="formOption.labelPosition" label-width="120px">
       <el-row v-for="(f, fix) in formOption.formItem" :key="fix" :gutter="f.gutter || 30">
         <el-col
           v-for="(fItem, fItemIx) in f.itemList"
@@ -63,14 +58,14 @@
         >
           <FormItem :form-item="fItem" :form-model="form">
             <template v-for="item in Object.keys($slots)" #[item]="data">
-              <slot :name="item as keyof T" v-bind="data || {}"></slot>
+              <slot :name="item as keyof T" v-bind="data || {}" />
             </template>
           </FormItem>
         </el-col>
       </el-row>
       <el-form-item>
-        <el-button type="primary" @click="submitForm()">Create</el-button>
-        <el-button @click="resetForm()">Reset</el-button>
+        <el-button type="primary" @click="submitForm()"> Create </el-button>
+        <el-button @click="resetForm()"> Reset </el-button>
       </el-form-item>
     </el-form>
   </div>

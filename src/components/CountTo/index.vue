@@ -1,9 +1,9 @@
 <script lang="tsx">
+  import { converToArray } from '@/utils';
+  import { propTypes } from '@/utils/propTypes';
   import { defineComponent, ref, watch } from 'vue';
   import Normal from './src/normal';
   import Rebound from './src/rebound/index.vue';
-  import { propTypes } from '@/utils/propTypes';
-  import { converToArray } from '@/utils';
 
   /**
    * @param type 动画类型 normal:典型动画 , rebound：回退动画
@@ -43,12 +43,7 @@
       return () => (
         <div>
           {props.type === 'normal' ? (
-            <Normal
-              prefix={props.prefix}
-              duration={props.duration}
-              start-val={props.startVal}
-              end-val={props.numVal}
-            />
+            <Normal prefix={props.prefix} duration={props.duration} start-val={props.startVal} end-val={props.numVal} />
           ) : (
             <div class="rebound">
               <span>{props.prefix}</span>

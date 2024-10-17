@@ -12,12 +12,10 @@
 <template>
   <div class="page-container">
     <div>
-      <el-button v-for="item in 6" :key="item" @click="toPath(item)">详情页{{ item }}</el-button>
+      <el-button v-for="item in 6" :key="item" @click="toPath(item)"> 详情页{{ item }} </el-button>
     </div>
     <div style="margin-top: 20px">
-      <el-button v-for="item in 6" :key="item" @click="toPath(item, 'params')">
-        详情页-params-{{ item }}
-      </el-button>
+      <el-button v-for="item in 6" :key="item" @click="toPath(item, 'params')"> 详情页-params-{{ item }} </el-button>
     </div>
   </div>
 </template>

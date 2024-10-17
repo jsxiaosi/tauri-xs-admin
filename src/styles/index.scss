@@ -1,8 +1,8 @@
-@use './theme.scss';
-@use './intro.scss';
-@use './transition.scss';
-@use './sidebar.scss';
-@use './mixin.scss';
+@use './theme';
+@use './intro';
+@use './transition';
+@use './sidebar';
+@use './mixin';
 
 body {
   height: 100%;

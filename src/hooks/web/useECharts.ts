@@ -1,9 +1,9 @@
-import type { Ref } from 'vue';
+import { useEventListener } from '@/hooks/event/useEventListener';
+import echarts from '@/utils/plugin/echarts';
+import { tryOnUnmounted, useDebounceFn } from '@vueuse/core';
 import { nextTick, ref, unref } from 'vue';
 import type { EChartsOption } from 'echarts';
-import { useDebounceFn, tryOnUnmounted } from '@vueuse/core';
-import echarts from '@/utils/plugin/echarts';
-import { useEventListener } from '@/hooks/event/useEventListener';
+import type { Ref } from 'vue';
 
 export type createEChartsOption = EChartsOption;
 

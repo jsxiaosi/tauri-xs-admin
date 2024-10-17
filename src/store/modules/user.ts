@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia';
 import { _storage } from '@jsxiaosi/utils';
-import { store } from '..';
-import type { UseInfoType } from '@/server/useInfo';
+import { defineStore } from 'pinia';
 import type { RoleEnum } from '@/enum/role';
+import type { UseInfoType } from '@/server/useInfo';
+import { store } from '..';
 
 export interface UserState {
   userInfo: UseInfoType | null;

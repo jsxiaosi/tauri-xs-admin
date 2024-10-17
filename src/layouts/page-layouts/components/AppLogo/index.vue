@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { getCurrentInstance } from 'vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { getCurrentInstance } from 'vue';
 
   const { appConfig } = useRootSetting();
   const config = getCurrentInstance()?.appContext.config.globalProperties.$config;
@@ -9,7 +9,9 @@
 <template>
   <div
     class="app-logo"
-    :class="{ 'app-logo-hide': appConfig.collapseMenu && appConfig.sidebarMode !== 'horizontal' }"
+    :class="{
+      'app-logo-hide': appConfig.collapseMenu && appConfig.sidebarMode !== 'horizontal',
+    }"
   >
     <div class="logo">
       <img class="logo-img" src="@/assets/logo.png" mode="scaleToFill" alt="logo" />
