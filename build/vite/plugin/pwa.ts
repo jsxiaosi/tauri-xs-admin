@@ -8,6 +8,9 @@ export function configPwaPlugin() {
   const options = {
     includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
     logLevel: 'silent',
+    workbox: {
+      maximumFileSizeToCacheInBytes: 3000000,
+    },
     manifest: {
       name: '小斯管理后台模板',
       short_name: '小斯后台模板',
