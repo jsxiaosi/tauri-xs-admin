@@ -22,7 +22,9 @@
   height: 100%;
   transform: rotate(3deg) translate(0, -4px);
   opacity: 1;
-  box-shadow: 0 0 10px var(--main-color), 0 0 5px var(--main-color);
+  box-shadow:
+    0 0 10px var(--main-color),
+    0 0 5px var(--main-color);
 }
 
 /* Remove these to get rid of the spinner */

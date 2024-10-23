@@ -3,7 +3,7 @@ import type { AliasOptions, ResolveOptions } from 'vite';
 
 type myResolveOptions = ResolveOptions & { alias?: AliasOptions };
 
-export function createViteResolve(mode: string, myDirname: string): myResolveOptions {
+export function createViteResolve(_mode: string, myDirname: string): myResolveOptions {
   const viteResolve: myResolveOptions = {
     // 引用别名配置
     alias: {
