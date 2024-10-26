@@ -2,5 +2,3 @@
 declare module '@zougt/*';
 
 declare module 'editor.md/*';
-
-declare module '*.js';

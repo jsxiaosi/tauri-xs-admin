@@ -5,7 +5,7 @@
 
 ## 简介
 
-基于[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)开发的 tauri 后台框架模板
+基于[min-xs-admin](https://github.com/jsxiaosi/min-xs-admin)开发的 tauri 后台框架模板
 
 ## 预览地址
 
@@ -20,9 +20,9 @@
 - [github 站点](https://jsxiaosi.github.io/vue-xs-admin-docs/)
 - [gitee 站点](https://jsxiaosi.gitee.io/vue-xs-admin-docs)
 
-## 简易版
+## 完整版
 
-- [min-xs-admin](https://github.com/jsxiaosi/min-xs-admin)
+- [vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)
 
 ## electron 版
 
@@ -205,12 +205,6 @@ npm run tauri build
 ├── package.json
 └── vite.config.js                #vite配置文件
 ```
-
-## 感谢以下作者项目提供帮助
-
-- [vue-vben-admin](https://github.com/anncwb/vue-vben-admin)
-- [vue-pure-admin](https://github.com/xiaoxian521/vue-pure-admin)
-- [vue-office](https://github.com/501351981/vue-office)
 
 ## 维护者
 

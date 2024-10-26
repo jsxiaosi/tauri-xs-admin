@@ -3,7 +3,7 @@ import { pathNamekeyCheck, setUpRoutePath } from '../utils';
 
 export function configRouteList() {
   // 白名单目录/文件，白名单目录 = 不渲染到菜单，不显示标签页
-  const whiteCatalogue = ['root', 'whiteList'];
+  const whiteCatalogue = ['root', 'whiteList', 'error'];
 
   let routeModulesList: AppRouteRecordRaw[] = []; //菜单路由
   const whiteRouteModulesList: AppRouteRecordRaw[] = []; // 不参与菜单处理的路由
