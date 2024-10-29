@@ -116,7 +116,7 @@ importers:
         version: 1.0.5(@commitlint/cli@19.5.0(@types/node@20.9.0)(typescript@5.6.3))(@commitlint/config-conventional@19.5.0)(@types/node@20.9.0)(commitlint@19.5.0(@types/node@20.9.0)(typescript@5.6.3))(czg@1.10.1)(husky@9.1.6)(typescript@5.6.3)
       '@jsxiaosi/eslint-config':
         specifier: ^1.0.5
-        version: 1.0.5(eslint-plugin-prettier@5.2.1(@types/eslint@8.56.10)(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3))(eslint-plugin-vue@9.29.1(eslint@9.13.0(jiti@1.21.0)))(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.13.0(jiti@1.21.0)))
+        version: 1.0.5(eslint-plugin-prettier@5.2.1(@types/eslint@8.56.10)(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3))(eslint-plugin-vue@9.30.0(eslint@9.13.0(jiti@1.21.0)))(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.13.0(jiti@1.21.0)))
       '@jsxiaosi/eslint-config-prettier':
         specifier: ^1.0.5
         version: 1.0.5(prettier@3.3.3)
@@ -170,7 +170,7 @@ importers:
         version: 5.2.1(@types/eslint@8.56.10)(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3)
       eslint-plugin-vue:
         specifier: ^9.29.1
-        version: 9.29.1(eslint@9.13.0(jiti@1.21.0))
+        version: 9.30.0(eslint@9.13.0(jiti@1.21.0))
       http-server:
         specifier: ^14.1.1
         version: 14.1.1
@@ -186,9 +186,6 @@ importers:
       lint-staged:
         specifier: ^15.2.10
         version: 15.2.10
-      pdfjs-dist:
-        specifier: ^4.7.76
-        version: 4.7.76
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
@@ -3774,8 +3771,8 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-vue@9.29.1:
-    resolution: {integrity: sha512-MH/MbVae4HV/tM8gKAVWMPJbYgW04CK7SuzYRrlNERpxbO0P3+Zdsa2oAcFBW6xNu7W6lIkGOsFAMCRTYmrlWQ==}
+  eslint-plugin-vue@9.30.0:
+    resolution: {integrity: sha512-CyqlRgShvljFkOeYK8wN5frh/OGTvkj1S7wlr2Q2pUvwq+X5VYiLd6ZjujpgSgLnys2W8qrBLkXQ41SUYaoPIQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -5767,10 +5764,6 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
-  path2d@0.2.1:
-    resolution: {integrity: sha512-Fl2z/BHvkTNvkuBzYTpTuirHZg6wW9z8+4SND/3mDTEcYbbNKWAy21dz9D3ePNNwrrK8pqZO5vLPZ1hLF6T7XA==}
-    engines: {node: '>=6'}
-
   path@0.12.7:
     resolution: {integrity: sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==}
 
@@ -5783,10 +5776,6 @@ packages:
   pathval@2.0.0:
     resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
     engines: {node: '>= 14.16'}
-
-  pdfjs-dist@4.7.76:
-    resolution: {integrity: sha512-8y6wUgC/Em35IumlGjaJOCm3wV4aY/6sqnIT3fVW/67mXsOZ9HWBn8GDKmJUK0GSzpbmX3gQqwfoFayp78Mtqw==}
-    engines: {node: '>=18'}
 
   pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
@@ -8872,7 +8861,7 @@ snapshots:
     dependencies:
       prettier: 3.3.3
 
-  '@jsxiaosi/eslint-config@1.0.5(eslint-plugin-prettier@5.2.1(@types/eslint@8.56.10)(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3))(eslint-plugin-vue@9.29.1(eslint@9.13.0(jiti@1.21.0)))(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.13.0(jiti@1.21.0)))':
+  '@jsxiaosi/eslint-config@1.0.5(eslint-plugin-prettier@5.2.1(@types/eslint@8.56.10)(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3))(eslint-plugin-vue@9.30.0(eslint@9.13.0(jiti@1.21.0)))(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.13.0(jiti@1.21.0)))':
     dependencies:
       '@antfu/install-pkg': 0.4.1
       '@clack/prompts': 0.7.0
@@ -8889,7 +8878,7 @@ snapshots:
       local-pkg: 0.5.0
     optionalDependencies:
       eslint-plugin-prettier: 5.2.1(@types/eslint@8.56.10)(eslint@9.13.0(jiti@1.21.0))(prettier@3.3.3)
-      eslint-plugin-vue: 9.29.1(eslint@9.13.0(jiti@1.21.0))
+      eslint-plugin-vue: 9.30.0(eslint@9.13.0(jiti@1.21.0))
       prettier: 3.3.3
       vue-eslint-parser: 9.4.3(eslint@9.13.0(jiti@1.21.0))
     transitivePeerDependencies:
@@ -11256,7 +11245,7 @@ snapshots:
     optionalDependencies:
       '@types/eslint': 8.56.10
 
-  eslint-plugin-vue@9.29.1(eslint@9.13.0(jiti@1.21.0)):
+  eslint-plugin-vue@9.30.0(eslint@9.13.0(jiti@1.21.0)):
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.13.0(jiti@1.21.0))
       eslint: 9.13.0(jiti@1.21.0)
@@ -13422,9 +13411,6 @@ snapshots:
 
   path-type@4.0.0: {}
 
-  path2d@0.2.1:
-    optional: true
-
   path@0.12.7:
     dependencies:
       process: 0.11.10
@@ -13435,14 +13421,6 @@ snapshots:
   pathe@1.1.2: {}
 
   pathval@2.0.0: {}
-
-  pdfjs-dist@4.7.76:
-    optionalDependencies:
-      canvas: 2.11.2
-      path2d: 0.2.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
 
   pend@1.2.0: {}
 

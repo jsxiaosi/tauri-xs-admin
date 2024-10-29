@@ -1,27 +1,21 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
+    "useDefineForClassFields": true,
     "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
+    "module": "ESNext",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "jsxImportSource": "vue",
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "#/*": ["types/*"]
+    },
+    "resolveJsonModule": true,
     "types": [
       "node",
       "vite/client",
@@ -29,13 +23,19 @@
       "element-plus/lib/locale",
       "@intlify/unplugin-vue-i18n/messages"
     ],
-    "paths": {
-      "@/*": ["src/*"],
-      "#/*": ["types/*"]
-    }
+    "allowImportingTsExtensions": true,
+    /* Linting */
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
 
+  "references": [{ "path": "./tsconfig.node.json" }],
   "include": ["src", "types", "tests"],
-  "exclude": ["node_modules", "dist", "**/*.js", "discard/"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules", "dist", "**/*.js", "discard/"]
 }
