@@ -151,7 +151,7 @@ npm run tauri build
 
 ## 项目中使用的相关仓库
 
-### vite 相关
+### Vite 相关
 
 - [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression/) - 资源压缩支持 Gzip or brotli
 - [vite-plugin-style-import](https://github.com/anncwb/vite-plugin-style-import/) - 动态引入组件库样式
