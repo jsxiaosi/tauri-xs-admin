@@ -27,11 +27,11 @@
 
 - [vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)
 
-## electron 版
+## Electron 版
 
 - [electron-xs-admin](https://github.com/jsxiaosi/electron-xs-admin)
 
-## tauri 版
+## Tauri 版
 
 - [tauri-xs-admin](https://github.com/jsxiaosi/tauri-xs-admin)
 
