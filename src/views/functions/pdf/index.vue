@@ -6,7 +6,8 @@
   import VuePdfEmbed from 'vue-pdf-embed';
   // import { useEventListener, useDebounceFn } from '@vueuse/core';
   import type { UploadRawFile } from 'element-plus';
-  import type { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
+
+  type VuePdfEmbedProps = InstanceType<typeof VuePdfEmbed>;
 
   const fileSrc = ref<string>();
 
@@ -42,9 +43,9 @@
     pdfRef.value?.print();
   }
 
-  function handleOnLoaded(value: PDFDocumentProxy) {
+  const handleOnLoaded: VuePdfEmbedProps['onLoaded'] = value => {
     pageCount.value = value.numPages;
-  }
+  };
 </script>
 
 <template>

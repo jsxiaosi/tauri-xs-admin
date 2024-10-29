@@ -1,18 +1,18 @@
+import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
 
 const scopes = fs.readdirSync(path.resolve(__dirname, 'src'));
 
 const gitStatus = execSync('git status --porcelain || true').toString().trim().split('\n');
 
 const scopeComplete = gitStatus
-  .find((r) => ~r.indexOf('M  src'))
+  .find(r => ~r.indexOf('M  src'))
   ?.replace(/(\/)/g, '%%')
   ?.match(/src%%((\w|-)*)/)?.[1];
 
 const subjectComplete = gitStatus
-  .find((r) => ~r.indexOf('M  src'))
+  .find(r => ~r.indexOf('M  src'))
   ?.replace(/\//g, '%%')
   ?.match(/src%%((\w|-)*)/)?.[1];
 
