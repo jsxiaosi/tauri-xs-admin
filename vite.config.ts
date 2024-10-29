@@ -1,14 +1,14 @@
 /// <reference types="vitest" />
 
-import type { UserConfig, ConfigEnv } from 'vite';
+import type { ConfigEnv, UserConfig } from 'vite';
 
+import { createViteBuild } from './build/vite/build';
+import { createViteCSS } from './build/vite/css';
+import { createViteEsbuild } from './build/vite/esbuild';
+import { createViteOptimizeDeps } from './build/vite/optimizeDeps';
 import { createVitePlugins } from './build/vite/plugin';
 import { createViteResolve } from './build/vite/resolve';
-import { createViteBuild } from './build/vite/build';
-import { createViteEsbuild } from './build/vite/esbuild';
 import { createViteServer } from './build/vite/server';
-import { createViteOptimizeDeps } from './build/vite/optimizeDeps';
-import { createViteCSS } from './build/vite/css';
 import { createVitestTest } from './build/vite/viteTestConfig';
 
 // https://vitejs.dev/config/
