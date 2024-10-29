@@ -7,6 +7,8 @@
 
 基于[min-xs-admin](https://github.com/jsxiaosi/min-xs-admin)开发的 tauri 后台框架模板
 
+体验[vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)完整demo版本，切换分支[feature/vue-xs-admin](https://github.com/jsxiaosi/tauri-xs-admin/tree/feature/vue-xs-admin)
+
 ## 预览地址
 
 - [github 站点](https://jsxiaosi.github.io/vue-xs-admin/)
@@ -20,17 +22,17 @@
 - [github 站点](https://jsxiaosi.github.io/vue-xs-admin-docs/)
 - [gitee 站点](https://jsxiaosi.gitee.io/vue-xs-admin-docs)
 
+## 简易版
+
+- [min-xs-admin](https://github.com/jsxiaosi/min-xs-admin)
+
 ## 完整版
 
 - [vue-xs-admin](https://github.com/jsxiaosi/vue-xs-admin)
 
-## electron 版
+## Electron 版
 
 - [electron-xs-admin](https://github.com/jsxiaosi/electron-xs-admin)
-
-## tauri 版
-
-- [tauri-xs-admin](https://github.com/jsxiaosi/tauri-xs-admin)
 
 ## 特性
 
