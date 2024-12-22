@@ -20,7 +20,7 @@ Password: admin123
 - [GitHub Site](https://jsxiaosi.github.io/vue-xs-admin-docs/)
 - [Gitee Site](https://jsxiaosi.gitee.io/vue-xs-admin-docs)
 
-## Lite Version
+## Simple version
 
 - [min-xs-admin](https://github.com/jsxiaosi/min-xs-admin)
 

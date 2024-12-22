@@ -1,3 +1,22 @@
+// https://element-plus.org/zh-CN/component/icon.html
+import {
+  ArrowDown,
+  ArrowRight,
+  Avatar,
+  Briefcase,
+  CaretLeft,
+  CaretRight,
+  FullScreen,
+  Grid,
+  HomeFilled,
+  Management,
+  Operation,
+  Printer,
+  Refresh,
+  RemoveFilled,
+  Select,
+  Setting,
+} from '@element-plus/icons-vue';
 import {
   ElAlert,
   ElBreadcrumb,
@@ -45,27 +64,8 @@ import {
   ElText,
   ElTooltip,
 } from 'element-plus';
-import type { App, Component } from 'vue';
 
-// https://element-plus.org/zh-CN/component/icon.html
-import {
-  ArrowDown,
-  ArrowRight,
-  Avatar,
-  Briefcase,
-  CaretLeft,
-  CaretRight,
-  FullScreen,
-  Grid,
-  HomeFilled,
-  Management,
-  Operation,
-  Printer,
-  Refresh,
-  RemoveFilled,
-  Select,
-  Setting,
-} from '@element-plus/icons-vue';
+import type { App, Component } from 'vue';
 
 // Directives
 const plugins = [ElLoading, ElInfiniteScroll];
