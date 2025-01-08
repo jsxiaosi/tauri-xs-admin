@@ -1,4 +1,5 @@
 {
+  "$schema": "https://schema.tauri.app/config/2",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build",
@@ -11,10 +12,7 @@
     "copyright": "",
     "targets": "all",
     "externalBin": [],
-    "icon": [
-      "icons/logo-128x128.png",
-      "icons/logo.ico"
-    ],
+    "icon": ["icons/logo-128x128.png", "icons/logo.ico"],
     "windows": {
       "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
@@ -38,7 +36,7 @@
   },
   "productName": "tauri-xs-admin",
   "mainBinaryName": "tauri-xs-admin",
-  "version": "0.0.1",
+  "version": "../package.json",
   "identifier": "com.xsadmin.tauri",
   "plugins": {},
   "app": {
