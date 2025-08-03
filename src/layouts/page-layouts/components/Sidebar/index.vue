@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { findRouteByPath, getParentPaths } from '@/router/utils';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
   import { computed, ref, watch } from 'vue';
   import { useRoute } from 'vue-router';
-  import type { AppRouteRecordRaw } from '@/router/type';
   import type { PropType } from 'vue';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import type { AppRouteRecordRaw } from '@/router/type';
+  import { findRouteByPath, getParentPaths } from '@/router/utils';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
   import SidebarItem from './SidebarItem.vue';
 
   defineProps({

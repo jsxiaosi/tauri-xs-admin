@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import { findRouteByPath, getParentPaths } from '@/router/utils';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
   import { computed } from 'vue';
   import { useRoute } from 'vue-router';
   import type { AppRouteRecordRaw } from '@/router/type';
+  import { findRouteByPath, getParentPaths } from '@/router/utils';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
   import Item from './Item.vue';
   import AppLink from './Link.vue';
 

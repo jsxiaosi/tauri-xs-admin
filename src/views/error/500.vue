@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import SvgIcon from '@/components/SvgIcon/index.vue';
   import { ElButton } from 'element-plus';
   import { useRouter } from 'vue-router';
+  import SvgIcon from '@/components/SvgIcon/index.vue';
 
   const router = useRouter();
   const toHome = () => {

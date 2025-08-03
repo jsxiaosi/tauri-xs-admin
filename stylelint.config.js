@@ -4,8 +4,15 @@ export default {
   plugins: ['stylelint-order'],
   overrides: [
     {
-      files: ['**/*.(css|html|vue)'],
+      files: ['**/*.{css,html,vue}'],
       customSyntax: 'postcss-html',
+    },
+    {
+      files: ['*.vue'],
+      rules: {
+        // TODO: https://github.com/stylelint/stylelint/issues/8695
+        'no-invalid-position-declaration': null,
+      },
     },
     {
       files: ['*.scss', '**/*.scss'],

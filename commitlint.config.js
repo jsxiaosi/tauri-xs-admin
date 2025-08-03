@@ -1,8 +1,11 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const scopes = fs.readdirSync(path.resolve(__dirname, 'src'));
+const scopes = fs
+  .readdirSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'src'))
+  .map(i => i.toLowerCase());
 
 const gitStatus = execSync('git status --porcelain || true').toString().trim().split('\n');
 
@@ -16,7 +19,7 @@ const subjectComplete = gitStatus
   ?.replace(/\//g, '%%')
   ?.match(/src%%((\w|-)*)/)?.[1];
 
-export default {
+const Configuration = {
   extends: ['@jsxiaosi/commitlint-config'],
   prompt: {
     // 范围设置
@@ -33,3 +36,5 @@ export default {
     defaultSubject: subjectComplete && `[${subjectComplete}] `,
   },
 };
+
+export default Configuration;

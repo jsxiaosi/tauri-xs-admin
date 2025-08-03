@@ -1,6 +1,6 @@
-import { useI18n } from '@/hooks/web/useI18n';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import type { ElMessageBoxOptions } from 'element-plus';
+import { useI18n } from '@/hooks/web/useI18n';
 
 const { t } = useI18n();
 

@@ -1,12 +1,12 @@
-import { PermissionMode, type RoleEnum } from '@/enum/role';
-import { getRouteApi } from '@/server/route';
-import { useAppStoreHook } from '@/store/modules/app';
-import { usePermissionStoreHook } from '@/store/modules/permission';
 import { isUrl } from '@jsxiaosi/utils';
 import { useTimeoutFn } from '@vueuse/core';
 import { cloneDeep } from 'lodash-es';
-import type { RouteDataItemType } from '@/server/route';
 import type { RouteRecordName, RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
+import { PermissionMode, type RoleEnum } from '@/enum/role';
+import { getRouteApi } from '@/server/route';
+import type { RouteDataItemType } from '@/server/route';
+import { useAppStoreHook } from '@/store/modules/app';
+import { usePermissionStoreHook } from '@/store/modules/permission';
 import { router, sidebarRouteList } from './index';
 import type { AppRouteRecordRaw, Meta } from './type';
 

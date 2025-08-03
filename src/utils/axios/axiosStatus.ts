@@ -1,6 +1,6 @@
+import type { ErrorMessageMode } from '#/axios';
 import { useMessage } from '@/hooks/web/useMessage';
 import i18n from '@/locales';
-import type { ErrorMessageMode } from '#/axios';
 const { createErrorModal, createErrorMsg } = useMessage();
 
 export function checkStatus(status: number, msg: string, errorMessageMode: ErrorMessageMode = 'message'): void {

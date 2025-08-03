@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-xs-admin-deploy
+  namespace: vue-xs-admin
+  labels:
+    app: vue-xs-admin-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vue-xs-admin-pod
+  template:
+    metadata:
+      labels:
+        app: vue-xs-admin-pod
+    spec:
+      serviceAccountName: vue-xs-admin-sa
+      containers:
+        - name: vue-xs-admin
+          image: YOUR_DOCKER_REGISTRY/vue-xs-admin:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 3
+            tcpSocket:
+              port: 80
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 3
+            tcpSocket:
+              port: 80
+          resources:
+            limits:
+              memory: 2Gi
+              cpu: '1'
+            requests:
+              memory: 256Mi
+              cpu: 250m
+      restartPolicy: Always

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vue-xs-admin-service
+  namespace: vue-xs-admin
+  labels:
+    app: vue-xs-admin-service
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      name: vue-xs-admin
+  selector:
+    app: vue-xs-admin-pod

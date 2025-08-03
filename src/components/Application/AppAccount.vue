@@ -1,7 +1,7 @@
 <script setup lang="ts">
+  import { useRouter } from 'vue-router';
   import { usePermissionStoreHook } from '@/store/modules/permission';
   import { useUserInfoStoreHook } from '@/store/modules/user';
-  import { useRouter } from 'vue-router';
   const router = useRouter();
 
   const command = (value: string) => {

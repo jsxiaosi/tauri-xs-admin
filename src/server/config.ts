@@ -1,5 +1,5 @@
-import { deffHttp } from '@/utils/axios';
 import type { AppConfig } from '@/store/types';
+import { deffHttp } from '@/utils/axios';
 
 enum Api {
   ROUTE_CONFIG_INFO = '/serverConfig.json',

@@ -1,5 +1,5 @@
-import { createBase64, createWaterMarkDom } from '@/utils/waterMark';
 import type { DirectiveBinding, VNode } from 'vue';
+import { createBase64, createWaterMarkDom } from '@/utils/waterMark';
 
 // 设置水印
 export function setWaterMark(el: HTMLElement, binding: string) {

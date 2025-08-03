@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "composite": true,
+    "baseUrl": "./",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "allowSyntheticDefaultImports": true
   },
   "include": ["vite.config.ts", "build", "types", "mock"]
 }

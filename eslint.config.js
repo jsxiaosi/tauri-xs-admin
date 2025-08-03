@@ -6,6 +6,7 @@ export default jsxiaosiConfig(
     prettier: {
       usePrettierrc: true,
     },
+    ignores: ['src/**/china.json'],
   },
   {
     rules: {

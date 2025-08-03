@@ -1,9 +1,9 @@
 <script setup lang="ts">
+  // import { ref } from 'vue'
+  import { ref } from 'vue';
   import { AppAccount, AppLocale, AppTheme } from '@/components/Application';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  // import { ref } from 'vue'
-  import { ref } from 'vue';
   import Breadcrumb from '../../components/Breadcrumb/index.vue';
   import Setting from '../../components/Seting/index.vue';
   import Sidebar from '../../components/Sidebar/index.vue';
@@ -88,7 +88,7 @@
       .navbar-right {
         display: grid;
         grid-auto-flow: column;
-        grid-gap: 10px;
+        gap: 10px;
         align-items: center;
         margin-right: 10px;
       }

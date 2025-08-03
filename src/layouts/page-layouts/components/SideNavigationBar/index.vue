@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
   import { useDebounceFn, useEventListener, useMediaQuery } from '@vueuse/core';
   import { ref, watch } from 'vue';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
   import type { AppConfig } from '@/store/types';
   import VerticalSidebar from '../VerticalSidebar/index.vue';
 

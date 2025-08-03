@@ -1,9 +1,9 @@
-import { store } from '@/store';
 import { _storage } from '@jsxiaosi/utils';
 import { isEqual } from 'lodash-es';
 import { defineStore } from 'pinia';
-import type { AppRouteRecordRaw } from '@/router/type';
 import type { RouteRecordName } from 'vue-router';
+import type { AppRouteRecordRaw } from '@/router/type';
+import { store } from '@/store';
 import { useAppStoreHook } from './app';
 import type { MultiTabsType, PermissionState } from '../types';
 
@@ -18,8 +18,7 @@ const getPermissionState = (): PermissionState => {
   };
 };
 
-export const usePermissionStore = defineStore({
-  id: 'permission',
+export const usePermissionStore = defineStore('permission', {
   state: (): PermissionState => getPermissionState(),
   actions: {
     setWholeMenus(routeList: AppRouteRecordRaw[]) {

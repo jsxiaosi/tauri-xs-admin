@@ -1,7 +1,7 @@
 <script setup lang="ts">
+  import { ref, useTemplateRef } from 'vue';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { translateI18n } from '@/hooks/web/useI18n';
-  import { ref, useTemplateRef } from 'vue';
   import type { localeTitle } from '@/router/type';
 
   const props = withDefaults(
