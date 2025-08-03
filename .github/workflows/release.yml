@@ -1,4 +1,4 @@
-name: 'publish'
+name: publish
 
 on:
   workflow_dispatch:
@@ -32,13 +32,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: 'macos-latest' # for Arm based macs (M1 and above).
-            args: '--target aarch64-apple-darwin'
+          - platform: macos-latest # for Arm based macs (M1 and above).
+            args: --target aarch64-apple-darwin
           # - platform: 'macos-latest' # for Intel based macs.
           #   args: '--target x86_64-apple-darwin'
-          - platform: 'ubuntu-22.04'
+          - platform: ubuntu-22.04
             args: ''
-          - platform: 'windows-latest'
+          - platform: windows-latest
             args: ''
 
     runs-on: ${{ matrix.platform }}
@@ -59,7 +59,7 @@ jobs:
         with:
           node-version: '22'
           cache: pnpm
-          
+
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable # Set this to dtolnay/rust-toolchain@nightly
         with:
@@ -69,7 +69,7 @@ jobs:
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: './src-tauri -> target'
+          workspaces: ./src-tauri -> target
 
       - name: Install dependencies
         run: pnpm install
@@ -79,7 +79,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
-          projectPath: './src-tauri'
+          projectPath: ./src-tauri
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}

@@ -1,7 +1,7 @@
 {
   "name": "mini-xs-admin",
   "type": "module",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "packageManager": "pnpm@9.0.0",
   "author": {
     "name": "小斯斯",
@@ -75,9 +75,9 @@
     "vue-types": "^6.0.0"
   },
   "devDependencies": {
-    "@jsxiaosi/commitlint-config": "^1.0.14",
-    "@jsxiaosi/eslint-config": "^1.0.14",
-    "@jsxiaosi/eslint-config-prettier": "^1.0.14",
+    "@jsxiaosi/commitlint-config": "^1.0.15",
+    "@jsxiaosi/eslint-config": "^1.0.15",
+    "@jsxiaosi/eslint-config-prettier": "^1.0.15",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
     "@tauri-apps/cli": "^2",
@@ -122,7 +122,7 @@
     "stylelint-order": "^7.0.0",
     "stylelint-scss": "^6.12.1",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.9.0",
+    "typescript": "^5.8.3",
     "unplugin-element-plus": "^0.10.0",
     "vite": "^7.0.6",
     "vite-plugin-compression": "^0.5.1",

@@ -9,3 +9,4 @@ dist
 public
 node_modules
 dist_electron
+src-tauri
