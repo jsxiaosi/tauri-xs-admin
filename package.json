@@ -45,7 +45,7 @@
     "@intlify/unplugin-vue-i18n": "^6.0.8",
     "@jsxiaosi/utils": "^0.0.19",
     "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-clipboard-manager": "^2.2.0",
+    "@tauri-apps/plugin-clipboard-manager": "^2.3.0",
     "@tauri-apps/plugin-dialog": "~2",
     "@tauri-apps/plugin-fs": "~2",
     "@tauri-apps/plugin-global-shortcut": "~2",
