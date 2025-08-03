@@ -24,8 +24,7 @@ const getStorageUserInfo = (): UserState => {
   };
 };
 
-const useUserInfoStore = defineStore({
-  id: 'userInfo',
+const useUserInfoStore = defineStore('userInfo', {
   state: (): UserState => getStorageUserInfo(),
   actions: {
     setUserInfo(value: UseInfoType) {

@@ -6,14 +6,14 @@
   "locale": "zh-CN",
   "primaryColor": "#409eff",
   "greyMode": false,
-  "colorWeaknessMode":false,
+  "colorWeaknessMode": false,
   "hideNavbart": false,
   "hideTabs": false,
-  "closeTabDrag":false,
+  "closeTabDrag": false,
   "tabPersistent": true,
   "sidebarFold": "top",
   "permissionMode": "REAREND",
-  "StorageConfig":{
+  "StorageConfig": {
     "expire": 0, 
     "isEncrypt": false
   }

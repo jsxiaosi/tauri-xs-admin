@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-  import { LocalesEnum } from '@/enum/locales';
-  import { useI18n } from '@/hooks/web/useI18n';
   import i18next from 'i18next';
   import { onMounted, ref, unref, useTemplateRef } from 'vue';
   import WangeDitor from 'wangeditor';
+  import { LocalesEnum } from '@/enum/locales';
+  import { useI18n } from '@/hooks/web/useI18n';
 
   const editorELRef = useTemplateRef<HTMLElement>('editor-ref');
   const editor = ref<WangeDitor>({} as WangeDitor);

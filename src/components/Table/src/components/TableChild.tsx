@@ -1,8 +1,8 @@
-import { getSlot } from '@/utils/slotsHelper';
 import { ElTableColumn } from 'element-plus';
 import { defineComponent } from 'vue';
-import type { TableColumnCtx } from 'element-plus';
+import type { TableColumnInstance } from 'element-plus';
 import type { SetupContext, VNode } from 'vue';
+import { getSlot } from '@/utils/slotsHelper';
 import type { TableColumnProps } from '../../types/table';
 
 interface RenderType {
@@ -10,6 +10,7 @@ interface RenderType {
   header?: (scope: Recordable) => VNode[] | VNode | null;
 }
 
+// TODO: header 存在children时，slots 无法渲染
 const TableChild = defineComponent(
   <T extends object = any>(props: { item: TableColumnProps<T> }, { slots }: SetupContext) => {
     const { item } = props;
@@ -17,12 +18,14 @@ const TableChild = defineComponent(
     function eLComponent(childrenRender: RenderType | null | undefined = null) {
       const { children, ...reItem } = item;
       if (childrenRender?.default) {
-        return <ElTableColumn {...(reItem as TableColumnCtx<Recordable>)}>{childrenRender}</ElTableColumn>;
+        return <ElTableColumn {...(reItem as TableColumnInstance)}>{childrenRender}</ElTableColumn>;
       } else {
         return (
-          <ElTableColumn {...(reItem as TableColumnCtx<Recordable>)}>
+          <ElTableColumn {...(reItem as TableColumnInstance)}>
             {childrenRender?.header}
-            {children?.map(child => <TableChild item={child} />)}
+            {children?.map(child => (
+              <TableChild item={child} />
+            ))}
           </ElTableColumn>
         );
       }

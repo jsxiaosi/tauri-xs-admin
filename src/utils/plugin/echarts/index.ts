@@ -11,7 +11,12 @@ import {
 import * as echarts from 'echarts/core';
 import { UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
+import EchartsDarkTheme from './theme/dark.json';
+import EchartsLightTheme from './theme/light.json';
 import 'echarts-wordcloud';
+
+echarts.registerTheme('light', EchartsLightTheme);
+echarts.registerTheme('dark', EchartsDarkTheme);
 
 echarts.use([
   GridComponent,

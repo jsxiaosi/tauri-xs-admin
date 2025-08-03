@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import SeamlessScroll from '@/components/SeamlessScroll/index.vue';
   import { reactive, ref, unref, useTemplateRef } from 'vue';
+  import SeamlessScroll from '@/components/SeamlessScroll/index.vue';
 
   const scroll = useTemplateRef<InstanceType<typeof SeamlessScroll>>('scroll');
 

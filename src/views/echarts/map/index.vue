@@ -1,12 +1,12 @@
 <script lang="ts"></script>
 
 <script lang="ts" setup>
-  import { useECharts } from '@/hooks/web/useECharts';
   import { useIntervalFn } from '@vueuse/core';
   import { registerMap } from 'echarts';
   import { onMounted, useTemplateRef } from 'vue';
-  import type { createEChartsOption } from '@/hooks/web/useECharts';
   import type { Ref } from 'vue';
+  import { useECharts } from '@/hooks/web/useECharts';
+  import type { createEChartsOption } from '@/hooks/web/useECharts';
   import { mapData } from './data';
 
   const chartRef = useTemplateRef<HTMLDivElement | null>('chart-ref');

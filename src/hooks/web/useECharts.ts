@@ -1,9 +1,11 @@
-import { useEventListener } from '@/hooks/event/useEventListener';
-import echarts from '@/utils/plugin/echarts';
 import { tryOnUnmounted, useDebounceFn } from '@vueuse/core';
-import { nextTick, ref, unref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { nextTick, ref, unref, watch } from 'vue';
 import type { EChartsOption } from 'echarts';
 import type { Ref } from 'vue';
+import { useEventListener } from '@/hooks/event/useEventListener';
+import { useAppStoreHook } from '@/store/modules/app';
+import echarts from '@/utils/plugin/echarts';
 
 export type createEChartsOption = EChartsOption;
 
@@ -14,6 +16,21 @@ export function useECharts(elRef: Ref<HTMLDivElement>) {
   let removeResizeFn: Fn = () => {};
   resizeFn = useDebounceFn(resize, 200);
 
+  const appStore = useAppStoreHook();
+
+  const { appConfigMode } = storeToRefs(appStore);
+
+  watch(
+    () => appStore.appConfigMode.themeMode,
+    () => {
+      if (chartInstance) {
+        chartInstance.dispose();
+        initCharts();
+        setOptions(unref(cacheOptions), false);
+      }
+    },
+  );
+
   // 创建echarts
   function initCharts() {
     // 获取ref demo
@@ -21,7 +38,7 @@ export function useECharts(elRef: Ref<HTMLDivElement>) {
     if (!el || !unref(el)) {
       return;
     }
-    chartInstance = echarts.init(el, 'light');
+    chartInstance = echarts.init(el, appConfigMode.value.themeMode);
 
     // 监听window宽度变化重新渲染echarts
     const { removeEvent } = useEventListener({

@@ -32,7 +32,7 @@ export const animationFrame = () => {
 
 /**
  * @desc 判断数组是否相等
- * @return {Boolean}
+ * @return {boolean}
  * @param arr1
  * @param arr2
  */

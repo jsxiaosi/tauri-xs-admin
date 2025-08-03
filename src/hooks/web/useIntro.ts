@@ -1,10 +1,10 @@
 // https://introjs.com/docs
 
 import intro from 'intro.js';
-import type { Options } from 'intro.js/src/option';
+import type { TourOptions } from 'intro.js/src/packages/tour/option';
 import 'intro.js/minified/introjs.min.css';
 
-async function useIntro(options: Partial<Options> = {}) {
+async function useIntro(options: Partial<TourOptions> = {}) {
   intro()
     .setOptions({
       ...{

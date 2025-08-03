@@ -1,7 +1,7 @@
-import { LocalesEnum } from '@/enum/locales';
 import messages from '@intlify/unplugin-vue-i18n/messages';
 import { createI18n } from 'vue-i18n';
 import type { App } from 'vue';
+import { LocalesEnum } from '@/enum/locales';
 import type { localeKey, LocaleMessages, LocalesType } from './types';
 
 const localesList: LocalesType[] = [

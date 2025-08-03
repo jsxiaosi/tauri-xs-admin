@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-  import { useECharts } from '@/hooks/web/useECharts';
   import { onMounted, useTemplateRef } from 'vue';
   import type { EChartsOption } from 'echarts';
   import type { Ref } from 'vue';
+  import { useECharts } from '@/hooks/web/useECharts';
 
   const chartRef = useTemplateRef<HTMLDivElement | null>('chart-ref');
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);

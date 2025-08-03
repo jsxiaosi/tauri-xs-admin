@@ -1,8 +1,7 @@
-import 'vue/jsx'
+import 'vue/jsx';
 
 declare global {
-  interface Window {
-  }
+  interface Window {}
 
   type RefType<T> = T | null;
 
@@ -13,4 +12,4 @@ declare global {
   }
 }
 
-export { }; 
+export {};

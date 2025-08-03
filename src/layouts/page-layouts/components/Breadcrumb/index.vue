@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { translateI18n } from '@/hooks/web/useI18n';
-  import { findRouteByPath, getParentPaths } from '@/router/utils';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
   import { isEqual } from 'lodash-es';
   import { onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { translateI18n } from '@/hooks/web/useI18n';
   import type { AppRouteRecordRaw } from '@/router/type';
+  import { findRouteByPath, getParentPaths } from '@/router/utils';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
   import AppFold from '../AppFold/index.vue';
 
   const { multiTabs } = usePermissionStoreHook();

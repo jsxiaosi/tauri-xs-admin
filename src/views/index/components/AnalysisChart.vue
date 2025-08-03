@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import { useECharts } from '@/hooks/web/useECharts';
   import { onMounted, useTemplateRef } from 'vue';
   import type { Ref } from 'vue';
+  import { useECharts } from '@/hooks/web/useECharts';
 
   const chartRef = useTemplateRef<HTMLDivElement | null>('chart-ref');
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
@@ -12,9 +12,6 @@
         trigger: 'axis',
         axisPointer: {
           type: 'cross',
-          label: {
-            backgroundColor: '#6a7985',
-          },
         },
       },
       grid: {
@@ -78,9 +75,7 @@
           emphasis: {
             focus: 'series',
           },
-          itemStyle: {
-            color: '#409eff',
-          },
+
           data: [150, 154, 201, 299, 190, 330, 410],
         },
       ],

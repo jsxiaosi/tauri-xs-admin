@@ -9,7 +9,6 @@ import { createViteOptimizeDeps } from './build/vite/optimizeDeps';
 import { createVitePlugins } from './build/vite/plugin';
 import { createViteResolve } from './build/vite/resolve';
 import { createViteServer } from './build/vite/server';
-import { createVitestTest } from './build/vite/viteTestConfig';
 
 // https://vitejs.dev/config/
 export default (configEnv: ConfigEnv): UserConfig => {
@@ -27,8 +26,6 @@ export default (configEnv: ConfigEnv): UserConfig => {
     envPrefix: ['VITE_', 'TAURI_'],
     // esbuild
     esbuild: createViteEsbuild(isBuild),
-    // vitest配置
-    test: createVitestTest(),
     // 解析配置
     resolve: createViteResolve(mode, __dirname),
     // 插件配置

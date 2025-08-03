@@ -1,6 +1,6 @@
 <script lang="tsx" setup>
-  import Table from '@/components/Table/index.vue';
   import { h, ref } from 'vue';
+  import Table from '@/components/Table/index.vue';
   import type { TableColumnProps } from '@/components/Table/types/table';
 
   interface TableData {
@@ -127,6 +127,7 @@
           <span>表格</span>
         </div>
       </template>
+
       <Table :data="tabList" border row-key="date" :option="option">
         <template #name_header="slotData">
           <span>{{ `插槽：${slotData.customItem.label}` }}</span>

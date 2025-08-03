@@ -1,7 +1,7 @@
 <script lang="tsx">
-  import { getSlot } from '@/utils/slotsHelper';
   import { defineComponent, resolveComponent } from 'vue';
   import type { DefineComponent, SetupContext } from 'vue';
+  import { getSlot } from '@/utils/slotsHelper';
   import { elComponentItem } from '../../componentMap';
   import type { FormItemRenderProps } from '../../types/from';
   export default defineComponent(
@@ -27,7 +27,13 @@
           const { options } = formItem.childrenComponent;
 
           const Comp = resolveComponent(compName) as DefineComponent<Recordable>;
-          return <>{options?.map(res => <Comp label={res.label} value={res.value} {...formItem.props}></Comp>)}</>;
+          return (
+            <>
+              {options?.map(res => (
+                <Comp label={res.label} value={res.value} {...formItem.props}></Comp>
+              ))}
+            </>
+          );
         }
       }
 

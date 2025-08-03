@@ -54,6 +54,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
           -webkit-line-clamp: 2;
+          /* stylelint-disable-next-line property-no-deprecated */
           -webkit-box-orient: vertical;
         }
       }

@@ -1,7 +1,7 @@
 <script lang="tsx">
+  import { defineComponent, ref, watch } from 'vue';
   import { converToArray } from '@/utils';
   import { propTypes } from '@/utils/propTypes';
-  import { defineComponent, ref, watch } from 'vue';
   import Normal from './src/normal';
   import Rebound from './src/rebound/index.vue';
 

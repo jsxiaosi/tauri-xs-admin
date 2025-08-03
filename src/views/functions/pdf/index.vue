@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import SvgIcon from '@/components/SvgIcon/index.vue';
   import { fileToBase64 } from '@jsxiaosi/utils';
   import { ElUpload } from 'element-plus';
   import { ref, useTemplateRef, watchEffect } from 'vue';
   import VuePdfEmbed from 'vue-pdf-embed';
   // import { useEventListener, useDebounceFn } from '@vueuse/core';
   import type { UploadRawFile } from 'element-plus';
+  import SvgIcon from '@/components/SvgIcon/index.vue';
 
   type VuePdfEmbedProps = InstanceType<typeof VuePdfEmbed>;
 
@@ -49,7 +49,7 @@
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col">
+  <div class="flex h-full w-full flex-col">
     <ElUpload :limit="1" accept=".pdf" :before-upload="beforeUpload" action="">
       <ElButton style="margin-bottom: 12px"> 点击上传 </ElButton>
     </ElUpload>

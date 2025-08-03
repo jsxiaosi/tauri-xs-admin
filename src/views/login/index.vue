@@ -14,7 +14,7 @@
       </div>
       <div class="login-box">
         <div className="mb-10 flex flex-row items-center justify-center enter-y">
-          <img class="w-[44px] h-[44px]" src="@/assets/logo.png" mode="scaleToFill" alt="logo" />
+          <img class="h-[44px] w-[44px]" src="@/assets/logo.png" mode="scaleToFill" alt="logo" />
           <h2 className="m-0 ml-4">Vue Xs Admin</h2>
         </div>
         <div class="login-form">

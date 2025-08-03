@@ -32,7 +32,7 @@
     padding: 0 5px;
     border: 1px solid var(--text-color-primary);
     border-radius: 30px;
-    background-color: 151515;
+    background-color: #151515;
     font-size: 0.8em;
 
     .theme-inner {

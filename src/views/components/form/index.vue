@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import Form from '@/components/Form/index.vue';
   import { ElInput } from 'element-plus';
   import { h, reactive, ref } from 'vue';
+  import Form from '@/components/Form/index.vue';
   import type { FormProps } from '@/components/Form/types/from';
 
   defineOptions({

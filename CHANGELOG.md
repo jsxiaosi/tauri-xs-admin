@@ -1,7 +1,33 @@
+## <small>2.0.5 (2025-08-03)</small>
+
+- fix: 🐛 @typescript-eslint/typescript-estree 版本不匹配 typescript5.9.2 ([1d4e5e3](https://github.com/jsxiaosi/vue-xs-admin/commit/1d4e5e3))
+
+## <small>2.0.4 (2025-08-03)</small>
+
+- docs: 📝 v2.0.4 changelog ([233cc26](https://github.com/jsxiaosi/vue-xs-admin/commit/233cc26))
+- style: 💄 eslint fix ([f56f81a](https://github.com/jsxiaosi/vue-xs-admin/commit/f56f81a))
+- feat(hooks): ✨ echart 自定义主题 ([0d3beea](https://github.com/jsxiaosi/vue-xs-admin/commit/0d3beea))
+- feat(hooks,router,store,styles): ✨ 更新依赖 ([f69dd7e](https://github.com/jsxiaosi/vue-xs-admin/commit/f69dd7e))
+
+## <small>2.0.3 (2025-07-16)</small>
+
+- feat(k8s): ✨ docker,k8s配置 ([60fe177](https://github.com/jsxiaosi/vue-xs-admin/commit/60fe177))
+- ci: 🔨Update issue templates ([ed6e9a8](https://github.com/jsxiaosi/vue-xs-admin/commit/ed6e9a8))
+- ci: 🛠 lint and type checking 工作流 ([6d24016](https://github.com/jsxiaosi/vue-xs-admin/commit/6d24016))
+- ci: 🛠 lint and type checking 工作流 ([c8005bb](https://github.com/jsxiaosi/vue-xs-admin/commit/c8005bb))
+- ci: 🛠 lint and type checking 工作流依赖同步问题 ([2a08587](https://github.com/jsxiaosi/vue-xs-admin/commit/2a08587))
+- ci: 🛠 pull request template ([9340b8f](https://github.com/jsxiaosi/vue-xs-admin/commit/9340b8f))
+- ci: 🛠 Update issue templates ([8c2fb0f](https://github.com/jsxiaosi/vue-xs-admin/commit/8c2fb0f))
+- ci(components): 🛠 pull request link check ([faadedd](https://github.com/jsxiaosi/vue-xs-admin/commit/faadedd))
+- fix: 🐛 删除多余文件 ([2317a07](https://github.com/jsxiaosi/vue-xs-admin/commit/2317a07))
+- fix: 🐛 lint check jobs name update ([bb88e92](https://github.com/jsxiaosi/vue-xs-admin/commit/bb88e92))
+- fix(components): 🐛 table ts type error ([53dd6fb](https://github.com/jsxiaosi/vue-xs-admin/commit/53dd6fb))
+
 ## <small>2.0.2 (2024-12-22)</small>
 
 - docs: 📝 修改简易版本地址 ([842b247](https://github.com/jsxiaosi/vue-xs-admin/commit/842b247))
 - docs: 📝 英文README 简易版本描述 ([c8fc7d2](https://github.com/jsxiaosi/vue-xs-admin/commit/c8fc7d2))
+- docs: 📝 v2.0.2 changelog ([0f3becd](https://github.com/jsxiaosi/vue-xs-admin/commit/0f3becd))
 - fix(.github): 🐛 自动部署工作流分支校验 ([f155ae9](https://github.com/jsxiaosi/vue-xs-admin/commit/f155ae9))
 - fix(tailwind): 🐛 tailwind 配置文件esm ([dad740a](https://github.com/jsxiaosi/vue-xs-admin/commit/dad740a))
 - feat: ✨ 分享meta设置 ([7802c14](https://github.com/jsxiaosi/vue-xs-admin/commit/7802c14))

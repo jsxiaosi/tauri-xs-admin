@@ -1,3 +1,4 @@
+import process from 'process';
 import type { BuildOptions } from 'vite';
 
 export function createViteBuild(): BuildOptions {

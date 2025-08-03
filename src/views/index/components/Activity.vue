@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import SeamlessScroll from '@/components/SeamlessScroll/index.vue';
   import { reactive, ref } from 'vue';
+  import SeamlessScroll from '@/components/SeamlessScroll/index.vue';
 
   const classOption = reactive({
     direction: 'top',

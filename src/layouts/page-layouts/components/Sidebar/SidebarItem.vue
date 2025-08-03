@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import path from 'path';
-  import { translateI18n } from '@/hooks/web/useI18n';
   import { isUrl } from '@jsxiaosi/utils';
   import { ref } from 'vue';
+  import { translateI18n } from '@/hooks/web/useI18n';
   import type { AppRouteRecordRaw } from '@/router/type';
   import Item from './Item.vue';
   import AppLink from './Link.vue';
@@ -16,10 +16,10 @@
     basePath = '',
   } = defineProps<{
     item: AppRouteRecordRaw;
-    isNest: boolean;
-    basePath: string;
+    isNest?: boolean;
+    basePath?: string;
     level?: number;
-    collapse: boolean;
+    collapse?: boolean;
     mode?: 'vertical' | 'horizontal';
   }>();
 

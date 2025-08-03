@@ -1,5 +1,5 @@
-import { deffHttp } from '@/utils/axios';
 import type { RoleEnum } from '@/enum/role';
+import { deffHttp } from '@/utils/axios';
 
 export interface UseInfoType {
   name: string;

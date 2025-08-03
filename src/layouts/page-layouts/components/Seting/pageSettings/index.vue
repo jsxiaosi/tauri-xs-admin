@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { usePermissionStoreHook } from '@/store/modules/permission';
   import { _storage } from '@jsxiaosi/utils';
   import { ref } from 'vue';
+  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { usePermissionStoreHook } from '@/store/modules/permission';
 
   const { appConfig, setAppConfigMode } = useRootSetting();
 

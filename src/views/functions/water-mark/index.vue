@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import waterMark from '@/instruct/waterMark';
   import { ref, useTemplateRef } from 'vue';
+  import waterMark from '@/instruct/waterMark';
   import { useWaterMark } from './hooks/useWaterMark';
 
   const vWaterMark = waterMark;
@@ -35,7 +35,7 @@
   <div>
     <div class="config">
       修改水印名称：
-      <ElInput v-model="overallName" style="width: 200px">
+      <ElInput v-model="overallName" style="margin-bottom: 12px">
         <template #append>
           <el-button @click="creatOverall"> 确定 </el-button>
         </template>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
+  import { ElDropdown } from 'element-plus';
+  import { computed, onMounted, ref, useTemplateRef, watch } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
+  import type { TabPaneName } from 'element-plus';
   import SvgIcon from '@/components/SvgIcon/index.vue';
   import { useRootSetting } from '@/hooks/setting/useRootSetting';
   import { translateI18n } from '@/hooks/web/useI18n';
   import useSortable from '@/hooks/web/useSortable';
   import { usePermissionStoreHook } from '@/store/modules/permission';
-  import { ElDropdown } from 'element-plus';
-  import { computed, onMounted, ref, useTemplateRef, watch } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
   import type { MultiTabsType } from '@/store/types';
-  import type { TabPaneName } from 'element-plus';
   import { useTabsChange } from './hooks/useTabsChange';
   import { useTabsView } from './hooks/useTabsView';
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import PreviewDocx from '@/components/PreviewDocx/index.vue';
   import { fileToArrayBuffer } from '@jsxiaosi/utils';
   import { ElUpload } from 'element-plus';
   import { ref } from 'vue';
   import type { UploadRawFile } from 'element-plus';
+  import PreviewDocx from '@/components/PreviewDocx/index.vue';
 
   const fileSrc = ref<string | ArrayBuffer>('');
 

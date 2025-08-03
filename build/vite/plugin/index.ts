@@ -1,12 +1,14 @@
-import vue from '@vitejs/plugin-vue';
+// tailwindcss
+import tailwindcss from '@tailwindcss/vite';
 
-import vueJsx from '@vitejs/plugin-vue-jsx';
+import vue from '@vitejs/plugin-vue';
 
 // import VueMacros from 'unplugin-vue-macros/vite';
 
+import vueJsx from '@vitejs/plugin-vue-jsx';
+
 // 检查插件状态
 import Inspect from 'vite-plugin-inspect';
-
 import type { ConfigEnv, PluginOption } from 'vite';
 // 自定义插件 问候语，打包检测用时、大小
 import viteBuildOuteInfo from './buildOuteInfo';
@@ -33,7 +35,7 @@ import { configVisualizerPlugin } from './visualizer';
 // eslint
 // import { configEsLinterPlugin } from './eslinter'
 
-export function createVitePlugins(_isBuild = false, _configEnv: ConfigEnv) {
+export function createVitePlugins(_isBuild = false, configEnv: ConfigEnv) {
   const vitePlugins: PluginOption[] = [
     // vue({
     //   reactivityTransform: true,
@@ -63,9 +65,11 @@ export function createVitePlugins(_isBuild = false, _configEnv: ConfigEnv) {
 
   vitePlugins.push(configVueI18nPlugin());
 
-  vitePlugins.push(Inspect());
+  if (configEnv.mode !== 'test') vitePlugins.push(Inspect());
 
   vitePlugins.push(configAutoElementStylePlugin());
+
+  vitePlugins.push(tailwindcss());
 
   // 使用此插件会导致vite启动变慢 100ms左右
   // vitePlugins.push(configEsLinterPlugin(configEnv))
